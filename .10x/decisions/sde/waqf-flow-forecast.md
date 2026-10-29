@@ -1,0 +1,5 @@
+# SDE — waqf-flow-forecast (what was built)
+Modules (src/waqf): config, ingest (integrity), clean (CleaningLog, Arabic folding, fund grid), index (returns, payout detection, composite), forecast (5 models, rolling backtest), risk (stationary bootstrap, spending frontier, real-value bands), allocate (waterfall), viz (10 figures), pipeline (steps shared with notebook), export_dashboard (precomputed grid).
+Scripts: run_analysis.py (≈4 s), build_notebook.py, build_report.py (Edge headless, retry-until-file).
+**Deviations from plan:** (1) Added hidden-payout detection + total-return index — discovered during cleaning (Alinma July drops). (2) Dropped Tadawul total-NAV field (mostly zero). (3) Dropped arabic_reshaper/bidi: matplotlib 3.11 shapes RTL natively. (4) GASA disbursement tables stored as (region, masraf, count) multisets — lossless for 2-column tables.
+**Tech debt:** payout thresholds (−2 %, −3 pts, ≥2 peers) are heuristics without ground truth; JS allocation mirrors Python (parity verified manually, not by an automated test).

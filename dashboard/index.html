@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>محاكي قرار الصرف الوقفي</title>
+<style>
+:root{
+  --surface-0:#f6f6f3; --surface-1:#fcfcfb; --card:#ffffff; --rule:#e6e5e0;
+  --text-primary:#0b0b0b; --text-secondary:#52514e; --text-muted:#8a8983;
+  --series-1:#2a78d6; --series-2:#eb6834; --series-3:#1baf7a; --navy:#0d366b;
+  --band-1:rgba(42,120,214,.14); --band-2:rgba(235,104,52,.14); --good:#0ca30c; --critical:#d03b3b;
+}
+@media (prefers-color-scheme: dark){
+  :root:where(:not([data-theme="light"])){
+    --surface-0:#121211; --surface-1:#1a1a19; --card:#20201f; --rule:#383835;
+    --text-primary:#f0efec; --text-secondary:#c3c2b7; --text-muted:#8f8e86;
+    --series-1:#3987e5; --series-2:#d95926; --series-3:#199e70; --navy:#9ec5f4;
+    --band-1:rgba(57,135,229,.22); --band-2:rgba(217,89,38,.22);
+  }
+}
+:root[data-theme="dark"]{
+  --surface-0:#121211; --surface-1:#1a1a19; --card:#20201f; --rule:#383835;
+  --text-primary:#f0efec; --text-secondary:#c3c2b7; --text-muted:#8f8e86;
+  --series-1:#3987e5; --series-2:#d95926; --series-3:#199e70; --navy:#9ec5f4;
+  --band-1:rgba(57,135,229,.22); --band-2:rgba(217,89,38,.22);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--surface-0);color:var(--text-primary);
+  font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;font-size:15px;line-height:1.6}
+.wrap{max-width:1180px;margin:0 auto;padding:20px 16px 40px}
+header h1{margin:0;font-size:26px;color:var(--navy);line-height:1.3}
+header p{margin:4px 0 0;color:var(--text-secondary)}
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:18px 0 14px;
+  background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:12px}
+.controls label{display:block;font-size:12.5px;color:var(--text-secondary);margin-bottom:3px}
+.controls select,.controls input[type=number]{width:100%;padding:7px 8px;border:1px solid var(--rule);border-radius:8px;
+  background:var(--surface-1);color:var(--text-primary);font:inherit}
+.rate-box{grid-column:span 2}
+.rate-box input{width:100%;accent-color:var(--series-1)}
+.rate-val{font-weight:700;color:var(--navy);font-size:18px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:14px}
+.kpi{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:12px 14px}
+.kpi .v{font-size:28px;font-weight:700;line-height:1.2;color:var(--navy)}
+.kpi .l{font-size:13px;color:var(--text-secondary)}
+.kpi .status{font-size:12.5px;margin-top:4px;color:var(--text-secondary)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}.rate-box{grid-column:span 1}}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:12px 14px 10px;position:relative}
+.card h2{font-size:16px;margin:0;color:var(--text-primary)}
+.card .sub{font-size:12.5px;color:var(--text-secondary);margin:2px 0 6px}
+svg{width:100%;height:auto;display:block;overflow:visible}
+svg text{fill:var(--text-secondary);font-size:11px;font-family:inherit}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--text-secondary);margin-top:4px}
+.legend i{display:inline-block;width:14px;height:3px;border-radius:2px;vertical-align:middle;margin-left:6px}
+.tip{position:absolute;pointer-events:none;background:var(--surface-1);border:1px solid var(--rule);border-radius:8px;
+  padding:6px 9px;font-size:12.5px;box-shadow:0 4px 14px rgba(0,0,0,.12);display:none;white-space:nowrap;z-index:5}
+.alloc-row{display:grid;grid-template-columns:150px 1fr 96px;gap:8px;align-items:center;font-size:13px;margin:4px 0}
+.alloc-row .bar{height:14px;border-radius:0 4px 4px 0;background:var(--series-1)}
+.alloc-row .amt{direction:ltr;text-align:left;color:var(--text-secondary);font-variant-numeric:tabular-nums}
+.alloc-row .track{background:transparent}
+.pill{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:10px;border:1px solid var(--rule);color:var(--text-secondary)}
+footer{margin-top:16px;font-size:12.5px;color:var(--text-muted)}
+table.t{width:100%;border-collapse:collapse;font-size:13px}
+table.t td,table.t th{border-bottom:1px solid var(--rule);padding:4px 6px;text-align:right}
+table.t td.n{direction:ltr;text-align:left;font-variant-numeric:tabular-nums}
+details summary{cursor:pointer;color:var(--text-secondary);font-size:13px}
+.ltr{direction:ltr;unicode-bidi:embed}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>محاكي قرار الصرف الوقفي</h1>
+  <p>اختر قيمة الوقف ومعدل الصرف لترى احتمال حفظ القيمة الحقيقية للأصل بعد 10 سنوات، وكيف يتوزع المبلغ على المصارف.
+     الأرقام محسوبة مسبقاً من <span class="ltr">scripts/run_analysis.py</span> (10,000 مسار محاكاة لكل حالة).</p>
+</header>
+
+<section class="controls" aria-label="مدخلات القرار">
+  <div><label for="endow">قيمة الوقف (ريال)</label><input id="endow" type="number" min="100000" step="100000" value="10000000"></div>
+  <div class="rate-box"><label for="rate">معدل الصرف السنوي: <span class="rate-val" id="rateVal"></span></label>
+    <input id="rate" type="range" min="0" max="16" step="1" value="3"></div>
+  <div><label for="scen">سيناريو العائد</label><select id="scen"></select></div>
+  <div><label for="infl">التضخم السنوي</label><select id="infl"></select></div>
+  <div><label for="conf">الثقة المطلوبة</label><select id="conf">
+    <option value="0.5">50%</option><option value="0.6" selected>60%</option><option value="0.75">75%</option><option value="0.9">90%</option></select></div>
+  <div><label for="prof">شروط الواقف (مزيج المصارف)</label><select id="prof"></select></div>
+  <div><label for="resv">رصيد الاحتياطي الحالي (ريال)</label><input id="resv" type="number" min="0" step="10000" value="0"></div>
+</section>
+
+<section class="kpis" aria-live="polite">
+  <div class="kpi"><div class="l">احتمال حفظ القيمة الحقيقية بعد 10 سنوات</div><div class="v" id="kP"></div><div class="status" id="kPs"></div></div>
+  <div class="kpi"><div class="l">السقف المستدام عند الثقة المطلوبة</div><div class="v" id="kR"></div><div class="status" id="kRs"></div></div>
+  <div class="kpi"><div class="l">مبلغ الصرف هذا العام</div><div class="v" id="kB"></div><div class="status" id="kBs"></div></div>
+  <div class="kpi"><div class="l">القيمة الحقيقية المتوقعة بعد 10 سنوات (الوسيط)</div><div class="v" id="kV"></div><div class="status" id="kVs"></div></div>
+</section>
+
+<section class="grid2">
+  <div class="card"><h2>حدود الصرف المستدام</h2><div class="sub">احتمال حفظ القيمة الحقيقية لكل معدل صرف — مرّر المؤشر للتفاصيل</div>
+    <svg id="front" viewBox="0 0 560 300" role="img" aria-label="منحنى احتمال حفظ الأصل مقابل معدل الصرف"></svg>
+    <div class="legend"><span><i style="background:var(--series-1)"></i>احتمال الحفظ</span><span><i style="background:var(--text-muted)"></i>الثقة المطلوبة</span></div>
+    <div class="tip" id="tipF"></div></div>
+  <div class="card"><h2>مسار القيمة الحقيقية للوقف</h2><div class="sub">الوسيط ونطاق 10–90% — بالمعدل المختار مقابل السقف المستدام</div>
+    <svg id="fan" viewBox="0 0 560 300" role="img" aria-label="مسار القيمة الحقيقية خلال 10 سنوات"></svg>
+    <div class="legend"><span><i style="background:var(--series-2)"></i>المعدل المختار</span><span><i style="background:var(--series-1)"></i>السقف المستدام</span></div>
+    <div class="tip" id="tipV"></div></div>
+</section>
+
+<section class="grid2" style="margin-top:12px">
+  <div class="card"><h2>خطة الصرف على المصارف</h2>
+    <div class="sub">عمارة الوقف ← احتياطي الاستقرار ← شروط الواقف (ثابتة) ← الحصة المرنة «أوجه البر» حسب الأولويات</div>
+    <div id="alloc"></div>
+    <div class="legend" style="margin-top:8px"><span><i style="background:var(--text-muted)"></i>عمارة واحتياطي</span><span><i style="background:var(--series-1)"></i>شرط الواقف</span><span><i style="background:var(--series-3)"></i>الحصة المرنة</span></div>
+  </div>
+  <div class="card"><h2>مؤشر صناديق الوقف السعودية</h2><div class="sub">العائد الكلي المقدَّر مقابل عائد السعر (100 = ديسمبر 2019)</div>
+    <svg id="idx" viewBox="0 0 560 300" role="img" aria-label="مؤشر صناديق الوقف"></svg>
+    <div class="legend"><span><i style="background:var(--series-1)"></i>العائد الكلي المقدَّر</span><span><i style="background:var(--series-2)"></i>عائد السعر فقط</span></div>
+    <div class="tip" id="tipI"></div>
+    <details style="margin-top:6px"><summary>جدول الصناديق</summary><table class="t" id="funds"></table></details>
+  </div>
+</section>
+
+<footer id="foot"></footer>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function(){
+const D = window.WAQF_DATA;
+const $ = id => document.getElementById(id);
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const pct = (x,d=1) => (x*100).toFixed(d) + '%';
+const sar = x => Math.round(x).toLocaleString('en-US');
+const NS = 'http://www.w3.org/2000/svg';
+const el = (tag, attrs={}, parent) => { const e=document.createElementNS(NS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); if(parent) parent.appendChild(e); return e; };
+const rk = r => r.toFixed(3), ik = i => i.toFixed(3);
+
+// ---- controls
+for (const [k,v] of Object.entries(D.scenarios)) $('scen').add(new Option(v.label, k));
+D.inflation.forEach(i => $('infl').add(new Option(pct(i,1), i, false, Math.abs(i-D.defaults.inflation)<1e-9)));
+for (const [k,v] of Object.entries(D.profile_names)) $('prof').add(new Option(v, k));
+$('rate').max = D.rates.length - 1;
+$('rate').value = D.rates.findIndex(r => Math.abs(r - D.key.spending.rate_base) < 1e-9);
+
+function state(){
+  return { V: Math.max(0, +$('endow').value || 0), rate: D.rates[+$('rate').value], scen: $('scen').value,
+           infl: +$('infl').value, conf: +$('conf').value, prof: $('prof').value, resv: Math.max(0, +$('resv').value || 0) };
+}
+const cell = (s, rate) => D.scenarios[s.scen].grid[rk(rate)][ik(s.infl)];
+function sustainable(s){ let best = 0; for (const r of D.rates) if (cell(s,r).p >= s.conf) best = Math.max(best, r); return best; }
+
+// ---- allocation: mirrors src/waqf/allocate.py (upkeep -> reserve -> waqif conditions -> flexible)
+function allocate(V, rate, profile, reserveBalance){
+  const d = D.defaults, budget = V * rate, upkeep = budget * d.upkeep_share;
+  const reserve = Math.min(budget * d.reserve_share, Math.max(0, budget - reserveBalance));
+  const masarif = budget - upkeep - reserve;
+  const tot = Object.values(profile).reduce((a,b)=>a+b,0);
+  const lines = [{line:'upkeep',kind:'waterfall',amount:upkeep},{line:'reserve',kind:'waterfall',amount:reserve}];
+  for (const [m,s] of Object.entries(profile)) if (m !== 'general_charity' && s > 0) lines.push({line:m,kind:'waqif',amount:s/tot*masarif});
+  const flex = (profile.general_charity || 0) / tot * masarif;
+  const w = Object.entries(D.priorities).filter(([,v])=>v>0);
+  if (flex > 0 && w.length){
+    const base = Math.min(d.floor * masarif, flex / w.length), rest = flex - base * w.length, ws = w.reduce((a,[,v])=>a+v,0);
+    for (const [m,v] of w) lines.push({line:m,kind:'flex',amount: base + rest * v / ws});
+  }
+  return {budget, lines};
+}
+
+// ---- generic chart helpers
+function axes(svg, x0,x1,y0,y1, xt, yt, fx, fy, pad){
+  const W=560,H=300; const sx = v => pad.l + (v-x0)/(x1-x0)*(W-pad.l-pad.r), sy = v => H-pad.b - (v-y0)/(y1-y0)*(H-pad.t-pad.b);
+  yt.forEach(v => { el('line',{x1:pad.l,x2:W-pad.r,y1:sy(v),y2:sy(v),stroke:css('--rule'),'stroke-width':1},svg);
+                    el('text',{x:pad.l-6,y:sy(v)+4,'text-anchor':'end'},svg).textContent = fy(v); });
+  xt.forEach(v => { el('text',{x:sx(v),y:H-pad.b+16,'text-anchor':'middle'},svg).textContent = fx(v); });
+  return {sx, sy, W, H};
+}
+function hover(svg, tip, xs, sx, render){
+  const ov = el('rect',{x:0,y:0,width:560,height:300,fill:'transparent'},svg);
+  const guide = el('line',{y1:10,y2:270,stroke:css('--text-muted'),'stroke-dasharray':'3 3',visibility:'hidden'},svg);
+  ov.addEventListener('mousemove', ev => {
+    const b = svg.getBoundingClientRect(), x = (ev.clientX - b.left) / b.width * 560;
+    let i = 0, best = 1e9; xs.forEach((v,j) => { const d = Math.abs(sx(v) - x); if (d < best){best=d;i=j;} });
+    guide.setAttribute('x1', sx(xs[i])); guide.setAttribute('x2', sx(xs[i])); guide.setAttribute('visibility','visible');
+    tip.innerHTML = render(i); tip.style.display = 'block';
+    const card = svg.parentElement.getBoundingClientRect();
+    tip.style.left = Math.min(ev.clientX - card.left + 12, card.width - tip.offsetWidth - 8) + 'px';
+    tip.style.top = (ev.clientY - card.top - 10) + 'px';
+  });
+  ov.addEventListener('mouseleave', () => { tip.style.display='none'; guide.setAttribute('visibility','hidden'); });
+}
+const path = pts => pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
+
+function drawFrontier(s, sus){
+  const svg = $('front'); svg.innerHTML = '';
+  const pad = {l:44,r:12,t:12,b:30};
+  const a = axes(svg, 0, D.rates[D.rates.length-1], 0, 1, [0,.02,.04,.06,.08], [0,.25,.5,.75,1], v=>pct(v,0), v=>pct(v,0), pad);
+  const ps = D.rates.map(r => cell(s,r).p);
+  el('line',{x1:pad.l,x2:560-pad.r,y1:a.sy(s.conf),y2:a.sy(s.conf),stroke:css('--text-muted'),'stroke-dasharray':'5 4'},svg);
+  el('path',{d:path(D.rates.map((r,i)=>[a.sx(r),a.sy(ps[i])])),fill:'none',stroke:css('--series-1'),'stroke-width':2},svg);
+  D.rates.forEach((r,i)=>el('circle',{cx:a.sx(r),cy:a.sy(ps[i]),r:3,fill:css('--series-1')},svg));
+  el('circle',{cx:a.sx(sus),cy:a.sy(cell(s,sus).p),r:7,fill:css('--series-3'),stroke:css('--card'),'stroke-width':2},svg);
+  el('circle',{cx:a.sx(s.rate),cy:a.sy(cell(s,s.rate).p),r:8,fill:css('--series-2'),stroke:css('--card'),'stroke-width':2},svg);
+  hover(svg, $('tipF'), D.rates, a.sx, i => `صرف <b>${pct(D.rates[i])}</b> ← حفظ الأصل <b>${pct(ps[i],0)}</b>`);
+}
+
+function drawFan(s, sus){
+  const svg = $('fan'); svg.innerHTML = '';
+  const A = cell(s, s.rate).bands, B = cell(s, sus).bands, yrs = A[0].map((_,i)=>i);
+  const lo = Math.min(...A[0], ...B[0]), hi = Math.max(...A[2], ...B[2]);
+  const y0 = Math.floor(lo/10)*10, y1 = Math.ceil(hi/10)*10, step = (y1-y0) > 60 ? 20 : 10, yt=[];
+  for (let v=y0; v<=y1; v+=step) yt.push(v);
+  const pad = {l:40,r:30,t:12,b:30};
+  const a = axes(svg, 0, 10, y0, y1, [0,2,4,6,8,10], yt, v=>v+' سنة', v=>v, pad);
+  el('line',{x1:pad.l,x2:560-pad.r,y1:a.sy(100),y2:a.sy(100),stroke:css('--text-muted'),'stroke-dasharray':'5 4'},svg);
+  const band = (Q,fill) => el('path',{d:path(yrs.map(i=>[a.sx(i),a.sy(Q[2][i])]).concat(yrs.slice().reverse().map(i=>[a.sx(i),a.sy(Q[0][i])])))+'Z',fill},svg);
+  band(B, css('--band-1')); band(A, css('--band-2'));
+  el('path',{d:path(yrs.map(i=>[a.sx(i),a.sy(B[1][i])])),fill:'none',stroke:css('--series-1'),'stroke-width':2},svg);
+  el('path',{d:path(yrs.map(i=>[a.sx(i),a.sy(A[1][i])])),fill:'none',stroke:css('--series-2'),'stroke-width':2},svg);
+  el('text',{x:a.sx(10)+4,y:a.sy(A[1][10])+4,'text-anchor':'start'},svg).textContent = A[1][10].toFixed(0);
+  el('text',{x:a.sx(10)+4,y:a.sy(B[1][10])+4,'text-anchor':'start'},svg).textContent = B[1][10].toFixed(0);
+  hover(svg, $('tipV'), yrs, a.sx, i => `السنة ${i}<br>المختار ${pct(s.rate)}: <b>${A[1][i].toFixed(0)}</b> (${A[0][i].toFixed(0)}–${A[2][i].toFixed(0)})<br>المستدام ${pct(sus)}: <b>${B[1][i].toFixed(0)}</b>`);
+}
+
+function drawAlloc(s){
+  const {budget, lines} = allocate(s.V, s.rate, D.profiles[s.prof], s.resv);
+  const merged = {}; lines.forEach(l => { const k=l.line; merged[k] = merged[k] || {line:k, amount:0, kinds:new Set()}; merged[k].amount += l.amount; merged[k].kinds.add(l.kind); });
+  const rows = Object.values(merged).filter(r=>r.amount>0).sort((a,b)=>b.amount-a.amount);
+  const max = Math.max(...rows.map(r=>r.amount), 1);
+  const label = k => k==='upkeep' ? 'عمارة الوقف وصيانته' : k==='reserve' ? 'احتياطي استقرار الصرف' : (D.masraf_labels[k]||k);
+  const color = r => r.kinds.has('waterfall') ? css('--text-muted') : (r.kinds.has('flex') && !r.kinds.has('waqif') ? css('--series-3') : css('--series-1'));
+  $('alloc').innerHTML = rows.slice(0,14).map(r => `<div class="alloc-row"><span>${label(r.line)}${r.kinds.has('flex') && r.kinds.has('waqif') ? ' <span class="pill">+مرن</span>' : ''}</span>
+     <div class="track"><div class="bar" style="width:${(r.amount/max*100).toFixed(1)}%;background:${color(r)}"></div></div>
+     <span class="amt">${sar(r.amount)}</span></div>`).join('')
+    + (rows.length > 14 ? `<div class="alloc-row"><span>مصارف أخرى (${rows.length-14})</span><div></div><span class="amt">${sar(rows.slice(14).reduce((a,r)=>a+r.amount,0))}</span></div>` : '')
+    + `<div class="alloc-row" style="border-top:1px solid var(--rule);padding-top:4px"><b>الإجمالي</b><div></div><b class="amt">${sar(budget)}</b></div>`;
+}
+
+function drawIndex(){
+  const svg = $('idx'); svg.innerHTML = '';
+  const I = D.index, n = I.month.length, xs = I.month.map((_,i)=>i);
+  const lo = Math.floor(Math.min(...I.price)/10)*10, hi = Math.ceil(Math.max(...I.total)/10)*10, yt=[];
+  for (let v=lo; v<=hi; v+=10) yt.push(v);
+  const ticks = xs.filter(i => I.month[i].endsWith('-01'));
+  const pad = {l:40,r:12,t:12,b:30};
+  const a = axes(svg, 0, n-1, lo, hi, ticks, yt, i => I.month[i].slice(0,4), v=>v, pad);
+  el('path',{d:path(xs.map(i=>[a.sx(i),a.sy(I.price[i])])),fill:'none',stroke:css('--series-2'),'stroke-width':2},svg);
+  el('path',{d:path(xs.map(i=>[a.sx(i),a.sy(I.total[i])])),fill:'none',stroke:css('--series-1'),'stroke-width':2},svg);
+  hover(svg, $('tipI'), xs, a.sx, i => `<span class="ltr">${I.month[i]}</span> · ${I.n_funds[i]} صندوق<br>العائد الكلي: <b>${I.total[i].toFixed(1)}</b><br>السعر فقط: <b>${I.price[i].toFixed(1)}</b>`);
+  $('funds').innerHTML = '<tr><th>الصندوق</th><th>أشهر</th><th>عائد السعر/سنة</th><th>الأصول (مليون)</th></tr>' +
+    D.funds.map(f => `<tr><td>${f.fund_name}${f.in_index ? ' <span class="pill">في المؤشر</span>' : ''}</td><td class="n">${f.months}</td><td class="n">${pct(f.price_ann_return)}</td><td class="n">${f.aum_sar ? (f.aum_sar/1e6).toFixed(1) : '—'}</td></tr>`).join('');
+}
+
+function render(){
+  const s = state(), sus = sustainable(s), c = cell(s, s.rate);
+  $('rateVal').textContent = pct(s.rate);
+  $('kP').textContent = pct(c.p, 0);
+  $('kP').style.color = c.p >= s.conf ? css('--navy') : css('--series-2');
+  $('kPs').textContent = c.p >= s.conf ? '✔ يحقق الثقة المطلوبة (' + pct(s.conf,0) + ')' : '✖ أقل من الثقة المطلوبة (' + pct(s.conf,0) + ')';
+  $('kR').textContent = pct(sus);
+  $('kRs').textContent = sus === 0 ? 'لا يوجد معدل صرف يحقق هذه الثقة — خفّض الثقة أو راجع السيناريو' : 'أي ' + sar(s.V * sus) + ' ريال سنوياً';
+  $('kB').textContent = sar(s.V * s.rate);
+  $('kBs').textContent = 'ريال — ' + pct(s.rate) + ' من متوسط قيمة الوقف';
+  const med = c.bands[1][10];
+  $('kV').textContent = (s.V * med / 100 / 1e6).toFixed(2) + ' م';
+  $('kVs').textContent = 'مليون ريال بأسعار اليوم (' + (med >= 100 ? '+' : '') + (med - 100).toFixed(0) + '% من القيمة الحالية)';
+  drawFrontier(s, sus); drawFan(s, sus); drawAlloc(s);
+}
+
+['endow','rate','scen','infl','conf','prof','resv'].forEach(id => $(id).addEventListener('input', render));
+drawIndex(); render();
+const k = D.key;
+$('foot').innerHTML = `المصادر: الهيئة العامة للأوقاف (منصة البيانات المفتوحة الوطنية، ${k.sector.waqf_designations.toLocaleString('en-US')} مصرفاً وقفياً) · السوق المالية السعودية — تداول (${k.index.funds_total} صندوقاً وقفياً). ` +
+  `العائد الكلي المقدَّر ${pct(k.index.total_ann_return)} سنوياً · توقع 12 شهراً ${pct(k.forecast.point_pct)} · ${k.spending.paths.toLocaleString('en-US')} مسار لكل حالة. ` +
+  `الحدود: الصناديق المدرجة وكيل لأداء الاستثمار الوقفي، ومبالغ التوزيع مقدَّرة.`;
+})();
+</script>
+</body>
+</html>

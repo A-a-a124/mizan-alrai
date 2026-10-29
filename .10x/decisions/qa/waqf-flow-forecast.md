@@ -1,0 +1,4 @@
+# QA — waqf-flow-forecast
+28 pytest cases, all passing (tests/test_data.py, tests/test_models.py): integrity + tamper detection, Arabic folding, lossless mapping (15,305 = 15,305), numeric parsing, regular grid, par-price removal, short-history exclusion, July-2025 payout pattern, total ≥ price index, **no look-ahead in backtest**, MAE ranking, bootstrap reproducibility, frontier monotonicity, analytic zero-vol case, sustainable-rate selection, allocation invariants (sum, floor, waqif shares untouched, reserve cap).
+E2E: clean-slate rebuild of all artefacts OK; outputs deterministic (sha256 identical across runs); notebook 22 cells, 0 errors; PDF 4 pages; dashboard no console errors, JS/Python allocation parity to ±1 SAR, no horizontal scroll at 375 px.
+Bugs found & fixed: reversed Arabic in charts; inflated chart title; PDF page overflow; 3.8 %/4.0 % inconsistency; misleading region example; flaky Edge PDF write.

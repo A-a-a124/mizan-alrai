@@ -1,0 +1,2 @@
+# Security — waqf-flow-forecast
+Threat surface is small: offline analysis, no credentials, no personal data (all sources are aggregate public statistics). Raw snapshots tamper-evident (tests). Dashboard renders fund names/labels via innerHTML from our own data.js (trusted, generated locally) — acceptable; would need escaping if data became user-supplied. Report HTML loads IBM Plex Sans Arabic from Google Fonts at print time (falls back to Segoe UI offline). No secrets in repo; .gitignore covers caches.

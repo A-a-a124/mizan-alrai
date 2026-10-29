@@ -1,0 +1,155 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<title>الملخص التنفيذي — منصة التنبؤ الذكي بالتدفقات المالية للوقف</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@page { size: A4; margin: 15mm 16mm 16mm 16mm; }
+:root { --ink:#0b0b0b; --ink2:#52514e; --ink3:#8a8983; --paper:#fcfcfb; --rule:#e6e5e0;
+        --navy:#0d366b; --blue:#2a78d6; --blue-soft:#eef4fc; --paper-in:#ffffff; --orange:#eb6834; --orange-soft:#fdf0ea;
+        --green:#1baf7a; }
+* { box-sizing: border-box; }
+html, body { background:#ffffff; }
+body { margin:0; color:var(--ink); font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;
+       font-size:10.3pt; line-height:1.75; direction:rtl; text-align:right;
+       -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+.page { page-break-after: always; }
+.page:last-child { page-break-after: auto; }
+h1 { font-size:22pt; line-height:1.3; margin:0 0 4px; color:var(--navy); font-weight:700; letter-spacing:-.2px; }
+h2 { font-size:13.5pt; color:var(--navy); margin:16px 0 6px; font-weight:700; }
+h3 { font-size:11pt; margin:10px 0 4px; font-weight:600; }
+p { margin:0 0 7px; }
+.eyebrow { color:var(--blue); font-weight:600; font-size:9.5pt; letter-spacing:.3px; }
+.sub { color:var(--ink2); font-size:11pt; margin-bottom:12px; }
+.meta { color:var(--ink3); font-size:8.5pt; border-top:1px solid var(--rule); padding-top:6px; margin-top:6px; }
+.lede { background:var(--blue-soft); border-right:4px solid var(--blue); padding:10px 14px; border-radius:6px;
+        font-size:11pt; margin:12px 0; }
+.kpis { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:12px 0 10px; }
+.kpi { border:1px solid var(--rule); border-radius:8px; padding:9px 10px 8px; background:#fff; }
+.kpi .v { font-size:19pt; font-weight:700; color:var(--navy); line-height:1.15; }
+.kpi .v.warn { color:var(--orange); }
+.kpi .l { font-size:8.6pt; color:var(--ink2); line-height:1.45; margin-top:3px; }
+.two { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+figure { margin:6px 0 10px; }
+figure img { width:100%; border:1px solid var(--rule); border-radius:6px; display:block; }
+figure.md img { width:80%; margin:0 auto; }
+figcaption { font-size:8.5pt; color:var(--ink2); margin-top:3px; }
+table { width:100%; border-collapse:collapse; font-size:9pt; margin:6px 0 10px; }
+th { text-align:right; color:var(--ink2); font-weight:600; border-bottom:1.5px solid var(--ink3); padding:4px 6px; }
+td { border-bottom:1px solid var(--rule); padding:4px 6px; }
+td.n { font-variant-numeric: tabular-nums; direction:ltr; text-align:left; }
+.rec { counter-reset: r; padding:0; margin:6px 0; list-style:none; }
+.rec li { counter-increment:r; position:relative; padding:7px 40px 7px 10px; margin-bottom:6px; border-radius:6px;
+          background:#fff; border:1px solid var(--rule); }
+.rec li::before { content:counter(r); position:absolute; right:10px; top:7px; width:21px; height:21px; border-radius:50%;
+                  background:var(--navy); color:#fff; font-weight:700; font-size:9pt; text-align:center; line-height:21px; }
+.rec b { color:var(--navy); }
+.callout { background:var(--orange-soft); border-right:4px solid var(--orange); padding:8px 12px; border-radius:6px;
+           margin:8px 0; }
+.small { font-size:8.8pt; color:var(--ink2); }
+ul.tight { margin:4px 0 8px; padding-right:18px; }
+ul.tight li { margin-bottom:2px; }
+.ltr { direction:ltr; unicode-bidi:embed; }
+</style></head><body>
+
+<section class="page">
+  <div class="eyebrow">مسابقة تحليل البيانات للقطاع غير الربحي — الملخص التنفيذي</div>
+  <h1>كم يصرف الوقف دون أن يأكل أصله؟</h1>
+  <div class="sub">منصة التنبؤ الذكي بالتدفقات المالية للوقف العائلي والأهلي: تنبؤ بالعوائد، وسقف صرف مستدام، وتوزيع شرعي للمصارف</div>
+
+  <div class="lede"><b>الخلاصة:</b> الأصول الوقفية المدرجة في السوق السعودية ولّدت عائداً كلياً مقدَّراً
+  <b>4.4% سنوياً</b>، أي نحو <b>2.4%</b> بعد التضخم. لذلك فإن معدل الصرف الذي يحفظ القيمة الحقيقية للوقف عشر سنوات
+  بثقة 60% هو <b>1.5% سنوياً</b> فقط، بينما توزّع الصناديق الوقفية فعلياً <b>3%–8%</b> (الوسيط 3.8%، أي نحو 4.0% وهو المعدل المستخدم في المحاكاة).
+  الاستمرار بهذا المعدل يعني تآكل القيمة الحقيقية للوقف بنحو <b>15%</b> خلال عقد.</div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="v">1.5%</div><div class="l">سقف الصرف السنوي المستدام (ثقة 60%، تضخم 2%)</div></div>
+    <div class="kpi"><div class="v warn">21%</div><div class="l">احتمال حفظ الأصل إذا صرفنا بمعدل الصناديق الحالي (≈4.0%)</div></div>
+    <div class="kpi"><div class="v">3.9%</div><div class="l">العائد المتوقع للأشهر الـ12 القادمة (نطاق 80%: <span class="ltr">-1.6%</span> إلى <span class="ltr">9.6%</span>)</div></div>
+    <div class="kpi"><div class="v warn">0.1%</div><div class="l">حصة الأيتام من 15,305 مصرفاً وقفياً منشوراً، مقابل 43% للمساجد</div></div>
+  </div>
+
+  <h2>سؤال القرار</h2>
+  <p>يواجه ناظر الوقف كل عام قراراً واحداً متكرراً: <b>كم أصرف، وعلى أي مصرف؟</b> الصرف الزائد يُرضي المستفيدين اليوم ويُضعف
+  الوقف غداً، والصرف الناقص يحبس الخير. حوّلنا هذا الحدس إلى رقم قابل للدفاع: أعلى معدل صرف يحفظ القيمة الحقيقية
+  للأصل بدرجة ثقة يختارها الناظر، ثم ترتيب الصرف شرعياً: عمارة الوقف، ثم احتياطي الاستقرار، ثم المصارف مع احترام شروط الواقفين.</p>
+
+  <h2>البيانات: حقيقية ومفتوحة، وموثّقة حتى آخر صف</h2>
+  <div class="two">
+    <div><h3>الهيئة العامة للأوقاف</h3>
+      <p class="small">18 مجموعة بيانات من منصة البيانات المفتوحة الوطنية، منها 15,305 مصرفاً وقفياً في 13 منطقة، والشهادات الوقفية
+      (384 في 2019 ← 9,409 في 2025)، والمستفيدون المباشرون (3,160 ← 3,744).</p></div>
+    <div><h3>السوق المالية السعودية (تداول)</h3>
+      <p class="small">أسعار وحدات 26 صندوقاً استثمارياً وقفياً مرخصاً (أصول ≈ 3.1 مليار ريال) من 2019-12 إلى 2026-10،
+      منها 12 صندوقاً تراكمياً في المؤشر.</p></div>
+  </div>
+  <p class="small">كل لقطة خام محمية بفحص سلامة (عدد الصفوف ومجموع الأسعار)، و<b>12 قاعدة تنظيف</b> موثقة آلياً، أبرزها
+  توحيد التهجئات العربية للمصارف، وإزالة أسعار ما قبل الاستثمار، واستيفاء الفجوات الربعية مع تعليمها،
+  و<b>كشف 25 توزيعاً مخفياً</b> يظهر كهبوط في سعر الوحدة.</p>
+  <div class="meta">التشغيل الكامل: <span class="ltr">python scripts/run_analysis.py</span> — يعيد بناء كل رقم وشكل في هذا التقرير من البيانات الخام · 28 اختباراً آلياً ناجحاً</div>
+</section>
+
+<section class="page">
+  <h2>قصة الأثر: الفجوة بين ما يولّده الوقف وما يُصرف منه</h2>
+  <p>بنينا <b>مؤشر صناديق الوقف السعودية</b> (متوسط متساوي الأوزان للصناديق التراكمية). عائد السعر وحده 2.8% سنوياً، لكنه
+  يُخفي التوزيعات: كل يوليو تهبط صناديق الإنماء الوقفية معاً بنسبة 4–8% بينما صناديق المديرين الآخرين صاعدة. قسنا هذه
+  الفجوات فظهر العائد الكلي المقدَّر <b>4.4%</b>، والمسافة بين الخطين هي ما ذهب إلى المستفيدين.</p>
+  <figure><img src="../outputs/figures/fig04_waqf_index.png"><figcaption>شكل 1 — العائد الكلي المقدَّر مقابل عائد السعر (أقصى تراجع <span class="ltr">-11.1%</span>، أسوأ 12 شهراً <span class="ltr">-5.5%</span>).</figcaption></figure>
+  <div class="two">
+    <figure><img src="../outputs/figures/fig05_payouts_vs_sustainable.png"><figcaption>شكل 2 — التوزيع المقدَّر لكل صندوق مقابل السقف المستدام 1.5%.</figcaption></figure>
+    <figure><img src="../outputs/figures/fig09_real_value_paths.png"><figcaption>شكل 3 — القيمة الحقيقية بعد 10 سنوات: 110 عند الصرف المستدام مقابل 85 عند 4.0%.</figcaption></figure>
+  </div>
+  <div class="callout"><b>ماذا يعني ذلك لناظر الوقف؟</b> وقف بقيمة 10 ملايين ريال يصرف 4.0% سنوياً سيبدو بخير في السنوات الأولى،
+  لكن قوته الشرائية بعد عشر سنوات تهبط في المسار الوسيط إلى نحو 8.5 مليون ريال بأسعار اليوم. أما الصرف عند 1.5% فيترك
+  الوقف أقوى مما بدأ (11.0 مليون)، فيرث الجيل القادم وقفاً أكبر لا أصغر.</div>
+</section>
+
+<section class="page">
+  <h2>القرار: حدود الصرف المستدام</h2>
+  <p>10,000 مستقبل محتمل بإعادة معاينة كتلية من تاريخ المؤشر الفعلي، مع قاعدة صرف ممهَّدة (نسبة من متوسط قيمة الوقف
+  لآخر 12 ربعاً، كما تفعل أوقاف الجامعات الكبرى) حتى لا يتذبذب صرف المستفيدين مع السوق.</p>
+  <figure class="md"><img src="../outputs/figures/fig08_spending_frontier.png"><figcaption>شكل 4 — احتمال حفظ القيمة الحقيقية لكل معدل صرف في ثلاثة سيناريوهات.</figcaption></figure>
+  <table><thead><tr><th>شهية المخاطرة (الثقة المطلوبة)</th><th>السيناريو</th><th>سقف الصرف السنوي</th><th>صرف وقف بـ10 ملايين</th></tr></thead><tbody>
+  <tr><td>50%</td><td>الأساس</td><td class='n'>2.0%</td><td class='n'>200,000 ريال</td></tr>
+  <tr><td>50%</td><td>ضغط −1%</td><td class='n'>1.0%</td><td class='n'>100,000 ريال</td></tr>
+  <tr style="font-weight:700;color:#0d366b"><td>60%</td><td>الأساس</td><td class='n'>1.5%</td><td class='n'>150,000 ريال</td></tr>
+  <tr><td>60%</td><td>ضغط −1%</td><td class='n'>0.5%</td><td class='n'>50,000 ريال</td></tr>
+  <tr><td>75%</td><td>الأساس</td><td class='n'>1.0%</td><td class='n'>100,000 ريال</td></tr>
+  <tr><td>75%</td><td>ضغط −1%</td><td class='n'>0.0%</td><td class='n'>0 ريال</td></tr>
+  </tbody></table>
+
+  <h2>التنبؤ: النموذج البسيط فاز بالأرقام</h2>
+  <div class="two">
+    <figure><img src="../outputs/figures/fig06_backtest.png"><figcaption>شكل 5 — اختبار رجعي على 36 نقطة انطلاق خارج العينة.</figcaption></figure>
+    <figure><img src="../outputs/figures/fig07_forecast.png"><figcaption>شكل 6 — توقع 12 شهراً: 3.9% (احتمال عائد سالب 24%).</figcaption></figure>
+  </div>
+  <p class="small">قارنّا خمسة نماذج قابلة للتفسير. فاز «متوسط آخر 36 شهراً» بخطأ أقل بـ<b>36%</b> من المرجع الساذج، وتفوق على ARIMA والتمهيد الأسي.
+  اخترنا النموذج الذي فاز في الاختبار، لا الأكثر تعقيداً، لأن السلاسل قصيرة والتعقيد هنا يعني إفراطاً في التوفيق.</p>
+</section>
+
+<section class="page">
+  <h2>التوزيع على المصارف: من شرط الواقف إلى أثر المستفيد</h2>
+  <div class="two">
+    <figure><img src="../outputs/figures/fig02_masarif_national.png"><figcaption>شكل 7 — المصارف الوقفية وطنياً.</figcaption></figure>
+    <figure><img src="../outputs/figures/fig10_allocation.png"><figcaption>شكل 8 — خطة صرف تطبيقية: 150,000 ريال لوقف بـ10 ملايين.</figcaption></figure>
+  </div>
+  <p>الترتيب: <b>عمارة الوقف</b> (15,000 ريال) ← <b>احتياطي الاستقرار</b> (15,000 ريال) ← <b>المصارف</b>. حصص شروط الواقفين تبقى ثابتة،
+  والحصة المرنة «أوجه البر» (25% من المصارف وطنياً) توجَّه بأوزان أولوية معلنة، فترتفع حصة الاحتياجات الأساسية المتكررة
+  (الفقراء، الأيتام، الأرامل، الإطعام، السكن) من <b>9%</b> إلى <b>24%</b> دون مخالفة أي شرط.</p>
+
+  <h2>التوصيات</h2>
+  <ol class="rec">
+    <li><b>اعتماد سقف صرف 1.5%</b> من متوسط قيمة الوقف لـ12 ربعاً كخط أساس، يرتفع إلى 2.0% لمن يقبل ثقة 50% وينخفض إلى 0.5% في سيناريو الضغط، مع مراجعة سنوية بهذه المنصة.</li>
+    <li><b>ربط توزيعات الصناديق الوقفية بالعائد الممهَّد</b> لا بعائد السنة: التوزيع الحالي (≈4.0%) يحفظ الأصل الحقيقي باحتمال 21% فقط.</li>
+    <li><b>تقديم عمارة الوقف وبناء احتياطي يغطي صرف سنة</b> قبل التوزيع، لامتصاص السنوات السالبة التي يقع احتمالها عند 24% سنوياً.</li>
+    <li><b>توجيه «أوجه البر» نحو المصارف المهمَلة:</b> الأيتام 0.1% والأرامل 0.04% من المصارف المنشورة، بينما تذهب 85% من مصارف الشرقية إلى المساجد وحدها.</li>
+    <li><b>إفصاح أفضل يعني قرارات أفضل:</b> نوصي الهيئة وهيئة السوق المالية بنشر صافي أصول موثوق ومبالغ التوزيع لكل صندوق، والمستفيدين حسب المنطقة والمصرف.</li>
+  </ol>
+
+  <h2>المنهجية والحدود والاستخدام المسؤول للذكاء الاصطناعي</h2>
+  <ul class="tight small">
+    <li><b>المنهجية:</b> Python (pandas/statsmodels)؛ اختبار رجعي متدحرج بلا تسرب للمستقبل (مختبر آلياً)؛ Bootstrap كتلي ثابت؛ قاعدة صرف ممهَّدة؛ توزيع حتمي بقيود مختبرة (المجموع = الميزانية، لا مصرف تحت الحد الأدنى، شروط الواقف لا تُمس).</li>
+    <li><b>الحدود:</b> الصناديق المدرجة وكيل لأداء الاستثمار الوقفي لا القوائم المالية لوقف بعينه؛ التاريخ قصير وفيه تحيز بقاء (عولج بسيناريو ضغط)؛ مبالغ التوزيع مقدَّرة لعدم نشرها؛ بيانات المستفيدين وطنية فقط.</li>
+    <li><b>الذكاء الاصطناعي:</b> استُخدم مساعداً في البرمجة والتصميم. كل رقم مُشتق برمجياً من البيانات وليس مكتوباً يدوياً، وكل خطوة لها اختبار أو تحقق موثق في <span class="ltr">ai_usage_log.md</span>.</li>
+  </ul>
+</section>
+</body></html>
