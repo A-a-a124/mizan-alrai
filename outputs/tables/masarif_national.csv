@@ -1,0 +1,25 @@
+﻿masraf,masraf_ar,masraf_en,group,waqf_count,share
+mosques,المساجد,Mosques,worship,6632,0.43332244364586736
+general_charity,أوجه البر,General charity (flexible),flexible,3895,0.2544919960797125
+iftar,إفطار الصائم,Iftar,social,1271,0.08304475661548513
+water,السقيا,Water provision,social,1009,0.06592616791898072
+food,إطعام الطعام,Food,social,704,0.045998039856256126
+poor,الفقراء والمساكين,Poor & needy,social,483,0.03155831427638027
+family,الوقف الذري,Family (dhurri),family,406,0.026527278667102253
+housing,السكن,Housing,social,174,0.011368833714472395
+haram_madinah,الحرم النبوي,Prophet's Mosque,worship,116,0.007579222476314929
+haram_makkah,الحرم المكي,Makkah Haram,worship,81,0.005292388108461287
+education,العلم وتعليمه,Knowledge & teaching,education,80,0.005227049983665469
+named_group,طائفة معيّنة,Named group,family,75,0.004900359359686377
+quran,القرآن الكريم,Quran,education,74,0.0048350212348905585
+udhiya,الأضاحي,Udhiya,worship,60,0.003920287487749101
+aghawat,الأغوات,Aghawat (Haram servants),worship,47,0.003070891865403463
+cemeteries,المقابر,Cemeteries,worship,46,0.0030055537406076444
+wayfarer,ابن السبيل,Wayfarers,social,40,0.0026135249918327343
+hajj,الحج,Hajj,worship,36,0.0023521724926494608
+guarding,الحراسة,Guarding,worship,19,0.0012414243711205489
+dawah,الدعوة,Dawah,education,19,0.0012414243711205489
+orphans,الأيتام,Orphans,social,16,0.0010454099967330938
+miqat,المواقيت,Miqat stations,worship,10,0.0006533812479581836
+kaffarah,الكفارات,Kaffarah,worship,6,0.0003920287487749102
+widows,الأرامل,Widows,social,6,0.0003920287487749102

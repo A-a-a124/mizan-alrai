@@ -1,0 +1,13 @@
+﻿source,rule,rows_affected,detail
+GASA disbursements,Strip BOM & 'منطقة' prefix; unify region names,157,13 regions
+GASA disbursements,"Arabic orthographic folding (أ/إ/آ→ا, ة→ه, ى→ي) + alias map",157,"25 raw labels → 24 canonical masarif (1 merged, e.g. 'تعلم العلم وتعليمه' → 'العلم وتعليمه')"
+GASA rewards,Parse '2022 وماقبلها' as 2022 and flag as cumulative-to-date,1,"kept, excluded from per-year trend"
+GASA rewards,"Parse amounts with thousands separators and padding (' 8,514,665 ')",3,
+GASA inspections/reports,Trim trailing spaces in category labels,5,
+Tadawul prices,Stale repeated price set to missing then interpolated,4,012012: 2026-05; 012054: 2024-09; 045010: 2024-05; 045011: 2024-08
+Tadawul prices,Drop pre-investment par prices (unchanged launch price),18,030030; 045007; 045008; 045009; 045010
+Tadawul prices,Quarterly-reporting gaps filled by log-linear interpolation (flagged),62,045007; 045008; 045009; 045010; 045011
+Tadawul prices,Exclude funds with < 12 months of history,12,"011171, 012068"
+Tadawul prices,Separate distributing funds (price return excludes payouts) from the index,453,12 distributing funds kept for comparison
+Tadawul NAV,Drop total-NAV field: reported as 0 for most months (unreliable),1053,AUM taken from market-watch snapshot instead
+Tadawul prices,Detect hidden distribution payouts (price drop vs other managers' peers),25,"011099 2024-12, 011099 2026-03, 011166 2026-03, 011170 2026-03, 012053 2025-12, 012054 2025-12, 012055 2025-08, 012062 2025-12, 012067 2025-12, 014012 2020-12, 014012 2024-12, 014017 2026-10, 030030 2023-09, 045007 2023-07, 045007 2024-07, 045007 2025-07, 045008 2024-07, 045008 2025-07, 045009 2024-07, 045009 2025-07, 045010 2024-07, 045010 2025-07, 045011 2024-07, 045011 2025-07, 045014 2026-04"

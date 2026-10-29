@@ -1,0 +1,158 @@
+﻿region,region_ar,region_en,masraf,masraf_ar,masraf_en,group,waqf_count
+albaha,الباحة,Al-Baha,mosques,المساجد,Mosques,worship,959
+albaha,الباحة,Al-Baha,general_charity,أوجه البر,General charity (flexible),flexible,149
+albaha,الباحة,Al-Baha,poor,الفقراء والمساكين,Poor & needy,social,114
+albaha,الباحة,Al-Baha,food,إطعام الطعام,Food,social,12
+albaha,الباحة,Al-Baha,family,الوقف الذري,Family (dhurri),family,7
+albaha,الباحة,Al-Baha,iftar,إفطار الصائم,Iftar,social,3
+albaha,الباحة,Al-Baha,haram_makkah,الحرم المكي,Makkah Haram,worship,2
+albaha,الباحة,Al-Baha,water,السقيا,Water provision,social,2
+albaha,الباحة,Al-Baha,wayfarer,ابن السبيل,Wayfarers,social,2
+albaha,الباحة,Al-Baha,cemeteries,المقابر,Cemeteries,worship,1
+aljawf,الجوف,Al-Jawf,mosques,المساجد,Mosques,worship,6
+aljawf,الجوف,Al-Jawf,general_charity,أوجه البر,General charity (flexible),flexible,4
+aljawf,الجوف,Al-Jawf,poor,الفقراء والمساكين,Poor & needy,social,2
+aljawf,الجوف,Al-Jawf,family,الوقف الذري,Family (dhurri),family,1
+aljawf,الجوف,Al-Jawf,hajj,الحج,Hajj,worship,1
+aljawf,الجوف,Al-Jawf,udhiya,الأضاحي,Udhiya,worship,1
+aseer,عسير,Aseer,mosques,المساجد,Mosques,worship,2687
+aseer,عسير,Aseer,iftar,إفطار الصائم,Iftar,social,1114
+aseer,عسير,Aseer,general_charity,أوجه البر,General charity (flexible),flexible,889
+aseer,عسير,Aseer,food,إطعام الطعام,Food,social,455
+aseer,عسير,Aseer,water,السقيا,Water provision,social,113
+aseer,عسير,Aseer,poor,الفقراء والمساكين,Poor & needy,social,83
+aseer,عسير,Aseer,wayfarer,ابن السبيل,Wayfarers,social,30
+aseer,عسير,Aseer,named_group,طائفة معيّنة,Named group,family,4
+aseer,عسير,Aseer,cemeteries,المقابر,Cemeteries,worship,2
+aseer,عسير,Aseer,guarding,الحراسة,Guarding,worship,2
+aseer,عسير,Aseer,hajj,الحج,Hajj,worship,2
+aseer,عسير,Aseer,haram_makkah,الحرم المكي,Makkah Haram,worship,1
+aseer,عسير,Aseer,udhiya,الأضاحي,Udhiya,worship,1
+aseer,عسير,Aseer,widows,الأرامل,Widows,social,1
+eastern,الشرقية,Eastern,mosques,المساجد,Mosques,worship,450
+eastern,الشرقية,Eastern,general_charity,أوجه البر,General charity (flexible),flexible,56
+eastern,الشرقية,Eastern,education,العلم وتعليمه,Knowledge & teaching,education,8
+eastern,الشرقية,Eastern,cemeteries,المقابر,Cemeteries,worship,3
+eastern,الشرقية,Eastern,iftar,إفطار الصائم,Iftar,social,3
+eastern,الشرقية,Eastern,haram_makkah,الحرم المكي,Makkah Haram,worship,2
+eastern,الشرقية,Eastern,quran,القرآن الكريم,Quran,education,2
+eastern,الشرقية,Eastern,udhiya,الأضاحي,Udhiya,worship,2
+eastern,الشرقية,Eastern,food,إطعام الطعام,Food,social,1
+eastern,الشرقية,Eastern,poor,الفقراء والمساكين,Poor & needy,social,1
+eastern,الشرقية,Eastern,water,السقيا,Water provision,social,1
+hail,حائل,Hail,mosques,المساجد,Mosques,worship,8
+hail,حائل,Hail,general_charity,أوجه البر,General charity (flexible),flexible,3
+hail,حائل,Hail,water,السقيا,Water provision,social,2
+hail,حائل,Hail,hajj,الحج,Hajj,worship,1
+hail,حائل,Hail,iftar,إفطار الصائم,Iftar,social,1
+hail,حائل,Hail,udhiya,الأضاحي,Udhiya,worship,1
+jazan,جازان,Jazan,general_charity,أوجه البر,General charity (flexible),flexible,1179
+jazan,جازان,Jazan,mosques,المساجد,Mosques,worship,1115
+jazan,جازان,Jazan,water,السقيا,Water provision,social,759
+jazan,جازان,Jazan,food,إطعام الطعام,Food,social,174
+jazan,جازان,Jazan,family,الوقف الذري,Family (dhurri),family,124
+jazan,جازان,Jazan,poor,الفقراء والمساكين,Poor & needy,social,122
+jazan,جازان,Jazan,housing,السكن,Housing,social,43
+jazan,جازان,Jazan,cemeteries,المقابر,Cemeteries,worship,32
+jazan,جازان,Jazan,iftar,إفطار الصائم,Iftar,social,15
+jazan,جازان,Jazan,named_group,طائفة معيّنة,Named group,family,13
+jazan,جازان,Jazan,dawah,الدعوة,Dawah,education,6
+jazan,جازان,Jazan,kaffarah,الكفارات,Kaffarah,worship,6
+jazan,جازان,Jazan,wayfarer,ابن السبيل,Wayfarers,social,6
+jazan,جازان,Jazan,quran,القرآن الكريم,Quran,education,4
+jazan,جازان,Jazan,education,العلم وتعليمه,Knowledge & teaching,education,3
+jazan,جازان,Jazan,hajj,الحج,Hajj,worship,1
+madinah,المدينة المنورة,Madinah,mosques,المساجد,Mosques,worship,172
+madinah,المدينة المنورة,Madinah,haram_madinah,الحرم النبوي,Prophet's Mosque,worship,106
+madinah,المدينة المنورة,Madinah,family,الوقف الذري,Family (dhurri),family,92
+madinah,المدينة المنورة,Madinah,housing,السكن,Housing,social,71
+madinah,المدينة المنورة,Madinah,general_charity,أوجه البر,General charity (flexible),flexible,48
+madinah,المدينة المنورة,Madinah,named_group,طائفة معيّنة,Named group,family,42
+madinah,المدينة المنورة,Madinah,education,العلم وتعليمه,Knowledge & teaching,education,41
+madinah,المدينة المنورة,Madinah,water,السقيا,Water provision,social,41
+madinah,المدينة المنورة,Madinah,quran,القرآن الكريم,Quran,education,34
+madinah,المدينة المنورة,Madinah,aghawat,الأغوات,Aghawat (Haram servants),worship,31
+madinah,المدينة المنورة,Madinah,poor,الفقراء والمساكين,Poor & needy,social,27
+madinah,المدينة المنورة,Madinah,guarding,الحراسة,Guarding,worship,17
+madinah,المدينة المنورة,Madinah,food,إطعام الطعام,Food,social,15
+madinah,المدينة المنورة,Madinah,hajj,الحج,Hajj,worship,4
+madinah,المدينة المنورة,Madinah,haram_makkah,الحرم المكي,Makkah Haram,worship,3
+madinah,المدينة المنورة,Madinah,widows,الأرامل,Widows,social,3
+madinah,المدينة المنورة,Madinah,orphans,الأيتام,Orphans,social,2
+makkah,مكة المكرمة,Makkah,general_charity,أوجه البر,General charity (flexible),flexible,1213
+makkah,مكة المكرمة,Makkah,mosques,المساجد,Mosques,worship,467
+makkah,مكة المكرمة,Makkah,family,الوقف الذري,Family (dhurri),family,159
+makkah,مكة المكرمة,Makkah,poor,الفقراء والمساكين,Poor & needy,social,113
+makkah,مكة المكرمة,Makkah,haram_makkah,الحرم المكي,Makkah Haram,worship,72
+makkah,مكة المكرمة,Makkah,housing,السكن,Housing,social,56
+makkah,مكة المكرمة,Makkah,water,السقيا,Water provision,social,45
+makkah,مكة المكرمة,Makkah,food,إطعام الطعام,Food,social,28
+makkah,مكة المكرمة,Makkah,aghawat,الأغوات,Aghawat (Haram servants),worship,16
+makkah,مكة المكرمة,Makkah,named_group,طائفة معيّنة,Named group,family,14
+makkah,مكة المكرمة,Makkah,quran,القرآن الكريم,Quran,education,14
+makkah,مكة المكرمة,Makkah,hajj,الحج,Hajj,worship,11
+makkah,مكة المكرمة,Makkah,haram_madinah,الحرم النبوي,Prophet's Mosque,worship,10
+makkah,مكة المكرمة,Makkah,miqat,المواقيت,Miqat stations,worship,10
+makkah,مكة المكرمة,Makkah,iftar,إفطار الصائم,Iftar,social,8
+makkah,مكة المكرمة,Makkah,education,العلم وتعليمه,Knowledge & teaching,education,7
+makkah,مكة المكرمة,Makkah,orphans,الأيتام,Orphans,social,3
+makkah,مكة المكرمة,Makkah,udhiya,الأضاحي,Udhiya,worship,2
+makkah,مكة المكرمة,Makkah,cemeteries,المقابر,Cemeteries,worship,1
+najran,نجران,Najran,mosques,المساجد,Mosques,worship,14
+najran,نجران,Najran,quran,القرآن الكريم,Quran,education,5
+najran,نجران,Najran,general_charity,أوجه البر,General charity (flexible),flexible,4
+najran,نجران,Najran,food,إطعام الطعام,Food,social,2
+najran,نجران,Najran,hajj,الحج,Hajj,worship,2
+najran,نجران,Najran,iftar,إفطار الصائم,Iftar,social,2
+najran,نجران,Najran,orphans,الأيتام,Orphans,social,2
+najran,نجران,Najran,water,السقيا,Water provision,social,2
+najran,نجران,Najran,education,العلم وتعليمه,Knowledge & teaching,education,1
+najran,نجران,Najran,family,الوقف الذري,Family (dhurri),family,1
+najran,نجران,Najran,housing,السكن,Housing,social,1
+najran,نجران,Najran,udhiya,الأضاحي,Udhiya,worship,1
+northern_borders,الحدود الشمالية,Northern Borders,general_charity,أوجه البر,General charity (flexible),flexible,22
+northern_borders,الحدود الشمالية,Northern Borders,family,الوقف الذري,Family (dhurri),family,1
+northern_borders,الحدود الشمالية,Northern Borders,mosques,المساجد,Mosques,worship,1
+qassim,القصيم,Qassim,mosques,المساجد,Mosques,worship,486
+qassim,القصيم,Qassim,general_charity,أوجه البر,General charity (flexible),flexible,131
+qassim,القصيم,Qassim,iftar,إفطار الصائم,Iftar,social,36
+qassim,القصيم,Qassim,water,السقيا,Water provision,social,31
+qassim,القصيم,Qassim,udhiya,الأضاحي,Udhiya,worship,22
+qassim,القصيم,Qassim,food,إطعام الطعام,Food,social,16
+qassim,القصيم,Qassim,education,العلم وتعليمه,Knowledge & teaching,education,14
+qassim,القصيم,Qassim,family,الوقف الذري,Family (dhurri),family,12
+qassim,القصيم,Qassim,hajj,الحج,Hajj,worship,9
+qassim,القصيم,Qassim,quran,القرآن الكريم,Quran,education,9
+qassim,القصيم,Qassim,poor,الفقراء والمساكين,Poor & needy,social,8
+qassim,القصيم,Qassim,cemeteries,المقابر,Cemeteries,worship,6
+qassim,القصيم,Qassim,dawah,الدعوة,Dawah,education,6
+qassim,القصيم,Qassim,named_group,طائفة معيّنة,Named group,family,2
+qassim,القصيم,Qassim,haram_makkah,الحرم المكي,Makkah Haram,worship,1
+qassim,القصيم,Qassim,housing,السكن,Housing,social,1
+qassim,القصيم,Qassim,orphans,الأيتام,Orphans,social,1
+qassim,القصيم,Qassim,widows,الأرامل,Widows,social,1
+riyadh,الرياض,Riyadh,mosques,المساجد,Mosques,worship,265
+riyadh,الرياض,Riyadh,general_charity,أوجه البر,General charity (flexible),flexible,191
+riyadh,الرياض,Riyadh,iftar,إفطار الصائم,Iftar,social,89
+riyadh,الرياض,Riyadh,udhiya,الأضاحي,Udhiya,worship,30
+riyadh,الرياض,Riyadh,poor,الفقراء والمساكين,Poor & needy,social,12
+riyadh,الرياض,Riyadh,water,السقيا,Water provision,social,12
+riyadh,الرياض,Riyadh,family,الوقف الذري,Family (dhurri),family,9
+riyadh,الرياض,Riyadh,orphans,الأيتام,Orphans,social,7
+riyadh,الرياض,Riyadh,dawah,الدعوة,Dawah,education,6
+riyadh,الرياض,Riyadh,education,العلم وتعليمه,Knowledge & teaching,education,5
+riyadh,الرياض,Riyadh,hajj,الحج,Hajj,worship,5
+riyadh,الرياض,Riyadh,quran,القرآن الكريم,Quran,education,5
+riyadh,الرياض,Riyadh,housing,السكن,Housing,social,2
+riyadh,الرياض,Riyadh,wayfarer,ابن السبيل,Wayfarers,social,2
+riyadh,الرياض,Riyadh,cemeteries,المقابر,Cemeteries,worship,1
+riyadh,الرياض,Riyadh,food,إطعام الطعام,Food,social,1
+riyadh,الرياض,Riyadh,widows,الأرامل,Widows,social,1
+tabuk,تبوك,Tabuk,general_charity,أوجه البر,General charity (flexible),flexible,6
+tabuk,تبوك,Tabuk,mosques,المساجد,Mosques,worship,2
+tabuk,تبوك,Tabuk,dawah,الدعوة,Dawah,education,1
+tabuk,تبوك,Tabuk,education,العلم وتعليمه,Knowledge & teaching,education,1
+tabuk,تبوك,Tabuk,orphans,الأيتام,Orphans,social,1
+tabuk,تبوك,Tabuk,poor,الفقراء والمساكين,Poor & needy,social,1
+tabuk,تبوك,Tabuk,quran,القرآن الكريم,Quran,education,1
+tabuk,تبوك,Tabuk,water,السقيا,Water provision,social,1
