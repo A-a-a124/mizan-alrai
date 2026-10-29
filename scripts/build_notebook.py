@@ -54,7 +54,7 @@ if "google.colab" in sys.modules:                      # Colab: fetch code + raw
     os.chdir("/content/mizan-alrai")
     subprocess.run([sys.executable, "-m", "pip", "install", "-q", "statsmodels", "arabic-reshaper", "python-bidi"],
                    check=True)
-print("working directory:", os.getcwd())
+print("ready:", "Google Colab" if "google.colab" in sys.modules else "local run")
 """),
     code("""
 import sys, json
