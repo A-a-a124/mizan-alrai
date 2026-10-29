@@ -16,6 +16,10 @@ import numpy as np  # noqa: E402
 import pandas as pd  # noqa: E402
 from matplotlib.colors import LinearSegmentedColormap  # noqa: E402
 
+from .config import PROJECT_AR, PROJECT_EN  # noqa: E402
+
+BY = f"تحليل «{PROJECT_AR}»"
+
 SURFACE = "#fcfcfb"
 INK = "#0b0b0b"
 INK_2 = "#52514e"
@@ -50,6 +54,8 @@ def _frame(fig, title: str, subtitle: str = "", source: str = "") -> None:
         fig.text(0.985, 0.915, ar(subtitle), ha="right", va="top", fontsize=10, color=INK_2)
     if source:
         fig.text(0.985, 0.015, ar("المصدر: " + source), ha="right", va="bottom", fontsize=8, color=INK_3)
+    fig.text(0.015, 0.015, f"{PROJECT_AR} · {PROJECT_EN}", ha="left", va="bottom", fontsize=8, color=INK_3,
+             weight="bold")
 
 
 def _save(fig, path: Path) -> Path:
@@ -171,7 +177,7 @@ def fig_index(price_idx: pd.DataFrame, total_idx: pd.DataFrame, stats: dict, pat
     _frame(fig, "مؤشر صناديق الوقف السعودية: الفجوة بين الخطين هي ما وُزِّع على المستفيدين",
            f"متوسط متساوي الأوزان لـ12 صندوقاً وقفياً تراكمياً — عائد كلي {pct(stats['total']['ann_return'])} "
            f"مقابل {pct(stats['price']['ann_return'])} سنوياً",
-           "تداول — أسعار وحدات الصناديق الوقفية؛ معالجة الفريق")
+           f"تداول — أسعار وحدات الصناديق الوقفية؛ {BY}")
     return _save(fig, path)
 
 
@@ -218,7 +224,7 @@ def fig_backtest(scores: pd.DataFrame, path: Path) -> Path:
     ax.set_xlim(s["mae"].max() * 1.9, 0)
     _frame(fig, "اختبار رجعي: النموذج البسيط يتفوق على المعقد",
            f"متوسط الخطأ المطلق لتوقع عائد 12 شهراً عبر {int(s['origins'].iloc[0])} نقطة انطلاق خارج العينة",
-           "تحليل الفريق")
+           BY)
     return _save(fig, path)
 
 
@@ -242,7 +248,7 @@ def fig_forecast_fan(total_idx: pd.DataFrame, fc: dict, dist: np.ndarray, path: 
     ax.legend(loc="upper left", fontsize=9)
     p_loss = float(np.mean(dist < 0))
     _frame(fig, f"توقع الأشهر الـ12 القادمة: {pct(fc['point_pct'])} مع احتمال خسارة {pct(p_loss, 0)}",
-           "العائد الكلي لمؤشر صناديق الوقف — آخر 36 شهراً + التوقع", "تحليل الفريق")
+           "العائد الكلي لمؤشر صناديق الوقف — آخر 36 شهراً + التوقع", BY)
     return _save(fig, path)
 
 
@@ -268,7 +274,7 @@ def fig_frontier(frontiers: dict[str, pd.DataFrame], labels: dict[str, str], con
     ax.set_ylim(0, 1)
     ax.legend(loc="upper right", fontsize=9)
     _frame(fig, f"حدود الصرف المستدام: {pct(rates['base'])} سنوياً تحفظ الأصل بثقة {pct(confidence, 0)}",
-           "10,000 مسار محاكاة (Bootstrap كتلي) — تضخم 2% — قاعدة صرف ممهَّدة على 12 ربعاً", "تحليل الفريق")
+           "10,000 مسار محاكاة (Bootstrap كتلي) — تضخم 2% — قاعدة صرف ممهَّدة على 12 ربعاً", BY)
     return _save(fig, path)
 
 
@@ -286,7 +292,7 @@ def fig_real_paths(paths: dict[str, np.ndarray], labels: dict[str, str], path: P
     ax.legend(loc="lower left", fontsize=9)
     loss = 1 - list(paths.values())[-1][1][-1] / 100
     _frame(fig, f"الصرف بمعدلات الصناديق الحالية يُفقد الوقف {pct(loss, 0)} من قيمته الحقيقية في 10 سنوات",
-           "الوسيط ونطاق 10–90% للقيمة الحقيقية (بعد التضخم)", "تحليل الفريق")
+           "الوسيط ونطاق 10–90% للقيمة الحقيقية (بعد التضخم)", BY)
     return _save(fig, path)
 
 
@@ -318,5 +324,5 @@ def fig_allocation(alloc: pd.DataFrame, labels: dict[str, str], groups: dict[str
     ax.legend(handles, ["عمارة واحتياطي", "رعاية اجتماعية", "مصارف أخرى"], loc="lower left", fontsize=9)
     _frame(fig, f"خطة الصرف لوقف بقيمة {endowment / 1e6:,.0f} ملايين ريال: {budget:,.0f} ريال هذا العام",
            "عمارة الوقف والاحتياطي أولاً، ثم شروط الواقفين، ثم الحصة المرنة لأولويات الاحتياج",
-           "تحليل الفريق — مزيج المصارف الوطني من بيانات الهيئة العامة للأوقاف")
+           f"{BY} — مزيج المصارف الوطني من بيانات الهيئة العامة للأوقاف")
     return _save(fig, path)

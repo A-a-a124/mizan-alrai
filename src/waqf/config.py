@@ -2,6 +2,12 @@
 
 from pathlib import Path
 
+PROJECT_AR = "ميزان الريع"
+PROJECT_EN = "Mizan Al-Rai"
+PROJECT_SLUG = "mizan-alrai"
+TAGLINE_AR = "منصة التنبؤ الذكي بالتدفقات المالية للوقف"
+TAGLINE_EN = "Smart forecasting of waqf yields, sustainable spending and masarif allocation"
+
 TEAM_MEMBERS = ("عبدالله عبدالرحمن عبدالله العضياني", "ثامر خالد صالح الغامدي")
 TEAM_SLUG = "alodhayani-alghamdi"
 

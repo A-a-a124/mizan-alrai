@@ -19,7 +19,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from waqf.clean import MASRAF_MAP  # noqa: E402
-from waqf.config import TEAM_MEMBERS  # noqa: E402
+from waqf.config import PROJECT_AR, PROJECT_EN, TAGLINE_AR, TEAM_MEMBERS  # noqa: E402
 
 MASRAF_AR = {code: label for code, label, _, _ in MASRAF_MAP.values()}
 TABLES = ROOT / "outputs" / "tables"
@@ -89,15 +89,15 @@ ul.tight li { margin-bottom:2px; }
 """
 
 HTML = Template("""<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
-<title>الملخص التنفيذي — منصة التنبؤ الذكي بالتدفقات المالية للوقف</title>
+<title>$name — الملخص التنفيذي</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>$css</style></head><body>
 
 <section class="page">
-  <div class="eyebrow">مسابقة تحليل البيانات للقطاع غير الربحي — الملخص التنفيذي</div>
+  <div class="eyebrow">$name · <span class="ltr">$name_en</span> — الملخص التنفيذي · مسابقة تحليل البيانات للقطاع غير الربحي</div>
   <h1>كم يصرف الوقف دون أن يأكل أصله؟</h1>
-  <div class="sub">منصة التنبؤ الذكي بالتدفقات المالية للوقف العائلي والأهلي: تنبؤ بالعوائد، وسقف صرف مستدام، وتوزيع شرعي للمصارف</div>
+  <div class="sub"><b>$name</b>: $tagline العائلي والأهلي — تنبؤ بالعوائد، وسقف صرف مستدام، وتوزيع شرعي للمصارف</div>
   <div class="team">إعداد: $team</div>
 
   <div class="lede"><b>الخلاصة:</b> الأصول الوقفية المدرجة في السوق السعودية ولّدت عائداً كلياً مقدَّراً
@@ -129,7 +129,7 @@ HTML = Template("""<!doctype html><html lang="ar" dir="rtl"><head><meta charset=
   <p class="small">كل لقطة خام محمية بفحص سلامة (عدد الصفوف ومجموع الأسعار)، و<b>$n_rules قاعدة تنظيف</b> موثقة آلياً، أبرزها
   توحيد التهجئات العربية للمصارف، وإزالة أسعار ما قبل الاستثمار، واستيفاء الفجوات الربعية مع تعليمها،
   و<b>كشف $n_payouts توزيعاً مخفياً</b> يظهر كهبوط في سعر الوحدة.</p>
-  <div class="meta">التشغيل الكامل: <span class="ltr">python scripts/run_analysis.py</span> — يعيد بناء كل رقم وشكل في هذا التقرير من البيانات الخام · $n_tests اختباراً آلياً ناجحاً</div>
+  <div class="meta">$name · التشغيل الكامل: <span class="ltr">python scripts/run_analysis.py</span> — يعيد بناء كل رقم وشكل في هذا التقرير من البيانات الخام · $n_tests اختباراً آلياً ناجحاً</div>
 </section>
 
 <section class="page">
@@ -214,6 +214,7 @@ def build_html() -> str:
     infl = s["inflation"]
     vals = dict(
         team=" · ".join(f"<b>{m}</b>" for m in TEAM_MEMBERS),
+        name=PROJECT_AR, name_en=PROJECT_EN, tagline=TAGLINE_AR,
         css=CSS, tot_ret=p(ix["total_ann_return"]), price_ret=p(ix["price_ann_return"]),
         real_ret=p((1 + ix["total_ann_return"]) / (1 + infl) - 1), conf=p(s["confidence"], 0), infl=p(infl, 0),
         rate=p(s["rate_base"]), rate50=p(s["rate_base_at_50"]), rate_stress=p(s["rate_stress"]),

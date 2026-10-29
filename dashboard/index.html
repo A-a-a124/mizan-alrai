@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>محاكي قرار الصرف الوقفي</title>
+<title>ميزان الريع — محاكي قرار الصرف الوقفي</title>
 <style>
 :root{
   --surface-0:#f6f6f3; --surface-1:#fcfcfb; --card:#ffffff; --rule:#e6e5e0;
@@ -71,6 +71,7 @@ details summary{cursor:pointer;color:var(--text-secondary);font-size:13px}
 <body>
 <div class="wrap">
 <header>
+  <div style="color:var(--series-1);font-weight:600;font-size:13px">ميزان الريع · <span class="ltr">Mizan Al-Rai</span></div>
   <h1>محاكي قرار الصرف الوقفي</h1>
   <p>اختر قيمة الوقف ومعدل الصرف لترى احتمال حفظ القيمة الحقيقية للأصل بعد 10 سنوات، وكيف يتوزع المبلغ على المصارف.
      الأرقام محسوبة مسبقاً من <span class="ltr">scripts/run_analysis.py</span> (10,000 مسار محاكاة لكل حالة).</p>
@@ -269,7 +270,7 @@ function render(){
 ['endow','rate','scen','infl','conf','prof','resv'].forEach(id => $(id).addEventListener('input', render));
 drawIndex(); render();
 const k = D.key;
-$('foot').innerHTML = `المصادر: الهيئة العامة للأوقاف (منصة البيانات المفتوحة الوطنية، ${k.sector.waqf_designations.toLocaleString('en-US')} مصرفاً وقفياً) · السوق المالية السعودية — تداول (${k.index.funds_total} صندوقاً وقفياً). ` +
+$('foot').innerHTML = `<b>ميزان الريع</b> — منصة التنبؤ الذكي بالتدفقات المالية للوقف · المصادر: الهيئة العامة للأوقاف (منصة البيانات المفتوحة الوطنية، ${k.sector.waqf_designations.toLocaleString('en-US')} مصرفاً وقفياً) · السوق المالية السعودية — تداول (${k.index.funds_total} صندوقاً وقفياً). ` +
   `العائد الكلي المقدَّر ${pct(k.index.total_ann_return)} سنوياً · توقع 12 شهراً ${pct(k.forecast.point_pct)} · ${k.spending.paths.toLocaleString('en-US')} مسار لكل حالة. ` +
   `الحدود: الصناديق المدرجة وكيل لأداء الاستثمار الوقفي، ومبالغ التوزيع مقدَّرة.`;
 })();

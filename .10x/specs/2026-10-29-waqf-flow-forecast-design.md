@@ -1,4 +1,4 @@
-# Spec — منصة التنبؤ الذكي بالتدفقات المالية للوقف (Waqf Flow Forecast)
+# Spec — ميزان الريع · Mizan Al-Rai (منصة التنبؤ الذكي بالتدفقات المالية للوقف)
 
 **Date:** 2026-10-29 · **Status:** Approved by user (brainstorm, 4 decisions) · **Competition:** مسابقة تحليل البيانات للقطاع غير الربحي
 

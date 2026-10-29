@@ -1,4 +1,4 @@
-# Status — waqf-flow-forecast
+# Status — ميزان الريع · Mizan Al-Rai (feature slug: waqf-flow-forecast)
 | Phase | State |
 |---|---|
 | 0 Brainstorm | ✅ approved |

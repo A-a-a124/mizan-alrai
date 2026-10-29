@@ -1,5 +1,10 @@
-# منصة التنبؤ الذكي بالتدفقات المالية للوقف
-**Waqf Flow Forecast — sustainable spending & masarif allocation for waqf nazirs**
+# ميزان الريع · Mizan Al-Rai
+### منصة التنبؤ الذكي بالتدفقات المالية للوقف
+**Smart forecasting of waqf yields, sustainable spending and masarif allocation**
+
+> **لماذا «ميزان الريع»؟** الريع هو غلّة الوقف وعائده، وهو ما نحلّله ونتنبأ به. والميزان هو القرار نفسه: موازنة ما يُصرف للمستحقين اليوم بما يُحفظ من الأصل للأجيال القادمة.
+
+**🔗 الموقع (يفتح عند أي أحد):** https://a-a-a124.github.io/mizan-alrai/ · [محاكي القرار](https://a-a-a124.github.io/mizan-alrai/dashboard/) · [الملخص التنفيذي PDF](https://a-a-a124.github.io/mizan-alrai/report/executive_summary.pdf)
 
 **الفريق:** عبدالله عبدالرحمن عبدالله العضياني · ثامر خالد صالح الغامدي
 
@@ -36,6 +41,7 @@ python -m pytest -q
 | `python scripts/run_analysis.py` | يعيد بناء `data_clean/` و`outputs/` و`dashboard/data.js` من البيانات الخام | ≈ 5 ث |
 | `python scripts/build_notebook.py` | يولّد `analysis.ipynb` وينفّذه كاملاً (السرد العربي فوق الكود نفسه) | ≈ 30 ث |
 | `python scripts/build_report.py` | يولّد `report/executive_summary.pdf` من الجداول (يتطلب Edge أو Chrome) | ≈ 10 ث |
+| `python scripts/build_site.py` | يولّد صفحة الموقع `index.html` (GitHub Pages) من الجداول | < 1 ث |
 | `python -m pytest -q` | 28 اختباراً: سلامة البيانات، التنظيف، عدم تسرب المستقبل، قيود التوزيع | ≈ 4 ث |
 
 لا يحتاج التشغيل إلى إنترنت؛ اللقطات الخام محفوظة في `data_raw/` ومحمية بفحوص سلامة.
