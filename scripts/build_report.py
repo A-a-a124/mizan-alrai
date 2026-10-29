@@ -19,6 +19,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from waqf.clean import MASRAF_MAP  # noqa: E402
+from waqf.config import TEAM_MEMBERS  # noqa: E402
 
 MASRAF_AR = {code: label for code, label, _, _ in MASRAF_MAP.values()}
 TABLES = ROOT / "outputs" / "tables"
@@ -54,6 +55,8 @@ h3 { font-size:11pt; margin:10px 0 4px; font-weight:600; }
 p { margin:0 0 7px; }
 .eyebrow { color:var(--blue); font-weight:600; font-size:9.5pt; letter-spacing:.3px; }
 .sub { color:var(--ink2); font-size:11pt; margin-bottom:12px; }
+.team { display:flex; gap:18px; flex-wrap:wrap; font-size:9.5pt; color:var(--ink2); margin:-4px 0 10px; }
+.team b { color:var(--ink); font-weight:600; }
 .meta { color:var(--ink3); font-size:8.5pt; border-top:1px solid var(--rule); padding-top:6px; margin-top:6px; }
 .lede { background:var(--blue-soft); border-right:4px solid var(--blue); padding:10px 14px; border-radius:6px;
         font-size:11pt; margin:12px 0; }
@@ -95,6 +98,7 @@ HTML = Template("""<!doctype html><html lang="ar" dir="rtl"><head><meta charset=
   <div class="eyebrow">مسابقة تحليل البيانات للقطاع غير الربحي — الملخص التنفيذي</div>
   <h1>كم يصرف الوقف دون أن يأكل أصله؟</h1>
   <div class="sub">منصة التنبؤ الذكي بالتدفقات المالية للوقف العائلي والأهلي: تنبؤ بالعوائد، وسقف صرف مستدام، وتوزيع شرعي للمصارف</div>
+  <div class="team">إعداد: $team</div>
 
   <div class="lede"><b>الخلاصة:</b> الأصول الوقفية المدرجة في السوق السعودية ولّدت عائداً كلياً مقدَّراً
   <b>$tot_ret سنوياً</b>، أي نحو <b>$real_ret</b> بعد التضخم. لذلك فإن معدل الصرف الذي يحفظ القيمة الحقيقية للوقف عشر سنوات
@@ -209,6 +213,7 @@ def build_html() -> str:
     n_tests = count_tests()
     infl = s["inflation"]
     vals = dict(
+        team=" · ".join(f"<b>{m}</b>" for m in TEAM_MEMBERS),
         css=CSS, tot_ret=p(ix["total_ann_return"]), price_ret=p(ix["price_ann_return"]),
         real_ret=p((1 + ix["total_ann_return"]) / (1 + infl) - 1), conf=p(s["confidence"], 0), infl=p(infl, 0),
         rate=p(s["rate_base"]), rate50=p(s["rate_base_at_50"]), rate_stress=p(s["rate_stress"]),

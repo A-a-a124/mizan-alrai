@@ -5,12 +5,15 @@
 
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 import nbformat as nbf
 from nbclient import NotebookClient
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+from waqf.config import TEAM_MEMBERS  # noqa: E402
 
 
 def md(text: str):
@@ -25,6 +28,8 @@ CELLS = [
     md("""
 # منصة التنبؤ الذكي بالتدفقات المالية للوقف
 ### كم يصرف الناظر هذا العام دون أن يأكل الأصل؟ وكيف يوزّعه على المصارف؟
+
+**الفريق:** """ + " · ".join(TEAM_MEMBERS) + """
 
 **سؤال القرار:** ما معدل الصرف السنوي الذي يحفظ القيمة *الحقيقية* (بعد التضخم) لأصل الوقف خلال عشر سنوات
 بدرجة ثقة يحددها الناظر، وكيف يُوزَّع هذا المبلغ على المصارف الشرعية مع احترام شروط الواقفين؟

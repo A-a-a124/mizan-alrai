@@ -2,6 +2,9 @@
 
 from pathlib import Path
 
+TEAM_MEMBERS = ("عبدالله عبدالرحمن عبدالله العضياني", "ثامر خالد صالح الغامدي")
+TEAM_SLUG = "alodhayani-alghamdi"
+
 ROOT = Path(__file__).resolve().parents[2]
 DATA_RAW = ROOT / "data_raw"
 DATA_CLEAN = ROOT / "data_clean"
