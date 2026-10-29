@@ -37,9 +37,24 @@ CELLS = [
 
 **البيانات (حقيقية ومفتوحة من القطاع غير الربحي فقط):**
 1. الهيئة العامة للأوقاف — 18 مجموعة بيانات على منصة البيانات المفتوحة الوطنية (15,305 مصرفاً وقفياً في 13 منطقة، الشهادات الوقفية، المستفيدون…).
-2. السوق المالية السعودية (تداول) — أسعار وحدات **26 صندوقاً استثمارياً وقفياً** مرخصاً من هيئة السوق المالية (2018–2026).
+2. السوق المالية السعودية (تداول) — أسعار وحدات **26 صندوقاً استثمارياً وقفياً** مرخصاً من هيئة السوق المالية (2018–2026). هذه الصناديق أوقاف بحد ذاتها: وحداتها موقوفة وعوائدها تُصرف على جهات غير ربحية (جمعيات، أوقاف جامعات، رعاية أيتام…)، فهي بيانات قطاع غير ربحي.
 
 **التشغيل:** `python scripts/run_analysis.py` يعيد بناء كل المخرجات من البيانات الخام في ثوانٍ. هذا الدفتر يستدعي **الدوال نفسها** خطوة بخطوة ويشرحها.
+"""),
+    md("""
+**تشغيل على Google Colab:** الخلية التالية تنسخ المستودع وتثبت المتطلبات تلقائياً عند التشغيل على Colab،
+ثم يمكن تنفيذ الدفتر كاملاً من القائمة: *Runtime ← Run all*. على الجهاز المحلي لا تفعل شيئاً.
+"""),
+    code("""
+import os, sys, subprocess
+if "google.colab" in sys.modules:                      # Colab: fetch code + raw data, install deps
+    if not os.path.exists("/content/mizan-alrai"):
+        subprocess.run(["git", "clone", "--depth", "1", "https://github.com/A-a-a124/mizan-alrai.git",
+                        "/content/mizan-alrai"], check=True)
+    os.chdir("/content/mizan-alrai")
+    subprocess.run([sys.executable, "-m", "pip", "install", "-q", "statsmodels", "arabic-reshaper", "python-bidi"],
+                   check=True)
+print("working directory:", os.getcwd())
 """),
     code("""
 import sys, json

@@ -29,8 +29,12 @@ S1, S2, S3 = "#2a78d6", "#eb6834", "#1baf7a"
 CRITICAL = "#d03b3b"
 SEQ = ["#cde2fb", "#9ec5f4", "#6da7ec", "#3987e5", "#256abf", "#184f95", "#0d366b"]
 
+_PREFERRED_FONTS = ("Segoe UI", "Noto Sans Arabic", "Noto Naskh Arabic", "DejaVu Sans")
+_INSTALLED = {f.name for f in matplotlib.font_manager.fontManager.ttflist}
+_FONTS = [f for f in _PREFERRED_FONTS if f in _INSTALLED] or ["DejaVu Sans"]   # only existing fonts: no warnings
+
 plt.rcParams.update({
-    "font.family": "Segoe UI", "font.size": 10.5, "axes.edgecolor": GRID, "axes.labelcolor": INK_2,
+    "font.family": _FONTS, "font.size": 10.5, "axes.edgecolor": GRID, "axes.labelcolor": INK_2,
     "xtick.color": INK_2, "ytick.color": INK_2, "axes.grid": True, "grid.color": GRID,
     "grid.linewidth": 0.8, "axes.axisbelow": True, "figure.facecolor": SURFACE, "axes.facecolor": SURFACE,
     "savefig.facecolor": SURFACE, "axes.spines.top": False, "axes.spines.right": False,
@@ -39,9 +43,37 @@ plt.rcParams.update({
 
 
 def ar(text: str) -> str:
-    """Arabic label hook. Matplotlib >= 3.11 shapes and orders RTL text natively;
-    pre-shaping with arabic_reshaper/python-bidi would reverse it a second time."""
+    """Arabic label hook (shaping, when needed, happens once in Text.set_text below)."""
     return str(text)
+
+
+def _enable_rtl_fallback() -> None:
+    """Matplotlib >= 3.11 lays out Arabic natively. Older versions (e.g. Google Colab) draw it
+    reversed and unjoined, so shape every Arabic string once with arabic_reshaper + python-bidi."""
+    major, minor = (int(x) for x in matplotlib.__version__.split(".")[:2])
+    if (major, minor) >= (3, 11):
+        return
+    try:
+        import arabic_reshaper
+        from bidi.algorithm import get_display
+    except ImportError:
+        import warnings
+        warnings.warn("pip install arabic-reshaper python-bidi to render Arabic on matplotlib < 3.11")
+        return
+    from matplotlib.text import Text
+    original = Text.set_text
+
+    def set_text(self, s):
+        s = "" if s is None else str(s)
+        shaped = any("ﭐ" <= ch <= "﻿" for ch in s)       # already in presentation forms
+        if not shaped and any("ء" <= ch <= "ي" for ch in s):
+            s = get_display(arabic_reshaper.reshape(s))
+        original(self, s)
+
+    Text.set_text = set_text
+
+
+_enable_rtl_fallback()
 
 
 def pct(x: float, digits: int = 1) -> str:

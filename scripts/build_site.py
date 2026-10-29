@@ -63,7 +63,7 @@ img.hero{width:100%;border:1px solid var(--rule);border-radius:12px;margin:22px 
 <div class="links">
   <a class="card" href="dashboard/"><b>محاكي القرار التفاعلي ←</b><span>حرّك معدل الصرف وشاهد الأثر على الأصل والمصارف فوراً</span></a>
   <a class="card" href="report/executive_summary.pdf"><b>الملخص التنفيذي (PDF) ←</b><span>4 صفحات: القرار، قصة الأثر، التوصيات</span></a>
-  <a class="card" href="$repo/blob/main/analysis.ipynb"><b>دفتر التحليل ←</b><span>Python كامل بالسرد العربي، منفَّذ وقابل لإعادة التشغيل</span></a>
+  <a class="card" href="https://colab.research.google.com/github/A-a-a124/mizan-alrai/blob/main/analysis.ipynb"><b>دفتر التحليل على Colab ←</b><span>Python كامل بالسرد العربي، يعمل بضغطة Run all</span></a>
   <a class="card" href="$repo"><b>الكود والبيانات ←</b><span>المصدر الكامل، 28 اختباراً، سجل استخدام الذكاء الاصطناعي</span></a>
 </div>
 
@@ -91,6 +91,75 @@ def main() -> None:
     (ROOT / "index.html").write_text(html, encoding="utf-8")
     (ROOT / ".nojekyll").write_text("", encoding="utf-8")
     print("index.html written")
+    build_x_card(k)
+
+
+CARD = Template("""<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:1600px;height:900px;overflow:hidden}
+body{background:linear-gradient(135deg,#0d366b 0%,#123f7a 55%,#184f95 100%);color:#fff;
+  font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;padding:70px 90px;position:relative}
+.brand{font-size:34px;font-weight:600;color:#9ec5f4}.brand span{direction:ltr;unicode-bidi:embed;opacity:.8}
+h1{font-size:76px;line-height:1.2;margin:18px 0 10px;font-weight:700}
+.sub{font-size:30px;color:#cde2fb;margin-bottom:46px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.k{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:22px;padding:26px 26px 22px}
+.k .v{font-size:72px;font-weight:700;line-height:1.05}.k .v.w{color:#ffb38f}.k .l{font-size:23px;color:#cde2fb;margin-top:10px;line-height:1.45}
+.insight{margin-top:34px;font-size:31px;line-height:1.5;background:rgba(255,179,143,.12);border-right:6px solid #ffb38f;border-radius:14px;padding:18px 26px}
+.insight b{color:#ffb38f}
+.foot{position:absolute;bottom:52px;right:90px;left:90px;display:flex;justify-content:space-between;font-size:24px;color:#9ec5f4}
+.foot .u{direction:ltr;unicode-bidi:embed;color:#fff;font-weight:600}
+</style></head><body>
+<div class="brand">$name · <span>$name_en</span></div>
+<h1>كم يصرف الوقف دون أن يأكل أصله؟</h1>
+<div class="sub">تحليل بيانات مفتوحة حقيقية: $n مصرفاً وقفياً و$funds صندوقاً وقفياً · Python</div>
+<div class="kpis">
+ <div class="k"><div class="v">$rate</div><div class="l">سقف الصرف السنوي المستدام</div></div>
+ <div class="k"><div class="v w"><span dir="ltr">$pay_lo_n–$pay_hi</span></div><div class="l">ما توزّعه الصناديق الوقفية فعلياً</div></div>
+ <div class="k"><div class="v w">$p_obs</div><div class="l">احتمال حفظ الأصل بالمعدل الحالي</div></div>
+ <div class="k"><div class="v">$fc</div><div class="l">العائد المتوقع للأشهر الـ12 القادمة</div></div>
+</div>
+<div class="insight">الصرف بمعدل الصناديق الحالي يُفقد الوقف <b>$erosion</b> من قيمته الحقيقية خلال 10 سنوات، والأيتام لا يتجاوزون <b>$orph</b> من المصارف.</div>
+<div class="foot"><div>$team</div><div class="u">a-a-a124.github.io/mizan-alrai</div></div>
+</body></html>""")
+
+
+def build_x_card(k: dict) -> None:
+    """Share image for the competition's X post (outputs/social/x_card.png, 1600x900)."""
+    import shutil
+    import subprocess
+    import tempfile
+    import time
+    s, ix, fc, sec = k["spending"], k["index"], k["forecast"], k["sector"]
+    out = ROOT / "outputs" / "social"
+    out.mkdir(parents=True, exist_ok=True)
+    html = out / "x_card.html"
+    html.write_text(CARD.substitute(
+        name=PROJECT_AR, name_en=PROJECT_EN, team=" · ".join(TEAM_MEMBERS), n=f"{sec['waqf_designations']:,}",
+        funds=ix["funds_total"], rate=pct(s["rate_base"]), pay_lo=pct(ix["payout_min_recent"], 0),
+        pay_hi=pct(ix["payout_max_recent"], 0), p_obs=pct(s["p_preserve_at_observed"], 0),
+        pay_lo_n=f"{ix['payout_min_recent'] * 100:.0f}", erosion=pct(1 - s["median_real_final_observed"] / 100, 0),
+        orph=pct(sec["orphans_share"]), fc=pct(fc["point_pct"])), encoding="utf-8")
+    browser = next((c for c in (r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+                                r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+                                shutil.which("msedge"), shutil.which("chrome"), shutil.which("chromium"))
+                    if c and Path(c).exists()), None)
+    if browser is None:
+        print("x_card.html written (no browser found for PNG)")
+        return
+    png = out / "x_card.png"
+    png.unlink(missing_ok=True)
+    profile = tempfile.mkdtemp(prefix="mizan-card-")
+    subprocess.run([browser, "--headless=new", "--disable-gpu", f"--user-data-dir={profile}", "--no-first-run",
+                    "--hide-scrollbars", "--window-size=1600,900", "--virtual-time-budget=10000",
+                    f"--screenshot={png}", html.resolve().as_uri()], capture_output=True, timeout=120)
+    for _ in range(40):
+        if png.exists() and png.stat().st_size:
+            break
+        time.sleep(0.5)
+    shutil.rmtree(profile, ignore_errors=True)
+    print("outputs/social/x_card.png written" if png.exists() else "x_card.png NOT produced")
 
 
 if __name__ == "__main__":
