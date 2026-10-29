@@ -1,0 +1,2 @@
+# Architect — waqf-flow-forecast (see ADR-001)
+Pipeline of pure modules under `src/waqf/`: ingest → clean → index → forecast → risk → spending → allocate → report_tables. `scripts/run_analysis.py` orchestrates and writes `data_clean/`, `outputs/tables/`, `outputs/figures/`, `dashboard/data.js`. Notebook imports the same modules (single implementation). Failure modes: integrity mismatch → abort; fund with < 12 months → excluded + logged; model fit failure → candidate dropped, logged.
