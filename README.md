@@ -87,6 +87,7 @@ alodhayani-alghamdi-submission/    ← اسم مجلد التسليم (يمكن 
 ├─ dashboard/                      ← محاكي القرار التفاعلي (للعرض النهائي)
 ├─ data_raw/                       ← اللقطات الخام + فحوص السلامة (لا تُعدَّل)
 ├─ src/waqf/                       ← وحدات التحليل (مكتوبة مرة واحدة ويستخدمها الكل)
+├─ presentation/mizan-alrai.pptx   ← عرض PowerPoint عربي (20 شريحة مع ملاحظات المتحدث)، يُبنى من الجداول بـ build_deck.js
 ├─ examples/                       ← ملف أسعار بديل لتجربة التشغيل على بيانات أخرى
 ├─ tests/                          ← اختبارات pytest
 └─ requirements.txt
