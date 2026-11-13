@@ -19,12 +19,12 @@ const sar = (x) => Math.round(x).toLocaleString("en-US");
 const S = K.spending, IX = K.index, FC = K.forecast, SEC = K.sector, AL = K.allocation;
 
 const THEME = {
-  name: "Mizan Al-Rai", headFontFace: "Segoe UI", bodyFontFace: "Segoe UI",
-  colors: { dk1: "0E2A2B", lt1: "FFFFFF", dk2: "0B3B3C", lt2: "EEF4F3", accent1: "0F766E", accent2: "D4A72C",
-            accent3: "D9634C", accent4: "3F6D69", accent5: "9CC5C0", accent6: "13294B", hlink: "0F766E", folHlink: "3F6D69" },
+  name: "Mizan Al-Rai", headFontFace: "thmanyah serif display", bodyFontFace: "thmanyah sans",
+  colors: { dk1: "1F2933", lt1: "FFFFFF", dk2: "16263F", lt2: "F3F5F8", accent1: "1F4E79", accent2: "C9D3E0",
+            accent3: "9B2C2C", accent4: "5A6B7F", accent5: "A9B8CC", accent6: "0E1A2B", hlink: "1F4E79", folHlink: "5A6B7F" },
 };
 const HEX = THEME.colors;
-const MUTED = "4A5E5D", GRID = "DCE6E4";
+const MUTED = "55606E", GRID = "DDE2E9";
 
 const pres = new pptxgen();
 pres.layout = "LAYOUT_WIDE";
@@ -69,9 +69,16 @@ const num = (s, t, x, y, w, h, o = {}) => s.addText(t, { x, y, w, h, isTextBox: 
   fontSize: 54, bold: true, color: C.accent1, ...o });
 const card = (s, x, y, w, h, fill = C.background2) => s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y, w, h, rectRadius: 0.12,
   fill: { color: fill }, line: { color: fill, width: 0 } });
-const badge = (s, n, x, y, d = 0.55, fill = C.accent2, color = C.text2) => {
+const badge = (s, n, x, y, d = 0.55, fill = C.accent1, color = C.background1) => {
   s.addShape(pres.shapes.OVAL, { x, y, w: d, h: d, fill: { color: fill }, line: { color: fill, width: 0 } });
   s.addText(String(n), { x, y, w: d, h: d, isTextBox: true, margin: 0, align: "center", valign: "middle", fontSize: d * 26, bold: true, color });
+};
+const HL = (t) => ({ text: t, options: { bold: true, color: C.text2, highlight: "BBD3F2" } });        // on light surfaces
+const HLD = (t) => ({ text: t, options: { bold: true, color: C.background1, highlight: "3A5A8C" } });  // on navy surfaces
+const N = (t) => ({ text: t, options: {} });
+const note = (s, runs, y, h = 0.8, x = MX, w = CW) => {
+  card(s, x, y, w, h);
+  txt(s, runs, x + 0.3, y, w - 0.6, h, { valign: "middle", fontSize: 15 });
 };
 const rx = (i, w, gap, right = W - MX) => right - (i + 1) * w - i * gap;      // i-th column counted from the right (RTL)
 const chartBase = () => ({ catAxisLabelColor: MUTED, valAxisLabelColor: MUTED, catAxisLabelFontSize: 12, valAxisLabelFontSize: 12,
@@ -109,8 +116,9 @@ const pw = (CW - 0.4) / 2;
 });
 card(s, MX, 4.25, CW, 2.3, C.text2);
 txt(s, "سؤال القرار", MX + 0.45, 4.5, CW - 0.9, 0.45, { fontSize: 16, bold: true, color: C.accent2 });
-txt(s, "ما معدل الصرف السنوي الذي يحفظ القيمة الحقيقية لأصل الوقف خلال عشر سنوات بدرجة ثقة يحددها الناظر، وكيف يُوزَّع على المصارف الشرعية مع احترام شروط الواقفين؟",
-  MX + 0.45, 5.0, CW - 0.9, 1.4, { fontSize: 22, bold: true, color: C.background1 });
+txt(s, [{ text: "ما معدل الصرف السنوي الذي ", options: { color: C.background1 } }, HLD("يحفظ القيمة الحقيقية لأصل الوقف"),
+  { text: " خلال عشر سنوات بدرجة ثقة يحددها الناظر، و", options: { color: C.background1 } }, HLD("كيف يُوزَّع على المصارف الشرعية"),
+  { text: " مع احترام شروط الواقفين؟", options: { color: C.background1 } }], MX + 0.45, 5.0, CW - 0.9, 1.4, { fontSize: 22 });
 
 // ================= 3. Headline numbers
 s = slide("CONTENT", "الخلاصة في أربعة أرقام",
@@ -123,13 +131,14 @@ statCards(s, [
 ], 1.75, 2.55);
 card(s, MX, 4.65, CW, 1.9, C.text2);
 txt(s, [{ text: "المعنى: ", options: { bold: true, color: C.accent2 } },
-  { text: `الأصول الوقفية ولّدت عائداً كلياً ${pct(IX.total_ann_return)} سنوياً، أي نحو ${pct((1 + IX.total_ann_return) / (1 + S.inflation) - 1)} بعد التضخم. ما يُصرف فوق ذلك يُؤخذ من الأصل نفسه.`,
-    options: { color: C.background1 } }], MX + 0.45, 4.95, CW - 0.9, 1.3, { fontSize: 22 });
+  { text: "الأصول الوقفية ولّدت عائداً كلياً ", options: { color: C.background1 } }, HLD(`${pct(IX.total_ann_return)} سنوياً`),
+  { text: `، أي نحو ${pct((1 + IX.total_ann_return) / (1 + S.inflation) - 1)} بعد التضخم. `, options: { color: C.background1 } },
+  HLD("ما يُصرف فوق ذلك يُؤخذ من الأصل نفسه.")], MX + 0.45, 4.95, CW - 0.9, 1.3, { fontSize: 22 });
 
 // ================= Section: data
 section = "البيانات"; pres.addSection({ title: section });
 s = slide("SECTION", "البيانات: حقيقية ومفتوحة", "ننتقل إلى البيانات: مصدران رسميان مفتوحان.");
-badge(s, 1, MX, 2.95, 1.2);
+badge(s, 1, MX, 2.95, 1.2, C.accent2, C.text2);
 
 // ================= 5. Sources
 s = slide("CONTENT", "مصدران رسميان مفتوحان",
@@ -151,9 +160,8 @@ s = slide("CONTENT", "مصدران رسميان مفتوحان",
     txt(s, l, x + 0.35, 3.36 + j * 0.86, pw - 0.7, 0.36, { fontSize: 14 });
   });
 });
-txt(s, [{ text: "لماذا تُعد بيانات تداول بيانات قطاع غير ربحي؟ ", options: { bold: true, color: C.accent1 } },
-  { text: "لأن هذه الصناديق أوقاف: وحداتها موقوفة، وعوائدها تُصرف على جمعيات الأيتام والقرآن والصحة وأوقاف الجامعات." }],
-  MX, 5.85, CW, 0.9, { fontSize: 16 });
+note(s, [HL("لماذا تُعد بيانات تداول بيانات قطاع غير ربحي؟"), N(" لأن هذه الصناديق أوقاف: وحداتها موقوفة، وعوائدها تُصرف على جمعيات الأيتام والقرآن والصحة وأوقاف الجامعات.")],
+  5.8, 0.95);
 
 // ================= 6. Cleaning
 const log = csv("outputs/tables/cleaning_log.csv");
@@ -175,8 +183,7 @@ rules.forEach(([h, b], i) => {
   txt(s, h, x + 0.25, y + 0.25, rw - 1.15, 0.5, { fontSize: 17, bold: true, color: C.text2 });
   txt(s, b, x + 0.25, y + 0.85, rw - 0.5, 1.0, { fontSize: 14 });
 });
-txt(s, "فحص سلامة لكل ملف خام: عدد الصفوف كما تعلنه البوابة، وبصمة لكل صندوق. أي تعديل يوقف التشغيل فوراً.", MX, 6.05, CW, 0.5,
-  { fontSize: 15, color: MUTED });
+note(s, [HL("فحص سلامة لكل ملف خام:"), N(" عدد الصفوف كما تعلنه البوابة، وبصمة لكل صندوق. "), HL("أي تعديل يوقف التشغيل فوراً.")], 6.0, 0.7);
 
 // ================= 7. Hidden payouts + index chart
 const idx = csv("outputs/tables/composite_index.csv").filter((r) => /-(03|06|09|12)$/.test(r.month));
@@ -186,7 +193,7 @@ s.addChart(pres.charts.LINE, [
   { name: "العائد الكلي المقدَّر", labels: idx.map((r) => r.month), values: idx.map((r) => +(+r.total_index).toFixed(1)) },
   { name: "عائد السعر فقط", labels: idx.map((r) => r.month), values: idx.map((r) => +(+r.price_index).toFixed(1)) },
 ], { x: MX, y: 1.6, w: 7.6, h: 4.9, ...chartBase(), chartColors: [HEX.accent1, HEX.accent3], lineSize: 3, lineDataSymbol: "none",
-  showLegend: true, legendPos: "b", valAxisMinVal: 80, catAxisLabelRotate: 315, catAxisLabelFontSize: 10,
+  showLegend: true, legendPos: "b", valAxisMinVal: 80, catAxisLabelRotate: 315, catAxisLabelFontSize: 10, catAxisLabelFrequency: 4,
   showTitle: true, title: "مؤشر صناديق الوقف السعودية (بداية السلسلة = 100)", titleFontSize: 14, titleColor: MUTED, titleFontFace: "+mn-lt" });
 const sx = MX + 7.95, sw = W - MX - sx;
 card(s, sx, 1.6, sw, 1.5);
@@ -202,11 +209,11 @@ txt(s, "عائد السعر فقط، أي ما يبقى للأصل بعد الت
 // ================= Section: analysis
 section = "التحليل"; pres.addSection({ title: section });
 s = slide("SECTION", "التحليل: من صورة القطاع إلى قرار الصرف", "الآن التحليل: صورة القطاع، ثم التنبؤ، ثم سقف الصرف والتوزيع.");
-badge(s, 2, MX, 2.95, 1.2);
+badge(s, 2, MX, 2.95, 1.2, C.accent2, C.text2);
 
 // ================= 9. Sector growth
 const certs = csv("data_clean/gasa_certificates.csv");
-s = slide("CONTENT", `تسجيل الأوقاف تضاعف ${(SEC.certificates_2025 / SEC.certificates_2019).toFixed(0)} مرة في ست سنوات`,
+s = slide("CONTENT", `تسجيل الأوقاف تضاعف ${(SEC.certificates_2025 / SEC.certificates_2019).toFixed(1)} مرة في ست سنوات`,
   "القطاع ينمو بسرعة استثنائية، وهذا يجعل سؤال إدارة العوائد أكثر إلحاحاً كل عام.");
 s.addChart(pres.charts.BAR, [{ name: "الشهادات الوقفية المكتملة", labels: certs.map((r) => String(parseInt(r.year))), values: certs.map((r) => +r.registered_waqfs) }],
   { x: MX, y: 1.6, w: 7.9, h: 4.95, ...chartBase(), barDir: "col", chartColors: [HEX.accent1], showValue: true, dataLabelPosition: "outEnd",
@@ -224,7 +231,7 @@ txt(s, `مستفيداً مباشراً من أوقاف الهيئة في 2025 (
 const nat = csv("outputs/tables/masarif_national.csv").slice(0, 8);
 s = slide("CONTENT", `المساجد ${pct(SEC.mosques_share, 0)} من المصارف، والأيتام ${pct(SEC.orphans_share)} فقط`,
   "المصارف شديدة التركز. المساجد وحدها ثلاثة وأربعون بالمئة، بينما الأيتام والأرامل أقل من اثنين بالألف. الحصة المرنة، أوجه البر، هي الرافعة التي يملكها الناظر.");
-s.addChart(pres.charts.BAR, [{ name: "حصة المصرف", labels: nat.map((r) => r.masraf_ar), values: nat.map((r) => +(+r.share).toFixed(4)) }],
+s.addChart(pres.charts.BAR, [{ name: "حصة المصرف", labels: nat.map((r) => r.masraf_ar), values: nat.map((r) => Math.floor(+r.share * 1000 + 0.5 - 1e-9) / 1000) }],
   { x: MX, y: 1.6, w: 7.9, h: 4.95, ...chartBase(), barDir: "bar", chartColors: [HEX.accent1], showValue: true, dataLabelPosition: "outEnd",
     dataLabelFormatCode: "0.0%", valAxisLabelFormatCode: "0%", showLegend: false, catAxisOrientation: "maxMin", barGapWidthPct: 45,
     catAxisLabelFontSize: 13 });
@@ -245,8 +252,8 @@ s.addChart(pres.charts.BAR, [{ name: "متوسط الخطأ المطلق", label
   { x: MX, y: 1.6, w: 7.4, h: 4.2, ...chartBase(), barDir: "bar", chartColors: [HEX.accent4], showValue: true, dataLabelPosition: "outEnd",
     dataLabelFormatCode: "0.00%", valAxisLabelFormatCode: "0%", showLegend: false, catAxisOrientation: "maxMin", barGapWidthPct: 55,
     showTitle: true, title: "خطأ توقع عائد 12 شهراً (الأقل أفضل)", titleFontSize: 14, titleColor: MUTED, titleFontFace: "+mn-lt" });
-txt(s, `الفائز «${FC.best_model_label}» بخطأ أقل بـ${pct(FC.skill_vs_zero, 0)} من المرجع الساذج، على ${FC.origins} نقطة انطلاق خارج العينة.`,
-  MX, 5.95, 7.4, 0.7, { fontSize: 15, color: MUTED });
+note(s, [N("الفائز "), HL(`«${FC.best_model_label}»`), N(" بخطأ "), HL(`أقل بـ${pct(FC.skill_vs_zero, 0)}`),
+  N(` من المرجع الساذج، على ${FC.origins} نقطة انطلاق خارج العينة.`)], 5.9, 0.75, MX, 7.4);
 const fx = MX + 7.75, fw = W - MX - fx;
 card(s, fx, 1.6, fw, 2.9, C.text2);
 txt(s, "توقع الأشهر الـ12 القادمة", fx + 0.3, 1.8, fw - 0.6, 0.4, { fontSize: 16, bold: true, color: C.accent2 });
@@ -293,8 +300,7 @@ s = slide("CONTENT", "الأثر بعد عشر سنوات على وقف بقيم
   txt(s, "مليون ريال بأسعار اليوم (المسار الوسيط)", x + 0.35, 4.3, pw - 0.7, 0.4, { align: "center", fontSize: 15, color: MUTED });
   txt(s, b, x + 0.35, 4.85, pw - 0.7, 0.6, { align: "center", fontSize: 17, bold: true, color: col });
 });
-txt(s, `محاكاة ${sar(S.paths)} مسار بإعادة معاينة كتلية من التاريخ الفعلي، مع تضخم ${pct(S.inflation, 0)} وقاعدة صرف ممهَّدة على 12 ربعاً.`,
-  MX, 5.95, CW, 0.5, { fontSize: 15, color: MUTED });
+note(s, [N("المنهج: "), HL(`محاكاة ${sar(S.paths)} مسار`), N(` بإعادة معاينة كتلية من التاريخ الفعلي، مع تضخم ${pct(S.inflation, 0)} وقاعدة صرف ممهَّدة على 12 ربعاً.`)], 5.9, 0.7);
 
 // ================= 14. Allocation waterfall
 s = slide("CONTENT", "كيف يُوزَّع المبلغ: ترتيب شرعي من أربع خطوات",
@@ -324,7 +330,7 @@ txt(s, `من ${pct(AL.social_share_before, 0)} إلى ${pct(AL.social_share_afte
 // ================= Section: trust
 section = "الموثوقية"; pres.addSection({ title: section });
 s = slide("SECTION", "الموثوقية والاستخدام المسؤول", "أخيراً: لماذا يمكن الوثوق بهذه الأرقام.");
-badge(s, 3, MX, 2.95, 1.2);
+badge(s, 3, MX, 2.95, 1.2, C.accent2, C.text2);
 
 // ================= 16. Reproducibility
 s = slide("CONTENT", "قابلية إعادة التشغيل: أمر واحد يعيد بناء كل شيء",
@@ -337,11 +343,10 @@ statCards(s, [
   { v: "38", l: "اختباراً آلياً ناجحاً، منها اختبار عدم تسرب المستقبل إلى التنبؤ" },
   { v: "24/24", l: "ملف نتائج يتطابق بايتاً ببايت عند إعادة التشغيل", size: 44 },
   { v: "2", l: "نظاما تشغيل يُفحص عليهما تلقائياً عند كل تحديث (Windows وLinux)" },
-  { v: "5", l: "ثوانٍ لإعادة بناء كل الجداول والأشكال من البيانات الخام" },
+  { v: "5", l: "ثوانٍ تقريباً لإعادة بناء كل الجداول والأشكال من البيانات الخام" },
 ], 2.9, 2.35);
-txt(s, [{ text: "يعمل على ملفات أخرى: ", options: { bold: true, color: C.accent1 } },
-  { text: "نفس الكود حلّل ملفاً بديلاً من 3 صناديق وأعطى نتائج مختلفة، ما يثبت أن الأرقام تُحسب من الملف المُدخل لا من قيم ثابتة. والملف التالف تظهر له رسالة خطأ تحدد رقم السطر." }],
-  MX, 5.55, CW, 1.1, { fontSize: 16 });
+note(s, [HL("يعمل على ملفات أخرى:"), N(" نفس الكود حلّل ملفاً بديلاً من 3 صناديق وأعطى نتائج مختلفة، ما يثبت أن "),
+  HL("الأرقام تُحسب من الملف المُدخل لا من قيم ثابتة."), N(" والملف التالف تظهر له رسالة خطأ تحدد رقم السطر.")], 5.5, 1.05);
 
 // ================= 17. Responsible AI
 s = slide("CONTENT", "استخدام مسؤول للذكاء الاصطناعي",
@@ -359,7 +364,7 @@ ai.forEach(([h, b], i) => {
   txt(s, h, x + 0.35, y + 0.3, pw - 1.35, 0.5, { fontSize: 20, bold: true, color: C.text2 });
   txt(s, b, x + 0.35, y + 1.0, pw - 0.7, 0.95, { fontSize: 16 });
 });
-txt(s, "التفاصيل في ملف ai_usage_log.md داخل مجلد التسليم.", MX, 6.3, CW, 0.4, { fontSize: 14, color: MUTED });
+note(s, [N("كل التفاصيل موثقة في ملف "), HL("ai_usage_log.md"), N(" داخل مجلد التسليم.")], 6.2, 0.6);
 
 // ================= 18. Recommendations
 s = slide("CONTENT", "التوصيات",
@@ -397,7 +402,7 @@ lim.forEach(([h, b], i) => {
 
 // ================= 20. Closing
 section = "الختام"; pres.addSection({ title: section });
-s = slide("DARK", "وقفٌ يكبر ولا يتآكل", "نختم بالرسالة: القرار الصحيح اليوم يورث الجيل القادم وقفاً أكبر. شكراً لكم، ونرحب بأسئلتكم.");
+s = slide("DARK", "وقف يكبر ولا يتآكل", "نختم بالرسالة: القرار الصحيح اليوم يورث الجيل القادم وقفاً أكبر. شكراً لكم، ونرحب بأسئلتكم.");
 txt(s, "ميزان الريع  ·  Mizan Al-Rai", MX, 1.35, CW, 0.6, { fontSize: 24, bold: true, color: C.accent2 });
 txt(s, "جرّبوا المحاكي التفاعلي، وأعيدوا تشغيل التحليل بأنفسكم", MX, 3.85, CW, 0.6, { fontSize: 22, color: C.accent5 });
 [["الموقع والمحاكي", "a-a-a124.github.io/mizan-alrai"], ["الكود والبيانات", "github.com/A-a-a124/mizan-alrai"]].forEach(([l, u], i) => {
@@ -413,21 +418,29 @@ async function fixRtl(file) {
   const JSZip = require("jszip");
   const zip = await JSZip.loadAsync(fs.readFileSync(file));
   const arabic = /[؀-ۿ]/;
+  const fontTags = (face) => `<a:latin typeface="${face}"/><a:cs typeface="${face}"/>`;
+  const fixParas = (xml, face) => xml.replace(/<a:p>[\s\S]*?<\/a:p>/g, (para) => {
+    let first = true;
+    para = para.replace(/<a:pPr\b[^>]*?(\/>|>[\s\S]*?<\/a:pPr>)/g, (m) => (first ? ((first = false), m) : ""));   // one pPr per paragraph
+    if (!arabic.test(para)) return para;
+    const font = fontTags(face);
+    return para.replace(/<a:pPr\b(?![^>]*\brtl=)/, '<a:pPr rtl="1"').replace(/lang="en-US"/g, 'lang="ar-SA"')
+      .replace(/<a:rPr\b([^>]*?)\/>/g, (m, attrs) => `<a:rPr${attrs}>${font}</a:rPr>`)
+      .replace(/<\/a:rPr>/g, (m, off, str) => (str.slice(Math.max(0, off - font.length), off) === font ? m : font + m));
+  });
   for (const name of Object.keys(zip.files)) {
     if (/^ppt\/theme\/theme\d+\.xml$/.test(name)) {
-      const xml = await zip.file(name).async("string");
-      zip.file(name, xml.replace(/<a:cs typeface=""\/>/g, `<a:cs typeface="${THEME.bodyFontFace}"/>`));
+      let xml = await zip.file(name).async("string");
+      xml = xml.replace(/(<a:majorFont>[\s\S]*?)<a:cs typeface=""\/>/, `$1<a:cs typeface="${THEME.headFontFace}"/>`)
+               .replace(/(<a:minorFont>[\s\S]*?)<a:cs typeface=""\/>/, `$1<a:cs typeface="${THEME.bodyFontFace}"/>`);
+      zip.file(name, xml);
     } else if (/^ppt\/(slides|slideLayouts)\/[^/]+\.xml$/.test(name)) {
       const xml = await zip.file(name).async("string");
-      zip.file(name, xml.replace(/<a:p>[\s\S]*?<\/a:p>/g, (para) => {
-        let first = true;
-        para = para.replace(/<a:pPr[^>]*?(\/>|>[\s\S]*?<\/a:pPr>)/g, (m) => (first ? ((first = false), m) : ""));   // one pPr per paragraph
-        if (!arabic.test(para)) return para;
-        const font = `<a:latin typeface="${THEME.bodyFontFace}"/><a:cs typeface="${THEME.bodyFontFace}"/>`;
-        return para.replace(/<a:pPr(?![^>]*rtl=)/, '<a:pPr rtl="1"').replace(/lang="en-US"/g, 'lang="ar-SA"')
-          .replace(/<a:rPr([^>]*?)\/>/g, (m, attrs) => `<a:rPr${attrs}>${font}</a:rPr>`)
-          .replace(/<\/a:rPr>/g, (m, off, str) => (str.slice(Math.max(0, off - font.length), off) === font ? m : font + m));
-      }));
+      zip.file(name, xml.replace(/<p:sp>[\s\S]*?<\/p:sp>/g, (sp) =>
+        fixParas(sp, /<p:ph [^>]*type="title"/.test(sp) ? THEME.headFontFace : THEME.bodyFontFace)));
+    } else if (/^ppt\/charts\/chart\d+\.xml$/.test(name)) {
+      const xml = await zip.file(name).async("string");
+      zip.file(name, xml.replace(/<a:latin typeface="[^"]*"[^>]*\/>(?!<a:cs)/g, `<a:latin typeface="${THEME.bodyFontFace}"/><a:cs typeface="${THEME.bodyFontFace}"/>`));
     }
   }
   fs.writeFileSync(file, await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" }));

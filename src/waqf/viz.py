@@ -124,7 +124,7 @@ def fig_sector_growth(certs: pd.DataFrame, path: Path) -> Path:
     growth = (certs["registered_waqfs"].iloc[-1] / certs["registered_waqfs"].iloc[0]) ** (1 / (len(certs) - 1)) - 1
     ax.yaxis.set_major_formatter(lambda v, _: f"{v:,.0f}")
     multiple = certs["registered_waqfs"].iloc[-1] / certs["registered_waqfs"].iloc[0]
-    _frame(fig, f"الأوقاف المسجلة سنوياً تضاعفت {multiple:.0f} مرة خلال {len(certs) - 1} سنوات",
+    _frame(fig, f"الأوقاف المسجلة سنوياً تضاعفت {multiple:.1f} مرة خلال {len(certs) - 1} سنوات",
            f"عدد الشهادات الوقفية المكتملة — نمو سنوي مركب {pct(growth, 0)} ({int(certs['year'].iloc[0])}–{int(certs['year'].iloc[-1])})",
            "الهيئة العامة للأوقاف، منصة البيانات المفتوحة")
     return _save(fig, path)
