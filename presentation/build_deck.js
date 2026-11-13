@@ -65,8 +65,19 @@ const slide = (masterName, title, notes) => {
   if (notes) s.addNotes(notes);
   return s;
 };
-const txt = (s, t, x, y, w, h, o = {}) => s.addText(t, { x, y, w, h, isTextBox: true, margin: 0, rtlMode: true, align: "right",
-  valign: "top", fontSize: 16, color: C.text1, ...o });
+const HL = (t) => ({ text: t, options: { bold: true, color: C.text2, highlight: "BBD3F2" } });        // on light surfaces
+const HLD = (t) => ({ text: t, options: { bold: true, color: C.background1, highlight: "3A5A8C" } });  // on navy surfaces
+const N = (t) => ({ text: t, options: {} });
+const bigger = (pt) => (pt >= 14 && pt <= 18 ? pt + 2 : pt);        // body sizes 14-18pt are raised by 2pt for the room
+const marked = (t, dark) => t.split("==").map((part, i) => (i % 2 ? (dark ? HLD(part) : HL(part)) : { text: part, options: {} }))
+  .filter((r) => r.text);
+const txt = (s, t, x, y, w, h, o = {}) => {
+  const { dark, ...rest } = o;
+  const body = typeof t === "string" && t.includes("==") ? marked(t, dark) : t;
+  const opts = { x, y, w, h, isTextBox: true, margin: 0, rtlMode: true, align: "right", valign: "top", fontSize: 16, color: C.text1, ...rest };
+  opts.fontSize = bigger(opts.fontSize);
+  return s.addText(body, opts);
+};
 const num = (s, t, x, y, w, h, o = {}) => s.addText(t, { x, y, w, h, isTextBox: true, margin: 0, align: "center", valign: "middle",
   fontSize: 54, fontFace: FONT_NUM, color: C.accent1, ...o });
 const card = (s, x, y, w, h, fill = C.background2) => s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y, w, h, rectRadius: 0.12,
@@ -75,17 +86,14 @@ const badge = (s, n, x, y, d = 0.55, fill = C.accent1, color = C.background1) =>
   s.addShape(pres.shapes.OVAL, { x, y, w: d, h: d, fill: { color: fill }, line: { color: fill, width: 0 } });
   s.addText(String(n), { x, y, w: d, h: d, isTextBox: true, margin: 0, align: "center", valign: "middle", fontSize: d * 26, fontFace: FONT_NUM, color });
 };
-const HL = (t) => ({ text: t, options: { bold: true, color: C.text2, highlight: "BBD3F2" } });        // on light surfaces
-const HLD = (t) => ({ text: t, options: { bold: true, color: C.background1, highlight: "3A5A8C" } });  // on navy surfaces
-const N = (t) => ({ text: t, options: {} });
 const note = (s, runs, y, h = 0.8, x = MX, w = CW) => {
   card(s, x, y, w, h);
   txt(s, runs, x + 0.3, y, w - 0.6, h, { valign: "middle", fontSize: 15 });
 };
 const rx = (i, w, gap, right = W - MX) => right - (i + 1) * w - i * gap;      // i-th column counted from the right (RTL)
-const chartBase = () => ({ catAxisLabelColor: MUTED, valAxisLabelColor: MUTED, catAxisLabelFontSize: 12, valAxisLabelFontSize: 12,
+const chartBase = () => ({ catAxisLabelColor: MUTED, valAxisLabelColor: MUTED, catAxisLabelFontSize: 13, valAxisLabelFontSize: 13,
   catAxisLabelFontFace: "+mn-lt", valAxisLabelFontFace: "+mn-lt", valGridLine: { color: GRID, size: 0.75 }, catGridLine: { style: "none" },
-  dataLabelColor: HEX.dk1, dataLabelFontSize: 12, dataLabelFontFace: "+mn-lt", legendFontFace: "+mn-lt", legendFontSize: 12, legendColor: MUTED });
+  dataLabelColor: HEX.dk1, dataLabelFontSize: 13, dataLabelFontFace: "+mn-lt", legendFontFace: "+mn-lt", legendFontSize: 13, legendColor: MUTED });
 const statCards = (s, items, y, h = 2.3) => {
   const gap = 0.28, w = (CW - gap * (items.length - 1)) / items.length;
   items.forEach((it, i) => {
@@ -109,8 +117,8 @@ txt(s, "مسابقة تحليل البيانات للقطاع غير الربح�
 s = slide("CONTENT", "معضلة الناظر: قرار واحد يتكرر كل عام",
   "الصرف الزائد يرضي المستفيدين اليوم ويضعف الوقف غداً، والصرف الناقص يحبس الخير. لا توجد اليوم أداة تعطي الناظر رقماً.");
 const pw = (CW - 0.4) / 2;
-[["صرف زائد", "يُرضي المستفيدين اليوم، لكنه يأكل من أصل الوقف، فيرث الجيل القادم وقفاً أصغر.", C.accent3],
- ["صرف ناقص", "يحفظ الأصل، لكنه يحبس الخير عن مستحقيه ويخالف مقصود الواقف من وقفه.", C.accent4]].forEach(([h, b, col], i) => {
+[["صرف زائد", "يُرضي المستفيدين اليوم، لكنه ==يأكل من أصل الوقف==، فيرث الجيل القادم وقفاً أصغر.", C.accent3],
+ ["صرف ناقص", "يحفظ الأصل، لكنه ==يحبس الخير عن مستحقيه== ويخالف مقصود الواقف من وقفه.", C.accent4]].forEach(([h, b, col], i) => {
   const x = rx(i, pw, 0.4);
   card(s, x, 1.7, pw, 2.2);
   txt(s, h, x + 0.35, 1.95, pw - 0.7, 0.55, { fontSize: 24, bold: true, color: col });
@@ -126,7 +134,7 @@ txt(s, [{ text: "ما معدل الصرف السنوي الذي ", options: { co
 s = slide("CONTENT", "الخلاصة في أربعة أرقام",
   "هذه أهم أربع نتائج. الصرف المستدام واحد ونصف بالمئة، بينما الصناديق الوقفية توزع من ثلاثة إلى ثمانية بالمئة.");
 statCards(s, [
-  { v: pct(S.rate_base), l: `سقف الصرف السنوي المستدام (ثقة ${pct(S.confidence, 0)}، تضخم ${pct(S.inflation, 0)})` },
+  { v: pct(S.rate_base), l: `سقف الصرف السنوي المستدام بثقة ${pct(S.confidence, 0)}` },
   { v: `${(IX.payout_min_recent * 100).toFixed(0)}–${pct(IX.payout_max_recent, 0)}`, l: "ما توزّعه الصناديق الوقفية فعلياً كل سنة", warn: true },
   { v: pct(S.p_preserve_at_observed, 0), l: "احتمال حفظ الأصل إذا استمر الصرف بالمعدل الحالي", warn: true },
   { v: pct(FC.point_pct), l: "العائد المتوقع للأشهر الـ12 القادمة" },
@@ -170,10 +178,10 @@ const log = csv("outputs/tables/cleaning_log.csv");
 s = slide("CONTENT", `${log.length} قاعدة تنظيف موثّقة آلياً`,
   "كل قاعدة تنظيف تسجل نفسها آلياً: المصدر والقاعدة وعدد الصفوف المتأثرة. وكل ملف خام محمي بفحص سلامة يوقف التشغيل عند أي تعديل.");
 const rules = [
-  ["توحيد التهجئات العربية", "طيّ إملائي وقاموس مصارف: 25 تسمية خام أصبحت 24 مصرفاً موحّداً"],
+  ["توحيد التهجئات العربية", "طيّ إملائي وقاموس مصارف: ==25 تسمية خام أصبحت 24 مصرفاً== موحّداً"],
   ["أسعار ما قبل الاستثمار", "حذف أسعار الإطلاق الثابتة (10.0000) قبل بدء الاستثمار الفعلي"],
   ["الأسعار المتجمدة", "السعر المكرر وسط السلسلة يُعامل كقيمة مفقودة لا كعائد صفري"],
-  ["فجوات الإفصاح الربعي", "استيفاء لوغاريتمي خطي، مع تعليم كل قيمة مستوفاة"],
+  ["فجوات الإفصاح الربعي", "استيفاء لوغاريتمي خطي، ==مع تعليم كل قيمة مستوفاة=="],
   ["الأرقام والتواريخ النصية", "تحويل المبالغ المكتوبة بفواصل والسنوات النصية، وإزالة علامة BOM من رؤوس الأعمدة"],
   ["حقول غير موثوقة", "إسقاط حقل صافي الأصول لأنه صفر في أغلب الأشهر"],
 ];
@@ -200,13 +208,13 @@ s.addChart(pres.charts.LINE, [
 const sx = MX + 7.95, sw = W - MX - sx;
 card(s, sx, 1.6, sw, 1.5);
 num(s, String(IX.payout_events), sx, 1.65, 1.5, 1.4, { fontSize: 44, color: C.accent3 });
-txt(s, "توزيعاً مخفياً كُشف آلياً بمقارنة كل صندوق بصناديق المديرين الآخرين", sx + 1.55, 1.85, sw - 1.8, 1.1, { fontSize: 15 });
+txt(s, "توزيعاً مخفياً ==كُشف آلياً== بمقارنة الأقران", sx + 1.55, 1.85, sw - 1.8, 1.1, { fontSize: 15 });
 card(s, sx, 3.3, sw, 1.5);
 num(s, pct(IX.total_ann_return), sx, 3.35, 1.5, 1.4, { fontSize: 34 });
-txt(s, "العائد الكلي السنوي المقدَّر، وهو ما يولّده الأصل فعلاً", sx + 1.55, 3.6, sw - 1.8, 1.0, { fontSize: 15 });
+txt(s, "العائد الكلي: ما يولّده الأصل فعلاً", sx + 1.55, 3.6, sw - 1.8, 1.0, { fontSize: 15 });
 card(s, sx, 5.0, sw, 1.5);
 num(s, pct(IX.price_ann_return), sx, 5.05, 1.5, 1.4, { fontSize: 34, color: C.accent3 });
-txt(s, "عائد السعر فقط، أي ما يبقى للأصل بعد التوزيع", sx + 1.55, 5.3, sw - 1.8, 1.0, { fontSize: 15 });
+txt(s, "عائد السعر: ما يبقى للأصل بعد التوزيع", sx + 1.55, 5.3, sw - 1.8, 1.0, { fontSize: 15 });
 
 // ================= Section: analysis
 section = "التحليل"; pres.addSection({ title: section });
@@ -237,7 +245,7 @@ s.addChart(pres.charts.BAR, [{ name: "حصة المصرف", labels: nat.map((r) 
   { x: MX, y: 1.6, w: 7.9, h: 4.95, ...chartBase(), barDir: "bar", chartColors: [HEX.accent1], showValue: true, dataLabelPosition: "outEnd",
     dataLabelFormatCode: "0.0%", valAxisLabelFormatCode: "0%", showLegend: false, catAxisOrientation: "maxMin", barGapWidthPct: 45,
     catAxisLabelFontSize: 13 });
-[[pct(SEC.flexible_share, 0), "حصة «أوجه البر» المرنة: يوجّهها الناظر دون مخالفة شرط أي واقف", false],
+[[pct(SEC.flexible_share, 0), "حصة «أوجه البر» المرنة التي يوجّهها الناظر", false],
  [pct(SEC.orphans_share + SEC.widows_share, 2), "حصة الأيتام والأرامل مجتمعين من كل المصارف المنشورة", true],
  [String(SEC.masarif), "مصرفاً شرعياً موحّداً بعد التنظيف", false]].forEach(([v, l, warn], i) => {
   const y = 1.6 + i * 1.7;
@@ -263,7 +271,7 @@ num(s, pct(FC.point_pct), fx, 2.25, fw, 1.2, { fontSize: 66, color: C.background
 txt(s, `نطاق 80%: من ${pct(FC.p10_pct)} إلى ${pct(FC.p90_pct)}`, fx + 0.3, 3.6, fw - 0.6, 0.5, { align: "center", fontSize: 16, color: C.accent5 });
 card(s, fx, 4.75, fw, 1.8);
 num(s, pct(FC.bootstrap_p_loss, 0), fx, 4.8, 1.8, 1.7, { fontSize: 40, color: C.accent3 });
-txt(s, "احتمال أن يكون عائد السنة سالباً، ولذلك نحتاج احتياطياً", fx + 1.85, 5.2, fw - 2.1, 1.0, { fontSize: 15 });
+txt(s, "احتمال سنة سالبة، ولذلك نحتاج احتياطياً", fx + 1.85, 5.2, fw - 2.1, 1.0, { fontSize: 15 });
 
 // ================= 12. Frontier
 const fb = csv("outputs/tables/spending_frontier_base.csv"), fs2 = csv("outputs/tables/spending_frontier_stress.csv");
@@ -344,7 +352,7 @@ txt(s, "تحليل ← اختبارات ← دفتر ← تقرير ← موقع
 statCards(s, [
   { v: "38", l: "اختباراً آلياً ناجحاً، منها اختبار عدم تسرب المستقبل إلى التنبؤ" },
   { v: "24/24", l: "ملف نتائج يتطابق بايتاً ببايت عند إعادة التشغيل", size: 44 },
-  { v: "2", l: "نظاما تشغيل يُفحص عليهما تلقائياً عند كل تحديث (Windows وLinux)" },
+  { v: "2", l: "نظاما تشغيل يُفحص عليهما تلقائياً عند كل تحديث" },
   { v: "5", l: "ثوانٍ تقريباً لإعادة بناء كل الجداول والأشكال من البيانات الخام" },
 ], 2.9, 2.35);
 note(s, [HL("يعمل على ملفات أخرى:"), N(" نفس الكود حلّل ملفاً بديلاً من 3 صناديق وأعطى نتائج مختلفة، ما يثبت أن "),
@@ -354,9 +362,9 @@ note(s, [HL("يعمل على ملفات أخرى:"), N(" نفس الكود حل�
 s = slide("CONTENT", "استخدام مسؤول للذكاء الاصطناعي",
   "استخدمنا الذكاء الاصطناعي مساعداً في البرمجة والتصميم، ووثقنا كل خطوة وكيف تحققنا منها، بما فيها الأخطاء التي اكتشفناها وصححناها.");
 const ai = [
-  ["لا أرقام مكتوبة يدوياً", "كل رقم في التقرير والعرض يُقرأ آلياً من جداول النتائج"],
-  ["لا بيانات مصطنعة", "كل المصادر رسمية ومفتوحة، ولم يُستخدم رقم من ذاكرة النموذج"],
-  ["تحقق لكل خطوة", "سجل من 15 خطوة: الأمر، ما أُنتج، وكيف تحققنا منه"],
+  ["لا أرقام مكتوبة يدوياً", "كل رقم في التقرير والعرض ==يُقرأ آلياً من جداول النتائج=="],
+  ["لا بيانات مصطنعة", "كل المصادر ==رسمية ومفتوحة==، ولم يُستخدم رقم من ذاكرة النموذج"],
+  ["تحقق لكل خطوة", "سجل من 15 خطوة: الأمر، ما أُنتج، ==وكيف تحققنا منه=="],
   ["أخطاء اكتُشفت وصُحّحت", "إنذارات كاذبة في كشف التوزيعات، ونص عربي معكوس في الرسوم، وعنوان مبالغ فيه"],
 ];
 ai.forEach(([h, b], i) => {
@@ -372,10 +380,10 @@ note(s, [N("كل التفاصيل موثقة في ملف "), HL("ai_usage_log.md
 s = slide("CONTENT", "التوصيات",
   "خمس توصيات عملية: سقف صرف، ربط التوزيع بالعائد الممهد، احتياطي، توجيه الحصة المرنة، وإفصاح أفضل.");
 const recs = [
-  [`اعتماد سقف صرف ${pct(S.rate_base)}`, `من متوسط قيمة الوقف لـ12 ربعاً، مع مراجعة سنوية بهذه المنصة`],
-  ["ربط التوزيع بالعائد الممهَّد", `التوزيع الحالي (نحو ${pct(S.observed_payout_rate, 0)}) يحفظ الأصل باحتمال ${pct(S.p_preserve_at_observed, 0)} فقط`],
-  ["عمارة الوقف واحتياطي يغطي سنة", `لأن احتمال السنة السالبة ${pct(FC.bootstrap_p_loss, 0)}`],
-  ["توجيه «أوجه البر» للمصارف المهمَلة", `الأيتام ${pct(SEC.orphans_share)} والأرامل ${pct(SEC.widows_share, 2)} من المصارف`],
+  [`اعتماد سقف صرف ${pct(S.rate_base)}`, `من متوسط قيمة الوقف لـ12 ربعاً، ==مع مراجعة سنوية== بهذه المنصة`],
+  ["ربط التوزيع بالعائد الممهَّد", `التوزيع الحالي (نحو ${pct(S.observed_payout_rate, 0)}) ==يحفظ الأصل باحتمال ${pct(S.p_preserve_at_observed, 0)} فقط==`],
+  ["عمارة الوقف واحتياطي يغطي سنة", `لأن ==احتمال السنة السالبة ${pct(FC.bootstrap_p_loss, 0)}==`],
+  ["توجيه «أوجه البر» للمصارف المهمَلة", `==الأيتام ${pct(SEC.orphans_share)} والأرامل ${pct(SEC.widows_share, 2)}== من المصارف`],
   ["إفصاح أفضل من الجهات", "نشر مبالغ التوزيع وصافي الأصول لكل صندوق، والمستفيدين حسب المنطقة"],
 ];
 recs.forEach(([h, b], i) => {
@@ -390,10 +398,10 @@ recs.forEach(([h, b], i) => {
 s = slide("CONTENT", "حدود التحليل بشفافية",
   "نذكر الحدود بوضوح: الصناديق وكيل لأداء الأوقاف، والتاريخ قصير، ومبالغ التوزيع مقدرة، وبيانات المستفيدين وطنية فقط.");
 const lim = [
-  ["وكيل لا قوائم مالية", "الصناديق المدرجة تمثل أداء الاستثمار الوقفي، وليست قوائم وقف عائلي بعينه"],
-  ["تاريخ قصير", "أطول سلسلة 84 شهراً والصناديق الحية فقط، وعولج ذلك بسيناريو الضغط"],
-  ["توزيعات مقدَّرة", "تداول لا ينشر مبالغ التوزيع، فقدّرناها من فجوة الأقران"],
-  ["بيانات مستفيدين محدودة", "وطنية لثلاث سنوات فقط، فأوزان الأولوية افتراضات معلنة قابلة للتعديل"],
+  ["وكيل لا قوائم مالية", "الصناديق المدرجة تمثل أداء الاستثمار الوقفي، ==وليست قوائم وقف عائلي بعينه=="],
+  ["تاريخ قصير", "أطول سلسلة 84 شهراً والصناديق الحية فقط، ==وعولج ذلك بسيناريو الضغط=="],
+  ["توزيعات مقدَّرة", "تداول لا ينشر مبالغ التوزيع، ==فقدّرناها من فجوة الأقران=="],
+  ["بيانات مستفيدين محدودة", "وطنية لثلاث سنوات فقط، فأوزان الأولوية ==افتراضات معلنة قابلة للتعديل=="],
 ];
 lim.forEach(([h, b], i) => {
   const x = rx(i % 2, pw, 0.4), y = 1.65 + Math.floor(i / 2) * 2.35;
@@ -431,7 +439,9 @@ async function fixRtl(file) {
       .replace(/<a:rPr\b([^>]*)>([\s\S]*?)<\/a:rPr>/g, (m, attrs, inner) => {
         if (/<a:latin /.test(inner)) return m;                         // explicit face (figures, code) stays
         const bold = /\bb="1"/.test(attrs);                            // bold runs use the family's real Bold
-        return `<a:rPr${attrs}>${inner}${fontTags(title ? face : bold ? THEME.bodyFontFace : FONT_TEXT)}</a:rPr>`;
+        const onDark = /schemeClr val="bg1"/.test(inner);
+        const band = title && !/<a:highlight>/.test(inner) ? `<a:highlight><a:srgbClr val="${onDark ? "34527F" : "CFE0F5"}"/></a:highlight>` : "";
+        return `<a:rPr${attrs}>${inner}${band}${fontTags(title ? face : bold ? THEME.bodyFontFace : FONT_TEXT)}</a:rPr>`;
       });
   });
   for (const name of Object.keys(zip.files)) {
