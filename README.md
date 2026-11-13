@@ -44,12 +44,33 @@ python -m pytest -q
 | `python scripts/build_notebook.py` | يولّد `analysis.ipynb` وينفّذه كاملاً (السرد العربي فوق الكود نفسه) | ≈ 30 ث |
 | `python scripts/build_report.py` | يولّد `report/executive_summary.pdf` من الجداول (يتطلب Edge أو Chrome) | ≈ 10 ث |
 | `python scripts/build_site.py` | يولّد صفحة الموقع `index.html` (GitHub Pages) من الجداول | < 1 ث |
-| `python -m pytest -q` | 28 اختباراً: سلامة البيانات، التنظيف، عدم تسرب المستقبل، قيود التوزيع | ≈ 4 ث |
+| `python -m pytest -q` | 38 اختباراً: سلامة البيانات، التنظيف، عدم تسرب المستقبل، قيود التوزيع، التشغيل على ملفات أخرى | ≈ 30 ث |
+| `python scripts/run_all.py` | **أتمتة كاملة:** تحليل ← اختبارات ← دفتر ← تقرير ← موقع، ويتوقف عند أول فشل | ≈ 90 ث |
 
-**على Google Colab:** افتح [الرابط](https://colab.research.google.com/github/A-a-a124/mizan-alrai/blob/main/analysis.ipynb) ثم *Runtime ← Run all*. أول خلية تنسخ المستودع وتثبت المتطلبات تلقائياً (مختبر على إصدارات Colab: pandas 2.2 وmatplotlib 3.10 وstatsmodels 0.14، و28/28 اختباراً ناجحاً).
+**على Google Colab:** افتح [الرابط](https://colab.research.google.com/github/A-a-a124/mizan-alrai/blob/main/analysis.ipynb) ثم *Runtime ← Run all*. أول خلية تنسخ المستودع وتثبت المتطلبات تلقائياً (مختبر على إصدارات Colab: pandas 2.2 وmatplotlib 3.10 وstatsmodels 0.14، و38/38 اختباراً ناجحاً).
 
 لا يحتاج التشغيل المحلي إلى إنترنت؛ اللقطات الخام محفوظة في `data_raw/` ومحمية بفحوص سلامة.
 لوحة القرار التفاعلية: افتح `dashboard/index.html` عبر خادم محلي (`python -m http.server --directory dashboard`) ثم `http://localhost:8000`.
+
+## التشغيل على ملفات بيانات أخرى
+
+الكود ليس مربوطاً بملف واحد. نفس التحليل يعمل على أي ملف أسعار لصناديق أو أصول وقفية:
+
+```bash
+python scripts/run_analysis.py --prices examples/three_funds_prices.csv --out runs/example
+```
+
+| الخيار | الوصف |
+|---|---|
+| `--prices` | ملف CSV بالأعمدة `symbol, valuation_date, unit_price` (أي تكرار زمني؛ يُؤخذ آخر تقييم في كل شهر، ويلزم 48 شهراً على الأقل) |
+| `--universe` | اختياري: `symbol, fund_name, manager, fund_type, aum_sar`. بدونه تُعامل كل الصناديق كتراكمية |
+| `--gasa` | اختياري: لقطة أحدث لبيانات الهيئة بنفس بنية `data_raw/gasa/gasa_open_data_snapshot.json` |
+| `--out` | مجلد المخرجات، حتى لا تُستبدل النتائج المنشورة |
+| `--no-figures` | تخطي الرسوم للتشغيل السريع |
+
+- الملف المرفق مع المشروع يُتحقق من سلامته ببصمته؛ أي ملف آخر يُتحقق من **بنيته** (الأعمدة، التواريخ، الأسعار الموجبة) وتظهر رسالة خطأ واضحة تحدد رقم السطر.
+- المثال `examples/three_funds_prices.csv` (3 صناديق حقيقية) يعطي نتائج مختلفة عن المجموعة الكاملة (سقف صرف 2.0% بدل 1.5%)، ما يثبت أن الأرقام تُحسب من الملف المُدخل لا من قيم ثابتة.
+- المخرجات متطابقة بايتاً ببايت على Windows وLinux، ويتحقق من ذلك تلقائياً مسار GitHub Actions (`.github/workflows/ci.yml`) عند كل تحديث.
 
 ## ترتيب الملفات
 
@@ -66,6 +87,7 @@ alodhayani-alghamdi-submission/    ← اسم مجلد التسليم (يمكن 
 ├─ dashboard/                      ← محاكي القرار التفاعلي (للعرض النهائي)
 ├─ data_raw/                       ← اللقطات الخام + فحوص السلامة (لا تُعدَّل)
 ├─ src/waqf/                       ← وحدات التحليل (مكتوبة مرة واحدة ويستخدمها الكل)
+├─ examples/                       ← ملف أسعار بديل لتجربة التشغيل على بيانات أخرى
 ├─ tests/                          ← اختبارات pytest
 └─ requirements.txt
 ```

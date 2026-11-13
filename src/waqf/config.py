@@ -18,6 +18,21 @@ FIGURES = ROOT / "outputs" / "figures"
 TABLES = ROOT / "outputs" / "tables"
 DASHBOARD = ROOT / "dashboard"
 
+
+
+def use_output_dir(out_dir) -> None:
+    """Redirect every generated artefact (clean data, tables, figures, dashboard data) to out_dir.
+
+    Lets the same pipeline run on another dataset without overwriting the bundled results.
+    """
+    global DATA_CLEAN, FIGURES, TABLES, DASHBOARD
+    out = Path(out_dir).resolve()
+    DATA_CLEAN = out / "data_clean"
+    FIGURES = out / "outputs" / "figures"
+    TABLES = out / "outputs" / "tables"
+    DASHBOARD = out / "dashboard"
+
+
 GASA_SNAPSHOT = DATA_RAW / "gasa" / "gasa_open_data_snapshot.json"
 FUND_UNIVERSE = DATA_RAW / "tadawul" / "waqf_funds_universe.csv"
 FUND_PRICES = DATA_RAW / "tadawul" / "waqf_funds_month_end_prices.csv"
@@ -29,6 +44,7 @@ SEED = 2026
 PAR_PRICES = (1.0, 10.0)          # launch prices; repeated par values before first move = not yet invested
 MIN_FUND_MONTHS = 12              # shorter histories are excluded from the composite
 MAX_IMPUTE_GAP_MONTHS = 3         # quarterly reporting gaps are log-linearly interpolated (flagged)
+REFERENCE_PAYOUT = 0.04           # comparison rate when no payouts are detected in the input data
 ACCUMULATING_TYPES = ("Growth",)  # price return ~ total return only for non-distributing funds
 
 # Forecast / backtest

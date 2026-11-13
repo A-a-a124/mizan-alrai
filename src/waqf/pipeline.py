@@ -25,8 +25,21 @@ class Results:
     key: dict = field(default_factory=dict)
 
 
-def step_ingest(res: Results) -> ingest.RawData:
-    raw = ingest.load_all()
+MIN_INDEX_MONTHS = config.MIN_TRAIN_MONTHS + config.HORIZON_MONTHS
+
+
+def _write_csv(df: pd.DataFrame, path) -> None:
+    """Same bytes on every OS (LF line ends), so reruns are comparable across machines."""
+    df.to_csv(path, index=False, encoding="utf-8-sig", lineterminator="\n")
+
+
+def _write_text(path, text: str) -> None:
+    with open(path, "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(text)
+
+
+def step_ingest(res: Results, gasa=None, prices=None, universe=None) -> ingest.RawData:
+    raw = ingest.load_all(gasa=gasa, prices=prices, universe=universe)
     res.tables["data_manifest"] = raw.manifest
     return raw
 
@@ -41,7 +54,7 @@ def step_clean(raw: ingest.RawData, res: Results) -> dict:
            **{f"gasa_{k}": v for k, v in yearly.items()}}
     config.DATA_CLEAN.mkdir(parents=True, exist_ok=True)
     for name, df in out.items():
-        df.to_csv(config.DATA_CLEAN / f"{name}.csv", index=False, encoding="utf-8-sig")
+        _write_csv(df, config.DATA_CLEAN / f"{name}.csv")
     res.tables["cleaning_log"] = res.log.frame()
     return out
 
@@ -77,6 +90,12 @@ def step_index(c: dict, res: Results) -> dict:
     rets = c["fund_returns"]
     price = index.composite_index(rets, "log_ret")
     total = index.composite_index(rets, "log_ret_total")
+    if len(price) < MIN_INDEX_MONTHS:
+        raise ValueError(
+            f"The fund index has {len(price)} monthly returns; at least {MIN_INDEX_MONTHS} are needed "
+            f"({config.MIN_TRAIN_MONTHS} to train + {config.HORIZON_MONTHS} to test the 12-month forecast). "
+            f"Supply a longer price history, or funds with >= {config.MIN_FUND_MONTHS} months of type "
+            f"{config.ACCUMULATING_TYPES}.")
     stats = {"price": index.summary_stats(price["ret"]), "total": index.summary_stats(total["ret"])}
     payouts = index.payout_rates(rets)
     per_fund = []
@@ -101,9 +120,9 @@ def step_index(c: dict, res: Results) -> dict:
                         "aum_total_sar": float(c["fund_universe"]["aum_sar"].sum()),
                         "start": str(price.index[0]), "end": str(price.index[-1]),
                         "payout_events": int(rets["payout_flag"].sum()),
-                        "payout_median_recent": float(recent["payout_pct"].median()),
-                        "payout_min_recent": float(recent["payout_pct"].min()),
-                        "payout_max_recent": float(recent["payout_pct"].max())}
+                        "payout_median_recent": float(recent["payout_pct"].median()) if len(recent) else None,
+                        "payout_min_recent": float(recent["payout_pct"].min()) if len(recent) else None,
+                        "payout_max_recent": float(recent["payout_pct"].max()) if len(recent) else None}
     return {"price": price, "total": total, "stats": stats, "payouts": payouts}
 
 
@@ -133,7 +152,9 @@ def step_spending(ix: dict, res: Results) -> dict:
         res.tables[f"spending_frontier_{key}"] = f
     base = ix["total"]["ret"].values
     paths = risk.stationary_bootstrap(base, config.N_PATHS, config.SIM_YEARS * 12)
-    observed = round(res.key["index"]["payout_median_recent"] * 200) / 200
+    median_payout = res.key["index"]["payout_median_recent"]
+    reference = config.REFERENCE_PAYOUT if median_payout is None else median_payout
+    observed = float(np.clip(round(reference * 200) / 200, min(config.SPEND_RATES), max(config.SPEND_RATES)))
     bands = {"sustainable": risk.real_value_bands(paths, rates["base"]),
              "observed": risk.real_value_bands(paths, observed)}
     fb = frontiers["base"].set_index("rate")
@@ -143,6 +164,7 @@ def step_spending(ix: dict, res: Results) -> dict:
         "rate_base_at_50": risk.sustainable_rate(frontiers["base"], 0.50),
         "rate_base_at_75": risk.sustainable_rate(frontiers["base"], 0.75),
         "observed_payout_rate": observed,
+        "observed_payout_is_detected": median_payout is not None,
         "p_preserve_at_observed": float(fb.loc[np.isclose(fb.index, observed), "p_preserve_real"].iloc[0]),
         "median_real_final_sustainable": float(bands["sustainable"][1][-1]),
         "median_real_final_observed": float(bands["observed"][1][-1]),
@@ -179,7 +201,8 @@ def step_figures(c: dict, sec: dict, ix: dict, fc: dict, sp: dict, al: dict) -> 
         viz.fig_masarif_national(sec["national"], F / "fig02_masarif_national.png"),
         viz.fig_region_heatmap(c["disbursements"], clean.GROUP_LABELS, F / "fig03_region_heatmap.png"),
         viz.fig_index(ix["price"], ix["total"], ix["stats"], F / "fig04_waqf_index.png"),
-        viz.fig_payouts_vs_sustainable(ix["payouts"], sp["rates"]["base"], F / "fig05_payouts_vs_sustainable.png"),
+        viz.fig_payouts_vs_sustainable(ix["payouts"], sp["rates"]["base"], F / "fig05_payouts_vs_sustainable.png")
+        if len(ix["payouts"]) else None,
         viz.fig_backtest(fc["scores"], F / "fig06_backtest.png"),
         viz.fig_forecast_fan(ix["total"], fc["forecast"], fc["dist"], F / "fig07_forecast.png"),
         viz.fig_frontier(sp["frontiers"], labels, config.CONFIDENCE, sp["rates"], F / "fig08_spending_frontier.png"),
@@ -194,14 +217,18 @@ def step_figures(c: dict, sec: dict, ix: dict, fc: dict, sp: dict, al: dict) -> 
 def write_outputs(res: Results) -> None:
     config.TABLES.mkdir(parents=True, exist_ok=True)
     for name, df in res.tables.items():
-        df.to_csv(config.TABLES / f"{name}.csv", index=False, encoding="utf-8-sig")
-    (config.TABLES / "key_numbers.json").write_text(
-        json.dumps(res.key, ensure_ascii=False, indent=2, default=float), encoding="utf-8")
+        _write_csv(df, config.TABLES / f"{name}.csv")
+    _write_text(config.TABLES / "key_numbers.json",
+                json.dumps(res.key, ensure_ascii=False, indent=2, default=float))
 
 
-def run(figures: bool = True) -> Results:
+def run(figures: bool = True, gasa=None, prices=None, universe=None, out_dir=None) -> Results:
+    """Run the whole analysis. Defaults reproduce the bundled results; pass ``prices`` (and optionally
+    ``universe`` / ``gasa``) to analyse other files, and ``out_dir`` to keep their outputs separate."""
+    if out_dir is not None:
+        config.use_output_dir(out_dir)
     res = Results()
-    raw = step_ingest(res)
+    raw = step_ingest(res, gasa=gasa, prices=prices, universe=universe)
     c = step_clean(raw, res)
     sec = step_sector(c, res)
     ix = step_index(c, res)

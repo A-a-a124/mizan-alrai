@@ -125,7 +125,7 @@ def fig_sector_growth(certs: pd.DataFrame, path: Path) -> Path:
     ax.yaxis.set_major_formatter(lambda v, _: f"{v:,.0f}")
     multiple = certs["registered_waqfs"].iloc[-1] / certs["registered_waqfs"].iloc[0]
     _frame(fig, f"الأوقاف المسجلة سنوياً تضاعفت {multiple:.0f} مرة خلال {len(certs) - 1} سنوات",
-           f"عدد الشهادات الوقفية المكتملة — نمو سنوي مركب {pct(growth, 0)} (2019–2025)",
+           f"عدد الشهادات الوقفية المكتملة — نمو سنوي مركب {pct(growth, 0)} ({int(certs['year'].iloc[0])}–{int(certs['year'].iloc[-1])})",
            "الهيئة العامة للأوقاف، منصة البيانات المفتوحة")
     return _save(fig, path)
 
@@ -157,7 +157,7 @@ def fig_masarif_national(nat: pd.DataFrame, path: Path, top: int = 14) -> Path:
               loc="lower left", fontsize=9)
     sh = d.set_index("masraf")["share"]
     _frame(fig, f"المساجد تستحوذ على {pct(sh['mosques'], 0)} من المصارف، والأيتام {pct(sh['orphans'])} فقط",
-           f"توزيع {int(d['waqf_count'].sum()):,} مصرفاً وقفياً منشوراً حسب نوع المصرف (13 منطقة)",
+           f"توزيع {int(d['waqf_count'].sum()):,} مصرفاً وقفياً منشوراً حسب نوع المصرف",
            "الهيئة العامة للأوقاف — المصارف الوقفية حسب المنطقة")
     return _save(fig, path)
 
@@ -205,9 +205,9 @@ def fig_index(price_idx: pd.DataFrame, total_idx: pd.DataFrame, stats: dict, pat
                 .replace("/سنة", ""), color=INK_2, fontsize=9, va="center")
     ax.axhline(100, color=INK_3, lw=0.8, ls="--")
     ax.legend(loc="upper left", fontsize=9)
-    ax.set_ylabel(ar("المؤشر (100 = ديسمبر 2019)"))
+    ax.set_ylabel(ar("المؤشر (100 = بداية السلسلة)"))
     _frame(fig, "مؤشر صناديق الوقف السعودية: الفجوة بين الخطين هي ما وُزِّع على المستفيدين",
-           f"متوسط متساوي الأوزان لـ12 صندوقاً وقفياً تراكمياً — عائد كلي {pct(stats['total']['ann_return'])} "
+           f"متوسط متساوي الأوزان لـ{int(price_idx['n_funds'].max())} صندوقاً وقفياً تراكمياً — عائد كلي {pct(stats['total']['ann_return'])} "
            f"مقابل {pct(stats['price']['ann_return'])} سنوياً",
            f"تداول — أسعار وحدات الصناديق الوقفية؛ {BY}")
     return _save(fig, path)

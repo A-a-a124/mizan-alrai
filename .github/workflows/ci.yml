@@ -1,0 +1,23 @@
+name: reproduce
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  reproduce:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Rebuild every table from the raw snapshots
+        run: python scripts/run_analysis.py
+      - name: Results must equal the committed ones
+        run: git diff --exit-code -- outputs/tables data_clean dashboard/data.js
+      - name: Tests
+        run: python -m pytest -q
+      - name: Same code on another data file
+        run: python scripts/run_analysis.py --prices examples/three_funds_prices.csv --out runs/example --no-figures

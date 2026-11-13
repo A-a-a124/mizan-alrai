@@ -69,6 +69,6 @@ def export(c: dict, ix: dict, fc: dict, sp: dict, al: dict, res) -> None:
         "funds": res.tables["fund_summary"].replace({np.nan: None}).to_dict(orient="records"),
     }
     config.DASHBOARD.mkdir(parents=True, exist_ok=True)
-    (config.DASHBOARD / "data.js").write_text(
-        "window.WAQF_DATA = " + json.dumps(payload, ensure_ascii=False, separators=(",", ":"), default=float) + ";\n",
-        encoding="utf-8")
+    with open(config.DASHBOARD / "data.js", "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(
+        "window.WAQF_DATA = " + json.dumps(payload, ensure_ascii=False, separators=(",", ":"), default=float) + ";\n")

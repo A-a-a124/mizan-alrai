@@ -21,7 +21,7 @@ def test_tampered_price_is_detected(tmp_path):
     path = tmp_path / "prices.csv"
     bad.to_csv(path, index=False)
     with pytest.raises(ingest.IntegrityError):
-        ingest.load_fund_prices(path)
+        ingest.load_fund_prices(path, checksums=config.FUND_CHECKSUMS)
 
 
 def test_tampered_gasa_count_is_detected(tmp_path):
