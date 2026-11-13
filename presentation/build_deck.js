@@ -19,11 +19,13 @@ const sar = (x) => Math.round(x).toLocaleString("en-US");
 const S = K.spending, IX = K.index, FC = K.forecast, SEC = K.sector, AL = K.allocation;
 
 const THEME = {
-  name: "Mizan Al-Rai", headFontFace: "thmanyah serif display", bodyFontFace: "thmanyah sans",
+  name: "Mizan Al-Rai", headFontFace: "thmanyah serif display Black", bodyFontFace: "thmanyah sans",
   colors: { dk1: "1F2933", lt1: "FFFFFF", dk2: "16263F", lt2: "F3F5F8", accent1: "1F4E79", accent2: "C9D3E0",
             accent3: "9B2C2C", accent4: "5A6B7F", accent5: "A9B8CC", accent6: "0E1A2B", hlink: "1F4E79", folHlink: "5A6B7F" },
 };
 const HEX = THEME.colors;
+// heavier body text, and true Black faces for titles and figures (no synthetic bold)
+const FONT_TEXT = "thmanyah sans Med", FONT_NUM = "thmanyah sans Black";
 const MUTED = "55606E", GRID = "DDE2E9";
 
 const pres = new pptxgen();
@@ -37,18 +39,18 @@ const W = 13.333, MX = 0.6, CW = W - 2 * MX;
 
 pres.defineSlideMaster({
   title: "DARK", background: { color: HEX.dk2 },
-  objects: [{ placeholder: { options: { name: "title", type: "title", x: MX, y: 2.2, w: CW, h: 1.5, fontSize: 54, bold: true,
+  objects: [{ placeholder: { options: { name: "title", type: "title", x: MX, y: 2.2, w: CW, h: 1.5, fontSize: 54,
     color: C.background1, align: "right", valign: "middle", margin: 0 }, text: "" } }],
 });
 pres.defineSlideMaster({
   title: "SECTION", background: { color: HEX.dk2 },
-  objects: [{ placeholder: { options: { name: "title", type: "title", x: MX + 1.7, y: 2.9, w: CW - 1.7, h: 1.3, fontSize: 40, bold: true,
+  objects: [{ placeholder: { options: { name: "title", type: "title", x: MX + 1.7, y: 2.9, w: CW - 1.7, h: 1.3, fontSize: 40,
     color: C.background1, align: "right", valign: "middle", margin: 0 }, text: "" } }],
 });
 pres.defineSlideMaster({
   title: "CONTENT", background: { color: HEX.lt1 },
   objects: [
-    { placeholder: { options: { name: "title", type: "title", x: MX, y: 0.45, w: CW, h: 0.95, fontSize: 32, bold: true,
+    { placeholder: { options: { name: "title", type: "title", x: MX, y: 0.45, w: CW, h: 0.95, fontSize: 32,
       color: C.text2, align: "right", valign: "middle", margin: 0 }, text: "" } },
     { text: { text: "ميزان الريع", options: { x: W - MX - 3, y: 6.95, w: 3, h: 0.3, fontSize: 11, color: MUTED, align: "right", margin: 0, rtlMode: true } } },
   ],
@@ -66,12 +68,12 @@ const slide = (masterName, title, notes) => {
 const txt = (s, t, x, y, w, h, o = {}) => s.addText(t, { x, y, w, h, isTextBox: true, margin: 0, rtlMode: true, align: "right",
   valign: "top", fontSize: 16, color: C.text1, ...o });
 const num = (s, t, x, y, w, h, o = {}) => s.addText(t, { x, y, w, h, isTextBox: true, margin: 0, align: "center", valign: "middle",
-  fontSize: 54, bold: true, color: C.accent1, ...o });
+  fontSize: 54, fontFace: FONT_NUM, color: C.accent1, ...o });
 const card = (s, x, y, w, h, fill = C.background2) => s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y, w, h, rectRadius: 0.12,
   fill: { color: fill }, line: { color: fill, width: 0 } });
 const badge = (s, n, x, y, d = 0.55, fill = C.accent1, color = C.background1) => {
   s.addShape(pres.shapes.OVAL, { x, y, w: d, h: d, fill: { color: fill }, line: { color: fill, width: 0 } });
-  s.addText(String(n), { x, y, w: d, h: d, isTextBox: true, margin: 0, align: "center", valign: "middle", fontSize: d * 26, bold: true, color });
+  s.addText(String(n), { x, y, w: d, h: d, isTextBox: true, margin: 0, align: "center", valign: "middle", fontSize: d * 26, fontFace: FONT_NUM, color });
 };
 const HL = (t) => ({ text: t, options: { bold: true, color: C.text2, highlight: "BBD3F2" } });        // on light surfaces
 const HLD = (t) => ({ text: t, options: { bold: true, color: C.background1, highlight: "3A5A8C" } });  // on navy surfaces
@@ -423,10 +425,14 @@ async function fixRtl(file) {
     let first = true;
     para = para.replace(/<a:pPr\b[^>]*?(\/>|>[\s\S]*?<\/a:pPr>)/g, (m) => (first ? ((first = false), m) : ""));   // one pPr per paragraph
     if (!arabic.test(para)) return para;
-    const font = fontTags(face);
+    const title = face === THEME.headFontFace;
     return para.replace(/<a:pPr\b(?![^>]*\brtl=)/, '<a:pPr rtl="1"').replace(/lang="en-US"/g, 'lang="ar-SA"')
-      .replace(/<a:rPr\b([^>]*?)\/>/g, (m, attrs) => `<a:rPr${attrs}>${font}</a:rPr>`)
-      .replace(/<\/a:rPr>/g, (m, off, str) => (str.slice(Math.max(0, off - font.length), off) === font ? m : font + m));
+      .replace(/<a:rPr\b([^>]*?)\/>/g, (m, attrs) => `<a:rPr${attrs}></a:rPr>`)
+      .replace(/<a:rPr\b([^>]*)>([\s\S]*?)<\/a:rPr>/g, (m, attrs, inner) => {
+        if (/<a:latin /.test(inner)) return m;                         // explicit face (figures, code) stays
+        const bold = /\bb="1"/.test(attrs);                            // bold runs use the family's real Bold
+        return `<a:rPr${attrs}>${inner}${fontTags(title ? face : bold ? THEME.bodyFontFace : FONT_TEXT)}</a:rPr>`;
+      });
   });
   for (const name of Object.keys(zip.files)) {
     if (/^ppt\/theme\/theme\d+\.xml$/.test(name)) {
@@ -437,7 +443,7 @@ async function fixRtl(file) {
     } else if (/^ppt\/(slides|slideLayouts)\/[^/]+\.xml$/.test(name)) {
       const xml = await zip.file(name).async("string");
       zip.file(name, xml.replace(/<p:sp>[\s\S]*?<\/p:sp>/g, (sp) =>
-        fixParas(sp, /<p:ph [^>]*type="title"/.test(sp) ? THEME.headFontFace : THEME.bodyFontFace)));
+        fixParas(sp, /<p:ph[^>]*type="title"/.test(sp) ? THEME.headFontFace : THEME.bodyFontFace)));
     } else if (/^ppt\/charts\/chart\d+\.xml$/.test(name)) {
       const xml = await zip.file(name).async("string");
       zip.file(name, xml.replace(/<a:latin typeface="[^"]*"[^>]*\/>(?!<a:cs)/g, `<a:latin typeface="${THEME.bodyFontFace}"/><a:cs typeface="${THEME.bodyFontFace}"/>`));
