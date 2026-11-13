@@ -3,8 +3,10 @@
     python scripts/run_analysis.py && python scripts/check_reproduced.py
 
 Compares every regenerated table, clean data file and the dashboard data against the versions
-stored in git (HEAD). Text is compared exactly after normalising line ends; on a mismatch the
-differing values are listed.
+stored in git (HEAD). Files must match byte for byte (after normalising line ends). The only
+accepted deviation is numeric noise below TOLERANCE: the ETS and ARIMA candidates are fitted by an
+iterative optimiser whose last digits depend on the platform's linear-algebra library. Any larger
+difference, or any non-numeric difference, fails the check and is listed.
 """
 
 from __future__ import annotations
@@ -17,11 +19,19 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 WATCHED = ("outputs/tables", "data_clean", "dashboard/data.js")
 PREFIX = "window.WAQF_DATA = "
+TOLERANCE = 1e-6
 
 
 def committed(path: str) -> str:
     raw = subprocess.run(["git", "show", f"HEAD:{path}"], cwd=ROOT, capture_output=True, check=True).stdout
     return raw.decode("utf-8").replace("\r\n", "\n")
+
+
+def close(a, b) -> bool:
+    try:
+        return abs(float(a) - float(b)) <= TOLERANCE
+    except (TypeError, ValueError):
+        return False
 
 
 def walk(prefix: str, a, b, out: list) -> None:
@@ -31,19 +41,24 @@ def walk(prefix: str, a, b, out: list) -> None:
     elif isinstance(a, list) and isinstance(b, list) and len(a) == len(b):
         for i, (x, y) in enumerate(zip(a, b)):
             walk(f"{prefix}/{i}", x, y, out)
-    elif a != b:
+    elif a != b and not close(a, b):
         out.append(f"    {prefix}: committed={a!r} now={b!r}")
 
 
 def explain(path: str, old: str, new: str) -> list:
+    """Differences larger than TOLERANCE (empty list = only numeric noise)."""
     out: list = []
     if path.endswith(".js"):
-        walk("", json.loads(old[len(PREFIX):].rstrip().rstrip(";")), json.loads(new[len(PREFIX):].rstrip().rstrip(";")), out)
+        walk("", json.loads(old[len(PREFIX):].rstrip().rstrip(";")),
+             json.loads(new[len(PREFIX):].rstrip().rstrip(";")), out)
     elif path.endswith(".json"):
         walk("", json.loads(old), json.loads(new), out)
     else:
         lo, ln = old.splitlines(), new.splitlines()
-        out += [f"    line {i + 1}: committed={x!r} now={y!r}" for i, (x, y) in enumerate(zip(lo, ln)) if x != y]
+        for i, (x, y) in enumerate(zip(lo, ln)):
+            cx, cy = x.split(","), y.split(",")
+            if x != y and not (len(cx) == len(cy) and all(u == v or close(u, v) for u, v in zip(cx, cy))):
+                out.append(f"    line {i + 1}: committed={x!r} now={y!r}")
         if len(lo) != len(ln):
             out.append(f"    line count {len(lo)} -> {len(ln)}")
     return out
@@ -52,16 +67,21 @@ def explain(path: str, old: str, new: str) -> list:
 def main() -> int:
     files = subprocess.run(["git", "ls-files", *WATCHED], cwd=ROOT, capture_output=True, text=True,
                            check=True).stdout.split()
-    bad = 0
+    bad = noise = 0
     for path in files:
         new = (ROOT / path).read_bytes().decode("utf-8").replace("\r\n", "\n")
         old = committed(path)
-        if new != old:
-            bad += 1
-            diffs = explain(path, old, new)
-            print(f"DIFFERENT {path} ({len(diffs)} value(s))")
-            print("\n".join(diffs[:15]))
-    print(f"{len(files) - bad}/{len(files)} files reproduced exactly")
+        if new == old:
+            continue
+        diffs = explain(path, old, new)
+        if not diffs:
+            noise += 1
+            print(f"within {TOLERANCE:g}: {path}")
+            continue
+        bad += 1
+        print(f"DIFFERENT {path} ({len(diffs)} value(s))")
+        print("\n".join(diffs[:15]))
+    print(f"{len(files) - bad - noise}/{len(files)} files byte-identical, {noise} within {TOLERANCE:g}, {bad} different")
     return 1 if bad else 0
 
 
