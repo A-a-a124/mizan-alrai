@@ -366,7 +366,7 @@ ai.forEach(([h, b], i) => {
   txt(s, h, x + 0.35, y + 0.3, pw - 1.35, 0.5, { fontSize: 20, bold: true, color: C.text2 });
   txt(s, b, x + 0.35, y + 1.0, pw - 0.7, 0.95, { fontSize: 16 });
 });
-note(s, [N("كل التفاصيل موثقة في ملف "), HL("ai_usage_log.md"), N(" داخل مجلد التسليم.")], 6.2, 0.6);
+note(s, [N("كل التفاصيل موثقة في ملف "), HL("ai_usage_log.md"), N(" داخل مجلد التسليم.")], 6.3, 0.55);
 
 // ================= 18. Recommendations
 s = slide("CONTENT", "التوصيات",
