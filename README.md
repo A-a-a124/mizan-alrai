@@ -6,7 +6,7 @@
 
 **🔗 الموقع (يفتح عند أي أحد):** https://a-a-a124.github.io/mizan-alrai/ · [محاكي القرار](https://a-a-a124.github.io/mizan-alrai/dashboard/) · [الملخص التنفيذي PDF](https://a-a-a124.github.io/mizan-alrai/report/executive_summary.pdf) · [افتح الدفتر في Google Colab](https://colab.research.google.com/github/A-a-a124/mizan-alrai/blob/main/analysis.ipynb)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/A-a-a124/mizan-alrai/blob/main/analysis.ipynb)
+[![reproduce](https://github.com/A-a-a124/mizan-alrai/actions/workflows/ci.yml/badge.svg)](https://github.com/A-a-a124/mizan-alrai/actions/workflows/ci.yml) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/A-a-a124/mizan-alrai/blob/main/analysis.ipynb)
 
 **الفريق:** عبدالله عبدالرحمن عبدالله العضياني · ثامر خالد صالح الغامدي
 
@@ -70,7 +70,7 @@ python scripts/run_analysis.py --prices examples/three_funds_prices.csv --out ru
 
 - الملف المرفق مع المشروع يُتحقق من سلامته ببصمته؛ أي ملف آخر يُتحقق من **بنيته** (الأعمدة، التواريخ، الأسعار الموجبة) وتظهر رسالة خطأ واضحة تحدد رقم السطر.
 - المثال `examples/three_funds_prices.csv` (3 صناديق حقيقية) يعطي نتائج مختلفة عن المجموعة الكاملة (سقف صرف 2.0% بدل 1.5%)، ما يثبت أن الأرقام تُحسب من الملف المُدخل لا من قيم ثابتة.
-- المخرجات متطابقة بايتاً ببايت على Windows وLinux، ويتحقق من ذلك تلقائياً مسار GitHub Actions (`.github/workflows/ci.yml`) عند كل تحديث.
+- **فحص تلقائي عند كل تحديث** (GitHub Actions على Windows وLinux): يعيد التشغيل من الصفر ثم يقارن النتائج بالمنشورة عبر `python scripts/check_reproduced.py`. على Windows تتطابق الملفات الـ24 بايتاً ببايت، وعلى Linux يتطابق 22 ملفاً ويختلف جدولا الاختبار الرجعي بأقل من 0.000001 فقط (نموذجا ETS وARIMA يُوفَّقان بخوارزمية تكرارية تتأثر آخر خاناتها بمكتبة الجبر الخطي). النموذج الفائز وكل الأرقام الرئيسية متطابقة تماماً.
 
 ## ترتيب الملفات
 
