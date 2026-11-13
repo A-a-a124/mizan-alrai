@@ -182,7 +182,7 @@ pipeline.write_outputs(res)
 pipeline.step_figures(c, sec, ix, fc, sp, al)
 saved = json.loads((config.TABLES / "key_numbers.json").read_text(encoding="utf-8"))
 assert saved["spending"]["rate_base"] == res.key["spending"]["rate_base"]
-assert abs(saved["forecast"]["point_pct"] - res.key["forecast"]["point_pct"]) < 1e-12
+assert abs(saved["forecast"]["point_pct"] - res.key["forecast"]["point_pct"]) < 1e-9
 print("✔ key_numbers.json يطابق الحساب الحالي")
 """),
     md("""

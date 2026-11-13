@@ -31,7 +31,7 @@ def _grid(series: np.ndarray, shift: float) -> dict:
 
 
 def export(c: dict, ix: dict, fc: dict, sp: dict, al: dict, res) -> None:
-    from .pipeline import SCENARIOS
+    from .pipeline import SAVE_DECIMALS, SCENARIOS, rounded
     grids = {}
     for key, (label, col, shift) in SCENARIOS.items():
         series = ix["total"]["ret"].values if col == "log_ret_total" else ix["price"]["ret"].values
@@ -63,10 +63,10 @@ def export(c: dict, ix: dict, fc: dict, sp: dict, al: dict, res) -> None:
         "defaults": {"confidence": config.CONFIDENCE, "inflation": config.INFLATION,
                      "upkeep_share": config.UPKEEP_SHARE, "reserve_share": 0.10, "floor": config.MASRAF_FLOOR,
                      "endowment": 10_000_000},
-        "key": res.key,
+        "key": rounded(res.key),
         "index": {"month": idx["month"].tolist(), "total": np.round(idx["total_index"], 2).tolist(),
                   "price": np.round(idx["price_index"], 2).tolist(), "n_funds": idx["n_funds"].tolist()},
-        "funds": res.tables["fund_summary"].replace({np.nan: None}).to_dict(orient="records"),
+        "funds": res.tables["fund_summary"].round(SAVE_DECIMALS).astype(object).replace({np.nan: None}).to_dict(orient="records"),
     }
     config.DASHBOARD.mkdir(parents=True, exist_ok=True)
     with open(config.DASHBOARD / "data.js", "w", encoding="utf-8", newline="\n") as fh:

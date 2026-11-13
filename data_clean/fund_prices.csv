@@ -115,7 +115,7 @@
 012012,2026-02,1.004,observed,Al Rajhi Endowment Fund,Income and Growth,Al Rajhi Capital,True,False
 012012,2026-03,1.013,observed,Al Rajhi Endowment Fund,Income and Growth,Al Rajhi Capital,True,False
 012012,2026-04,1.0196,observed,Al Rajhi Endowment Fund,Income and Growth,Al Rajhi Capital,True,False
-012012,2026-05,1.0185494587893118,stale_fixed,Al Rajhi Endowment Fund,Income and Growth,Al Rajhi Capital,True,False
+012012,2026-05,1.0185494588,stale_fixed,Al Rajhi Endowment Fund,Income and Growth,Al Rajhi Capital,True,False
 012012,2026-06,1.0175,observed,Al Rajhi Endowment Fund,Income and Growth,Al Rajhi Capital,True,False
 012012,2026-07,1.0094,observed,Al Rajhi Endowment Fund,Income and Growth,Al Rajhi Capital,True,False
 012012,2026-08,1.0298,observed,Al Rajhi Endowment Fund,Income and Growth,Al Rajhi Capital,True,False
@@ -292,7 +292,7 @@
 012054,2024-06,1.0129,observed,Quran Kareem Associations Endowment Fund,Income and Growth,Al Rajhi Capital,True,False
 012054,2024-07,1.0305,observed,Quran Kareem Associations Endowment Fund,Income and Growth,Al Rajhi Capital,True,False
 012054,2024-08,1.0563,observed,Quran Kareem Associations Endowment Fund,Income and Growth,Al Rajhi Capital,True,False
-012054,2024-09,1.050634808104129,stale_fixed,Quran Kareem Associations Endowment Fund,Income and Growth,Al Rajhi Capital,True,False
+012054,2024-09,1.0506348081,stale_fixed,Quran Kareem Associations Endowment Fund,Income and Growth,Al Rajhi Capital,True,False
 012054,2024-10,1.045,observed,Quran Kareem Associations Endowment Fund,Income and Growth,Al Rajhi Capital,True,False
 012054,2024-11,1.0489,observed,Quran Kareem Associations Endowment Fund,Income and Growth,Al Rajhi Capital,True,False
 012054,2024-12,1.029,observed,Quran Kareem Associations Endowment Fund,Income and Growth,Al Rajhi Capital,True,False
@@ -499,583 +499,583 @@
 012068,2026-08,1.0314,observed,NUSUK Endowment Fund,Income and Growth,Al Rajhi Capital,False,False
 012068,2026-09,1.0142,observed,NUSUK Endowment Fund,Income and Growth,Al Rajhi Capital,False,False
 012068,2026-10,0.9963,observed,NUSUK Endowment Fund,Income and Growth,Al Rajhi Capital,False,False
-014012,2019-11,10.000000000000002,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2019-12,10.080600000000002,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2020-01,10.167999999999997,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2019-11,10.0,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2019-12,10.0806,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2020-01,10.168,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2020-02,9.8937,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2020-03,9.038800000000002,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2020-04,9.284999999999998,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2020-03,9.0388,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2020-04,9.285,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2020-05,9.4237,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2020-06,9.631800000000002,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2020-07,9.793299999999999,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2020-06,9.6318,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2020-07,9.7933,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2020-08,10.1284,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2020-09,10.7233,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2020-10,10.305299999999999,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2020-11,10.508100000000002,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2020-12,10.050099999999999,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2021-01,10.115399999999998,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2020-10,10.3053,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2020-11,10.5081,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2020-12,10.0501,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2021-01,10.1154,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2021-02,10.3232,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2021-03,10.6518,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2021-04,10.922199999999998,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2021-04,10.9222,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2021-05,11.2126,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2021-06,11.5348,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2021-07,11.546599999999998,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2021-08,11.762799999999999,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2021-09,11.824100000000001,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2021-07,11.5466,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2021-08,11.7628,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2021-09,11.8241,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2021-10,12.2331,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2021-11,11.807000000000002,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2021-11,11.807,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2021-12,12.0201,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2022-01,11.334599999999998,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2022-02,11.716800000000001,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2022-03,11.826899999999998,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2022-01,11.3346,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2022-02,11.7168,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2022-03,11.8269,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2022-04,12.1938,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2022-05,11.634499999999997,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2022-06,11.026500000000002,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2022-07,11.376300000000002,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2022-08,11.757000000000001,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2022-09,11.285599999999999,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2022-10,11.360700000000001,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2022-05,11.6345,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2022-06,11.0265,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2022-07,11.3763,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2022-08,11.757,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2022-09,11.2856,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2022-10,11.3607,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2022-11,10.9574,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2022-12,10.729499999999998,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2023-01,10.891900000000001,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2023-02,10.673399999999999,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2022-12,10.7295,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2023-01,10.8919,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2023-02,10.6734,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2023-03,11.0128,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2023-04,11.472399999999999,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2023-05,11.314799999999998,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2023-06,11.680099999999998,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2023-07,11.940600000000002,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2023-08,11.857000000000001,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2023-09,11.663400000000001,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2023-10,11.546199999999999,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2023-11,11.863699999999998,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2023-12,12.538100000000004,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2024-01,12.454500000000001,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2024-02,12.806900000000002,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2023-04,11.4724,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2023-05,11.3148,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2023-06,11.6801,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2023-07,11.9406,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2023-08,11.857,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2023-09,11.6634,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2023-10,11.5462,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2023-11,11.8637,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2023-12,12.5381,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2024-01,12.4545,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2024-02,12.8069,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2024-03,12.8535,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2024-04,12.6443,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2024-05,12.295700000000002,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2024-05,12.2957,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2024-06,12.9246,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2024-07,13.192600000000002,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2024-08,13.293599999999998,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2024-07,13.1926,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2024-08,13.2936,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2024-09,13.4583,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2024-10,13.3134,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2024-11,13.258200000000004,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2024-12,12.792000000000002,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2025-01,12.956699999999996,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2025-02,12.885100000000001,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2025-03,12.880199999999999,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2024-11,13.2582,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2024-12,12.792,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2025-01,12.9567,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2025-02,12.8851,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2025-03,12.8802,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2025-04,12.8661,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2025-05,12.709200000000001,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2025-05,12.7092,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2025-06,12.9188,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2025-07,12.937599999999998,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2025-08,12.993400000000001,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2025-07,12.9376,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2025-08,12.9934,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2025-09,13.1709,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2025-10,13.454500000000001,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2025-11,13.006899999999998,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2025-10,13.4545,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2025-11,13.0069,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2025-12,12.758,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2026-01,13.2655,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2026-02,12.836800000000002,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2026-02,12.8368,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2026-03,12.6666,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2026-04,12.883200000000002,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2026-05,12.986000000000002,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2026-06,12.961100000000002,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2026-04,12.8832,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2026-05,12.986,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2026-06,12.9611,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014012,2026-07,12.6536,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2026-08,12.840799999999998,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2026-09,12.346400000000001,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014012,2026-10,11.901799999999998,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014017,2025-05,9.723199999999999,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014017,2025-06,9.891399999999999,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014017,2025-07,9.793800000000001,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014017,2025-08,9.871500000000001,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014017,2025-09,10.115700000000002,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2026-08,12.8408,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2026-09,12.3464,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014012,2026-10,11.9018,observed,Ensan Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014017,2025-05,9.7232,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014017,2025-06,9.8914,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014017,2025-07,9.7938,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014017,2025-08,9.8715,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014017,2025-09,10.1157,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014017,2025-10,10.3861,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014017,2025-11,9.9042,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014017,2025-12,9.7773,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014017,2026-01,10.2948,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014017,2026-02,9.944500000000001,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014017,2026-03,9.809599999999998,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014017,2026-04,9.941700000000003,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014017,2026-02,9.9445,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014017,2026-03,9.8096,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014017,2026-04,9.9417,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014017,2026-05,9.9618,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014017,2026-06,9.9971,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014017,2026-07,9.721800000000002,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014017,2026-07,9.7218,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
 014017,2026-08,9.9024,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014017,2026-09,9.497000000000002,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
-014017,2026-10,8.637700000000002,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
-030030,2020-12,10.000000000000002,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2021-01,9.975700000000002,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2021-02,10.150399999999998,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2021-03,10.252199999999998,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2021-04,10.666699999999999,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+014017,2026-09,9.497,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
+014017,2026-10,8.6377,observed,King Faisal University Endowment Fund,Growth,ALBILAD Investment Co,True,True
+030030,2020-12,10.0,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2021-01,9.9757,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2021-02,10.1504,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2021-03,10.2522,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2021-04,10.6667,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2021-05,10.8277,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2021-06,11.0175,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2021-07,11.035300000000001,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2021-08,11.113400000000002,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2021-07,11.0353,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2021-08,11.1134,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2021-09,11.2587,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2021-10,11.370299999999999,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2021-10,11.3703,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2021-11,11.2077,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2021-12,11.294500000000001,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2021-12,11.2945,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2022-01,11.4282,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2022-02,11.556200000000002,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2022-02,11.5562,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2022-03,11.602,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2022-04,11.687799999999998,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2022-04,11.6878,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2022-05,11.3948,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2022-06,10.9149,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2022-07,11.102799999999998,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2022-08,11.324600000000002,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2022-09,10.976600000000001,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2022-07,11.1028,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2022-08,11.3246,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2022-09,10.9766,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2022-10,10.9813,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2022-11,10.8183,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2022-12,10.875500000000002,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2022-12,10.8755,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2023-01,11.1201,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2023-02,11.011100000000003,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2023-02,11.0111,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2023-03,11.1874,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2023-04,11.5867,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2023-05,11.509200000000002,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2023-06,11.805999999999997,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2023-07,12.004800000000001,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2023-08,12.072300000000002,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2023-09,11.540099999999999,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2023-10,11.718200000000001,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2023-11,12.082000000000003,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2023-12,12.495500000000002,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2024-01,12.656400000000001,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2023-05,11.5092,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2023-06,11.806,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2023-07,12.0048,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2023-08,12.0723,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2023-09,11.5401,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2023-10,11.7182,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2023-11,12.082,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2023-12,12.4955,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2024-01,12.6564,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2024-02,13.0361,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2024-03,13.134299999999998,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2024-04,12.968399999999999,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2024-03,13.1343,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2024-04,12.9684,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2024-05,12.8048,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2024-06,13.023600000000002,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2024-06,13.0236,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2024-07,13.242,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2024-08,13.457000000000003,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2024-09,13.522400000000001,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2024-10,13.400400000000001,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2024-11,13.387799999999997,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2024-08,13.457,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2024-09,13.5224,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2024-10,13.4004,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2024-11,13.3878,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2024-12,13.4682,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2025-01,13.699699999999998,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2025-02,13.666499999999997,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2025-03,13.624199999999998,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2025-04,13.604000000000003,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2025-05,13.372799999999998,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2025-06,13.502200000000002,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2025-07,13.504400000000002,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2025-01,13.6997,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2025-02,13.6665,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2025-03,13.6242,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2025-04,13.604,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2025-05,13.3728,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2025-06,13.5022,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2025-07,13.5044,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2025-08,13.6276,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2025-09,13.868500000000001,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2025-10,13.982600000000001,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2025-11,13.644100000000003,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2025-12,13.561200000000001,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2025-09,13.8685,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2025-10,13.9826,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2025-11,13.6441,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2025-12,13.5612,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
 030030,2026-01,13.8655,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2026-02,13.642099999999997,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2026-03,13.762200000000002,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2026-04,13.969400000000002,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2026-05,13.917300000000001,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2026-06,13.890899999999998,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2026-07,13.690899999999997,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2026-08,14.093999999999998,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2026-09,13.839599999999999,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-030030,2026-10,13.446700000000002,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
-045007,2020-06,10.000000000000002,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2020-07,10.131626511155508,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2020-08,10.264985576154913,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2020-09,10.400099999999998,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2020-10,10.46601469069611,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2020-11,10.532347141456986,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+030030,2026-02,13.6421,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2026-03,13.7622,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2026-04,13.9694,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2026-05,13.9173,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2026-06,13.8909,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2026-07,13.6909,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2026-08,14.094,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2026-09,13.8396,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+030030,2026-10,13.4467,observed,Nafaqah Waqf Fund,Growth,Jadwa Investment,True,True
+045007,2020-06,10.0,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2020-07,10.1316265112,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2020-08,10.2649855762,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2020-09,10.4001,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2020-10,10.4660146907,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2020-11,10.5323471415,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2020-12,10.5991,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2021-01,10.762436649470152,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2021-02,10.928290386340192,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2021-01,10.7624366495,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2021-02,10.9282903863,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2021-03,11.0967,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2021-04,11.140394389721028,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2021-05,11.184260830564739,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2021-06,11.228300000000003,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2021-07,11.348573735217318,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2021-08,11.470135801827908,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2021-04,11.1403943897,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2021-05,11.1842608306,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2021-06,11.2283,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2021-07,11.3485737352,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2021-08,11.4701358018,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2021-09,11.593,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2021-10,11.648071308710579,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2021-11,11.703404227793193,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2021-12,11.758999999999999,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2022-01,12.230449182266364,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2021-10,11.6480713087,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2021-11,11.7034042278,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2021-12,11.759,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2022-01,12.2304491823,imputed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2022-02,12.7208,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2022-03,13.181100000000002,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2022-03,13.1811,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2022-04,13.2602,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2022-05,12.899899999999999,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2022-06,12.260500000000002,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2022-07,12.432700000000002,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2022-08,12.886999999999997,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2022-05,12.8999,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2022-06,12.2605,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2022-07,12.4327,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2022-08,12.887,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2022-09,12.5501,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2022-10,12.547300000000002,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2022-11,12.264899999999999,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2022-10,12.5473,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2022-11,12.2649,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2022-12,12.1926,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2023-01,12.398,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2023-02,12.246799999999997,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2023-02,12.2468,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2023-03,12.4164,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2023-04,12.726700000000001,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2023-04,12.7267,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2023-05,12.6225,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2023-06,12.965499999999999,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2023-06,12.9655,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2023-07,12.6343,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2023-08,12.4762,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2023-09,12.344299999999999,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2023-10,12.397499999999999,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2023-11,12.722600000000002,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2023-09,12.3443,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2023-10,12.3975,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2023-11,12.7226,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2023-12,13.1855,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2024-01,13.106600000000002,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2024-02,13.547299999999998,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2024-03,13.409799999999999,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2024-01,13.1066,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2024-02,13.5473,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2024-03,13.4098,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2024-04,13.2614,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2024-05,12.897500000000003,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2024-06,13.223700000000001,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2024-07,12.747699999999998,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2024-08,13.126500000000002,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2024-09,13.110599999999998,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2024-10,13.097999999999999,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2024-05,12.8975,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2024-06,13.2237,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2024-07,12.7477,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2024-08,13.1265,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2024-09,13.1106,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2024-10,13.098,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2024-11,13.0876,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2024-12,13.1847,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2025-01,13.488100000000003,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2025-02,13.425299999999998,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2025-03,13.444099999999999,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2025-04,13.365199999999998,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2025-05,13.116800000000001,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2025-06,13.228499999999999,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2025-01,13.4881,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2025-02,13.4253,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2025-03,13.4441,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2025-04,13.3652,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2025-05,13.1168,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2025-06,13.2285,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2025-07,12.2772,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2025-08,12.1798,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2025-09,12.579399999999998,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2025-09,12.5794,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2025-10,12.6653,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2025-11,12.0922,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2025-12,12.044699999999999,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2026-01,12.267600000000002,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2025-12,12.0447,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2026-01,12.2676,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2026-02,12.1429,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2026-03,12.225199999999997,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2026-03,12.2252,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
 045007,2026-04,12.0946,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2026-05,12.080799999999998,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2026-06,12.104899999999999,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2026-07,11.963699999999998,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2026-08,12.255500000000001,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045007,2026-09,12.059899999999999,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
-045008,2020-06,10.000000000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2020-07,10.16267274217985,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2020-08,10.327991726464525,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2020-09,10.496000000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2020-10,10.532175176558518,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2020-11,10.568475033318924,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045007,2026-05,12.0808,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2026-06,12.1049,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2026-07,11.9637,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2026-08,12.2555,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045007,2026-09,12.0599,observed,Alinma Wareef Endowment Fund,Growth,Alinma Capital,True,True
+045008,2020-06,10.0,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2020-07,10.1626727422,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2020-08,10.3279917265,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2020-09,10.496,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2020-10,10.5321751766,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2020-11,10.5684750333,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2020-12,10.6049,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2021-01,10.720077878771047,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2021-02,10.836506683412042,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2021-03,10.954200000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2021-04,11.01756607675979,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2021-05,11.081298703307235,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2021-06,11.145400000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2021-07,11.341431861425177,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2021-08,11.54091164671973,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2021-09,11.743900000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2021-10,11.729816450775445,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2021-11,11.715749790860121,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2021-01,10.7200778788,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2021-02,10.8365066834,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2021-03,10.9542,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2021-04,11.0175660768,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2021-05,11.0812987033,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2021-06,11.1454,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2021-07,11.3414318614,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2021-08,11.5409116467,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2021-09,11.7439,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2021-10,11.7298164508,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2021-11,11.7157497909,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2021-12,11.7017,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2022-01,12.026006020703633,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2022-01,12.0260060207,imputed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2022-02,12.3593,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2022-03,12.771600000000001,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2022-04,12.896000000000003,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2022-05,12.600099999999998,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2022-06,12.029899999999998,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2022-03,12.7716,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2022-04,12.896,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2022-05,12.6001,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2022-06,12.0299,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2022-07,12.1657,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2022-08,12.571600000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2022-09,12.282700000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2022-10,12.268400000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2022-11,12.018400000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2022-12,11.947800000000003,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2023-01,12.160400000000001,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2023-02,11.975499999999998,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2022-08,12.5716,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2022-09,12.2827,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2022-10,12.2684,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2022-11,12.0184,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2022-12,11.9478,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2023-01,12.1604,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2023-02,11.9755,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2023-03,12.1947,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2023-04,12.526999999999997,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2023-05,12.437100000000001,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2023-06,12.758699999999997,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2023-04,12.527,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2023-05,12.4371,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2023-06,12.7587,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2023-07,12.767,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2023-08,12.6074,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2023-09,12.472700000000001,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2023-09,12.4727,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2023-10,12.5293,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2023-11,12.844300000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2023-11,12.8443,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2023-12,13.2684,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2024-01,13.238600000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2024-02,13.690299999999997,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2024-03,13.547900000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2024-04,13.419799999999999,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2024-01,13.2386,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2024-02,13.6903,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2024-03,13.5479,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2024-04,13.4198,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2024-05,13.0421,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2024-06,13.344599999999998,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2024-06,13.3446,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2024-07,12.6422,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2024-08,12.8928,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2024-09,12.889900000000003,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2024-09,12.8899,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2024-10,12.8866,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2024-11,12.859100000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2024-11,12.8591,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2024-12,12.9434,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2025-01,13.2397,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2025-02,13.1774,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2025-03,13.198900000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2025-03,13.1989,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2025-04,13.1274,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2025-05,12.908400000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2025-06,12.986200000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2025-07,12.211599999999999,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2025-05,12.9084,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2025-06,12.9862,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2025-07,12.2116,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2025-08,12.1277,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2025-09,12.503300000000001,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2025-10,12.594699999999998,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2025-11,12.034299999999998,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2025-12,11.998300000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2026-01,12.259799999999998,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2025-09,12.5033,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2025-10,12.5947,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2025-11,12.0343,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2025-12,11.9983,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2026-01,12.2598,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2026-02,12.1133,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2026-03,12.233300000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2026-03,12.2333,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2026-04,12.3412,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2026-05,12.078500000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2026-05,12.0785,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
 045008,2026-06,12.0937,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2026-07,11.961200000000002,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2026-08,12.280999999999999,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045008,2026-09,12.096399999999997,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
-045009,2020-06,10.000000000000002,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2020-07,10.231403918756243,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2020-08,10.468162614874055,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2020-09,10.710399999999998,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2020-10,10.731591376858352,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2020-11,10.752824682538517,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2020-12,10.774100000000002,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2021-01,10.901780911296852,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2021-02,11.030974934139866,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2021-03,11.161700000000002,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2021-04,11.213525658939174,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2021-05,11.265591953169066,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2021-06,11.317899999999998,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2021-07,11.464005765875875,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2021-08,11.611997649743794,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2021-09,11.761899999999999,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2021-10,11.792520216014672,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2021-11,11.823220146839775,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2021-12,11.854000000000001,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2022-01,12.200243292656094,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2022-02,12.556599999999998,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045008,2026-07,11.9612,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2026-08,12.281,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045008,2026-09,12.0964,observed,Orphan Care Endowment Fund,Growth,Alinma Capital,True,True
+045009,2020-06,10.0,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2020-07,10.2314039188,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2020-08,10.4681626149,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2020-09,10.7104,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2020-10,10.7315913769,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2020-11,10.7528246825,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2020-12,10.7741,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2021-01,10.9017809113,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2021-02,11.0309749341,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2021-03,11.1617,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2021-04,11.2135256589,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2021-05,11.2655919532,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2021-06,11.3179,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2021-07,11.4640057659,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2021-08,11.6119976497,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2021-09,11.7619,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2021-10,11.792520216,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2021-11,11.8232201468,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2021-12,11.854,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2022-01,12.2002432927,imputed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2022-02,12.5566,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
 045009,2022-03,13.2774,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2022-04,13.114799999999999,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2022-04,13.1148,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
 045009,2022-05,12.7684,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2022-06,12.146200000000002,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2022-06,12.1462,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
 045009,2022-07,12.3094,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2022-08,12.740799999999998,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2022-09,12.399300000000002,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2022-08,12.7408,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2022-09,12.3993,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
 045009,2022-10,12.3838,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
 045009,2022-11,12.1483,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2022-12,12.071199999999997,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2023-01,12.329999999999998,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2023-02,12.120600000000001,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2023-03,12.322799999999999,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2023-04,12.633300000000004,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2023-05,12.524599999999998,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2022-12,12.0712,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2023-01,12.33,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2023-02,12.1206,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2023-03,12.3228,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2023-04,12.6333,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2023-05,12.5246,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
 045009,2023-06,12.8779,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2023-07,12.745099999999999,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2023-08,12.557700000000002,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2023-09,12.390799999999999,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2023-10,12.430399999999999,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2023-11,12.741100000000001,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2023-12,13.168099999999999,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2024-01,13.129300000000002,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2024-02,13.574499999999999,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2023-07,12.7451,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2023-08,12.5577,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2023-09,12.3908,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2023-10,12.4304,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2023-11,12.7411,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2023-12,13.1681,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2024-01,13.1293,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2024-02,13.5745,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
 045009,2024-03,13.4165,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2024-04,13.285099999999998,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2024-05,12.909700000000003,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2024-06,13.217200000000002,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2024-07,12.688099999999999,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2024-04,13.2851,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2024-05,12.9097,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2024-06,13.2172,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2024-07,12.6881,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
 045009,2024-08,13.0529,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2024-09,13.036999999999997,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2024-10,13.013099999999998,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2024-11,13.011199999999999,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2024-12,13.134100000000002,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2024-09,13.037,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2024-10,13.0131,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2024-11,13.0112,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2024-12,13.1341,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
 045009,2025-01,13.4284,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2025-02,13.356699999999998,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2025-03,13.377099999999999,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2025-04,13.285000000000002,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2025-05,13.030199999999999,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2025-02,13.3567,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2025-03,13.3771,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2025-04,13.285,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2025-05,13.0302,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
 045009,2025-06,13.1158,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
 045009,2025-07,12.4677,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2025-08,12.361299999999998,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2025-09,12.784900000000002,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2025-10,12.877699999999999,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2025-08,12.3613,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2025-09,12.7849,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2025-10,12.8777,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
 045009,2025-11,12.2829,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2025-12,12.246799999999997,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2025-12,12.2468,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
 045009,2026-01,12.4876,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2026-02,12.329499999999998,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2026-03,12.437799999999998,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2026-04,12.426899999999998,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2026-05,12.337800000000001,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2026-06,12.350100000000001,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2026-07,12.183600000000002,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045009,2026-08,12.521299999999998,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2026-02,12.3295,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2026-03,12.4378,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2026-04,12.4269,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2026-05,12.3378,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2026-06,12.3501,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2026-07,12.1836,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
+045009,2026-08,12.5213,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
 045009,2026-09,12.2956,observed,Alinma Enayah Endowment Fund,Growth,Alinma Capital,True,True
-045010,2020-06,10.000000000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2020-07,10.129222950120917,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2020-08,10.26011575732563,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2020-09,10.392700000000001,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2020-10,10.447213556269839,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2020-11,10.502013056309552,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2020-06,10.0,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2020-07,10.1292229501,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2020-08,10.2601157573,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2020-09,10.3927,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2020-10,10.4472135563,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2020-11,10.5020130563,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2020-12,10.5571,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2021-01,10.674489843573559,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2021-02,10.79318500540443,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2021-03,10.913200000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2021-04,10.974818103777176,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2021-05,11.036784115657658,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2021-06,11.099100000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2021-07,11.117868245570524,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2021-08,11.136668227682012,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2021-09,11.155499999999998,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2021-10,11.245603602044692,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2021-11,11.336434975959895,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2021-12,11.428000000000003,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2022-01,11.65622117154612,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2021-01,10.6744898436,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2021-02,10.7931850054,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2021-03,10.9132,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2021-04,10.9748181038,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2021-05,11.0367841157,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2021-06,11.0991,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2021-07,11.1178682456,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2021-08,11.1366682277,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2021-09,11.1555,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2021-10,11.245603602,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2021-11,11.336434976,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2021-12,11.428,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2022-01,11.6562211715,imputed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2022-02,11.889,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2022-03,12.469600000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2022-03,12.4696,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2022-04,12.5653,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2022-05,12.2764,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2022-06,11.721600000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2022-07,11.851599999999998,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2022-08,12.243999999999998,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2022-09,12.039200000000001,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2022-10,12.010400000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2022-11,11.753700000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2022-12,11.677400000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2023-01,11.873400000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2023-02,11.713900000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2023-03,11.917200000000001,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2023-04,12.232600000000001,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2022-06,11.7216,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2022-07,11.8516,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2022-08,12.244,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2022-09,12.0392,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2022-10,12.0104,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2022-11,11.7537,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2022-12,11.6774,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2023-01,11.8734,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2023-02,11.7139,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2023-03,11.9172,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2023-04,12.2326,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2023-05,12.118,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2023-06,12.462199999999998,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2023-06,12.4622,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2023-07,12.3459,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2023-08,12.212700000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2023-08,12.2127,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2023-09,12.048,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2023-10,12.0807,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2023-11,12.388800000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2023-12,12.710299999999998,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2024-01,12.662399999999998,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2024-02,13.056099999999999,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2023-11,12.3888,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2023-12,12.7103,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2024-01,12.6624,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2024-02,13.0561,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2024-03,12.984,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2024-04,12.824500000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2024-05,12.82919913907334,stale_fixed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2024-06,12.833900000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2024-04,12.8245,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2024-05,12.8291991391,stale_fixed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2024-06,12.8339,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2024-07,12.5731,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2024-08,12.824399999999999,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2024-08,12.8244,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2024-09,12.8084,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2024-10,12.804100000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2024-11,12.803199999999999,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2024-10,12.8041,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2024-11,12.8032,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2024-12,12.8902,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2025-01,13.169000000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2025-02,13.113699999999998,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2025-01,13.169,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2025-02,13.1137,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2025-03,13.1495,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2025-04,13.074899999999998,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2025-05,12.849399999999997,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2025-06,12.944300000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2025-04,13.0749,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2025-05,12.8494,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2025-06,12.9443,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2025-07,11.9576,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2025-08,12.0554,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2025-09,12.454299999999998,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2025-10,12.540099999999999,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2025-11,11.991100000000001,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2025-09,12.4543,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2025-10,12.5401,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2025-11,11.9911,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2025-12,11.9554,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2026-01,12.238200000000003,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2026-02,12.098100000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2026-03,12.199199999999998,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2026-01,12.2382,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2026-02,12.0981,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2026-03,12.1992,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2026-04,12.0155,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2026-05,12.024099999999999,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045010,2026-06,12.031000000000002,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2026-05,12.0241,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
+045010,2026-06,12.031,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2026-07,11.9152,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2026-08,12.1641,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
 045010,2026-09,12.0098,observed,Alinma Roads Mosques Endowment Fund,Growth,Alinma Capital,True,True
-045011,2020-10,10.000000000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2020-11,10.057236200865526,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2020-12,10.114799999999999,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2021-01,10.182084755322872,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2021-02,10.249817096193537,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2021-03,10.317999999999998,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2021-04,10.385754112425346,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2021-05,10.453953138569496,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2021-06,10.522600000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2021-07,10.599568960892846,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2021-08,10.677100921513986,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2021-09,10.755200000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2021-10,10.738206497287372,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2021-11,10.721239844762042,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2021-12,10.704300000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2022-01,11.023442476377335,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2022-02,11.352100000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2020-10,10.0,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2020-11,10.0572362009,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2020-12,10.1148,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2021-01,10.1820847553,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2021-02,10.2498170962,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2021-03,10.318,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2021-04,10.3857541124,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2021-05,10.4539531386,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2021-06,10.5226,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2021-07,10.5995689609,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2021-08,10.6771009215,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2021-09,10.7552,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2021-10,10.7382064973,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2021-11,10.7212398448,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2021-12,10.7043,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2022-01,11.0234424764,imputed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2022-02,11.3521,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
 045011,2022-03,12.0568,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2022-04,12.175500000000001,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2022-05,11.730900000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2022-04,12.1755,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2022-05,11.7309,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
 045011,2022-06,11.159,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
 045011,2022-07,11.3327,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2022-08,11.758999999999999,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2022-08,11.759,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
 045011,2022-09,11.4618,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2022-10,11.438200000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2022-10,11.4382,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
 045011,2022-11,11.188,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2022-12,11.139099999999997,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2022-12,11.1391,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
 045011,2023-01,11.3318,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2023-02,11.201599999999997,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2023-03,11.338599999999998,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2023-04,11.648000000000001,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2023-02,11.2016,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2023-03,11.3386,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2023-04,11.648,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
 045011,2023-05,11.5317,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2023-06,11.869500000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2023-07,11.699199999999998,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2023-08,11.526700000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2023-09,11.379200000000003,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2023-10,11.416900000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2023-11,11.707300000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2023-12,12.091699999999998,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2023-06,11.8695,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2023-07,11.6992,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2023-08,11.5267,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2023-09,11.3792,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2023-10,11.4169,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2023-11,11.7073,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2023-12,12.0917,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
 045011,2024-01,12.0501,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2024-02,12.450199999999999,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2024-02,12.4502,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
 045011,2024-03,12.3132,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2024-04,12.166200000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2024-05,11.829199999999998,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2024-06,12.131299999999998,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2024-07,11.850700000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2024-08,12.014123183154066,stale_fixed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2024-04,12.1662,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2024-05,11.8292,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2024-06,12.1313,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2024-07,11.8507,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2024-08,12.0141231832,stale_fixed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
 045011,2024-09,12.1798,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2024-10,12.157399999999999,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2024-11,12.147300000000001,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2024-12,12.231799999999998,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2025-01,12.509500000000001,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2025-02,12.454999999999998,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2025-03,12.492499999999998,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2024-10,12.1574,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2024-11,12.1473,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2024-12,12.2318,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2025-01,12.5095,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2025-02,12.455,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2025-03,12.4925,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
 045011,2025-04,12.4,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2025-05,12.158300000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2025-06,12.262300000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2025-07,11.786100000000001,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2025-08,11.692800000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2025-09,12.076100000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2025-05,12.1583,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2025-06,12.2623,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2025-07,11.7861,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2025-08,11.6928,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2025-09,12.0761,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
 045011,2025-10,12.1523,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2025-11,11.592900000000002,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2025-12,11.555099999999998,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2026-01,11.803700000000001,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2025-11,11.5929,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2025-12,11.5551,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2026-01,11.8037,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
 045011,2026-02,11.6295,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
 045011,2026-03,11.7533,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2026-04,11.797700000000003,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2026-04,11.7977,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
 045011,2026-05,11.7865,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2026-06,11.796700000000001,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2026-07,11.640299999999998,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045011,2026-08,11.939999999999998,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2026-06,11.7967,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2026-07,11.6403,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
+045011,2026-08,11.94,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
 045011,2026-09,11.7533,observed,Bir Ariyadh Waqf Fund,Growth,Alinma Capital,True,True
-045014,2024-06,10.006300000000001,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2024-07,10.049599999999998,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2024-08,10.160000000000002,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2024-09,10.161000000000001,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2024-06,10.0063,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2024-07,10.0496,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2024-08,10.16,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2024-09,10.161,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
 045014,2024-10,10.1683,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2024-11,10.129399999999999,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2024-12,10.239499999999998,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2025-01,10.495699999999998,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2025-02,10.466499999999998,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2024-11,10.1294,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2024-12,10.2395,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2025-01,10.4957,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2025-02,10.4665,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
 045014,2025-03,10.4903,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
 045014,2025-04,10.438,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2025-05,10.258100000000002,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2025-05,10.2581,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
 045014,2025-06,10.3384,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2025-07,10.228300000000003,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2025-07,10.2283,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
 045014,2025-08,10.1864,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2025-09,10.493299999999998,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2025-10,10.469600000000002,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2025-11,10.000299999999998,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2025-12,9.982300000000002,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2026-01,10.237200000000001,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2026-02,10.081200000000003,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2026-03,10.164999999999997,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2025-09,10.4933,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2025-10,10.4696,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2025-11,10.0003,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2025-12,9.9823,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2026-01,10.2372,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2026-02,10.0812,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2026-03,10.165,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
 045014,2026-04,9.9549,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2026-05,9.935200000000002,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2026-05,9.9352,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
 045014,2026-06,9.9215,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2026-07,9.828199999999999,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2026-08,10.076200000000002,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
-045014,2026-09,9.858899999999998,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2026-07,9.8282,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2026-08,10.0762,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
+045014,2026-09,9.8589,observed,King Khalid University Endowment Fund,Income and Growth,Alinma Capital,True,False
 045015,2025-03,1.0034,observed,Alinma Endowment Investment Fund,Growth,Alinma Capital,True,True
 045015,2025-04,0.987,observed,Alinma Endowment Investment Fund,Growth,Alinma Capital,True,True
 045015,2025-05,0.9795,observed,Alinma Endowment Investment Fund,Growth,Alinma Capital,True,True

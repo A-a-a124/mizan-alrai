@@ -28,9 +28,24 @@ class Results:
 MIN_INDEX_MONTHS = config.MIN_TRAIN_MONTHS + config.HORIZON_MONTHS
 
 
+SAVE_DECIMALS = 10      # math libraries differ in the 16th digit between OSes; saved files must not
+
+
+def rounded(obj):
+    """Round every float in a nested dict/list so saved numbers are identical on every platform."""
+    if isinstance(obj, dict):
+        return {k: rounded(v) for k, v in obj.items()}
+    if isinstance(obj, (list, tuple)):
+        return [rounded(v) for v in obj]
+    if isinstance(obj, (float, np.floating)):
+        return round(float(obj), SAVE_DECIMALS)
+    return obj
+
+
 def _write_csv(df: pd.DataFrame, path) -> None:
-    """Same bytes on every OS (LF line ends), so reruns are comparable across machines."""
-    df.to_csv(path, index=False, encoding="utf-8-sig", lineterminator="\n")
+    """Same bytes on every OS: LF line ends and floats rounded to SAVE_DECIMALS."""
+    floats = df.select_dtypes("float").columns
+    df.assign(**{c: df[c].round(SAVE_DECIMALS) for c in floats}).to_csv(path, index=False, encoding="utf-8-sig", lineterminator="\n")
 
 
 def _write_text(path, text: str) -> None:
@@ -219,7 +234,7 @@ def write_outputs(res: Results) -> None:
     for name, df in res.tables.items():
         _write_csv(df, config.TABLES / f"{name}.csv")
     _write_text(config.TABLES / "key_numbers.json",
-                json.dumps(res.key, ensure_ascii=False, indent=2, default=float))
+                json.dumps(rounded(res.key), ensure_ascii=False, indent=2, default=float))
 
 
 def run(figures: bool = True, gasa=None, prices=None, universe=None, out_dir=None) -> Results:
