@@ -463,7 +463,7 @@ async function fixRtl(file) {
 }
 
 (async () => {
-  const out = path.join(__dirname, "mizan-alrai.pptx");
+  const out = path.join(__dirname, "mizan-alrai-editable.pptx");
   await pres.writeFile({ fileName: out });
   if (process.env.PPTX_SKILL) {
     const { applyTheme } = require(path.join(process.env.PPTX_SKILL, "scripts/apply_theme.js"));
