@@ -4,8 +4,8 @@
 
 Compares every regenerated table, clean data file and the dashboard data against the versions
 stored in git (HEAD). Files must match byte for byte (after normalising line ends). The only
-accepted deviation is numeric noise below TOLERANCE: the ETS and ARIMA candidates are fitted by an
-iterative optimiser whose last digits depend on the platform's linear-algebra library. Any larger
+accepted deviation is numeric noise below TOLERANCE (relative for large amounts): the damped ETS
+candidate is fitted by an iterative optimiser whose last digits depend on the platform's linear-algebra library. Any larger
 difference, or any non-numeric difference, fails the check and is listed.
 """
 

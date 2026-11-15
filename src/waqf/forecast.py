@@ -7,7 +7,6 @@ from typing import Callable
 
 import numpy as np
 import pandas as pd
-from statsmodels.tsa.arima.model import ARIMA
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
 
 from . import config
@@ -39,11 +38,17 @@ def damped_ets(train: np.ndarray, h: int) -> float:
 
 
 def arima_ar1(train: np.ndarray, h: int) -> float:
-    with warnings.catch_warnings():
-        warnings.simplefilter("ignore")
-        # tight tolerance: the default stops early enough that Windows and Linux land 1e-6 apart
-        fit = ARIMA(train, order=(1, 0, 0), trend="c").fit(method_kwargs={"maxiter": 2000, "gtol": 1e-12, "ftol": 1e-14})
-    return float(np.sum(fit.forecast(h)))
+    """AR(1) with a constant, fitted by least squares (closed form, so identical on every OS).
+
+    An iterative ARIMA optimiser landed 3e-6 apart on Windows and Linux CI runners.
+    """
+    y, x = train[1:], train[:-1]
+    slope, const = np.linalg.lstsq(np.column_stack([x, np.ones_like(x)]), y, rcond=None)[0]
+    total, last = 0.0, float(train[-1])
+    for _ in range(h):
+        last = const + slope * last
+        total += last
+    return float(total)
 
 
 MODELS: dict[str, Model] = {
@@ -59,7 +64,7 @@ MODEL_LABELS_AR = {
     "historical_mean": "المتوسط التاريخي",
     "trailing_36m_mean": "متوسط آخر 36 شهراً",
     "damped_ets": "تمهيد أسي بترند مخمَّد",
-    "arima_ar1": "ARIMA(1,0,0)",
+    "arima_ar1": "AR(1)",
 }
 
 
