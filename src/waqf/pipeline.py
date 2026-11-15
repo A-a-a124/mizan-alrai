@@ -242,8 +242,8 @@ def step_solutions(c: dict, sec: dict, ix: dict, sp: dict, al: dict, res: Result
         "sim_horizon_years": solutions.SIM_HORIZON_YEARS, "history_months": int(len(series)),
         "smoothing": smooth,
         # sector-wide illustration: real value kept after 30 years under the balanced rule vs the recent level
-        "sector_real_value_kept_30y_sar": float(aum * (m.loc[("balanced", 30), "median_real_value"]
-                                                       - m.loc[("recent_level", 30), "median_real_value"]) / 100),
+        "sector_real_value_kept_30y_sar": round(float(aum * (m.loc[("balanced", 30), "median_real_value"]
+                                                             - m.loc[("recent_level", 30), "median_real_value"]) / 100)),
     }
     res.key["compass"] = {
         "social_from_conditions": float(social["from_waqif_conditions"].sum()),

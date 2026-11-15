@@ -29,7 +29,8 @@ def committed(path: str) -> str:
 
 def close(a, b) -> bool:
     try:
-        return abs(float(a) - float(b)) <= TOLERANCE
+        a, b = float(a), float(b)
+        return abs(a - b) <= TOLERANCE * max(1.0, abs(a), abs(b))  # relative for large riyal amounts
     except (TypeError, ValueError):
         return False
 
