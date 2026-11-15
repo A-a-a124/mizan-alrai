@@ -41,7 +41,8 @@ def damped_ets(train: np.ndarray, h: int) -> float:
 def arima_ar1(train: np.ndarray, h: int) -> float:
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        fit = ARIMA(train, order=(1, 0, 0), trend="c").fit()
+        # tight tolerance: the default stops early enough that Windows and Linux land 1e-6 apart
+        fit = ARIMA(train, order=(1, 0, 0), trend="c").fit(method_kwargs={"maxiter": 2000, "gtol": 1e-12, "ftol": 1e-14})
     return float(np.sum(fit.forecast(h)))
 
 
