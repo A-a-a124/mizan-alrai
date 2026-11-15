@@ -69,6 +69,9 @@ p { margin:0 0 7px; }
 figure { margin:6px 0 10px; }
 figure img { width:100%; border:1px solid var(--rule); border-radius:6px; display:block; }
 figure.md img { width:80%; margin:0 auto; }
+figure.sm img { width:60%; margin:0 auto; }
+table.compact { font-size:8.1pt; margin:4px 0 6px; }
+table.compact td, table.compact th { padding:2px 6px; }
 figcaption { font-size:8.5pt; color:var(--ink2); margin-top:3px; }
 table { width:100%; border-collapse:collapse; font-size:9pt; margin:6px 0 10px; }
 th { text-align:right; color:var(--ink2); font-weight:600; border-bottom:1.5px solid var(--ink3); padding:4px 6px; }
@@ -97,98 +100,100 @@ HTML = Template("""<!doctype html><html lang="ar" dir="rtl"><head><meta charset=
 <section class="page">
   <div class="eyebrow">$name · <span class="ltr">$name_en</span> — الملخص التنفيذي · مسابقة تحليل البيانات للقطاع غير الربحي</div>
   <h1>كم يصرف الوقف دون أن يأكل أصله؟</h1>
-  <div class="sub"><b>$name</b>: $tagline العائلي والأهلي — تنبؤ بالعوائد، وسقف صرف مستدام، وتوزيع شرعي للمصارف</div>
+  <div class="sub"><b>$name</b>: $tagline العائلي والأهلي — من التحليل إلى ثلاثة حلول قابلة للتطبيق</div>
   <div class="team">إعداد: $team</div>
 
-  <div class="lede"><b>الخلاصة:</b> الأصول الوقفية المدرجة في السوق السعودية ولّدت عائداً كلياً مقدَّراً
-  <b>$tot_ret سنوياً</b>، أي نحو <b>$real_ret</b> بعد التضخم. لذلك فإن معدل الصرف الذي يحفظ القيمة الحقيقية للوقف عشر سنوات
-  بثقة $conf هو <b>$rate سنوياً</b> فقط، بينما توزّع الصناديق الوقفية فعلياً <b>$pay_lo–$pay_hi</b> (الوسيط $pay_med، أي نحو $obs وهو المعدل المستخدم في المحاكاة).
-  الاستمرار بهذا المعدل يعني تآكل القيمة الحقيقية للوقف بنحو <b>$erosion</b> خلال عقد.</div>
+  <div class="lede"><b>الخلاصة:</b> الأصول الوقفية المدرجة ولّدت عائداً كلياً مقدَّراً <b>$tot_ret سنوياً</b>، ووُزِّع منه على المستفيدين
+  نحو <b>$avg_pay سنوياً</b> في المتوسط، فبقيت قيمة الوحدة تنمو $price_ret سنوياً: <b>القطاع حافظ على أصله حتى الآن</b>.
+  لكن $ev_recent من $ev_total توزيعاً مرصوداً وقعت في آخر ثلاث سنوات، وحجم التوزيع في سنته بلغ $pay_lo–$pay_hi من قيمة الوحدة.
+  لو صار هذا المستوى سنوياً لتآكل الأصل. لذلك نقدّم ثلاثة حلول تُبقي الوقف مستداماً.</div>
 
   <div class="kpis">
-    <div class="kpi"><div class="v">$rate</div><div class="l">سقف الصرف السنوي المستدام (ثقة $conf، تضخم $infl)</div></div>
-    <div class="kpi"><div class="v warn">$p_obs</div><div class="l">احتمال حفظ الأصل إذا صرفنا بمعدل الصناديق الحالي (≈$obs)</div></div>
-    <div class="kpi"><div class="v">$fc</div><div class="l">العائد المتوقع للأشهر الـ12 القادمة (نطاق 80%: <span class="ltr">$fc_lo</span> إلى <span class="ltr">$fc_hi</span>)</div></div>
+    <div class="kpi"><div class="v"><span class="ltr">$rate_n–$rate_bal</span></div><div class="l">نطاق الصرف السنوي الذي يحفظ القيمة الحقيقية للأصل</div></div>
+    <div class="kpi"><div class="v">$aum_a</div><div class="l">من الأصول الوقفية المصنّفة تحمل الدرجة A في بطاقة الاستدامة</div></div>
+    <div class="kpi"><div class="v">$p_cut_sm</div><div class="l">احتمال قطع صرف المستفيد أكثر من 5% في سنة مع قاعدة التمهيد ($p_cut_un بدونها)</div></div>
     <div class="kpi"><div class="v warn">$orph</div><div class="l">حصة الأيتام من $n_masarif مصرفاً وقفياً منشوراً، مقابل $mosq للمساجد</div></div>
   </div>
 
   <h2>سؤال القرار</h2>
   <p>يواجه ناظر الوقف كل عام قراراً واحداً متكرراً: <b>كم أصرف، وعلى أي مصرف؟</b> الصرف الزائد يُرضي المستفيدين اليوم ويُضعف
-  الوقف غداً، والصرف الناقص يحبس الخير. حوّلنا هذا الحدس إلى رقم قابل للدفاع: أعلى معدل صرف يحفظ القيمة الحقيقية
-  للأصل بدرجة ثقة يختارها الناظر، ثم ترتيب الصرف شرعياً: عمارة الوقف، ثم احتياطي الاستقرار، ثم المصارف مع احترام شروط الواقفين.</p>
+  الوقف غداً، والصرف الناقص يحبس الخير. حوّلنا هذا القرار إلى أرقام من بيانات حقيقية، ثم إلى أدوات يستطيع الناظر ومدير الصندوق والجهة المنظِّمة اعتمادها.</p>
 
   <h2>البيانات: حقيقية ومفتوحة، وموثّقة حتى آخر صف</h2>
   <div class="two">
     <div><h3>الهيئة العامة للأوقاف</h3>
       <p class="small">18 مجموعة بيانات من منصة البيانات المفتوحة الوطنية، منها $n_masarif مصرفاً وقفياً في $regions منطقة، والشهادات الوقفية
-      ($c19 في 2019 ← $c25 في 2025)، والمستفيدون المباشرون ($b23 ← $b25).</p></div>
+      (من $c19 في 2019 إلى $c25 في 2025)، والمستفيدون المباشرون (من $b23 إلى $b25).</p></div>
     <div><h3>السوق المالية السعودية (تداول)</h3>
-      <p class="small">أسعار وحدات $funds صندوقاً استثمارياً وقفياً مرخصاً (أصول ≈ $aum مليار ريال) من $start إلى $end،
-      منها $in_index صندوقاً تراكمياً في المؤشر. لماذا تُعد بيانات قطاع غير ربحي؟ الصناديق الـ26 كلها صناديق استثمارية <b>وقفية</b>: وحداتها موقوفة، وعوائدها تُصرف على جهات غير ربحية (جمعيات الأيتام والقرآن والصحة، وأوقاف الجامعات، والسقيا، وغيرها)، فهي بيانات أصول وقفية تخص القطاع غير الربحي، وليست بيانات سوق تجارية.</p></div>
+      <p class="small">أسعار وحدات $funds صندوقاً استثمارياً وقفياً مرخصاً (أصول ≈ $aum مليار ريال) من $start إلى $end.
+      هذه الصناديق أوقاف: وحداتها موقوفة وعوائدها تُصرف على جهات غير ربحية، فهي بيانات قطاع غير ربحي.</p></div>
   </div>
-  <p class="small">كل لقطة خام محمية بفحص سلامة (عدد الصفوف ومجموع الأسعار)، و<b>$n_rules قاعدة تنظيف</b> موثقة آلياً، أبرزها
-  توحيد التهجئات العربية للمصارف، وإزالة أسعار ما قبل الاستثمار، واستيفاء الفجوات الربعية مع تعليمها،
-  و<b>كشف $n_payouts توزيعاً مخفياً</b> يظهر كهبوط في سعر الوحدة.</p>
-  <div class="meta">$name · التشغيل الكامل: <span class="ltr">python scripts/run_analysis.py</span> — يعيد بناء كل رقم وشكل في هذا التقرير من البيانات الخام · $n_tests اختباراً آلياً ناجحاً</div>
+  <p class="small">كل لقطة خام محمية بفحص سلامة، و<b>$n_rules قاعدة تنظيف</b> موثقة آلياً، منها توحيد التهجئات العربية للمصارف، وإزالة أسعار ما قبل الاستثمار،
+  واستيفاء الفجوات الربعية مع تعليمها، و<b>كشف $n_payouts توزيعاً مخفياً</b> يظهر كهبوط في سعر الوحدة بينما صناديق المديرين الآخرين صاعدة.</p>
+  <figure class="sm"><img src="../outputs/figures/fig04_waqf_index.png"><figcaption>شكل 1 — المسافة بين الخطين هي ما وُزِّع على المستفيدين (أقصى تراجع <span class="ltr">$mdd</span>).</figcaption></figure>
+  <div class="meta">$name · التشغيل الكامل: <span class="ltr">python scripts/run_all.py</span> — يعيد بناء كل رقم وشكل من البيانات الخام · $n_tests اختباراً آلياً ناجحاً · فحص تلقائي على Windows وLinux</div>
 </section>
 
 <section class="page">
-  <h2>قصة الأثر: الفجوة بين ما يولّده الوقف وما يُصرف منه</h2>
-  <p>بنينا <b>مؤشر صناديق الوقف السعودية</b> (متوسط متساوي الأوزان للصناديق التراكمية). عائد السعر وحده $price_ret سنوياً، لكنه
-  يُخفي التوزيعات: كل يوليو تهبط صناديق الإنماء الوقفية معاً بنسبة 4–8% بينما صناديق المديرين الآخرين صاعدة. قسنا هذه
-  الفجوات فظهر العائد الكلي المقدَّر <b>$tot_ret</b>، والمسافة بين الخطين هي ما ذهب إلى المستفيدين.</p>
-  <figure><img src="../outputs/figures/fig04_waqf_index.png"><figcaption>شكل 1 — العائد الكلي المقدَّر مقابل عائد السعر (أقصى تراجع <span class="ltr">$mdd</span>، أسوأ 12 شهراً <span class="ltr">$worst</span>).</figcaption></figure>
-  <div class="two">
-    <figure><img src="../outputs/figures/fig05_payouts_vs_sustainable.png"><figcaption>شكل 2 — التوزيع المقدَّر لكل صندوق مقابل السقف المستدام $rate.</figcaption></figure>
-    <figure><img src="../outputs/figures/fig09_real_value_paths.png"><figcaption>شكل 3 — القيمة الحقيقية بعد 10 سنوات: $real_sus عند الصرف المستدام مقابل $real_obs عند $obs.</figcaption></figure>
-  </div>
-  <div class="callout"><b>ماذا يعني ذلك لناظر الوقف؟</b> وقف بقيمة 10 ملايين ريال يصرف $obs سنوياً سيبدو بخير في السنوات الأولى،
-  لكن قوته الشرائية بعد عشر سنوات تهبط في المسار الوسيط إلى نحو $real_obs_sar مليون ريال بأسعار اليوم. أما الصرف عند $rate فيترك
-  الوقف أقوى مما بدأ ($real_sus_sar مليون)، فيرث الجيل القادم وقفاً أكبر لا أصغر.</div>
-</section>
-
-<section class="page">
-  <h2>القرار: حدود الصرف المستدام</h2>
-  <p>10,000 مستقبل محتمل بإعادة معاينة كتلية من تاريخ المؤشر الفعلي، مع قاعدة صرف ممهَّدة (نسبة من متوسط قيمة الوقف
-  لآخر 12 ربعاً، كما تفعل أوقاف الجامعات الكبرى) حتى لا يتذبذب صرف المستفيدين مع السوق.</p>
-  <figure class="md"><img src="../outputs/figures/fig08_spending_frontier.png"><figcaption>شكل 4 — احتمال حفظ القيمة الحقيقية لكل معدل صرف في ثلاثة سيناريوهات.</figcaption></figure>
-  <table><thead><tr><th>شهية المخاطرة (الثقة المطلوبة)</th><th>السيناريو</th><th>سقف الصرف السنوي</th><th>صرف وقف بـ10 ملايين</th></tr></thead><tbody>
-  $rate_rows
+  <h2>الحل الأول: بطاقة استدامة الوقف</h2>
+  <p>تصنيف من A إلى E لكل صندوق وقفي، يجيب عن سؤال واحد يفهمه أي واقف: <b>هل حافظت قيمة الوحدة الموقوفة على قوتها الشرائية؟</b>
+  الدرجة مبنية على سعر الوحدة المرصود مباشرة (بعد التوزيعات)، فلا تعتمد على أي تقدير. صنّفنا $lab_n صندوقاً، منها $lab_prov بسجل أقل من $lab_months شهراً وُسمت «مبدئي».</p>
+  <table class="compact"><thead><tr><th>الدرجة</th><th>المعنى</th><th>عدد الصناديق</th><th>منها مبدئي</th></tr></thead><tbody>
+  $grade_rows
   </tbody></table>
-
-  <h2>التنبؤ: النموذج البسيط فاز بالأرقام</h2>
-  <div class="two">
-    <figure><img src="../outputs/figures/fig06_backtest.png"><figcaption>شكل 5 — اختبار رجعي على $origins نقطة انطلاق خارج العينة.</figcaption></figure>
-    <figure><img src="../outputs/figures/fig07_forecast.png"><figcaption>شكل 6 — توقع 12 شهراً: $fc (احتمال عائد سالب $p_loss).</figcaption></figure>
-  </div>
-  <p class="small">قارنّا خمسة نماذج قابلة للتفسير. فاز «$best» بخطأ أقل بـ<b>$skill</b> من المرجع الساذج، وتفوق على ARIMA والتمهيد الأسي.
-  اخترنا النموذج الذي فاز في الاختبار، لا الأكثر تعقيداً، لأن السلاسل قصيرة والتعقيد هنا يعني إفراطاً في التوفيق.</p>
+  <table class="compact"><thead><tr><th>الصندوق</th><th>المدير</th><th>أشهر</th><th>نمو الوحدة سنوياً</th><th>أسوأ هبوط</th><th>الدرجة</th></tr></thead><tbody>
+  $fund_rows
+  </tbody></table>
+  <p class="small"><b>من ينفّذها؟</b> الهيئة العامة للأوقاف أو هيئة السوق المالية تنشرها سنوياً من بيانات منشورة أصلاً، ومدير الصندوق يضعها في نشرة الصندوق.
+  <b>ماذا تضيف؟</b> معياراً واحداً شفافاً يقارن به الواقف بين الصناديق، وإنذاراً مبكراً لأي صندوق يبدأ أصله بالتآكل.
+  <b>حدودها:</b> الصناديق الجديدة انطلقت في سوق هابط فدرجتها مبدئية، وتغيير افتراض التضخم نصف نقطة يغيّر درجة $lab_sens صندوق فقط.</p>
 </section>
 
 <section class="page">
-  <h2>التوزيع على المصارف: من شرط الواقف إلى أثر المستفيد</h2>
+  <h2>الحل الثاني: قاعدة ميزان للصرف</h2>
+  <p>قاعدة من جزأين. <b>أولاً: الصرف من متوسط قيمة الوقف لآخر 12 ربعاً</b> لا من قيمته اليوم، فلا يتذبذب دخل المستفيد مع السوق:
+  عند المعدل نفسه ينخفض احتمال قطع الصرف أكثر من 5% في سنة واحدة من <b>$p_cut_un</b> إلى <b>$p_cut_sm</b>.
+  <b>ثانياً: اختيار المعدل من نطاق معلن</b> حسب شهية المخاطرة، مع رؤية المقايضة كاملة:</p>
+  <table><thead><tr><th>الخيار</th><th>معدل الصرف</th><th>قيمة الأصل الحقيقية بعد 30 سنة</th><th>احتمال حفظ الأصل</th><th>مجموع الصرف الحقيقي في 30 سنة</th><th>الصرف السنوي في السنة 30</th></tr></thead><tbody>
+  $menu_rows
+  </tbody></table>
+  <p class="small">الأرقام لأصل قيمته 100 اليوم، بأسعار اليوم، من $paths مسار محاكاة بإعادة معاينة كتلية لتاريخ المؤشر الفعلي وتضخم $infl.</p>
+  <div class="callout"><b>المقايضة بصراحة:</b> الصرف عند $rate_recent يعطي المستفيدين أكثر في العقود الأولى ($cum_recent مقابل $cum_bal خلال 30 سنة)،
+  لكنه يُنقص الأصل إلى $val_recent ويهبط بالصرف السنوي عاماً بعد عام. الصرف عند $rate_bal يُبقي الأصل ويزيد الصرف السنوي،
+  ويتجاوز صرفه السنوي صرف الخيار الأعلى $breakeven_txt. القرار إذن عدالة بين الأجيال، وقاعدة ميزان تجعله قراراً معلناً لا نتيجة غير مقصودة.</div>
   <div class="two">
-    <figure><img src="../outputs/figures/fig02_masarif_national.png"><figcaption>شكل 7 — المصارف الوقفية وطنياً.</figcaption></figure>
-    <figure><img src="../outputs/figures/fig10_allocation.png"><figcaption>شكل 8 — خطة صرف تطبيقية: $budget ريال لوقف بـ10 ملايين.</figcaption></figure>
+    <figure><img src="../outputs/figures/fig08_spending_frontier.png"><figcaption>شكل 2 — احتمال حفظ القيمة الحقيقية لكل معدل صرف.</figcaption></figure>
+    <figure><img src="../outputs/figures/fig07_forecast.png"><figcaption>شكل 3 — توقع 12 شهراً: $fc (احتمال عائد سالب $p_loss)، بنموذج اجتاز اختباراً رجعياً على $origins نقطة.</figcaption></figure>
   </div>
-  <p>الترتيب: <b>عمارة الوقف</b> ($upkeep ريال) ← <b>احتياطي الاستقرار</b> ($reserve ريال) ← <b>المصارف</b>. حصص شروط الواقفين تبقى ثابتة،
-  والحصة المرنة «أوجه البر» ($flex من المصارف وطنياً) توجَّه بأوزان أولوية معلنة، فترتفع حصة الاحتياجات الأساسية المتكررة
-  (الفقراء، الأيتام، الأرامل، الإطعام، السكن) من <b>$soc_before</b> إلى <b>$soc_after</b> دون مخالفة أي شرط.</p>
+  <p class="small"><b>من ينفّذها؟</b> ناظر الوقف ومجلس إدارة الصندوق، بتعديل سياسة التوزيع فقط. <b>ماذا تضيف؟</b> دخلاً أثبت للمستفيد وأصلاً لا يتآكل.
+  <b>حدودها:</b> التاريخ $hist شهراً فقط، فالمحاكاة لثلاثين سنة تقدير لا تنبؤ، وفي سيناريو الضغط ينخفض المعدل المتحفظ إلى $rate_stress.</p>
+</section>
 
-  <h2>التوصيات</h2>
-  <ol class="rec">
-    <li><b>اعتماد سقف صرف $rate</b> من متوسط قيمة الوقف لـ12 ربعاً كخط أساس، يرتفع إلى $rate50 لمن يقبل ثقة 50% وينخفض إلى $rate_stress في سيناريو الضغط، مع مراجعة سنوية بهذه المنصة.</li>
-    <li><b>ربط توزيعات الصناديق الوقفية بالعائد الممهَّد</b> لا بعائد السنة: التوزيع الحالي (≈$obs) يحفظ الأصل الحقيقي باحتمال $p_obs فقط.</li>
-    <li><b>تقديم عمارة الوقف وبناء احتياطي يغطي صرف سنة</b> قبل التوزيع، لامتصاص السنوات السالبة التي يقع احتمالها عند $p_loss سنوياً.</li>
-    <li><b>توجيه «أوجه البر» نحو المصارف المهمَلة:</b> الأيتام $orph والأرامل $wid من المصارف المنشورة، بينما تذهب $top_region_share من مصارف $top_region إلى $top_masraf وحدها.</li>
-    <li><b>إفصاح أفضل يعني قرارات أفضل:</b> نوصي الهيئة وهيئة السوق المالية بنشر صافي أصول موثوق ومبالغ التوزيع لكل صندوق، والمستفيدين حسب المنطقة والمصرف.</li>
-  </ol>
+<section class="page">
+  <h2>الحل الثالث: بوصلة المصارف</h2>
+  <p>شروط الواقفين تبقى كما هي. الحصة المرنة «أوجه البر» ($flex من المصارف وطنياً) هي التي يملك الناظر توجيهها، فتُوزَّع بأوزان أولوية معلنة نحو الاحتياجات الأقل تغطية.
+  مثال وقف بقيمة 10 ملايين ريال وميزانية $budget ريال بعد عمارة الوقف والاحتياطي:</p>
+  <div class="two">
+    <table><thead><tr><th>المصرف</th><th>من شروط الواقفين</th><th>بعد التوجيه</th></tr></thead><tbody>
+    $compass_rows
+    </tbody></table>
+    <figure><img src="../outputs/figures/fig02_masarif_national.png"><figcaption>شكل 4 — المصارف الوقفية وطنياً: المساجد $mosq والأيتام $orph.</figcaption></figure>
+  </div>
+  <p class="small"><b>من ينفّذها؟</b> ناظر الوقف عند إعداد خطة الصرف السنوية. <b>ماذا تضيف؟</b> ترتفع حصة الاحتياجات الأساسية من <b>$soc_before</b> إلى <b>$soc_after</b> دون مخالفة أي شرط،
+  وأكبر أثر في $compass_region. <b>حدودها:</b> الأوزان افتراضات معلنة قابلة للتعديل، لأن بيانات الاحتياج حسب المنطقة غير منشورة.</p>
+
+  <h2>خلاصة الحلول</h2>
+  <table><thead><tr><th>الحل</th><th>من ينفّذه</th><th>بماذا</th><th>ماذا يضيف</th></tr></thead><tbody>
+    <tr><td><b>بطاقة استدامة الوقف</b></td><td>الهيئة العامة للأوقاف، هيئة السوق المالية</td><td>أسعار الوحدات المنشورة</td><td>معيار مقارنة شفاف لـ$lab_n صندوقاً وإنذار مبكر بالتآكل</td></tr>
+    <tr><td><b>قاعدة ميزان للصرف</b></td><td>النظّار ومجالس الصناديق</td><td>تعديل سياسة التوزيع</td><td>احتمال قطع الصرف من $p_cut_un إلى $p_cut_sm، وأصل محفوظ</td></tr>
+    <tr><td><b>بوصلة المصارف</b></td><td>النظّار</td><td>خطة الصرف السنوية</td><td>حصة الاحتياجات الأساسية من $soc_before إلى $soc_after</td></tr>
+  </tbody></table>
 
   <h2>المنهجية والحدود والاستخدام المسؤول للذكاء الاصطناعي</h2>
   <ul class="tight small">
-    <li><b>المنهجية:</b> Python (pandas/statsmodels)؛ اختبار رجعي متدحرج بلا تسرب للمستقبل (مختبر آلياً)؛ Bootstrap كتلي ثابت؛ قاعدة صرف ممهَّدة؛ توزيع حتمي بقيود مختبرة (المجموع = الميزانية، لا مصرف تحت الحد الأدنى، شروط الواقف لا تُمس).</li>
-    <li><b>الحدود:</b> الصناديق المدرجة وكيل لأداء الاستثمار الوقفي لا القوائم المالية لوقف بعينه؛ التاريخ قصير وفيه تحيز بقاء (عولج بسيناريو ضغط)؛ مبالغ التوزيع مقدَّرة لعدم نشرها؛ بيانات المستفيدين وطنية فقط.</li>
-    <li><b>الذكاء الاصطناعي:</b> استُخدم مساعداً في البرمجة والتصميم. كل رقم مُشتق برمجياً من البيانات وليس مكتوباً يدوياً، وكل خطوة لها اختبار أو تحقق موثق في <span class="ltr">ai_usage_log.md</span>.</li>
+    <li><b>المنهجية:</b> Python (pandas/statsmodels)؛ اختبار رجعي متدحرج بلا تسرب للمستقبل؛ Bootstrap كتلي ثابت؛ قواعد حتمية مختبرة آلياً، والمخرجات متطابقة عند إعادة التشغيل.</li>
+    <li><b>الحدود:</b> الصناديق المدرجة وكيل لأداء الاستثمار الوقفي لا القوائم المالية لوقف بعينه؛ مبالغ التوزيع مقدَّرة لعدم نشرها، والكشف أضعف في السنوات التي كان الإفصاح فيها ربعياً؛ بيانات المستفيدين وطنية فقط.</li>
+    <li><b>الذكاء الاصطناعي:</b> استُخدم مساعداً في البرمجة والتصميم. كل رقم مُشتق برمجياً من البيانات، وكل خطوة لها تحقق موثق في <span class="ltr">ai_usage_log.md</span>، ومنها تصحيح قراءة سابقة خاطئة لمعدل التوزيع.</li>
   </ul>
 </section>
 </body></html>""")
@@ -211,9 +216,43 @@ def build_html() -> str:
             rows.append(f"<tr{bold}><td>{p(conf, 0)}</td><td>{label}</td><td class='n'>{p(r)}</td>"
                         f"<td class='n'>{sar(10_000_000 * r)} ريال</td></tr>")
     n_tests = count_tests()
+    lab, rule, comp, trend = k["label"], k["rule"], k["compass"], k["payout_trend"]
+    label = pd.read_csv(TABLES / "sustainability_label.csv", dtype={"symbol": str})
+    chip = {"A": "#1F4E79", "B": "#4F7AA8", "C": "#8A8983", "D": "#B5651D", "E": "#9B2C2C"}
+    meaning = label.drop_duplicates("grade").set_index("grade")["grade_meaning_ar"].to_dict()
+    grade_rows = "\n  ".join(
+        f"<tr><td><b style='color:{chip[g]}'>{g}</b></td><td>{meaning.get(g, '')}</td>"
+        f"<td class='n'>{lab[f'count_{g}']}</td><td class='n'>{lab[f'count_{g}'] - lab[f'established_{g}']}</td></tr>"
+        for g in "ABCDE" if lab[f"count_{g}"])
+    fund_rows = "\n  ".join(
+        f"<tr><td class='ltr' style='text-align:right'>{short(r.fund_name)}{' <span style=\"color:#8a8983\">(مبدئي)</span>' if r.provisional else ''}</td>"
+        f"<td class='ltr' style='text-align:right'>{r.manager.replace(' Investment Co', '').replace(' Capital', '').replace(' Investment', '')}</td>"
+        f"<td class='n'>{r.months}</td><td class='n'>{p(r.unit_growth)}</td><td class='n'>{p(r.max_drawdown)}</td>"
+        f"<td><b style='color:{chip[r.grade]}'>{r.grade}</b></td></tr>" for r in label.itertuples())
+    names = {"cautious": "متحفظ", "balanced": "متوازن", "recent_level": "مستوى التوزيع الأخير"}
+    menu_rows = "\n  ".join(
+        f"<tr{' style=\"font-weight:700;color:#0d366b\"' if o == 'balanced' else ''}><td>{names[o]}</td><td class='n'>{p(rule[f'rate_{o}'])}</td>"
+        f"<td class='n'>{rule[f'{o}_30y_median_real_value']:.0f}</td><td class='n'>{p(rule[f'{o}_30y_p_preserve_real'], 0)}</td>"
+        f"<td class='n'>{rule[f'{o}_30y_cumulative_real_payout']:.0f}</td><td class='n'>{rule[f'{o}_30y_annual_real_payout_at_end']:.2f}</td></tr>"
+        for o in names)
+    case = pd.read_csv(TABLES / "compass_case.csv")
+    compass_rows = "\n    ".join(
+        f"<tr><td>{r.label_ar}</td><td class='n'>{sar(r.from_waqif_conditions)}</td><td class='n'><b>{sar(r.total)}</b></td></tr>"
+        for r in case[case["social"]].sort_values("total", ascending=False).itertuples())
+    be = rule["breakeven_year_balanced"]
+    breakeven_txt = f"في السنة {be} تقريباً" if be else f"بعد أكثر من {rule['sim_horizon_years']} سنة"
     infl = s["inflation"]
     vals = dict(
         team=" · ".join(f"<b>{m}</b>" for m in TEAM_MEMBERS),
+        avg_pay=p(ix["avg_payout_rate"]), ev_recent=trend["events_last_3_years"], ev_total=trend["events_total"],
+        rate_bal=p(rule["rate_balanced"]), rate_n=f"{rule['rate_cautious'] * 100:.1f}", rate_recent=p(rule["rate_recent_level"], 0),
+        aum_a=p(lab["aum_share_A"], 0), lab_n=lab["funds_graded"], lab_prov=lab["funds_provisional"],
+        lab_months=lab["established_months"], lab_sens=lab["grades_changed_by_inflation"],
+        p_cut_un=p(rule["smoothing"]["unsmoothed_p_cut_over_5pct"], 0), p_cut_sm=p(rule["smoothing"]["smoothed_p_cut_over_5pct"], 0),
+        grade_rows=grade_rows, fund_rows=fund_rows, menu_rows=menu_rows, compass_rows=compass_rows,
+        cum_recent=f"{rule['recent_level_30y_cumulative_real_payout']:.0f}", cum_bal=f"{rule['balanced_30y_cumulative_real_payout']:.0f}",
+        val_recent=f"{rule['recent_level_30y_median_real_value']:.0f}", breakeven_txt=breakeven_txt,
+        paths=f"{s['paths']:,}", hist=rule["history_months"], compass_region=comp["top_region_ar"],
         name=PROJECT_AR, name_en=PROJECT_EN, tagline=TAGLINE_AR,
         css=CSS, tot_ret=p(ix["total_ann_return"]), price_ret=p(ix["price_ann_return"]),
         real_ret=p((1 + ix["total_ann_return"]) / (1 + infl) - 1), conf=p(s["confidence"], 0), infl=p(infl, 0),
@@ -238,6 +277,13 @@ def build_html() -> str:
         top_masraf=MASRAF_AR[top["top_masraf"]],
     )
     return HTML.substitute(vals)
+
+
+def short(name: str) -> str:
+    for junk in (" Endowment Investment Fund", " Associations Endowment Fund", " Association Endowment Fund",
+                 " Endowment Fund", " Waqf Fund", "SNB Capital - "):
+        name = name.replace(junk, "")
+    return name
 
 
 def count_tests() -> int:

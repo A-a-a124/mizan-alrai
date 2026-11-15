@@ -50,18 +50,19 @@ img.hero{width:100%;border:1px solid var(--rule);border-radius:12px;margin:22px 
 <div class="team">إعداد: $team</div>
 
 <div class="lede">الأصول الوقفية المدرجة في السوق السعودية ولّدت عائداً كلياً مقدَّراً <b>$tot سنوياً</b>،
-لذلك فإن الصرف الذي يحفظ القيمة الحقيقية للوقف عشر سنوات بثقة $conf هو <b>$rate سنوياً</b>،
-بينما توزّع الصناديق الوقفية فعلياً $pay_lo–$pay_hi.</div>
+ووُزِّع منه نحو <b>$avg_pay سنوياً</b> في المتوسط، فحافظ القطاع على أصله حتى الآن. لكن التوزيعات ترتفع:
+$ev_recent من $ev_total توزيعاً مرصوداً وقعت في آخر ثلاث سنوات. لذلك نقدّم ثلاثة حلول تُبقي الوقف مستداماً:
+<b>بطاقة استدامة الوقف</b>، و<b>قاعدة ميزان للصرف</b> (نطاق <span class="ltr">$rate_n–$rate_bal</span> سنوياً)، و<b>بوصلة المصارف</b>.</div>
 
 <div class="kpis">
-  <div class="kpi"><div class="v">$rate</div><div class="l">سقف الصرف السنوي المستدام</div></div>
-  <div class="kpi"><div class="v w">$p_obs</div><div class="l">احتمال حفظ الأصل بمعدل الصناديق الحالي (≈$obs)</div></div>
+  <div class="kpi"><div class="v"><span class="ltr">$rate_n–$rate_bal</span></div><div class="l">نطاق الصرف السنوي الذي يحفظ الأصل</div></div>
+  <div class="kpi"><div class="v">$aum_a</div><div class="l">من الأصول المصنّفة تحمل الدرجة A في بطاقة الاستدامة</div></div>
   <div class="kpi"><div class="v">$fc</div><div class="l">العائد المتوقع للأشهر الـ12 القادمة</div></div>
   <div class="kpi"><div class="v w">$orph</div><div class="l">حصة الأيتام من $n مصرفاً وقفياً</div></div>
 </div>
 
 <div class="links">
-  <a class="card" href="dashboard/"><b>محاكي القرار التفاعلي ←</b><span>حرّك معدل الصرف وشاهد الأثر على الأصل والمصارف فوراً</span></a>
+  <a class="card" href="dashboard/"><b>محاكي القرار التفاعلي ←</b><span>حرّك معدل الصرف وشاهد الأثر فوراً، وجرّب الحلول الثلاثة: بطاقة الاستدامة لكل صندوق، وقاعدة ميزان، وبوصلة المصارف</span></a>
   <a class="card" href="report/executive_summary.pdf"><b>الملخص التنفيذي (PDF) ←</b><span>4 صفحات: القرار، قصة الأثر، التوصيات</span></a>
   <a class="card" href="https://colab.research.google.com/github/A-a-a124/mizan-alrai/blob/main/analysis.ipynb"><b>دفتر التحليل على Colab ←</b><span>Python كامل بالسرد العربي، يعمل بضغطة Run all</span></a>
   <a class="card" href="$repo"><b>الكود والبيانات ←</b><span>المصدر الكامل، 38 اختباراً، سجل استخدام الذكاء الاصطناعي</span></a>
@@ -86,7 +87,9 @@ def main() -> None:
         name=PROJECT_AR, name_en=PROJECT_EN, tagline=TAGLINE_AR, repo=REPO,
         team=" · ".join(TEAM_MEMBERS), tot=pct(ix["total_ann_return"]), conf=pct(s["confidence"], 0),
         rate=pct(s["rate_base"]), pay_lo=pct(ix["payout_min_recent"], 0), pay_hi=pct(ix["payout_max_recent"], 0),
-        p_obs=pct(s["p_preserve_at_observed"], 0), obs=pct(s["observed_payout_rate"]), fc=pct(fc["point_pct"]),
+        fc=pct(fc["point_pct"]), avg_pay=pct(ix["avg_payout_rate"]), ev_recent=k["payout_trend"]["events_last_3_years"],
+        ev_total=k["payout_trend"]["events_total"], rate_n=f"{k['rule']['rate_cautious'] * 100:.1f}",
+        rate_bal=pct(k["rule"]["rate_balanced"]), aum_a=pct(k["label"]["aum_share_A"], 0),
         orph=pct(sec["orphans_share"]), n=f"{sec['waqf_designations']:,}", funds=ix["funds_total"])
     (ROOT / "index.html").write_text(html, encoding="utf-8")
     (ROOT / ".nojekyll").write_text("", encoding="utf-8")
@@ -113,14 +116,14 @@ h1{font-size:76px;line-height:1.2;margin:18px 0 10px;font-weight:700}
 </style></head><body>
 <div class="brand">$name · <span>$name_en</span></div>
 <h1>كم يصرف الوقف دون أن يأكل أصله؟</h1>
-<div class="sub">تحليل بيانات مفتوحة حقيقية: $n مصرفاً وقفياً و$funds صندوقاً وقفياً · Python</div>
+<div class="sub">ثلاثة حلول من بيانات مفتوحة حقيقية: $n مصرفاً وقفياً و$funds صندوقاً وقفياً · Python</div>
 <div class="kpis">
- <div class="k"><div class="v">$rate</div><div class="l">سقف الصرف السنوي المستدام</div></div>
- <div class="k"><div class="v w"><span dir="ltr">$pay_lo_n–$pay_hi</span></div><div class="l">ما توزّعه الصناديق الوقفية فعلياً</div></div>
- <div class="k"><div class="v w">$p_obs</div><div class="l">احتمال حفظ الأصل بالمعدل الحالي</div></div>
+ <div class="k"><div class="v"><span dir="ltr">$rate_n–$rate_bal</span></div><div class="l">نطاق الصرف الذي يحفظ الأصل (قاعدة ميزان)</div></div>
+ <div class="k"><div class="v">$aum_a</div><div class="l">من الأصول المصنّفة بدرجة A في بطاقة استدامة الوقف</div></div>
+ <div class="k"><div class="v w">$orph</div><div class="l">حصة الأيتام من المصارف (بوصلة المصارف ترفعها)</div></div>
  <div class="k"><div class="v">$fc</div><div class="l">العائد المتوقع للأشهر الـ12 القادمة</div></div>
 </div>
-<div class="insight">الصرف بمعدل الصناديق الحالي يُفقد الوقف <b>$erosion</b> من قيمته الحقيقية خلال 10 سنوات، والأيتام لا يتجاوزون <b>$orph</b> من المصارف.</div>
+<div class="insight">القطاع حافظ على أصله حتى الآن، لكن <b>$ev_recent من $ev_total</b> توزيعاً مرصوداً وقعت في آخر ثلاث سنوات. ثلاثة حلول تُبقيه مستداماً.</div>
 <div class="foot"><div>$team</div><div class="u">a-a-a124.github.io/mizan-alrai</div></div>
 </body></html>""")
 
@@ -138,7 +141,9 @@ def build_x_card(k: dict) -> None:
     html.write_text(CARD.substitute(
         name=PROJECT_AR, name_en=PROJECT_EN, team=" · ".join(TEAM_MEMBERS), n=f"{sec['waqf_designations']:,}",
         funds=ix["funds_total"], rate=pct(s["rate_base"]), pay_lo=pct(ix["payout_min_recent"], 0),
-        pay_hi=pct(ix["payout_max_recent"], 0), p_obs=pct(s["p_preserve_at_observed"], 0),
+        pay_hi=pct(ix["payout_max_recent"], 0), rate_n=f"{k['rule']['rate_cautious'] * 100:.1f}",
+        rate_bal=pct(k["rule"]["rate_balanced"]), aum_a=pct(k["label"]["aum_share_A"], 0),
+        ev_recent=k["payout_trend"]["events_last_3_years"], ev_total=k["payout_trend"]["events_total"],
         pay_lo_n=f"{ix['payout_min_recent'] * 100:.0f}", erosion=pct(1 - s["median_real_final_observed"] / 100, 0),
         orph=pct(sec["orphans_share"]), fc=pct(fc["point_pct"])), encoding="utf-8")
     browser = next((c for c in (r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",

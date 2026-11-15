@@ -1,0 +1,25 @@
+﻿symbol,fund_name,manager,fund_type,months,provisional,unit_growth,real_unit_growth,est_payout_rate,volatility,max_drawdown,grade,grade_if_inflation_low,grade_if_inflation_high,aum_sar,grade_meaning_ar
+030030,Nafaqah Waqf Fund,Jadwa Investment,Growth,70,False,0.0520791368,0.0314501341,0.0055666923,0.0610688944,-0.0743938124,A,A,A,102677098.02,الأصل محفوظ فعلياً: قيمة الوحدة نمت بمعدل التضخم أو أكثر
+011099,SNB Capital - King Saud University Waqf Fund,SNB Capital,Capital Preservation,60,False,0.0344298212,0.0141468836,0.019289112,0.0553874233,-0.0734162226,A,A,A,14156426.88,الأصل محفوظ فعلياً: قيمة الوحدة نمت بمعدل التضخم أو أكثر
+045009,Alinma Enayah Endowment Fund,Alinma Capital,Growth,75,False,0.033617744,0.0133507294,0.0182056314,0.0716377295,-0.1024641792,A,A,A,22639137.87,الأصل محفوظ فعلياً: قيمة الوحدة نمت بمعدل التضخم أو أكثر
+045008,Orphan Care Endowment Fund,Alinma Capital,Growth,75,False,0.0309200409,0.0107059225,0.0225418862,0.0693080271,-0.1263011037,A,A,A,32915626.29,الأصل محفوظ فعلياً: قيمة الوحدة نمت بمعدل التضخم أو أكثر
+045007,Alinma Wareef Endowment Fund,Alinma Capital,Growth,75,False,0.0304216929,0.010217346,0.030176343,0.0733661462,-0.1168941413,A,A,A,83232172.82,الأصل محفوظ فعلياً: قيمة الوحدة نمت بمعدل التضخم أو أكثر
+045010,Alinma Roads Mosques Endowment Fund,Alinma Capital,Growth,75,False,0.0297355919,0.009544698,0.0196887727,0.0656448025,-0.0952084441,A,A,A,108171286.61,الأصل محفوظ فعلياً: قيمة الوحدة نمت بمعدل التضخم أو أكثر
+045011,Bir Ariyadh Waqf Fund,Alinma Capital,Growth,71,False,0.0276802209,0.0075296283,0.0139383453,0.0697169471,-0.0851217609,A,A,A,68579638.72,الأصل محفوظ فعلياً: قيمة الوحدة نمت بمعدل التضخم أو أكثر
+014012,Ensan Endowment Fund,ALBILAD Investment Co,Growth,83,False,0.0254912264,0.0053835553,0.0140026438,0.0988556087,-0.1274983447,A,A,A,313886484.46,الأصل محفوظ فعلياً: قيمة الوحدة نمت بمعدل التضخم أو أكثر
+011170,Jood Waqf Fund,SNB Capital,Growth,12,True,0.0992639745,0.077709779,0.0666116327,0.1068263592,-0.0544166273,A,A,A,205074314.99,الأصل محفوظ فعلياً: قيمة الوحدة نمت بمعدل التضخم أو أكثر
+011166,Ehsan Waqf Fund,SNB Capital,Growth,23,True,0.0245950825,0.0045049828,0.0165236245,0.0611932296,-0.0514685315,A,A,B,1701454647.95,الأصل محفوظ فعلياً: قيمة الوحدة نمت بمعدل التضخم أو أكثر
+012051,Autism Associations Endowment Fund,Al Rajhi Capital,Income and Growth,38,False,0.0058940943,-0.0138293193,0.0,0.0636282144,-0.0545917405,B,B,B,45573318.18,محفوظ اسمياً فقط: قيمة الوحدة نمت أقل من التضخم
+012052,Eastern Region Associations Endowment Fund,Al Rajhi Capital,Income and Growth,38,False,0.0001577416,-0.0194531945,0.0,0.0642984825,-0.0582441519,B,B,B,41851120.42,محفوظ اسمياً فقط: قيمة الوحدة نمت أقل من التضخم
+012053,Doyof Al Rahman Associations Endowment Fund,Al Rajhi Capital,Income and Growth,37,False,-0.0001621896,-0.0197668525,0.0099955799,0.0636323399,-0.0561723124,C,C,C,23031637.96,تآكل طفيف: قيمة الوحدة نقصت حتى 2% سنوياً
+012054,Quran Kareem Associations Endowment Fund,Al Rajhi Capital,Income and Growth,38,False,-0.0004737379,-0.0200722921,0.0099696737,0.0663474456,-0.0636312217,C,C,C,35297554.68,تآكل طفيف: قيمة الوحدة نقصت حتى 2% سنوياً
+012050,Shifa Health Endowment Fund,Al Rajhi Capital,Income,41,False,-0.0012898139,-0.0208723665,0.0,0.0574801749,-0.0585495675,C,C,C,56167122.67,تآكل طفيف: قيمة الوحدة نقصت حتى 2% سنوياً
+012058,Health Associations Endowment Fund,Al Rajhi Capital,Income and Growth,37,False,-0.0031246063,-0.0226711827,0.0,0.06551785,-0.0604531607,C,C,C,14248934.68,تآكل طفيف: قيمة الوحدة نقصت حتى 2% سنوياً
+012055,Orphans Associations Endowment Fund,Al Rajhi Capital,Income and Growth,38,False,-0.0043450037,-0.0238676507,0.0098621898,0.0603702427,-0.0644297868,C,C,C,40449097.85,تآكل طفيف: قيمة الوحدة نقصت حتى 2% سنوياً
+012064,Trahum Endowment Fund,Al Rajhi Capital,Income and Growth,32,True,-0.0033401285,-0.0228824789,0.0,0.0626548192,-0.0475470938,C,C,C,38371738.78,تآكل طفيف: قيمة الوحدة نقصت حتى 2% سنوياً
+012012,Al Rajhi Endowment Fund,Al Rajhi Capital,Income and Growth,22,True,-0.0049206935,-0.0244320524,0.0,0.0553880041,-0.0499903865,C,C,C,23666747.9,تآكل طفيف: قيمة الوحدة نقصت حتى 2% سنوياً
+045014,King Khalid University Endowment Fund,Alinma Capital,Income and Growth,27,True,-0.0065739825,-0.026052924,0.016676399,0.0566997255,-0.0635974733,C,C,C,65091753.46,تآكل طفيف: قيمة الوحدة نقصت حتى 2% سنوياً
+012062,Takaful Endowment Fund,Al Rajhi Capital,Income and Growth,33,True,-0.0109370489,-0.0303304401,0.0120505108,0.0720690843,-0.0659622791,C,C,C,29282254.6,تآكل طفيف: قيمة الوحدة نقصت حتى 2% سنوياً
+012067,ALSuqia Association Endowment Fund,Al Rajhi Capital,Growth,25,True,-0.015165064,-0.0344755529,0.0153826187,0.067595706,-0.0599280086,C,C,C,15773145.41,تآكل طفيف: قيمة الوحدة نقصت حتى 2% سنوياً
+045015,Alinma Endowment Investment Fund,Alinma Capital,Growth,19,True,-0.0458744313,-0.0645827758,0.0,0.0725432369,-0.0783615316,D,D,D,23242323.66,تآكل واضح: قيمة الوحدة نقصت بين 2% و5% سنوياً
+014017,King Faisal University Endowment Fund,ALBILAD Investment Co,Growth,17,True,-0.0801652557,-0.0982012311,0.0523562207,0.1207729852,-0.168340378,E,E,E,17275302.33,تآكل شديد: قيمة الوحدة نقصت أكثر من 5% سنوياً

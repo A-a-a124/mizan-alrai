@@ -80,3 +80,15 @@ def test_cli_reports_bad_file_without_traceback(tmp_path):
     proc = subprocess.run([sys.executable, "scripts/run_analysis.py", "--prices", str(tmp_path / "nope.csv"),
                            "--out", str(tmp_path / "o")], cwd=config.ROOT, capture_output=True, text=True)
     assert proc.returncode == 1 and proc.stderr.startswith("error:") and "Traceback" not in proc.stderr
+
+
+def test_dashboard_carries_the_three_solutions():
+    text = (config.ROOT / "dashboard" / "data.js").read_text(encoding="utf-8")
+    data = json.loads(text[text.index("{"):text.rindex("}") + 1])
+    sol = data["solutions"]
+    assert {"sustainability_label", "spending_menu", "spending_menu_yearly", "compass_regions", "compass_case"} <= set(sol)
+    assert {f["grade"] for f in sol["sustainability_label"]} <= set("ABCDE")
+    assert {m["option"] for m in sol["spending_menu"]} == {"cautious", "balanced", "recent_level"}
+    html = (config.ROOT / "dashboard" / "index.html").read_text(encoding="utf-8")
+    for anchor in ('id="label"', 'id="rule"', 'id="compass"'):
+        assert anchor in html

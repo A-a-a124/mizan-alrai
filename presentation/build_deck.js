@@ -16,6 +16,8 @@ const csv = (name) => {
 };
 const pct = (x, d = 1) => (x * 100).toFixed(d) + "%";
 const sar = (x) => Math.round(x).toLocaleString("en-US");
+const N_TESTS = require("child_process").execSync("python -m pytest --collect-only -q", { cwd: ROOT, encoding: "utf8" })
+  .split(/\r?\n/).filter((l) => l.includes("::")).length;
 const S = K.spending, IX = K.index, FC = K.forecast, SEC = K.sector, AL = K.allocation;
 
 const THEME = {
@@ -104,323 +106,269 @@ const statCards = (s, items, y, h = 2.3) => {
   });
 };
 
+// ================= data for the solutions
+const L = K.label, R = K.rule, CP = K.compass, TR = K.payout_trend;
+const labelRows = csv("outputs/tables/sustainability_label.csv");
+const trendRows = csv("outputs/tables/payout_trend.csv");
+const yearly = csv("outputs/tables/spending_menu_yearly.csv");
+const caseRows = csv("outputs/tables/compass_case.csv");
+const GRADE_COLOR = { A: "1F4E79", B: "4F7AA8", C: "8A94A3", D: "B5651D", E: "9B2C2C" };
+const GRADE_SHORT = { A: "الأصل محفوظ فعلياً", B: "محفوظ اسمياً فقط", C: "تآكل طفيف", D: "تآكل واضح", E: "تآكل شديد" };
+const shortFund = (n) => [" Endowment Investment Fund", " Associations Endowment Fund", " Association Endowment Fund", " Endowment Fund",
+  " Waqf Fund", "SNB Capital - "].reduce((a, j) => a.replace(j, ""), n);
+const ltr = (s, t, x, y, w, h, o = {}) => s.addText(t, { x, y, w, h, isTextBox: true, margin: 0, align: "right", valign: "middle", fontSize: 14,
+  color: C.text1, fontFace: FONT_TEXT, ...o });
+const OPT = [["cautious", "متحفظ"], ["balanced", "متوازن"], ["recent_level", "مستوى التوزيع الأخير"]];
+const pw = (CW - 0.4) / 2;
+
 // ================= 1. Title
-section = "المقدمة"; pres.addSection({ title: section });
+section = "السؤال"; pres.addSection({ title: section });
 let s = slide("DARK", "كم يصرف الوقف دون أن يأكل أصله؟",
-  "نفتتح بالسؤال الذي يواجه كل ناظر وقف كل عام. مشروعنا ميزان الريع يجيب عنه برقم قابل للدفاع مبني على بيانات مفتوحة حقيقية.");
+  "سؤال يواجه كل ناظر وقف كل عام. نجيب عنه من بيانات مفتوحة حقيقية، ثم نحوّل الجواب إلى ثلاثة حلول قابلة للتطبيق.");
 txt(s, "ميزان الريع  ·  Mizan Al-Rai", MX, 1.35, CW, 0.6, { fontSize: 24, bold: true, color: C.accent2 });
-txt(s, "منصة التنبؤ الذكي بالتدفقات المالية للوقف العائلي والأهلي", MX, 3.85, CW, 0.6, { fontSize: 24, color: C.accent5 });
+txt(s, "من تحليل بيانات الأوقاف إلى ثلاثة حلول قابلة للتطبيق", MX, 3.85, CW, 0.6, { fontSize: 24, color: C.accent5 });
 txt(s, "عبدالله عبدالرحمن عبدالله العضياني   ·   ثامر خالد صالح الغامدي", MX, 5.75, CW, 0.45, { fontSize: 18, color: C.background1 });
 txt(s, "مسابقة تحليل البيانات للقطاع غير الربحي", MX, 6.25, CW, 0.4, { fontSize: 15, color: C.accent5 });
 
-// ================= 2. Problem
-s = slide("CONTENT", "معضلة الناظر: قرار واحد يتكرر كل عام",
-  "الصرف الزائد يرضي المستفيدين اليوم ويضعف الوقف غداً، والصرف الناقص يحبس الخير. لا توجد اليوم أداة تعطي الناظر رقماً.");
-const pw = (CW - 0.4) / 2;
-[["صرف زائد", "يُرضي المستفيدين اليوم، لكنه ==يأكل من أصل الوقف==، فيرث الجيل القادم وقفاً أصغر.", C.accent3],
- ["صرف ناقص", "يحفظ الأصل، لكنه ==يحبس الخير عن مستحقيه== ويخالف مقصود الواقف من وقفه.", C.accent4]].forEach(([h, b, col], i) => {
-  const x = rx(i, pw, 0.4);
-  card(s, x, 1.7, pw, 2.2);
-  txt(s, h, x + 0.35, 1.95, pw - 0.7, 0.55, { fontSize: 24, bold: true, color: col });
-  txt(s, b, x + 0.35, 2.6, pw - 0.7, 1.1, { fontSize: 17 });
-});
-card(s, MX, 4.25, CW, 2.3, C.text2);
-txt(s, "سؤال القرار", MX + 0.45, 4.5, CW - 0.9, 0.45, { fontSize: 16, bold: true, color: C.accent2 });
-txt(s, [{ text: "ما معدل الصرف السنوي الذي ", options: { color: C.background1 } }, HLD("يحفظ القيمة الحقيقية لأصل الوقف"),
-  { text: " خلال عشر سنوات بدرجة ثقة يحددها الناظر، و", options: { color: C.background1 } }, HLD("كيف يُوزَّع على المصارف الشرعية"),
-  { text: " مع احترام شروط الواقفين؟", options: { color: C.background1 } }], MX + 0.45, 5.0, CW - 0.9, 1.4, { fontSize: 22 });
-
-// ================= 3. Headline numbers
-s = slide("CONTENT", "الخلاصة في أربعة أرقام",
-  "هذه أهم أربع نتائج. الصرف المستدام واحد ونصف بالمئة، بينما الصناديق الوقفية توزع من ثلاثة إلى ثمانية بالمئة.");
+// ================= 2. Answer
+s = slide("CONTENT", "الجواب: القطاع مستدام حتى الآن، وهذه ثلاثة حلول ليبقى كذلك",
+  "الخلاصة كلها في هذه الشريحة. الأصول الوقفية حافظت على قيمتها، لكن التوزيعات ترتفع في السنوات الأخيرة، ولذلك نقترح ثلاثة حلول وقائية.");
 statCards(s, [
-  { v: pct(S.rate_base), l: `سقف الصرف السنوي المستدام بثقة ${pct(S.confidence, 0)}` },
-  { v: `${(IX.payout_min_recent * 100).toFixed(0)}–${pct(IX.payout_max_recent, 0)}`, l: "ما توزّعه الصناديق الوقفية فعلياً كل سنة", warn: true },
-  { v: pct(S.p_preserve_at_observed, 0), l: "احتمال حفظ الأصل إذا استمر الصرف بالمعدل الحالي", warn: true },
-  { v: pct(FC.point_pct), l: "العائد المتوقع للأشهر الـ12 القادمة" },
-], 1.75, 2.55);
-card(s, MX, 4.65, CW, 1.9, C.text2);
-txt(s, [{ text: "المعنى: ", options: { bold: true, color: C.accent2 } },
-  { text: "الأصول الوقفية ولّدت عائداً كلياً ", options: { color: C.background1 } }, HLD(`${pct(IX.total_ann_return)} سنوياً`),
-  { text: `، أي نحو ${pct((1 + IX.total_ann_return) / (1 + S.inflation) - 1)} بعد التضخم. `, options: { color: C.background1 } },
-  HLD("ما يُصرف فوق ذلك يُؤخذ من الأصل نفسه.")], MX + 0.45, 4.95, CW - 0.9, 1.3, { fontSize: 22 });
+  { v: pct(IX.avg_payout_rate), l: `متوسط ما وُزِّع على المستفيدين سنوياً، من عائد كلي ${pct(IX.total_ann_return)}` },
+  { v: `${TR.events_last_3_years}/${TR.events_total}`, l: "من التوزيعات المرصودة وقعت في آخر ثلاث سنوات: التوزيعات ترتفع", warn: true },
+  { v: `${(R.rate_cautious * 100).toFixed(1)}–${pct(R.rate_balanced)}`, l: "نطاق الصرف السنوي الذي يحفظ القيمة الحقيقية للأصل", size: 40 },
+], 1.6, 2.25);
+[["بطاقة استدامة الوقف", `درجة من A إلى E لكل صندوق: ==هل حافظت الوحدة الموقوفة على قوتها الشرائية؟==`],
+ ["قاعدة ميزان للصرف", `الصرف من متوسط 12 ربعاً بمعدل معلن، ==فيثبت دخل المستفيد ولا يتآكل الأصل==`],
+ ["بوصلة المصارف", `توجيه الحصة المرنة «أوجه البر» ==نحو المصارف الأقل تغطية== دون مخالفة شرط واقف`]].forEach(([h, b], i) => {
+  const y = 4.1 + i * 0.9;
+  card(s, MX, y, CW, 0.78);
+  badge(s, i + 1, W - MX - 0.72, y + 0.13, 0.52);
+  txt(s, h, W - MX - 4.5, y, 3.6, 0.78, { valign: "middle", fontSize: 18, bold: true, color: C.text2 });
+  txt(s, b, MX + 0.3, y, CW - 5.1, 0.78, { valign: "middle", fontSize: 14 });
+});
 
-// ================= Section: data
-section = "البيانات"; pres.addSection({ title: section });
-s = slide("SECTION", "البيانات: حقيقية ومفتوحة", "ننتقل إلى البيانات: مصدران رسميان مفتوحان.");
-badge(s, 1, MX, 2.95, 1.2, C.accent2, C.text2);
-
-// ================= 5. Sources
-s = slide("CONTENT", "مصدران رسميان مفتوحان",
-  "المصدر الأول الهيئة العامة للأوقاف، والثاني أسعار الصناديق الاستثمارية الوقفية في تداول. هذه الصناديق أوقاف بحد ذاتها وعوائدها تصرف على جهات غير ربحية.");
+// ================= 3. Data
+section = "البيانات والاكتشاف"; pres.addSection({ title: section });
+s = slide("CONTENT", "البيانات: مصدران رسميان مفتوحان من القطاع غير الربحي",
+  "كل البيانات حقيقية ومفتوحة. صناديق تداول الوقفية أوقاف بحد ذاتها، وعوائدها تصرف على جهات غير ربحية.");
 [["الهيئة العامة للأوقاف", "منصة البيانات المفتوحة الوطنية", [
     [`${sar(SEC.waqf_designations)}`, `مصرفاً وقفياً في ${SEC.regions} منطقة`],
-    ["18", "مجموعة بيانات رسمية"],
     [`من ${sar(SEC.certificates_2019)} إلى ${sar(SEC.certificates_2025)}`, "شهادة وقفية سنوياً بين 2019 و2025"]]],
  ["السوق المالية السعودية (تداول)", "أسعار وحدات الصناديق الاستثمارية الوقفية", [
-    [`${IX.funds_total}`, "صندوقاً وقفياً مرخصاً من هيئة السوق المالية"],
-    [`${(IX.aum_total_sar / 1e9).toFixed(1)} مليار ريال`, "أصول وقفية تحت الإدارة"],
-    ["1,053", "ملاحظة سعرية شهرية (2018 – 2026)"]]]].forEach(([h, sub, rows], i) => {
+    [`${IX.funds_total} صندوقاً وقفياً`, `أصولها ${(IX.aum_total_sar / 1e9).toFixed(1)} مليار ريال`],
+    ["1,053 سعراً شهرياً", "من 2018 إلى 2026"]]]].forEach(([h, sub, rows], i) => {
   const x = rx(i, pw, 0.4);
-  card(s, x, 1.65, pw, 3.95);
-  txt(s, h, x + 0.35, 1.85, pw - 0.7, 0.5, { fontSize: 22, bold: true, color: C.text2 });
-  txt(s, sub, x + 0.35, 2.35, pw - 0.7, 0.4, { fontSize: 14, color: MUTED });
+  card(s, x, 1.6, pw, 3.1);
+  txt(s, h, x + 0.35, 1.78, pw - 0.7, 0.5, { fontSize: 22, bold: true, color: C.text2 });
+  txt(s, sub, x + 0.35, 2.28, pw - 0.7, 0.4, { fontSize: 14, color: MUTED });
   rows.forEach(([v, l], j) => {
-    txt(s, v, x + 0.35, 2.95 + j * 0.86, pw - 0.7, 0.42, { fontSize: 20, bold: true, color: C.accent1 });
-    txt(s, l, x + 0.35, 3.36 + j * 0.86, pw - 0.7, 0.36, { fontSize: 14 });
+    txt(s, v, x + 0.35, 2.85 + j * 0.9, pw - 0.7, 0.42, { fontSize: 20, bold: true, color: C.accent1 });
+    txt(s, l, x + 0.35, 3.27 + j * 0.9, pw - 0.7, 0.36, { fontSize: 14 });
   });
 });
-note(s, [HL("لماذا تُعد بيانات تداول بيانات قطاع غير ربحي؟"), N(" لأن هذه الصناديق أوقاف: وحداتها موقوفة، وعوائدها تُصرف على جمعيات الأيتام والقرآن والصحة وأوقاف الجامعات.")],
-  5.8, 0.95);
+note(s, [HL("لماذا تُعد بيانات تداول بيانات قطاع غير ربحي؟"), N(" لأن هذه الصناديق أوقاف: وحداتها موقوفة، وعوائدها تُصرف على جمعيات الأيتام والقرآن والصحة وأوقاف الجامعات.")], 4.9, 0.85);
+note(s, [HL(`${csv("outputs/tables/cleaning_log.csv").length} قاعدة تنظيف موثّقة آلياً`), N("، منها توحيد التهجئات العربية للمصارف واستيفاء الفجوات مع تعليمها. "),
+  HL("كل ملف خام محمي بفحص سلامة"), N(" يوقف التشغيل عند أي تعديل.")], 5.9, 0.85);
 
-// ================= 6. Cleaning
-const log = csv("outputs/tables/cleaning_log.csv");
-s = slide("CONTENT", `${log.length} قاعدة تنظيف موثّقة آلياً`,
-  "كل قاعدة تنظيف تسجل نفسها آلياً: المصدر والقاعدة وعدد الصفوف المتأثرة. وكل ملف خام محمي بفحص سلامة يوقف التشغيل عند أي تعديل.");
-const rules = [
-  ["توحيد التهجئات العربية", "طيّ إملائي وقاموس مصارف: ==25 تسمية خام أصبحت 24 مصرفاً== موحّداً"],
-  ["أسعار ما قبل الاستثمار", "حذف أسعار الإطلاق الثابتة (10.0000) قبل بدء الاستثمار الفعلي"],
-  ["الأسعار المتجمدة", "السعر المكرر وسط السلسلة يُعامل كقيمة مفقودة لا كعائد صفري"],
-  ["فجوات الإفصاح الربعي", "استيفاء لوغاريتمي خطي، ==مع تعليم كل قيمة مستوفاة=="],
-  ["الأرقام والتواريخ النصية", "تحويل المبالغ المكتوبة بفواصل والسنوات النصية، وإزالة علامة BOM من رؤوس الأعمدة"],
-  ["حقول غير موثوقة", "إسقاط حقل صافي الأصول لأنه صفر في أغلب الأشهر"],
-];
-const rw = (CW - 0.6) / 3;
-rules.forEach(([h, b], i) => {
-  const x = rx(i % 3, rw, 0.3), y = 1.65 + Math.floor(i / 3) * 2.15;
-  card(s, x, y, rw, 1.95);
-  badge(s, i + 1, x + rw - 0.75, y + 0.22, 0.5);
-  txt(s, h, x + 0.25, y + 0.25, rw - 1.15, 0.5, { fontSize: 17, bold: true, color: C.text2 });
-  txt(s, b, x + 0.25, y + 0.85, rw - 0.5, 1.0, { fontSize: 14 });
-});
-note(s, [HL("فحص سلامة لكل ملف خام:"), N(" عدد الصفوف كما تعلنه البوابة، وبصمة لكل صندوق. "), HL("أي تعديل يوقف التشغيل فوراً.")], 6.0, 0.7);
-
-// ================= 7. Hidden payouts + index chart
+// ================= 4. Discovery
 const idx = csv("outputs/tables/composite_index.csv").filter((r) => /-(03|06|09|12)$/.test(r.month));
-s = slide("CONTENT", "اكتشاف أثناء التنظيف: توزيعات مخفية في الأسعار",
-  "لاحظنا أن صناديق مدير واحد تهبط معاً كل يوليو بينما بقية السوق صاعدة. هذا توزيع عوائد على المستفيدين وليس خسارة. كشفنا خمسة وعشرين حدثاً وبنينا مؤشر العائد الكلي.");
+s = slide("CONTENT", "الاكتشاف: توزيعات مخفية في الأسعار، وهي ترتفع",
+  "أثناء التنظيف لاحظنا أن صناديق مدير واحد تهبط معاً بينما بقية السوق صاعدة. هذا توزيع عوائد وليس خسارة. المسافة بين الخطين هي ما وزع على المستفيدين.");
 s.addChart(pres.charts.LINE, [
   { name: "العائد الكلي المقدَّر", labels: idx.map((r) => r.month), values: idx.map((r) => +(+r.total_index).toFixed(1)) },
-  { name: "عائد السعر فقط", labels: idx.map((r) => r.month), values: idx.map((r) => +(+r.price_index).toFixed(1)) },
-], { x: MX, y: 1.6, w: 7.6, h: 4.9, ...chartBase(), chartColors: [HEX.accent1, HEX.accent3], lineSize: 3, lineDataSymbol: "none",
+  { name: "قيمة الوحدة بعد التوزيع", labels: idx.map((r) => r.month), values: idx.map((r) => +(+r.price_index).toFixed(1)) },
+], { x: MX, y: 1.55, w: 6.7, h: 4.2, ...chartBase(), chartColors: [HEX.accent1, HEX.accent3], lineSize: 3, lineDataSymbol: "none",
   showLegend: true, legendPos: "b", valAxisMinVal: 80, catAxisLabelRotate: 315, catAxisLabelFontSize: 10, catAxisLabelFrequency: 4,
   showTitle: true, title: "مؤشر صناديق الوقف السعودية (بداية السلسلة = 100)", titleFontSize: 14, titleColor: MUTED, titleFontFace: "+mn-lt" });
-const sx = MX + 7.95, sw = W - MX - sx;
-card(s, sx, 1.6, sw, 1.5);
-num(s, String(IX.payout_events), sx, 1.65, 1.5, 1.4, { fontSize: 44, color: C.accent3 });
-txt(s, "توزيعاً مخفياً ==كُشف آلياً== بمقارنة الأقران", sx + 1.55, 1.85, sw - 1.8, 1.1, { fontSize: 15 });
-card(s, sx, 3.3, sw, 1.5);
-num(s, pct(IX.total_ann_return), sx, 3.35, 1.5, 1.4, { fontSize: 34 });
-txt(s, "العائد الكلي: ما يولّده الأصل فعلاً", sx + 1.55, 3.6, sw - 1.8, 1.0, { fontSize: 15 });
-card(s, sx, 5.0, sw, 1.5);
-num(s, pct(IX.price_ann_return), sx, 5.05, 1.5, 1.4, { fontSize: 34, color: C.accent3 });
-txt(s, "عائد السعر: ما يبقى للأصل بعد التوزيع", sx + 1.55, 5.3, sw - 1.8, 1.0, { fontSize: 15 });
+const dx = MX + 7.0, dw = W - MX - dx;
+s.addChart(pres.charts.BAR, [{ name: "توزيعات مرصودة", labels: trendRows.map((r) => r.year), values: trendRows.map((r) => +r.events) }],
+  { x: dx, y: 1.55, w: dw, h: 2.7, ...chartBase(), barDir: "col", chartColors: [HEX.accent3], showValue: true, dataLabelPosition: "outEnd",
+    showLegend: false, barGapWidthPct: 50, valAxisHidden: true, valGridLine: { style: "none" },
+    showTitle: true, title: "عدد التوزيعات المرصودة كل سنة", titleFontSize: 14, titleColor: MUTED, titleFontFace: "+mn-lt" });
+card(s, dx, 4.4, dw, 1.35);
+txt(s, `==القطاع حافظ على أصله حتى الآن==: وُزِّع ${pct(IX.avg_payout_rate)} سنوياً في المتوسط، وبقيت قيمة الوحدة تنمو ${pct(IX.price_ann_return)}.`,
+  dx + 0.25, 4.4, dw - 0.5, 1.35, { valign: "middle", fontSize: 14 });
+note(s, [N("لكن حجم التوزيع في سنته بلغ "), HL(`من ${pct(IX.payout_min_recent, 0)} إلى ${pct(IX.payout_max_recent, 0)} من قيمة الوحدة`),
+  N(". لو صار هذا المستوى سنوياً لتآكل الأصل. (الكشف أضعف قبل 2023 لأن الإفصاح كان ربعياً.)")], 5.95, 0.8);
 
-// ================= Section: analysis
-section = "التحليل"; pres.addSection({ title: section });
-s = slide("SECTION", "التحليل: من صورة القطاع إلى قرار الصرف", "الآن التحليل: صورة القطاع، ثم التنبؤ، ثم سقف الصرف والتوزيع.");
-badge(s, 2, MX, 2.95, 1.2, C.accent2, C.text2);
-
-// ================= 9. Sector growth
-const certs = csv("data_clean/gasa_certificates.csv");
-s = slide("CONTENT", `تسجيل الأوقاف تضاعف ${(SEC.certificates_2025 / SEC.certificates_2019).toFixed(1)} مرة في ست سنوات`,
-  "القطاع ينمو بسرعة استثنائية، وهذا يجعل سؤال إدارة العوائد أكثر إلحاحاً كل عام.");
-s.addChart(pres.charts.BAR, [{ name: "الشهادات الوقفية المكتملة", labels: certs.map((r) => String(parseInt(r.year))), values: certs.map((r) => +r.registered_waqfs) }],
-  { x: MX, y: 1.6, w: 7.9, h: 4.95, ...chartBase(), barDir: "col", chartColors: [HEX.accent1], showValue: true, dataLabelPosition: "outEnd",
-    dataLabelFormatCode: "#,##0", valAxisLabelFormatCode: "#,##0", showLegend: false, barGapWidthPct: 60 });
-const gx = MX + 8.25, gw = W - MX - gx;
-card(s, gx, 1.6, gw, 2.35);
-num(s, pct(SEC.certificates_cagr, 0), gx, 1.75, gw, 1.1, { fontSize: 54 });
-txt(s, "نمو سنوي مركب في عدد الأوقاف المسجلة", gx + 0.3, 2.95, gw - 0.6, 0.8, { align: "center", fontSize: 15, color: MUTED });
-card(s, gx, 4.2, gw, 2.35);
-num(s, sar(SEC.beneficiaries_2025), gx, 4.35, gw, 1.1, { fontSize: 48 });
-txt(s, `مستفيداً مباشراً من أوقاف الهيئة في 2025 (كانوا ${sar(SEC.beneficiaries_2023)} في 2023)`, gx + 0.3, 5.55, gw - 0.6, 0.85,
-  { align: "center", fontSize: 15, color: MUTED });
-
-// ================= 10. Masarif
-const nat = csv("outputs/tables/masarif_national.csv").slice(0, 8);
-s = slide("CONTENT", `المساجد ${pct(SEC.mosques_share, 0)} من المصارف، والأيتام ${pct(SEC.orphans_share)} فقط`,
-  "المصارف شديدة التركز. المساجد وحدها ثلاثة وأربعون بالمئة، بينما الأيتام والأرامل أقل من اثنين بالألف. الحصة المرنة، أوجه البر، هي الرافعة التي يملكها الناظر.");
-s.addChart(pres.charts.BAR, [{ name: "حصة المصرف", labels: nat.map((r) => r.masraf_ar), values: nat.map((r) => Math.floor(+r.share * 1000 + 0.5 - 1e-9) / 1000) }],
-  { x: MX, y: 1.6, w: 7.9, h: 4.95, ...chartBase(), barDir: "bar", chartColors: [HEX.accent1], showValue: true, dataLabelPosition: "outEnd",
-    dataLabelFormatCode: "0.0%", valAxisLabelFormatCode: "0%", showLegend: false, catAxisOrientation: "maxMin", barGapWidthPct: 45,
-    catAxisLabelFontSize: 13 });
-[[pct(SEC.flexible_share, 0), "حصة «أوجه البر» المرنة التي يوجّهها الناظر", false],
- [pct(SEC.orphans_share + SEC.widows_share, 2), "حصة الأيتام والأرامل مجتمعين من كل المصارف المنشورة", true],
- [String(SEC.masarif), "مصرفاً شرعياً موحّداً بعد التنظيف", false]].forEach(([v, l, warn], i) => {
-  const y = 1.6 + i * 1.7;
-  card(s, gx, y, gw, 1.5);
-  num(s, v, gx, y + 0.05, 1.65, 1.4, { fontSize: 32, color: warn ? C.accent3 : C.accent1 });
-  txt(s, l, gx + 1.7, y + 0.28, gw - 1.95, 1.0, { fontSize: 14 });
+// ================= 5. Label
+section = "الحلول"; pres.addSection({ title: section });
+s = slide("CONTENT", "الحل الأول: بطاقة استدامة الوقف",
+  "مثل ملصق كفاءة الطاقة على الأجهزة: درجة واحدة يفهمها أي واقف. الدرجة مبنية على سعر الوحدة المنشور فقط، فلا تحتاج أي تقدير.");
+"ABCDE".split("").forEach((g, i) => {
+  const bw = 3.0 + i * 0.62, y = 1.6 + i * 0.83, x = W - MX - bw;
+  s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x, y, w: bw, h: 0.7, rectRadius: 0.08, fill: { color: GRADE_COLOR[g] }, line: { color: GRADE_COLOR[g], width: 0 } });
+  s.addText(g, { x: W - MX - 0.75, y, w: 0.75, h: 0.7, isTextBox: true, margin: 0, align: "center", valign: "middle", fontSize: 30, fontFace: FONT_NUM, color: C.background1 });
+  txt(s, GRADE_SHORT[g], x + 0.2, y, bw - 1.0, 0.7, { valign: "middle", fontSize: 14, bold: true, color: C.background1 });
+  const n = L[`count_${g}`];
+  txt(s, `${n} ${n >= 3 && n <= 10 ? "صناديق" : "صندوق"}`, x - 1.75, y, 1.6, 0.7, { valign: "middle", align: "left", fontSize: 14, color: MUTED });
 });
-
-// ================= 11. Forecast
-const bt = csv("outputs/tables/backtest_scores.csv");
-s = slide("CONTENT", "التنبؤ: النموذج البسيط فاز بالأرقام",
-  "قارنا خمسة نماذج باختبار رجعي على ستة وثلاثين نقطة انطلاق خارج العينة، وكل نقطة ترى ماضيها فقط. اخترنا النموذج الذي فاز لا الأكثر تعقيداً.");
-s.addChart(pres.charts.BAR, [{ name: "متوسط الخطأ المطلق", labels: bt.map((r) => r.label_ar), values: bt.map((r) => +(+r.mae).toFixed(4)) }],
-  { x: MX, y: 1.6, w: 7.4, h: 4.2, ...chartBase(), barDir: "bar", chartColors: [HEX.accent4], showValue: true, dataLabelPosition: "outEnd",
-    dataLabelFormatCode: "0.00%", valAxisLabelFormatCode: "0%", showLegend: false, catAxisOrientation: "maxMin", barGapWidthPct: 55,
-    showTitle: true, title: "خطأ توقع عائد 12 شهراً (الأقل أفضل)", titleFontSize: 14, titleColor: MUTED, titleFontFace: "+mn-lt" });
-note(s, [N("الفائز "), HL(`«${FC.best_model_label}»`), N(" بخطأ "), HL(`أقل بـ${pct(FC.skill_vs_zero, 0)}`),
-  N(` من المرجع الساذج، على ${FC.origins} نقطة انطلاق خارج العينة.`)], 5.9, 0.75, MX, 7.4);
-const fx = MX + 7.75, fw = W - MX - fx;
-card(s, fx, 1.6, fw, 2.9, C.text2);
-txt(s, "توقع الأشهر الـ12 القادمة", fx + 0.3, 1.8, fw - 0.6, 0.4, { fontSize: 16, bold: true, color: C.accent2 });
-num(s, pct(FC.point_pct), fx, 2.25, fw, 1.2, { fontSize: 66, color: C.background1 });
-txt(s, `نطاق 80%: من ${pct(FC.p10_pct)} إلى ${pct(FC.p90_pct)}`, fx + 0.3, 3.6, fw - 0.6, 0.5, { align: "center", fontSize: 16, color: C.accent5 });
-card(s, fx, 4.75, fw, 1.8);
-num(s, pct(FC.bootstrap_p_loss, 0), fx, 4.8, 1.8, 1.7, { fontSize: 40, color: C.accent3 });
-txt(s, "احتمال سنة سالبة، ولذلك نحتاج احتياطياً", fx + 1.85, 5.2, fw - 2.1, 1.0, { fontSize: 15 });
-
-// ================= 12. Frontier
-const fb = csv("outputs/tables/spending_frontier_base.csv"), fs2 = csv("outputs/tables/spending_frontier_stress.csv");
-s = slide("CONTENT", `القرار: ${pct(S.rate_base)} سنوياً تحفظ الأصل بثقة ${pct(S.confidence, 0)}`,
-  "عشرة آلاف مستقبل محتمل من التاريخ الفعلي للمؤشر. كلما زاد الصرف نزل احتمال حفظ الأصل. عند واحد ونصف بالمئة نحقق الثقة المطلوبة.");
-s.addChart(pres.charts.LINE, [
-  { name: "السيناريو الأساسي", labels: fb.map((r) => pct(+r.rate, 1)), values: fb.map((r) => +(+r.p_preserve_real).toFixed(3)) },
-  { name: "سيناريو الضغط (عائد أقل 1% سنوياً)", labels: fs2.map((r) => pct(+r.rate, 1)), values: fs2.map((r) => +(+r.p_preserve_real).toFixed(3)) },
-], { x: MX, y: 1.6, w: 8.2, h: 4.95, ...chartBase(), chartColors: [HEX.accent1, HEX.accent3], lineSize: 3, lineDataSymbolSize: 6,
-  showLegend: true, legendPos: "b", valAxisLabelFormatCode: "0%", valAxisMaxVal: 1, valAxisMinVal: 0,
-  showCatAxisTitle: true, catAxisTitle: "معدل الصرف السنوي", catAxisTitleFontSize: 12, catAxisTitleColor: MUTED, catAxisLabelFontSize: 10,
-  showTitle: true, title: "احتمال حفظ القيمة الحقيقية بعد 10 سنوات", titleFontSize: 14, titleColor: MUTED, titleFontFace: "+mn-lt" });
-const qx = MX + 8.5, qw = W - MX - qx;
-txt(s, "السقف حسب شهية المخاطرة", qx, 1.6, qw, 0.4, { fontSize: 16, bold: true, color: C.text2 });
-[[pct(0.5, 0), pct(S.rate_base_at_50)], [pct(S.confidence, 0), pct(S.rate_base)], [pct(0.75, 0), pct(S.rate_base_at_75)]].forEach(([c, r], i) => {
-  const y = 2.15 + i * 1.08, main = i === 1;
-  card(s, qx, y, qw, 0.92, main ? C.text2 : C.background2);
-  txt(s, `ثقة ${c}`, qx + 1.6, y + 0.24, qw - 1.85, 0.45, { fontSize: 17, color: main ? C.background1 : C.text1 });
-  num(s, r, qx + 0.1, y, 1.5, 0.92, { fontSize: 26, color: main ? C.accent2 : C.accent1 });
+const ex = labelRows.filter((r) => r.provisional === "False").sort((a, b) => +b.aum_sar - +a.aum_sar)[0];
+const cx = MX, cw = 4.6;
+card(s, cx, 1.6, cw, 4.05);
+txt(s, "نموذج البطاقة", cx + 0.3, 1.75, cw - 0.6, 0.4, { fontSize: 14, color: MUTED });
+ltr(s, shortFund(ex.fund_name) + " Endowment Fund", cx + 0.3, 2.15, cw - 0.6, 0.45, { fontSize: 18, bold: true, color: C.text2, fontFace: THEME.bodyFontFace });
+s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: cx + 0.3, y: 2.8, w: 1.5, h: 1.5, rectRadius: 0.12, fill: { color: GRADE_COLOR[ex.grade] }, line: { color: GRADE_COLOR[ex.grade], width: 0 } });
+s.addText(ex.grade, { x: cx + 0.3, y: 2.8, w: 1.5, h: 1.5, isTextBox: true, margin: 0, align: "center", valign: "middle", fontSize: 72, fontFace: FONT_NUM, color: C.background1 });
+[["نمو قيمة الوحدة سنوياً", pct(+ex.unit_growth)], ["أسوأ هبوط", pct(+ex.max_drawdown)], ["عمر السجل", `${ex.months} شهراً`]].forEach(([l, v], j) => {
+  txt(s, l, cx + 2.0, 2.8 + j * 0.52, cw - 2.3, 0.26, { fontSize: 12, color: MUTED });
+  txt(s, v, cx + 2.0, 3.03 + j * 0.52, cw - 2.3, 0.3, { fontSize: 15, bold: true, color: C.text2 });
 });
-card(s, qx, 5.45, qw, 1.1);
-txt(s, "في سيناريو الضغط", qx + 1.6, 5.78, qw - 1.85, 0.45, { fontSize: 17 });
-num(s, pct(S.rate_stress), qx + 0.1, 5.45, 1.5, 1.1, { fontSize: 26, color: C.accent3 });
+txt(s, GRADE_SHORT[ex.grade] + ": نمت قيمة الوحدة بمعدل التضخم أو أكثر", cx + 0.3, 4.6, cw - 0.6, 0.9, { fontSize: 14 });
+note(s, [HL(`${pct(L.aum_share_A, 0)} من الأصول المصنّفة تحمل الدرجة A`), N(`. صنّفنا ${L.funds_graded} صندوقاً، والدرجة تُحسب `),
+  HL("من سعر الوحدة المنشور فقط"), N("، فتستطيع أي جهة التحقق منها.")], 5.95, 0.8);
 
-// ================= 13. Ten-year impact
-s = slide("CONTENT", "الأثر بعد عشر سنوات على وقف بقيمة 10 ملايين ريال",
-  "هذه قصة الأثر. بالصرف المستدام يصبح الوقف أقوى مما بدأ. بمعدل الصناديق الحالي يفقد خمسة عشر بالمئة من قوته الشرائية.");
-[["صرف مستدام", pct(S.rate_base), (S.median_real_final_sustainable / 10).toFixed(1), "الوقف أقوى مما بدأ، ويرث الجيل القادم وقفاً أكبر", C.accent1],
- ["صرف بمعدل الصناديق الحالي", pct(S.observed_payout_rate), (S.median_real_final_observed / 10).toFixed(1),
-  `يفقد الوقف ${pct(1 - S.median_real_final_observed / 100, 0)} من قيمته الحقيقية`, C.accent3]].forEach(([h, r, v, b, col], i) => {
-  const x = rx(i, pw, 0.4);
-  card(s, x, 1.65, pw, 4.0);
-  txt(s, h, x + 0.35, 1.9, pw - 0.7, 0.5, { fontSize: 22, bold: true, color: C.text2 });
-  txt(s, `معدل الصرف السنوي ${r}`, x + 0.35, 2.42, pw - 0.7, 0.4, { fontSize: 15, color: MUTED });
-  num(s, v, x, 2.95, pw, 1.3, { fontSize: 80, color: col });
-  txt(s, "مليون ريال بأسعار اليوم (المسار الوسيط)", x + 0.35, 4.3, pw - 0.7, 0.4, { align: "center", fontSize: 15, color: MUTED });
-  txt(s, b, x + 0.35, 4.85, pw - 0.7, 0.6, { align: "center", fontSize: 17, bold: true, color: col });
+// ================= 6. Label: how and who
+s = slide("CONTENT", `درجات ${L.funds_graded} صندوقاً وقفياً، وكيف تُحسب`,
+  "هذه درجات الصناديق الفعلية من البيانات. الصناديق الجديدة انطلقت في سوق هابط، فدرجتها مبدئية حتى يكتمل سجلها.");
+const gw = (CW - 0.5) / 3;
+labelRows.forEach((r, i) => {
+  const col = Math.floor(i / 8), row = i % 8, x = rx(col, gw, 0.25), y = 1.55 + row * 0.5;
+  card(s, x, y, gw, 0.43);
+  badge(s, r.grade, x + gw - 0.42, y + 0.045, 0.34, GRADE_COLOR[r.grade], C.background1);
+  ltr(s, shortFund(r.fund_name) + (r.provisional === "True" ? " *" : ""), x + 0.15, y, gw - 0.7, 0.43, { fontSize: 13 });
 });
-note(s, [N("المنهج: "), HL(`محاكاة ${sar(S.paths)} مسار`), N(` بإعادة معاينة كتلية من التاريخ الفعلي، مع تضخم ${pct(S.inflation, 0)} وقاعدة صرف ممهَّدة على 12 ربعاً.`)], 5.9, 0.7);
+note(s, [HL("القاعدة:"), N(` A إذا نمت قيمة الوحدة بمعدل التضخم (${pct(S.inflation, 0)}) أو أكثر، B إذا نمت أقل منه، ثم C و D و E حسب مقدار النقص. `),
+  HL(`* سجل أقل من ${L.established_months} شهراً: درجة مبدئية.`)], 5.65, 0.6);
+note(s, [HL("من يعتمدها؟"), N(" الهيئة العامة للأوقاف أو هيئة السوق المالية تنشرها سنوياً من أسعار منشورة أصلاً. "),
+  HL("ماذا تضيف؟"), N(" معيار مقارنة شفاف للواقف، وإنذار مبكر لأي صندوق يبدأ أصله بالتآكل.")], 6.3, 0.6);
 
-// ================= 14. Allocation waterfall
-s = slide("CONTENT", "كيف يُوزَّع المبلغ: ترتيب شرعي من أربع خطوات",
-  "عمارة الوقف مقدمة على الصرف، ثم احتياطي يمتص السنوات السالبة، ثم شروط الواقفين كما هي، وأخيراً الحصة المرنة توجه للاحتياجات المهملة.");
-const steps = [
-  ["عمارة الوقف", `${sar(AL.upkeep)} ريال`, "صيانة الأصل مقدَّمة على الصرف على المستحقين"],
-  ["الاحتياطي", `${sar(AL.reserve)} ريال`, "حتى يغطي صرف سنة، لامتصاص السنوات السالبة"],
-  ["شروط الواقفين", "ثابتة", "حصص المصارف المشروطة لا تُمس"],
-  ["الحصة المرنة", pct(SEC.flexible_share, 0), "«أوجه البر» توجَّه بأوزان أولوية معلنة"],
-];
-const stw = (CW - 0.9) / 4;
-steps.forEach(([h, v, b], i) => {
-  const x = rx(i, stw, 0.3);
-  card(s, x, 1.65, stw, 2.75);
-  badge(s, i + 1, x + stw - 0.8, 1.85, 0.55);
-  txt(s, h, x + 0.25, 1.9, stw - 1.2, 0.5, { fontSize: 18, bold: true, color: C.text2 });
-  txt(s, v, x + 0.25, 2.6, stw - 0.5, 0.55, { fontSize: 24, bold: true, color: C.accent1 });
-  txt(s, b, x + 0.25, 3.25, stw - 0.5, 1.0, { fontSize: 14 });
+// ================= 7. Rule
+s = slide("CONTENT", "الحل الثاني: قاعدة ميزان للصرف",
+  "القاعدة جزآن: الصرف من متوسط قيمة الوقف لآخر اثني عشر ربعاً حتى لا يتذبذب دخل المستفيد، ثم اختيار المعدل من نطاق معلن.");
+const lw = 4.4, lx = W - MX - lw;
+card(s, lx, 1.6, lw, 4.15, C.text2);
+txt(s, "أولاً: اصرف من متوسط 12 ربعاً", lx + 0.3, 1.8, lw - 0.6, 0.45, { fontSize: 18, bold: true, color: C.accent2 });
+txt(s, "احتمال قطع صرف المستفيد أكثر من 5% في سنة واحدة", lx + 0.3, 2.35, lw - 0.6, 0.75, { fontSize: 14, color: C.background1 });
+num(s, pct(R.smoothing.unsmoothed_p_cut_over_5pct, 0), lx + lw / 2, 3.2, lw / 2 - 0.2, 1.1, { fontSize: 48, color: C.accent5 });
+num(s, pct(R.smoothing.smoothed_p_cut_over_5pct, 0), lx + 0.2, 3.2, lw / 2 - 0.2, 1.1, { fontSize: 48, color: C.background1 });
+txt(s, "الصرف من قيمة اليوم", lx + lw / 2, 4.35, lw / 2 - 0.2, 0.4, { align: "center", fontSize: 13, color: C.accent5 });
+txt(s, "مع قاعدة ميزان", lx + 0.2, 4.35, lw / 2 - 0.2, 0.4, { align: "center", fontSize: 13, bold: true, color: C.background1 });
+txt(s, "المعدل نفسه، لكن دخل المستفيد أثبت", lx + 0.3, 5.0, lw - 0.6, 0.5, { align: "center", fontSize: 14, color: C.accent5 });
+const ow = (CW - lw - 0.3 - 0.4) / 3;
+txt(s, "ثانياً: اختر المعدل من نطاق معلن", MX, 1.6, CW - lw - 0.3, 0.45, { fontSize: 18, bold: true, color: C.text2 });
+OPT.forEach(([k, name], i) => {
+  const x = rx(i, ow, 0.2, lx - 0.3), warn = k === "recent_level", main = k === "balanced";
+  card(s, x, 2.2, ow, 3.55, main ? "E3ECF7" : C.background2);
+  txt(s, name, x + 0.15, 2.32, ow - 0.3, 0.7, { align: "center", fontSize: 15, bold: true, color: C.text2 });
+  num(s, pct(R[`rate_${k}`]), x, 3.0, ow, 0.85, { fontSize: 38, color: warn ? C.accent3 : C.accent1 });
+  txt(s, "قيمة الأصل بعد 30 سنة", x + 0.15, 3.95, ow - 0.3, 0.3, { align: "center", fontSize: 12, color: MUTED });
+  num(s, R[`${k}_30y_median_real_value`].toFixed(0), x, 4.22, ow, 0.5, { fontSize: 26, color: warn ? C.accent3 : C.text2 });
+  txt(s, "احتمال حفظ الأصل", x + 0.15, 4.8, ow - 0.3, 0.3, { align: "center", fontSize: 12, color: MUTED });
+  num(s, pct(R[`${k}_30y_p_preserve_real`], 0), x, 5.07, ow, 0.5, { fontSize: 26, color: warn ? C.accent3 : C.text2 });
 });
-card(s, MX, 4.7, CW, 1.85, C.text2);
-txt(s, `ميزانية السنة لوقف بـ10 ملايين: ${sar(AL.budget)} ريال`, MX + 5.2, 4.95, CW - 5.6, 0.5, { fontSize: 20, bold: true, color: C.accent2 });
-txt(s, "حصة الاحتياجات الأساسية (الفقراء، الأيتام، الأرامل، الإطعام، السكن) ترتفع دون مخالفة أي شرط", MX + 5.2, 5.5, CW - 5.6, 0.9,
-  { fontSize: 16, color: C.background1 });
-txt(s, `من ${pct(AL.social_share_before, 0)} إلى ${pct(AL.social_share_after, 0)}`, MX + 0.3, 4.7, 4.7, 1.85,
-  { align: "center", valign: "middle", fontSize: 40, bold: true, color: C.background1 });
+note(s, [HL("من ينفّذها؟"), N(" الناظر ومجلس إدارة الصندوق، بتعديل سياسة التوزيع فقط. الأرقام لأصل قيمته 100 اليوم وبأسعار اليوم، من "),
+  HL(`${sar(S.paths)} مسار محاكاة`), N(` لتاريخ المؤشر الفعلي وتضخم ${pct(S.inflation, 0)}.`)], 5.95, 0.8);
 
-// ================= Section: trust
+// ================= 8. Trade-off
+s = slide("CONTENT", "المقايضة بين الأجيال، بصراحة",
+  "لا نخفي المقايضة. الصرف الأعلى يعطي المستفيدين أكثر في العقود الأولى، لكنه ينقص الأصل ويهبط بالصرف عاماً بعد عام. القرار عدالة بين الأجيال.");
+const ys = (k) => yearly.filter((r) => r.option === k);
+s.addChart(pres.charts.LINE, OPT.map(([k, name]) => ({ name: `${name} (${pct(R[`rate_${k}`])})`, labels: ys(k).map((r) => r.year),
+  values: ys(k).map((r) => +(+r.median_real_payout).toFixed(3)) })),
+  { x: MX, y: 1.55, w: 7.6, h: 4.25, ...chartBase(), chartColors: [HEX.accent4, HEX.accent1, HEX.accent3], lineSize: 3, lineDataSymbol: "none",
+    showLegend: true, legendPos: "b", catAxisLabelFrequency: 5, valAxisLabelFormatCode: "0.0",
+    showCatAxisTitle: true, catAxisTitle: "السنة", catAxisTitleFontSize: 12, catAxisTitleColor: MUTED,
+    showTitle: true, title: "الصرف السنوي الحقيقي لأصل قيمته 100 (المسار الوسيط)", titleFontSize: 14, titleColor: MUTED, titleFontFace: "+mn-lt" });
+const tx = MX + 7.9, tw = W - MX - tx;
+txt(s, "مجموع الصرف الحقيقي في 30 سنة", tx, 1.55, tw, 0.4, { fontSize: 15, bold: true, color: C.text2 });
+OPT.forEach(([k, name], i) => {
+  const y = 2.05 + i * 0.9;
+  card(s, tx, y, tw, 0.78);
+  txt(s, name, tx + 1.55, y, tw - 1.75, 0.78, { valign: "middle", fontSize: 14 });
+  num(s, R[`${k}_30y_cumulative_real_payout`].toFixed(0), tx + 0.1, y, 1.4, 0.78, { fontSize: 28, color: k === "recent_level" ? C.accent3 : C.accent1 });
+});
+card(s, tx, 4.8, tw, 1.0, C.text2);
+txt(s, R.breakeven_year_balanced ? `يتجاوز صرف «المتوازن» السنوي صرف المستوى الأخير ==في السنة ${R.breakeven_year_balanced}==` :
+  `لا يتجاوز صرف «المتوازن» صرف المستوى الأخير خلال ${R.sim_horizon_years} سنة`, tx + 0.25, 4.8, tw - 0.5, 1.0,
+  { valign: "middle", fontSize: 14, color: C.background1, dark: true });
+note(s, [HL(`الصرف عند ${pct(R.rate_recent_level, 0)} يعطي أكثر لثلاثة عقود`), N(`، لكنه يُنقص الأصل إلى ${R.recent_level_30y_median_real_value.toFixed(0)} من 100. الصرف عند ${pct(R.rate_balanced)} `),
+  HL("يُبقي الأصل ويزيد الصرف كل عام"), N(`. تاريخنا ${R.history_months} شهراً فقط، فهذه تقديرات لا تنبؤات.`)], 5.95, 0.8);
+
+// ================= 9. Compass
+const soc = caseRows.filter((r) => r.social === "True").sort((a, b) => +b.total - +a.total);
+const orph = caseRows.find((r) => r.line === "orphans");
+s = slide("CONTENT", "الحل الثالث: بوصلة المصارف",
+  "شروط الواقفين تبقى كما هي. الحصة المرنة، أوجه البر، هي التي يملك الناظر توجيهها، فنوجهها نحو الاحتياجات الأقل تغطية.");
+s.addChart(pres.charts.BAR, [
+  { name: "من شروط الواقفين", labels: soc.map((r) => r.label_ar), values: soc.map((r) => Math.round(+r.from_waqif_conditions)) },
+  { name: "بعد توجيه الحصة المرنة", labels: soc.map((r) => r.label_ar), values: soc.map((r) => Math.round(+r.total)) },
+], { x: MX, y: 1.55, w: 7.6, h: 4.25, ...chartBase(), barDir: "bar", chartColors: [HEX.accent5, HEX.accent1], showValue: true, dataLabelPosition: "outEnd",
+  dataLabelFormatCode: "#,##0", valAxisLabelFormatCode: "#,##0", showLegend: true, legendPos: "b", catAxisOrientation: "maxMin", barGapWidthPct: 45,
+  showTitle: true, title: `ريال لكل مصرف، لوقف بـ10 ملايين وميزانية ${sar(AL.budget)} ريال`, titleFontSize: 14, titleColor: MUTED, titleFontFace: "+mn-lt" });
+[[`${pct(AL.social_share_before, 0)} ثم ${pct(AL.social_share_after, 0)}`, "حصة الاحتياجات الأساسية قبل البوصلة وبعدها", 26],
+ [`${(+orph.multiple).toFixed(0)} ضعفاً`, `ما يصل للأيتام: من ${sar(+orph.from_waqif_conditions)} إلى ${sar(+orph.total)} ريال`, 26],
+ [pct(SEC.flexible_share, 0), "من المصارف حصة مرنة يملك الناظر توجيهها", 30]].forEach(([v, l, size], i) => {
+  const y = 1.55 + i * 1.45;
+  card(s, tx, y, tw, 1.3);
+  txt(s, v, tx + 0.25, y + 0.12, tw - 0.5, 0.5, { fontSize: size - 6, bold: true, color: C.accent1 });
+  txt(s, l, tx + 0.25, y + 0.68, tw - 0.5, 0.55, { fontSize: 13 });
+});
+note(s, [HL("من ينفّذها؟"), N(" الناظر عند إعداد خطة الصرف السنوية. أكبر أثر في "), HL(CP.top_region_ar),
+  N(". الأوزان افتراضات معلنة قابلة للتعديل، لأن بيانات الاحتياج حسب المنطقة غير منشورة.")], 5.95, 0.8);
+
+// ================= 10. What each adds
+s = slide("CONTENT", "ماذا يضيف كل حل، ومن ينفّذه",
+  "كل حل ينفذه طرف محدد ببيانات يملكها أصلاً، دون تشريع جديد ولا تقنية جديدة.");
+const cols = [["الحل", 2.9], ["من ينفّذه", 3.0], ["بماذا", 2.6], ["ماذا يضيف", CW - 8.5 - 0.6]];
+let hx = W - MX;
+cols.forEach(([h, w]) => { hx -= w; txt(s, h, hx + 0.1, 1.55, w - 0.2, 0.4, { fontSize: 14, bold: true, color: MUTED }); hx -= 0.2; });
+[["بطاقة استدامة الوقف", "الهيئة العامة للأوقاف وهيئة السوق المالية", "أسعار الوحدات المنشورة", `معيار مقارنة شفاف لـ${L.funds_graded} صندوقاً و==إنذار مبكر بالتآكل==`],
+ ["قاعدة ميزان للصرف", "النظّار ومجالس إدارة الصناديق", "تعديل سياسة التوزيع", `احتمال قطع الصرف ==من ${pct(R.smoothing.unsmoothed_p_cut_over_5pct, 0)} إلى ${pct(R.smoothing.smoothed_p_cut_over_5pct, 0)}==، وأصل محفوظ`],
+ ["بوصلة المصارف", "النظّار", "خطة الصرف السنوية", `حصة الاحتياجات الأساسية ==من ${pct(AL.social_share_before, 0)} إلى ${pct(AL.social_share_after, 0)}==`]].forEach((row, i) => {
+  const y = 2.05 + i * 1.25;
+  card(s, MX, y, CW, 1.1);
+  badge(s, i + 1, W - MX - 0.62, y + 0.3, 0.5);
+  let x = W - MX;
+  row.forEach((cell, j) => {
+    const w = cols[j][1]; x -= w;
+    txt(s, cell, x + 0.1, y, w - (j === 0 ? 0.85 : 0.2), 1.1, { valign: "middle", fontSize: j === 0 ? 16 : 14, bold: j === 0, color: j === 0 ? C.text2 : C.text1 });
+    x -= 0.2;
+  });
+});
+note(s, [HL("لا يحتاج أي حل إلى تشريع جديد أو تقنية جديدة:"), N(" كل طرف ينفّذ ببيانات يملكها أصلاً. والكود مفتوح، فتستطيع أي جهة إعادة الحساب على بياناتها بأمر واحد.")], 5.9, 0.85);
+
+// ================= 11. Trust
 section = "الموثوقية"; pres.addSection({ title: section });
-s = slide("SECTION", "الموثوقية والاستخدام المسؤول", "أخيراً: لماذا يمكن الوثوق بهذه الأرقام.");
-badge(s, 3, MX, 2.95, 1.2, C.accent2, C.text2);
-
-// ================= 16. Reproducibility
-s = slide("CONTENT", "قابلية إعادة التشغيل: أمر واحد يعيد بناء كل شيء",
-  "أي محكم يستطيع تشغيل أمر واحد فيحصل على نفس الأرقام. والكود نفسه يعمل على ملفات بيانات أخرى، ويفحص تلقائياً على ويندوز ولينكس عند كل تحديث.");
-card(s, MX, 1.65, CW, 0.95, C.text2);
-s.addText("python scripts/run_all.py", { x: MX + 0.4, y: 1.65, w: 5.5, h: 0.95, isTextBox: true, margin: 0, align: "left", valign: "middle",
+s = slide("CONTENT", "الموثوقية: كل رقم يُعاد حسابه بأمر واحد",
+  "أي محكم يستطيع تشغيل أمر واحد فيحصل على الأرقام نفسها. واستخدمنا الذكاء الاصطناعي مساعداً مع توثيق كل خطوة والأخطاء التي صححناها.");
+card(s, MX, 1.6, CW, 0.85, C.text2);
+s.addText("python scripts/run_all.py", { x: MX + 0.4, y: 1.6, w: 5.5, h: 0.85, isTextBox: true, margin: 0, align: "left", valign: "middle",
   fontSize: 20, bold: true, color: C.accent2, fontFace: "Consolas" });
-txt(s, "تحليل ← اختبارات ← دفتر ← تقرير ← موقع", MX + 6.1, 1.65, CW - 6.5, 0.95, { valign: "middle", fontSize: 18, color: C.background1 });
+txt(s, "تحليل، ثم اختبارات، ثم دفتر وتقرير وموقع", MX + 6.1, 1.6, CW - 6.5, 0.85, { valign: "middle", fontSize: 16, color: C.background1 });
 statCards(s, [
-  { v: "38", l: "اختباراً آلياً ناجحاً، منها اختبار عدم تسرب المستقبل إلى التنبؤ" },
+  { v: String(N_TESTS), l: "اختباراً آلياً ناجحاً، منها اختبار عدم تسرب المستقبل إلى التنبؤ" },
   { v: "24/24", l: "ملف نتائج يتطابق بايتاً ببايت عند إعادة التشغيل", size: 44 },
   { v: "2", l: "نظاما تشغيل يُفحص عليهما تلقائياً عند كل تحديث" },
-  { v: "5", l: "ثوانٍ تقريباً لإعادة بناء كل الجداول والأشكال من البيانات الخام" },
-], 2.9, 2.35);
-note(s, [HL("يعمل على ملفات أخرى:"), N(" نفس الكود حلّل ملفاً بديلاً من 3 صناديق وأعطى نتائج مختلفة، ما يثبت أن "),
-  HL("الأرقام تُحسب من الملف المُدخل لا من قيم ثابتة."), N(" والملف التالف تظهر له رسالة خطأ تحدد رقم السطر.")], 5.5, 1.05);
+  { v: pct(FC.skill_vs_zero, 0), l: `أدق من المرجع الساذج في توقع عائد 12 شهراً (${pct(FC.point_pct)})` },
+], 2.65, 2.25);
+note(s, [HL("يعمل على ملفات أخرى:"), N(" الكود نفسه حلّل ملفاً بديلاً وأعطى نتائج مختلفة، فالأرقام تُحسب من الملف المُدخل لا من قيم ثابتة.")], 5.1, 0.75);
+note(s, [HL("ذكاء اصطناعي مسؤول:"), N(" لا رقم مكتوب يدوياً ولا بيانات مصطنعة، وسجل يوثق كل خطوة وكيف تحققنا منها، "),
+  HL("ومنها خطأ في رقم رئيسي اكتشفناه وصحّحناه.")], 6.0, 0.75);
 
-// ================= 17. Responsible AI
-s = slide("CONTENT", "استخدام مسؤول للذكاء الاصطناعي",
-  "استخدمنا الذكاء الاصطناعي مساعداً في البرمجة والتصميم، ووثقنا كل خطوة وكيف تحققنا منها، بما فيها الأخطاء التي اكتشفناها وصححناها.");
-const ai = [
-  ["لا أرقام مكتوبة يدوياً", "كل رقم في التقرير والعرض ==يُقرأ آلياً من جداول النتائج=="],
-  ["لا بيانات مصطنعة", "كل المصادر ==رسمية ومفتوحة==، ولم يُستخدم رقم من ذاكرة النموذج"],
-  ["تحقق لكل خطوة", "سجل من 15 خطوة: الأمر، ما أُنتج، ==وكيف تحققنا منه=="],
-  ["أخطاء اكتُشفت وصُحّحت", "إنذارات كاذبة في كشف التوزيعات، ونص عربي معكوس في الرسوم، وعنوان مبالغ فيه"],
-];
-ai.forEach(([h, b], i) => {
-  const x = rx(i % 2, pw, 0.4), y = 1.65 + Math.floor(i / 2) * 2.35;
-  card(s, x, y, pw, 2.1);
-  badge(s, i + 1, x + pw - 0.85, y + 0.28, 0.55);
-  txt(s, h, x + 0.35, y + 0.3, pw - 1.35, 0.5, { fontSize: 20, bold: true, color: C.text2 });
-  txt(s, b, x + 0.35, y + 1.0, pw - 0.7, 0.95, { fontSize: 16 });
+// ================= 12. Limits and close
+s = slide("CONTENT", "حدود التحليل، والخلاصة",
+  "نذكر الحدود بوضوح. والخلاصة: ثلاثة حلول بسيطة تبقي الوقف يكبر ولا يتآكل.");
+[["وكيل لا قوائم مالية", "الصناديق المدرجة تمثل أداء الاستثمار الوقفي، ==وليست قوائم وقف بعينه=="],
+ ["تاريخ قصير", `أطول سلسلة 84 شهراً، ==فمحاكاة 30 سنة تقدير لا تنبؤ==`],
+ ["توزيعات مقدَّرة", "تداول لا ينشر مبالغ التوزيع، ==فقدّرناها من فجوة الأقران=="],
+ ["بيانات احتياج غير منشورة", "أوزان البوصلة ==افتراضات معلنة قابلة للتعديل=="]].forEach(([h, b], i) => {
+  const x = rx(i % 2, pw, 0.4), y = 1.55 + Math.floor(i / 2) * 1.45;
+  card(s, x, y, pw, 1.3);
+  txt(s, h, x + 0.3, y + 0.14, pw - 0.6, 0.42, { fontSize: 17, bold: true, color: C.accent3 });
+  txt(s, b, x + 0.3, y + 0.62, pw - 0.6, 0.6, { fontSize: 14 });
 });
-note(s, [N("كل التفاصيل موثقة في ملف "), HL("ai_usage_log.md"), N(" داخل مجلد التسليم.")], 6.3, 0.55);
-
-// ================= 18. Recommendations
-s = slide("CONTENT", "التوصيات",
-  "خمس توصيات عملية: سقف صرف، ربط التوزيع بالعائد الممهد، احتياطي، توجيه الحصة المرنة، وإفصاح أفضل.");
-const recs = [
-  [`اعتماد سقف صرف ${pct(S.rate_base)}`, `من متوسط قيمة الوقف لـ12 ربعاً، ==مع مراجعة سنوية== بهذه المنصة`],
-  ["ربط التوزيع بالعائد الممهَّد", `التوزيع الحالي (نحو ${pct(S.observed_payout_rate, 0)}) ==يحفظ الأصل باحتمال ${pct(S.p_preserve_at_observed, 0)} فقط==`],
-  ["عمارة الوقف واحتياطي يغطي سنة", `لأن ==احتمال السنة السالبة ${pct(FC.bootstrap_p_loss, 0)}==`],
-  ["توجيه «أوجه البر» للمصارف المهمَلة", `==الأيتام ${pct(SEC.orphans_share)} والأرامل ${pct(SEC.widows_share, 2)}== من المصارف`],
-  ["إفصاح أفضل من الجهات", "نشر مبالغ التوزيع وصافي الأصول لكل صندوق، والمستفيدين حسب المنطقة"],
-];
-recs.forEach(([h, b], i) => {
-  const y = 1.6 + i * 1.0;
-  card(s, MX, y, CW, 0.86);
-  badge(s, i + 1, W - MX - 0.75, y + 0.16, 0.54);
-  txt(s, h, MX + 6.0, y, CW - 6.95, 0.86, { valign: "middle", fontSize: 18, bold: true, color: C.text2 });
-  txt(s, b, MX + 0.3, y, 5.5, 0.86, { valign: "middle", fontSize: 14 });
+card(s, MX, 4.55, CW, 2.2, C.text2);
+s.addText("وقف يكبر ولا يتآكل", { x: W - MX - 6.3, y: 4.7, w: 6.0, h: 0.8, isTextBox: true, margin: 0, align: "right", valign: "middle", rtlMode: true,
+  fontSize: 32, color: C.background1, fontFace: THEME.headFontFace });
+txt(s, "بطاقة تكشف، وقاعدة تحفظ، وبوصلة توجّه", W - MX - 6.3, 5.5, 6.0, 0.45, { fontSize: 16, color: C.accent5 });
+txt(s, "عبدالله العضياني  ·  ثامر الغامدي", W - MX - 6.3, 6.1, 6.0, 0.4, { fontSize: 14, color: C.accent5 });
+[["المحاكي التفاعلي", "a-a-a124.github.io/mizan-alrai"], ["الكود والبيانات", "github.com/A-a-a124/mizan-alrai"]].forEach(([l, u], i) => {
+  const y = 4.95 + i * 0.85;
+  txt(s, l, MX + 0.4, y, 5.4, 0.35, { align: "left", fontSize: 13, color: C.accent5 });
+  s.addText(u, { x: MX + 0.4, y: y + 0.33, w: 5.4, h: 0.4, isTextBox: true, margin: 0, align: "left", fontSize: 16, color: C.background1, fontFace: THEME.bodyFontFace });
 });
-
-// ================= 19. Limits
-s = slide("CONTENT", "حدود التحليل بشفافية",
-  "نذكر الحدود بوضوح: الصناديق وكيل لأداء الأوقاف، والتاريخ قصير، ومبالغ التوزيع مقدرة، وبيانات المستفيدين وطنية فقط.");
-const lim = [
-  ["وكيل لا قوائم مالية", "الصناديق المدرجة تمثل أداء الاستثمار الوقفي، ==وليست قوائم وقف عائلي بعينه=="],
-  ["تاريخ قصير", "أطول سلسلة 84 شهراً والصناديق الحية فقط، ==وعولج ذلك بسيناريو الضغط=="],
-  ["توزيعات مقدَّرة", "تداول لا ينشر مبالغ التوزيع، ==فقدّرناها من فجوة الأقران=="],
-  ["بيانات مستفيدين محدودة", "وطنية لثلاث سنوات فقط، فأوزان الأولوية ==افتراضات معلنة قابلة للتعديل=="],
-];
-lim.forEach(([h, b], i) => {
-  const x = rx(i % 2, pw, 0.4), y = 1.65 + Math.floor(i / 2) * 2.35;
-  card(s, x, y, pw, 2.1);
-  txt(s, h, x + 0.35, y + 0.3, pw - 0.7, 0.5, { fontSize: 20, bold: true, color: C.accent3 });
-  txt(s, b, x + 0.35, y + 1.0, pw - 0.7, 0.95, { fontSize: 16 });
-});
-
-// ================= 20. Closing
-section = "الختام"; pres.addSection({ title: section });
-s = slide("DARK", "وقف يكبر ولا يتآكل", "نختم بالرسالة: القرار الصحيح اليوم يورث الجيل القادم وقفاً أكبر. شكراً لكم، ونرحب بأسئلتكم.");
-txt(s, "ميزان الريع  ·  Mizan Al-Rai", MX, 1.35, CW, 0.6, { fontSize: 24, bold: true, color: C.accent2 });
-txt(s, "جرّبوا المحاكي التفاعلي، وأعيدوا تشغيل التحليل بأنفسكم", MX, 3.85, CW, 0.6, { fontSize: 22, color: C.accent5 });
-[["الموقع والمحاكي", "a-a-a124.github.io/mizan-alrai"], ["الكود والبيانات", "github.com/A-a-a124/mizan-alrai"]].forEach(([l, u], i) => {
-  const y = 4.85 + i * 0.75;
-  txt(s, l, W - MX - 3.2, y, 3.2, 0.5, { fontSize: 18, bold: true, color: C.background1 });
-  s.addText(u, { x: W - MX - 9.6, y, w: 6.2, h: 0.5, isTextBox: true, margin: 0, align: "right", fontSize: 18, color: C.accent2 });
-});
-txt(s, "عبدالله عبدالرحمن عبدالله العضياني   ·   ثامر خالد صالح الغامدي", MX, 6.5, CW, 0.4, { fontSize: 15, color: C.accent5 });
 
 // pptxgenjs does not mark paragraphs as right-to-left and leaves the complex-script font empty.
 // Without this, Arabic falls back to a default font and mixed Arabic/number/bracket text is misordered.

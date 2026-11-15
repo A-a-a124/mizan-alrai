@@ -8,7 +8,7 @@ from dataclasses import dataclass, field
 import numpy as np
 import pandas as pd
 
-from . import allocate, clean, config, forecast, index, ingest, risk, viz
+from . import allocate, clean, config, forecast, index, ingest, risk, solutions, viz
 
 SCENARIOS = {
     "base": ("العائد الكلي المقدَّر (الأساس)", "log_ret_total", 0.0),
@@ -135,6 +135,8 @@ def step_index(c: dict, res: Results) -> dict:
                         "aum_total_sar": float(c["fund_universe"]["aum_sar"].sum()),
                         "start": str(price.index[0]), "end": str(price.index[-1]),
                         "payout_events": int(rets["payout_flag"].sum()),
+                        # average yearly distribution over the whole index history = total return minus unit growth
+                        "avg_payout_rate": float((1 + stats["total"]["ann_return"]) / (1 + stats["price"]["ann_return"]) - 1),
                         "payout_median_recent": float(recent["payout_pct"].median()) if len(recent) else None,
                         "payout_min_recent": float(recent["payout_pct"].min()) if len(recent) else None,
                         "payout_max_recent": float(recent["payout_pct"].max()) if len(recent) else None}
@@ -207,6 +209,53 @@ def step_allocate(c: dict, sp: dict, res: Results) -> dict:
     return {"allocation": alloc, "labels": labels, "profile": profile, "budget": budget}
 
 
+def step_solutions(c: dict, sec: dict, ix: dict, sp: dict, al: dict, res: Results) -> dict:
+    rets = c["fund_returns"]
+    label = solutions.sustainability_label(rets, c["fund_universe"])
+    trend = solutions.payout_trend(rets)
+    recent_level = sp["observed"]
+    options = {"cautious": sp["rates"]["base"],
+               "balanced": risk.sustainable_rate(sp["frontiers"]["base"], 0.50),
+               "recent_level": recent_level}
+    series = ix["total"]["ret"].values
+    menu, yearly, breakeven = solutions.spending_menu(series, options)
+    smooth = solutions.smoothing_effect(series, options["balanced"])
+    case = solutions.compass_case(al["allocation"])
+    regions = solutions.compass_regions(sec["regions"])
+    res.tables.update(sustainability_label=label, payout_trend=trend, spending_menu=menu,
+                      spending_menu_yearly=yearly, compass_case=case, compass_regions=regions)
+
+    last3 = trend[trend["year"] >= trend["year"].max() - 2]
+    m = menu.set_index(["option", "years"])
+    aum = res.key["index"]["aum_total_sar"]
+    social = case[case["social"]]
+    orphans = case[case["line"] == "orphans"].iloc[0]
+    res.key["label"] = solutions.label_summary(label)
+    res.key["payout_trend"] = {"events_total": int(trend["events"].sum()),
+                               "events_last_3_years": int(last3["events"].sum()),
+                               "first_year": int(trend["year"].min()), "last_year": int(trend["year"].max())}
+    res.key["rule"] = {
+        **{f"rate_{k}": v for k, v in options.items()},
+        **{f"{k}_{y}y_{col}": float(m.loc[(k, y), col]) for k in options for y in solutions.TRADEOFF_YEARS
+           for col in ("median_real_value", "cumulative_real_payout", "p_preserve_real", "annual_real_payout_at_end")},
+        **{f"breakeven_year_{k}": v for k, v in breakeven.items()},
+        "sim_horizon_years": solutions.SIM_HORIZON_YEARS, "history_months": int(len(series)),
+        "smoothing": smooth,
+        # sector-wide illustration: real value kept after 30 years under the balanced rule vs the recent level
+        "sector_real_value_kept_30y_sar": float(aum * (m.loc[("balanced", 30), "median_real_value"]
+                                                       - m.loc[("recent_level", 30), "median_real_value"]) / 100),
+    }
+    res.key["compass"] = {
+        "social_from_conditions": float(social["from_waqif_conditions"].sum()),
+        "social_total": float(social["total"].sum()),
+        "orphans_from_conditions": float(orphans["from_waqif_conditions"]), "orphans_total": float(orphans["total"]),
+        "top_region_ar": regions.iloc[0]["region_ar"], "top_region_gain_points": float(regions.iloc[0]["gain_points"]),
+        "regions_social_under_15pct": int((regions["social_share"] < 0.15).sum()),
+    }
+    return {"label": label, "menu": menu, "yearly": yearly, "trend": trend, "case": case, "regions": regions,
+            "options": options}
+
+
 def step_figures(c: dict, sec: dict, ix: dict, fc: dict, sp: dict, al: dict) -> list:
     F = config.FIGURES
     labels = {k: v[0] for k, v in SCENARIOS.items()}
@@ -222,7 +271,7 @@ def step_figures(c: dict, sec: dict, ix: dict, fc: dict, sp: dict, al: dict) -> 
         viz.fig_forecast_fan(ix["total"], fc["forecast"], fc["dist"], F / "fig07_forecast.png"),
         viz.fig_frontier(sp["frontiers"], labels, config.CONFIDENCE, sp["rates"], F / "fig08_spending_frontier.png"),
         viz.fig_real_paths(sp["bands"], {"sustainable": f"صرف مستدام {viz.pct(sp['rates']['base'])}",
-                                         "observed": f"صرف بمعدل الصناديق الحالي {viz.pct(obs)}"},
+                                         "observed": f"لو صار مستوى توزيعات آخر سنة سنوياً {viz.pct(obs)}"},
                            F / "fig09_real_value_paths.png"),
         viz.fig_allocation(al["allocation"], al["labels"], {c: g for _, (c, _, _, g) in clean.MASRAF_MAP.items()},
                            al["budget"], CASE_ENDOWMENT, F / "fig10_allocation.png"),
@@ -250,6 +299,7 @@ def run(figures: bool = True, gasa=None, prices=None, universe=None, out_dir=Non
     fc = step_forecast(ix, res)
     sp = step_spending(ix, res)
     al = step_allocate(c, sp, res)
+    step_solutions(c, sec, ix, sp, al, res)
     write_outputs(res)
     if figures:
         step_figures(c, sec, ix, fc, sp, al)

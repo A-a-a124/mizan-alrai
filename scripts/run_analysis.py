@@ -59,9 +59,13 @@ def main(argv=None) -> int:
           f"[{k['forecast']['p10_pct']:.2%}, {k['forecast']['p90_pct']:.2%}] ({k['forecast']['model']})")
     print(f"  sustainable spend rate : {k['spending']['rate_base']:.1%} at {k['spending']['confidence']:.0%} "
           f"confidence (stress {k['spending']['rate_stress']:.1%})")
-    label = "observed fund payouts " if k["spending"]["observed_payout_is_detected"] else "reference payout rate "
-    print(f"  {label} : {k['spending']['observed_payout_rate']:.1%} -> P(preserve) "
+    print(f"  average payout so far  : {k['index']['avg_payout_rate']:.1%} a year "
+          f"({k['payout_trend']['events_last_3_years']} of {k['payout_trend']['events_total']} payouts in the last 3 years)")
+    print(f"  if the latest level    : {k['spending']['observed_payout_rate']:.1%} were paid every year -> P(preserve) "
           f"{k['spending']['p_preserve_at_observed']:.0%}")
+    lab = k["label"]
+    print(f"  sustainability label   : {lab['funds_graded']} funds, {lab['aum_share_A']:.0%} of graded assets at A")
+    print(f"  Mizan rule range       : {k['rule']['rate_cautious']:.1%}-{k['rule']['rate_balanced']:.1%}")
     if args.out is not None:
         print(f"  outputs written to     : {args.out.resolve()}")
     return 0

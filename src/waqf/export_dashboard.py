@@ -30,6 +30,10 @@ def _grid(series: np.ndarray, shift: float) -> dict:
     return out
 
 
+def _records(frame, decimals: int) -> list:
+    return frame.round(decimals).astype(object).replace({np.nan: None}).to_dict(orient="records")
+
+
 def export(c: dict, ix: dict, fc: dict, sp: dict, al: dict, res) -> None:
     from .pipeline import SAVE_DECIMALS, SCENARIOS, rounded
     grids = {}
@@ -66,6 +70,9 @@ def export(c: dict, ix: dict, fc: dict, sp: dict, al: dict, res) -> None:
         "key": rounded(res.key),
         "index": {"month": idx["month"].tolist(), "total": np.round(idx["total_index"], 2).tolist(),
                   "price": np.round(idx["price_index"], 2).tolist(), "n_funds": idx["n_funds"].tolist()},
+        "solutions": {name: _records(res.tables[name], SAVE_DECIMALS) for name in
+                      ("sustainability_label", "payout_trend", "spending_menu", "spending_menu_yearly",
+                       "compass_case", "compass_regions")},
         "funds": res.tables["fund_summary"].round(SAVE_DECIMALS).astype(object).replace({np.nan: None}).to_dict(orient="records"),
     }
     config.DASHBOARD.mkdir(parents=True, exist_ok=True)

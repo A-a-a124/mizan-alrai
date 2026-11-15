@@ -231,8 +231,8 @@ def fig_payouts_vs_sustainable(payout: pd.DataFrame, sustainable: float, path: P
         ax.text(v + 0.002, yi, pct(v), va="center", ha="right", fontsize=8.5, color=INK_2)
     ax.set_xlim(latest["payout_pct"].max() * 1.25, 0)
     lo_p, hi_p = latest["payout_pct"].min(), latest["payout_pct"].max()
-    _frame(fig, f"الصناديق توزّع {pct(lo_p, 0)}–{pct(hi_p, 0)} سنوياً مقابل {pct(sustainable)} مستدام",
-           "التوزيع المقدَّر لآخر سنة رُصد فيها توزيع، مقابل معدل الصرف الذي يحفظ الأصل الحقيقي بثقة 60%",
+    _frame(fig, f"في سنة التوزيع يُصرف {pct(lo_p, 0)}–{pct(hi_p, 0)} من قيمة الوحدة",
+           "حجم آخر توزيع مرصود لكل صندوق (ليس متوسطاً سنوياً؛ أغلب الصناديق لا يُرصد لها توزيع كل سنة)، مقابل السقف المستدام",
            "تداول؛ كشف التوزيعات من هبوط السعر مقارنة بصناديق المديرين الآخرين")
     return _save(fig, path)
 
@@ -323,7 +323,7 @@ def fig_real_paths(paths: dict[str, np.ndarray], labels: dict[str, str], path: P
     ax.set_ylabel(ar("القيمة الحقيقية للوقف (100 = اليوم)"))
     ax.legend(loc="lower left", fontsize=9)
     loss = 1 - list(paths.values())[-1][1][-1] / 100
-    _frame(fig, f"الصرف بمعدلات الصناديق الحالية يُفقد الوقف {pct(loss, 0)} من قيمته الحقيقية في 10 سنوات",
+    _frame(fig, f"لو تكرر مستوى التوزيع الأخير كل سنة لفقد الوقف {pct(loss, 0)} من قيمته الحقيقية في 10 سنوات",
            "الوسيط ونطاق 10–90% للقيمة الحقيقية (بعد التضخم)", BY)
     return _save(fig, path)
 

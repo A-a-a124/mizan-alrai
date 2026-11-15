@@ -34,6 +34,9 @@ p { margin:0 0 7px; }
 figure { margin:6px 0 10px; }
 figure img { width:100%; border:1px solid var(--rule); border-radius:6px; display:block; }
 figure.md img { width:80%; margin:0 auto; }
+figure.sm img { width:60%; margin:0 auto; }
+table.compact { font-size:8.1pt; margin:4px 0 6px; }
+table.compact td, table.compact th { padding:2px 6px; }
 figcaption { font-size:8.5pt; color:var(--ink2); margin-top:3px; }
 table { width:100%; border-collapse:collapse; font-size:9pt; margin:6px 0 10px; }
 th { text-align:right; color:var(--ink2); font-weight:600; border-bottom:1.5px solid var(--ink3); padding:4px 6px; }
@@ -56,103 +59,133 @@ ul.tight li { margin-bottom:2px; }
 <section class="page">
   <div class="eyebrow">ميزان الريع · <span class="ltr">Mizan Al-Rai</span> — الملخص التنفيذي · مسابقة تحليل البيانات للقطاع غير الربحي</div>
   <h1>كم يصرف الوقف دون أن يأكل أصله؟</h1>
-  <div class="sub"><b>ميزان الريع</b>: منصة التنبؤ الذكي بالتدفقات المالية للوقف العائلي والأهلي — تنبؤ بالعوائد، وسقف صرف مستدام، وتوزيع شرعي للمصارف</div>
+  <div class="sub"><b>ميزان الريع</b>: منصة التنبؤ الذكي بالتدفقات المالية للوقف العائلي والأهلي — من التحليل إلى ثلاثة حلول قابلة للتطبيق</div>
   <div class="team">إعداد: <b>عبدالله عبدالرحمن عبدالله العضياني</b> · <b>ثامر خالد صالح الغامدي</b></div>
 
-  <div class="lede"><b>الخلاصة:</b> الأصول الوقفية المدرجة في السوق السعودية ولّدت عائداً كلياً مقدَّراً
-  <b>4.4% سنوياً</b>، أي نحو <b>2.4%</b> بعد التضخم. لذلك فإن معدل الصرف الذي يحفظ القيمة الحقيقية للوقف عشر سنوات
-  بثقة 60% هو <b>1.5% سنوياً</b> فقط، بينما توزّع الصناديق الوقفية فعلياً <b>3%–8%</b> (الوسيط 3.8%، أي نحو 4.0% وهو المعدل المستخدم في المحاكاة).
-  الاستمرار بهذا المعدل يعني تآكل القيمة الحقيقية للوقف بنحو <b>15%</b> خلال عقد.</div>
+  <div class="lede"><b>الخلاصة:</b> الأصول الوقفية المدرجة ولّدت عائداً كلياً مقدَّراً <b>4.4% سنوياً</b>، ووُزِّع منه على المستفيدين
+  نحو <b>1.6% سنوياً</b> في المتوسط، فبقيت قيمة الوحدة تنمو 2.8% سنوياً: <b>القطاع حافظ على أصله حتى الآن</b>.
+  لكن 22 من 25 توزيعاً مرصوداً وقعت في آخر ثلاث سنوات، وحجم التوزيع في سنته بلغ 3%–8% من قيمة الوحدة.
+  لو صار هذا المستوى سنوياً لتآكل الأصل. لذلك نقدّم ثلاثة حلول تُبقي الوقف مستداماً.</div>
 
   <div class="kpis">
-    <div class="kpi"><div class="v">1.5%</div><div class="l">سقف الصرف السنوي المستدام (ثقة 60%، تضخم 2%)</div></div>
-    <div class="kpi"><div class="v warn">21%</div><div class="l">احتمال حفظ الأصل إذا صرفنا بمعدل الصناديق الحالي (≈4.0%)</div></div>
-    <div class="kpi"><div class="v">3.9%</div><div class="l">العائد المتوقع للأشهر الـ12 القادمة (نطاق 80%: <span class="ltr">-1.6%</span> إلى <span class="ltr">9.6%</span>)</div></div>
+    <div class="kpi"><div class="v"><span class="ltr">1.5–2.0%</span></div><div class="l">نطاق الصرف السنوي الذي يحفظ القيمة الحقيقية للأصل</div></div>
+    <div class="kpi"><div class="v">85%</div><div class="l">من الأصول الوقفية المصنّفة تحمل الدرجة A في بطاقة الاستدامة</div></div>
+    <div class="kpi"><div class="v">25%</div><div class="l">احتمال قطع صرف المستفيد أكثر من 5% في سنة مع قاعدة التمهيد (75% بدونها)</div></div>
     <div class="kpi"><div class="v warn">0.1%</div><div class="l">حصة الأيتام من 15,305 مصرفاً وقفياً منشوراً، مقابل 43% للمساجد</div></div>
   </div>
 
   <h2>سؤال القرار</h2>
   <p>يواجه ناظر الوقف كل عام قراراً واحداً متكرراً: <b>كم أصرف، وعلى أي مصرف؟</b> الصرف الزائد يُرضي المستفيدين اليوم ويُضعف
-  الوقف غداً، والصرف الناقص يحبس الخير. حوّلنا هذا الحدس إلى رقم قابل للدفاع: أعلى معدل صرف يحفظ القيمة الحقيقية
-  للأصل بدرجة ثقة يختارها الناظر، ثم ترتيب الصرف شرعياً: عمارة الوقف، ثم احتياطي الاستقرار، ثم المصارف مع احترام شروط الواقفين.</p>
+  الوقف غداً، والصرف الناقص يحبس الخير. حوّلنا هذا القرار إلى أرقام من بيانات حقيقية، ثم إلى أدوات يستطيع الناظر ومدير الصندوق والجهة المنظِّمة اعتمادها.</p>
 
   <h2>البيانات: حقيقية ومفتوحة، وموثّقة حتى آخر صف</h2>
   <div class="two">
     <div><h3>الهيئة العامة للأوقاف</h3>
       <p class="small">18 مجموعة بيانات من منصة البيانات المفتوحة الوطنية، منها 15,305 مصرفاً وقفياً في 13 منطقة، والشهادات الوقفية
-      (384 في 2019 ← 9,409 في 2025)، والمستفيدون المباشرون (3,160 ← 3,744).</p></div>
+      (من 384 في 2019 إلى 9,409 في 2025)، والمستفيدون المباشرون (من 3,160 إلى 3,744).</p></div>
     <div><h3>السوق المالية السعودية (تداول)</h3>
-      <p class="small">أسعار وحدات 26 صندوقاً استثمارياً وقفياً مرخصاً (أصول ≈ 3.1 مليار ريال) من 2019-12 إلى 2026-10،
-      منها 12 صندوقاً تراكمياً في المؤشر. لماذا تُعد بيانات قطاع غير ربحي؟ الصناديق الـ26 كلها صناديق استثمارية <b>وقفية</b>: وحداتها موقوفة، وعوائدها تُصرف على جهات غير ربحية (جمعيات الأيتام والقرآن والصحة، وأوقاف الجامعات، والسقيا، وغيرها)، فهي بيانات أصول وقفية تخص القطاع غير الربحي، وليست بيانات سوق تجارية.</p></div>
+      <p class="small">أسعار وحدات 26 صندوقاً استثمارياً وقفياً مرخصاً (أصول ≈ 3.1 مليار ريال) من 2019-12 إلى 2026-10.
+      هذه الصناديق أوقاف: وحداتها موقوفة وعوائدها تُصرف على جهات غير ربحية، فهي بيانات قطاع غير ربحي.</p></div>
   </div>
-  <p class="small">كل لقطة خام محمية بفحص سلامة (عدد الصفوف ومجموع الأسعار)، و<b>12 قاعدة تنظيف</b> موثقة آلياً، أبرزها
-  توحيد التهجئات العربية للمصارف، وإزالة أسعار ما قبل الاستثمار، واستيفاء الفجوات الربعية مع تعليمها،
-  و<b>كشف 25 توزيعاً مخفياً</b> يظهر كهبوط في سعر الوحدة.</p>
-  <div class="meta">ميزان الريع · التشغيل الكامل: <span class="ltr">python scripts/run_analysis.py</span> — يعيد بناء كل رقم وشكل في هذا التقرير من البيانات الخام · 38 اختباراً آلياً ناجحاً</div>
+  <p class="small">كل لقطة خام محمية بفحص سلامة، و<b>12 قاعدة تنظيف</b> موثقة آلياً، منها توحيد التهجئات العربية للمصارف، وإزالة أسعار ما قبل الاستثمار،
+  واستيفاء الفجوات الربعية مع تعليمها، و<b>كشف 25 توزيعاً مخفياً</b> يظهر كهبوط في سعر الوحدة بينما صناديق المديرين الآخرين صاعدة.</p>
+  <figure class="sm"><img src="../outputs/figures/fig04_waqf_index.png"><figcaption>شكل 1 — المسافة بين الخطين هي ما وُزِّع على المستفيدين (أقصى تراجع <span class="ltr">-11.1%</span>).</figcaption></figure>
+  <div class="meta">ميزان الريع · التشغيل الكامل: <span class="ltr">python scripts/run_all.py</span> — يعيد بناء كل رقم وشكل من البيانات الخام · 57 اختباراً آلياً ناجحاً · فحص تلقائي على Windows وLinux</div>
 </section>
 
 <section class="page">
-  <h2>قصة الأثر: الفجوة بين ما يولّده الوقف وما يُصرف منه</h2>
-  <p>بنينا <b>مؤشر صناديق الوقف السعودية</b> (متوسط متساوي الأوزان للصناديق التراكمية). عائد السعر وحده 2.8% سنوياً، لكنه
-  يُخفي التوزيعات: كل يوليو تهبط صناديق الإنماء الوقفية معاً بنسبة 4–8% بينما صناديق المديرين الآخرين صاعدة. قسنا هذه
-  الفجوات فظهر العائد الكلي المقدَّر <b>4.4%</b>، والمسافة بين الخطين هي ما ذهب إلى المستفيدين.</p>
-  <figure><img src="../outputs/figures/fig04_waqf_index.png"><figcaption>شكل 1 — العائد الكلي المقدَّر مقابل عائد السعر (أقصى تراجع <span class="ltr">-11.1%</span>، أسوأ 12 شهراً <span class="ltr">-5.5%</span>).</figcaption></figure>
-  <div class="two">
-    <figure><img src="../outputs/figures/fig05_payouts_vs_sustainable.png"><figcaption>شكل 2 — التوزيع المقدَّر لكل صندوق مقابل السقف المستدام 1.5%.</figcaption></figure>
-    <figure><img src="../outputs/figures/fig09_real_value_paths.png"><figcaption>شكل 3 — القيمة الحقيقية بعد 10 سنوات: 110 عند الصرف المستدام مقابل 85 عند 4.0%.</figcaption></figure>
-  </div>
-  <div class="callout"><b>ماذا يعني ذلك لناظر الوقف؟</b> وقف بقيمة 10 ملايين ريال يصرف 4.0% سنوياً سيبدو بخير في السنوات الأولى،
-  لكن قوته الشرائية بعد عشر سنوات تهبط في المسار الوسيط إلى نحو 8.5 مليون ريال بأسعار اليوم. أما الصرف عند 1.5% فيترك
-  الوقف أقوى مما بدأ (11.0 مليون)، فيرث الجيل القادم وقفاً أكبر لا أصغر.</div>
-</section>
-
-<section class="page">
-  <h2>القرار: حدود الصرف المستدام</h2>
-  <p>10,000 مستقبل محتمل بإعادة معاينة كتلية من تاريخ المؤشر الفعلي، مع قاعدة صرف ممهَّدة (نسبة من متوسط قيمة الوقف
-  لآخر 12 ربعاً، كما تفعل أوقاف الجامعات الكبرى) حتى لا يتذبذب صرف المستفيدين مع السوق.</p>
-  <figure class="md"><img src="../outputs/figures/fig08_spending_frontier.png"><figcaption>شكل 4 — احتمال حفظ القيمة الحقيقية لكل معدل صرف في ثلاثة سيناريوهات.</figcaption></figure>
-  <table><thead><tr><th>شهية المخاطرة (الثقة المطلوبة)</th><th>السيناريو</th><th>سقف الصرف السنوي</th><th>صرف وقف بـ10 ملايين</th></tr></thead><tbody>
-  <tr><td>50%</td><td>الأساس</td><td class='n'>2.0%</td><td class='n'>200,000 ريال</td></tr>
-  <tr><td>50%</td><td>ضغط −1%</td><td class='n'>1.0%</td><td class='n'>100,000 ريال</td></tr>
-  <tr style="font-weight:700;color:#0d366b"><td>60%</td><td>الأساس</td><td class='n'>1.5%</td><td class='n'>150,000 ريال</td></tr>
-  <tr><td>60%</td><td>ضغط −1%</td><td class='n'>0.5%</td><td class='n'>50,000 ريال</td></tr>
-  <tr><td>75%</td><td>الأساس</td><td class='n'>1.0%</td><td class='n'>100,000 ريال</td></tr>
-  <tr><td>75%</td><td>ضغط −1%</td><td class='n'>0.0%</td><td class='n'>0 ريال</td></tr>
+  <h2>الحل الأول: بطاقة استدامة الوقف</h2>
+  <p>تصنيف من A إلى E لكل صندوق وقفي، يجيب عن سؤال واحد يفهمه أي واقف: <b>هل حافظت قيمة الوحدة الموقوفة على قوتها الشرائية؟</b>
+  الدرجة مبنية على سعر الوحدة المرصود مباشرة (بعد التوزيعات)، فلا تعتمد على أي تقدير. صنّفنا 24 صندوقاً، منها 9 بسجل أقل من 36 شهراً وُسمت «مبدئي».</p>
+  <table class="compact"><thead><tr><th>الدرجة</th><th>المعنى</th><th>عدد الصناديق</th><th>منها مبدئي</th></tr></thead><tbody>
+  <tr><td><b style='color:#1F4E79'>A</b></td><td>الأصل محفوظ فعلياً: قيمة الوحدة نمت بمعدل التضخم أو أكثر</td><td class='n'>10</td><td class='n'>2</td></tr>
+  <tr><td><b style='color:#4F7AA8'>B</b></td><td>محفوظ اسمياً فقط: قيمة الوحدة نمت أقل من التضخم</td><td class='n'>2</td><td class='n'>0</td></tr>
+  <tr><td><b style='color:#8A8983'>C</b></td><td>تآكل طفيف: قيمة الوحدة نقصت حتى 2% سنوياً</td><td class='n'>10</td><td class='n'>5</td></tr>
+  <tr><td><b style='color:#B5651D'>D</b></td><td>تآكل واضح: قيمة الوحدة نقصت بين 2% و5% سنوياً</td><td class='n'>1</td><td class='n'>1</td></tr>
+  <tr><td><b style='color:#9B2C2C'>E</b></td><td>تآكل شديد: قيمة الوحدة نقصت أكثر من 5% سنوياً</td><td class='n'>1</td><td class='n'>1</td></tr>
   </tbody></table>
-
-  <h2>التنبؤ: النموذج البسيط فاز بالأرقام</h2>
-  <div class="two">
-    <figure><img src="../outputs/figures/fig06_backtest.png"><figcaption>شكل 5 — اختبار رجعي على 36 نقطة انطلاق خارج العينة.</figcaption></figure>
-    <figure><img src="../outputs/figures/fig07_forecast.png"><figcaption>شكل 6 — توقع 12 شهراً: 3.9% (احتمال عائد سالب 24%).</figcaption></figure>
-  </div>
-  <p class="small">قارنّا خمسة نماذج قابلة للتفسير. فاز «متوسط آخر 36 شهراً» بخطأ أقل بـ<b>36%</b> من المرجع الساذج، وتفوق على ARIMA والتمهيد الأسي.
-  اخترنا النموذج الذي فاز في الاختبار، لا الأكثر تعقيداً، لأن السلاسل قصيرة والتعقيد هنا يعني إفراطاً في التوفيق.</p>
+  <table class="compact"><thead><tr><th>الصندوق</th><th>المدير</th><th>أشهر</th><th>نمو الوحدة سنوياً</th><th>أسوأ هبوط</th><th>الدرجة</th></tr></thead><tbody>
+  <tr><td class='ltr' style='text-align:right'>Nafaqah</td><td class='ltr' style='text-align:right'>Jadwa</td><td class='n'>70</td><td class='n'>5.2%</td><td class='n'>-7.4%</td><td><b style='color:#1F4E79'>A</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>King Saud University</td><td class='ltr' style='text-align:right'>SNB</td><td class='n'>60</td><td class='n'>3.4%</td><td class='n'>-7.3%</td><td><b style='color:#1F4E79'>A</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Alinma Enayah</td><td class='ltr' style='text-align:right'>Alinma</td><td class='n'>75</td><td class='n'>3.4%</td><td class='n'>-10.2%</td><td><b style='color:#1F4E79'>A</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Orphan Care</td><td class='ltr' style='text-align:right'>Alinma</td><td class='n'>75</td><td class='n'>3.1%</td><td class='n'>-12.6%</td><td><b style='color:#1F4E79'>A</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Alinma Wareef</td><td class='ltr' style='text-align:right'>Alinma</td><td class='n'>75</td><td class='n'>3.0%</td><td class='n'>-11.7%</td><td><b style='color:#1F4E79'>A</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Alinma Roads Mosques</td><td class='ltr' style='text-align:right'>Alinma</td><td class='n'>75</td><td class='n'>3.0%</td><td class='n'>-9.5%</td><td><b style='color:#1F4E79'>A</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Bir Ariyadh</td><td class='ltr' style='text-align:right'>Alinma</td><td class='n'>71</td><td class='n'>2.8%</td><td class='n'>-8.5%</td><td><b style='color:#1F4E79'>A</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Ensan</td><td class='ltr' style='text-align:right'>ALBILAD</td><td class='n'>83</td><td class='n'>2.5%</td><td class='n'>-12.7%</td><td><b style='color:#1F4E79'>A</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Jood <span style="color:#8a8983">(مبدئي)</span></td><td class='ltr' style='text-align:right'>SNB</td><td class='n'>12</td><td class='n'>9.9%</td><td class='n'>-5.4%</td><td><b style='color:#1F4E79'>A</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Ehsan <span style="color:#8a8983">(مبدئي)</span></td><td class='ltr' style='text-align:right'>SNB</td><td class='n'>23</td><td class='n'>2.5%</td><td class='n'>-5.1%</td><td><b style='color:#1F4E79'>A</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Autism</td><td class='ltr' style='text-align:right'>Al Rajhi</td><td class='n'>38</td><td class='n'>0.6%</td><td class='n'>-5.5%</td><td><b style='color:#4F7AA8'>B</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Eastern Region</td><td class='ltr' style='text-align:right'>Al Rajhi</td><td class='n'>38</td><td class='n'>0.0%</td><td class='n'>-5.8%</td><td><b style='color:#4F7AA8'>B</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Doyof Al Rahman</td><td class='ltr' style='text-align:right'>Al Rajhi</td><td class='n'>37</td><td class='n'>-0.0%</td><td class='n'>-5.6%</td><td><b style='color:#8A8983'>C</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Quran Kareem</td><td class='ltr' style='text-align:right'>Al Rajhi</td><td class='n'>38</td><td class='n'>-0.0%</td><td class='n'>-6.4%</td><td><b style='color:#8A8983'>C</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Shifa Health</td><td class='ltr' style='text-align:right'>Al Rajhi</td><td class='n'>41</td><td class='n'>-0.1%</td><td class='n'>-5.9%</td><td><b style='color:#8A8983'>C</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Health</td><td class='ltr' style='text-align:right'>Al Rajhi</td><td class='n'>37</td><td class='n'>-0.3%</td><td class='n'>-6.0%</td><td><b style='color:#8A8983'>C</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Orphans</td><td class='ltr' style='text-align:right'>Al Rajhi</td><td class='n'>38</td><td class='n'>-0.4%</td><td class='n'>-6.4%</td><td><b style='color:#8A8983'>C</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Trahum <span style="color:#8a8983">(مبدئي)</span></td><td class='ltr' style='text-align:right'>Al Rajhi</td><td class='n'>32</td><td class='n'>-0.3%</td><td class='n'>-4.8%</td><td><b style='color:#8A8983'>C</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Al Rajhi <span style="color:#8a8983">(مبدئي)</span></td><td class='ltr' style='text-align:right'>Al Rajhi</td><td class='n'>22</td><td class='n'>-0.5%</td><td class='n'>-5.0%</td><td><b style='color:#8A8983'>C</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>King Khalid University <span style="color:#8a8983">(مبدئي)</span></td><td class='ltr' style='text-align:right'>Alinma</td><td class='n'>27</td><td class='n'>-0.7%</td><td class='n'>-6.4%</td><td><b style='color:#8A8983'>C</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Takaful <span style="color:#8a8983">(مبدئي)</span></td><td class='ltr' style='text-align:right'>Al Rajhi</td><td class='n'>33</td><td class='n'>-1.1%</td><td class='n'>-6.6%</td><td><b style='color:#8A8983'>C</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>ALSuqia <span style="color:#8a8983">(مبدئي)</span></td><td class='ltr' style='text-align:right'>Al Rajhi</td><td class='n'>25</td><td class='n'>-1.5%</td><td class='n'>-6.0%</td><td><b style='color:#8A8983'>C</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>Alinma <span style="color:#8a8983">(مبدئي)</span></td><td class='ltr' style='text-align:right'>Alinma</td><td class='n'>19</td><td class='n'>-4.6%</td><td class='n'>-7.8%</td><td><b style='color:#B5651D'>D</b></td></tr>
+  <tr><td class='ltr' style='text-align:right'>King Faisal University <span style="color:#8a8983">(مبدئي)</span></td><td class='ltr' style='text-align:right'>ALBILAD</td><td class='n'>17</td><td class='n'>-8.0%</td><td class='n'>-16.8%</td><td><b style='color:#9B2C2C'>E</b></td></tr>
+  </tbody></table>
+  <p class="small"><b>من ينفّذها؟</b> الهيئة العامة للأوقاف أو هيئة السوق المالية تنشرها سنوياً من بيانات منشورة أصلاً، ومدير الصندوق يضعها في نشرة الصندوق.
+  <b>ماذا تضيف؟</b> معياراً واحداً شفافاً يقارن به الواقف بين الصناديق، وإنذاراً مبكراً لأي صندوق يبدأ أصله بالتآكل.
+  <b>حدودها:</b> الصناديق الجديدة انطلقت في سوق هابط فدرجتها مبدئية، وتغيير افتراض التضخم نصف نقطة يغيّر درجة 1 صندوق فقط.</p>
 </section>
 
 <section class="page">
-  <h2>التوزيع على المصارف: من شرط الواقف إلى أثر المستفيد</h2>
+  <h2>الحل الثاني: قاعدة ميزان للصرف</h2>
+  <p>قاعدة من جزأين. <b>أولاً: الصرف من متوسط قيمة الوقف لآخر 12 ربعاً</b> لا من قيمته اليوم، فلا يتذبذب دخل المستفيد مع السوق:
+  عند المعدل نفسه ينخفض احتمال قطع الصرف أكثر من 5% في سنة واحدة من <b>75%</b> إلى <b>25%</b>.
+  <b>ثانياً: اختيار المعدل من نطاق معلن</b> حسب شهية المخاطرة، مع رؤية المقايضة كاملة:</p>
+  <table><thead><tr><th>الخيار</th><th>معدل الصرف</th><th>قيمة الأصل الحقيقية بعد 30 سنة</th><th>احتمال حفظ الأصل</th><th>مجموع الصرف الحقيقي في 30 سنة</th><th>الصرف السنوي في السنة 30</th></tr></thead><tbody>
+  <tr><td>متحفظ</td><td class='n'>1.5%</td><td class='n'>132</td><td class='n'>79%</td><td class='n'>50</td><td class='n'>1.88</td></tr>
+  <tr style="font-weight:700;color:#0d366b"><td>متوازن</td><td class='n'>2.0%</td><td class='n'>114</td><td class='n'>64%</td><td class='n'>62</td><td class='n'>2.18</td></tr>
+  <tr><td>مستوى التوزيع الأخير</td><td class='n'>4.0%</td><td class='n'>61</td><td class='n'>8%</td><td class='n'>95</td><td class='n'>2.45</td></tr>
+  </tbody></table>
+  <p class="small">الأرقام لأصل قيمته 100 اليوم، بأسعار اليوم، من 10,000 مسار محاكاة بإعادة معاينة كتلية لتاريخ المؤشر الفعلي وتضخم 2%.</p>
+  <div class="callout"><b>المقايضة بصراحة:</b> الصرف عند 4% يعطي المستفيدين أكثر في العقود الأولى (95 مقابل 62 خلال 30 سنة)،
+  لكنه يُنقص الأصل إلى 61 ويهبط بالصرف السنوي عاماً بعد عام. الصرف عند 2.0% يُبقي الأصل ويزيد الصرف السنوي،
+  ويتجاوز صرفه السنوي صرف الخيار الأعلى في السنة 36 تقريباً. القرار إذن عدالة بين الأجيال، وقاعدة ميزان تجعله قراراً معلناً لا نتيجة غير مقصودة.</div>
   <div class="two">
-    <figure><img src="../outputs/figures/fig02_masarif_national.png"><figcaption>شكل 7 — المصارف الوقفية وطنياً.</figcaption></figure>
-    <figure><img src="../outputs/figures/fig10_allocation.png"><figcaption>شكل 8 — خطة صرف تطبيقية: 150,000 ريال لوقف بـ10 ملايين.</figcaption></figure>
+    <figure><img src="../outputs/figures/fig08_spending_frontier.png"><figcaption>شكل 2 — احتمال حفظ القيمة الحقيقية لكل معدل صرف.</figcaption></figure>
+    <figure><img src="../outputs/figures/fig07_forecast.png"><figcaption>شكل 3 — توقع 12 شهراً: 3.9% (احتمال عائد سالب 24%)، بنموذج اجتاز اختباراً رجعياً على 36 نقطة.</figcaption></figure>
   </div>
-  <p>الترتيب: <b>عمارة الوقف</b> (15,000 ريال) ← <b>احتياطي الاستقرار</b> (15,000 ريال) ← <b>المصارف</b>. حصص شروط الواقفين تبقى ثابتة،
-  والحصة المرنة «أوجه البر» (25% من المصارف وطنياً) توجَّه بأوزان أولوية معلنة، فترتفع حصة الاحتياجات الأساسية المتكررة
-  (الفقراء، الأيتام، الأرامل، الإطعام، السكن) من <b>9%</b> إلى <b>24%</b> دون مخالفة أي شرط.</p>
+  <p class="small"><b>من ينفّذها؟</b> ناظر الوقف ومجلس إدارة الصندوق، بتعديل سياسة التوزيع فقط. <b>ماذا تضيف؟</b> دخلاً أثبت للمستفيد وأصلاً لا يتآكل.
+  <b>حدودها:</b> التاريخ 83 شهراً فقط، فالمحاكاة لثلاثين سنة تقدير لا تنبؤ، وفي سيناريو الضغط ينخفض المعدل المتحفظ إلى 0.5%.</p>
+</section>
 
-  <h2>التوصيات</h2>
-  <ol class="rec">
-    <li><b>اعتماد سقف صرف 1.5%</b> من متوسط قيمة الوقف لـ12 ربعاً كخط أساس، يرتفع إلى 2.0% لمن يقبل ثقة 50% وينخفض إلى 0.5% في سيناريو الضغط، مع مراجعة سنوية بهذه المنصة.</li>
-    <li><b>ربط توزيعات الصناديق الوقفية بالعائد الممهَّد</b> لا بعائد السنة: التوزيع الحالي (≈4.0%) يحفظ الأصل الحقيقي باحتمال 21% فقط.</li>
-    <li><b>تقديم عمارة الوقف وبناء احتياطي يغطي صرف سنة</b> قبل التوزيع، لامتصاص السنوات السالبة التي يقع احتمالها عند 24% سنوياً.</li>
-    <li><b>توجيه «أوجه البر» نحو المصارف المهمَلة:</b> الأيتام 0.1% والأرامل 0.04% من المصارف المنشورة، بينما تذهب 85% من مصارف الشرقية إلى المساجد وحدها.</li>
-    <li><b>إفصاح أفضل يعني قرارات أفضل:</b> نوصي الهيئة وهيئة السوق المالية بنشر صافي أصول موثوق ومبالغ التوزيع لكل صندوق، والمستفيدين حسب المنطقة والمصرف.</li>
-  </ol>
+<section class="page">
+  <h2>الحل الثالث: بوصلة المصارف</h2>
+  <p>شروط الواقفين تبقى كما هي. الحصة المرنة «أوجه البر» (25% من المصارف وطنياً) هي التي يملك الناظر توجيهها، فتُوزَّع بأوزان أولوية معلنة نحو الاحتياجات الأقل تغطية.
+  مثال وقف بقيمة 10 ملايين ريال وميزانية 150,000 ريال بعد عمارة الوقف والاحتياطي:</p>
+  <div class="two">
+    <table><thead><tr><th>المصرف</th><th>من شروط الواقفين</th><th>بعد التوجيه</th></tr></thead><tbody>
+    <tr><td>إطعام الطعام</td><td class='n'>5,520</td><td class='n'><b>8,886</b></td></tr>
+    <tr><td>الفقراء والمساكين</td><td class='n'>3,787</td><td class='n'><b>7,637</b></td></tr>
+    <tr><td>السكن</td><td class='n'>1,364</td><td class='n'><b>4,731</b></td></tr>
+    <tr><td>الأيتام</td><td class='n'>125</td><td class='n'><b>3,975</b></td></tr>
+    <tr><td>الأرامل</td><td class='n'>47</td><td class='n'><b>3,655</b></td></tr>
+    </tbody></table>
+    <figure><img src="../outputs/figures/fig02_masarif_national.png"><figcaption>شكل 4 — المصارف الوقفية وطنياً: المساجد 43% والأيتام 0.1%.</figcaption></figure>
+  </div>
+  <p class="small"><b>من ينفّذها؟</b> ناظر الوقف عند إعداد خطة الصرف السنوية. <b>ماذا تضيف؟</b> ترتفع حصة الاحتياجات الأساسية من <b>9%</b> إلى <b>24%</b> دون مخالفة أي شرط،
+  وأكبر أثر في الحدود الشمالية. <b>حدودها:</b> الأوزان افتراضات معلنة قابلة للتعديل، لأن بيانات الاحتياج حسب المنطقة غير منشورة.</p>
+
+  <h2>خلاصة الحلول</h2>
+  <table><thead><tr><th>الحل</th><th>من ينفّذه</th><th>بماذا</th><th>ماذا يضيف</th></tr></thead><tbody>
+    <tr><td><b>بطاقة استدامة الوقف</b></td><td>الهيئة العامة للأوقاف، هيئة السوق المالية</td><td>أسعار الوحدات المنشورة</td><td>معيار مقارنة شفاف لـ24 صندوقاً وإنذار مبكر بالتآكل</td></tr>
+    <tr><td><b>قاعدة ميزان للصرف</b></td><td>النظّار ومجالس الصناديق</td><td>تعديل سياسة التوزيع</td><td>احتمال قطع الصرف من 75% إلى 25%، وأصل محفوظ</td></tr>
+    <tr><td><b>بوصلة المصارف</b></td><td>النظّار</td><td>خطة الصرف السنوية</td><td>حصة الاحتياجات الأساسية من 9% إلى 24%</td></tr>
+  </tbody></table>
 
   <h2>المنهجية والحدود والاستخدام المسؤول للذكاء الاصطناعي</h2>
   <ul class="tight small">
-    <li><b>المنهجية:</b> Python (pandas/statsmodels)؛ اختبار رجعي متدحرج بلا تسرب للمستقبل (مختبر آلياً)؛ Bootstrap كتلي ثابت؛ قاعدة صرف ممهَّدة؛ توزيع حتمي بقيود مختبرة (المجموع = الميزانية، لا مصرف تحت الحد الأدنى، شروط الواقف لا تُمس).</li>
-    <li><b>الحدود:</b> الصناديق المدرجة وكيل لأداء الاستثمار الوقفي لا القوائم المالية لوقف بعينه؛ التاريخ قصير وفيه تحيز بقاء (عولج بسيناريو ضغط)؛ مبالغ التوزيع مقدَّرة لعدم نشرها؛ بيانات المستفيدين وطنية فقط.</li>
-    <li><b>الذكاء الاصطناعي:</b> استُخدم مساعداً في البرمجة والتصميم. كل رقم مُشتق برمجياً من البيانات وليس مكتوباً يدوياً، وكل خطوة لها اختبار أو تحقق موثق في <span class="ltr">ai_usage_log.md</span>.</li>
+    <li><b>المنهجية:</b> Python (pandas/statsmodels)؛ اختبار رجعي متدحرج بلا تسرب للمستقبل؛ Bootstrap كتلي ثابت؛ قواعد حتمية مختبرة آلياً، والمخرجات متطابقة عند إعادة التشغيل.</li>
+    <li><b>الحدود:</b> الصناديق المدرجة وكيل لأداء الاستثمار الوقفي لا القوائم المالية لوقف بعينه؛ مبالغ التوزيع مقدَّرة لعدم نشرها، والكشف أضعف في السنوات التي كان الإفصاح فيها ربعياً؛ بيانات المستفيدين وطنية فقط.</li>
+    <li><b>الذكاء الاصطناعي:</b> استُخدم مساعداً في البرمجة والتصميم. كل رقم مُشتق برمجياً من البيانات، وكل خطوة لها تحقق موثق في <span class="ltr">ai_usage_log.md</span>، ومنها تصحيح قراءة سابقة خاطئة لمعدل التوزيع.</li>
   </ul>
 </section>
 </body></html>

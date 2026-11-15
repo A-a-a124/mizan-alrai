@@ -66,6 +66,53 @@ table.t td,table.t th{border-bottom:1px solid var(--rule);padding:4px 6px;text-a
 table.t td.n{direction:ltr;text-align:left;font-variant-numeric:tabular-nums}
 details summary{cursor:pointer;color:var(--text-secondary);font-size:13px}
 .ltr{direction:ltr;unicode-bidi:embed}
+html{scroll-behavior:smooth}
+nav.jump{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;position:sticky;top:0;z-index:10;padding:8px 0;background:var(--surface-0)}
+nav.jump a{font-size:13px;padding:5px 12px;border-radius:16px;border:1px solid var(--rule);background:var(--card);
+  color:var(--text-primary);text-decoration:none}
+nav.jump a:hover,nav.jump a:focus{border-color:var(--series-1);color:var(--series-1)}
+.sol-head{margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;scroll-margin-top:56px}
+.sol-head .num{background:var(--navy);color:var(--card);border-radius:8px;padding:2px 10px;font-weight:700;font-size:14px}
+.sol-head h2{margin:0;font-size:21px;color:var(--navy)}
+.sol-head p{margin:0;color:var(--text-secondary);font-size:13.5px;flex-basis:100%}
+.adds{font-size:13px;background:var(--surface-1);border-inline-start:3px solid var(--series-3);padding:7px 10px;
+  border-radius:6px;margin-top:10px;color:var(--text-secondary)}
+.adds b{color:var(--text-primary)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.chip{font:inherit;font-size:12.5px;padding:4px 11px;border-radius:14px;border:1px solid var(--rule);background:var(--surface-1);
+  color:var(--text-secondary);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--navy);color:var(--card);border-color:var(--navy)}
+.g{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:6px;color:#fff;font-weight:700;font-size:14px;flex:none}
+.gA{background:#0a8a3a}.gB{background:#5cab2e}.gC{background:#c99a00}.gD{background:#e46c1f}.gE{background:#c62828}
+.energy{display:grid;gap:6px;margin:6px 0 2px}
+.energy .row{display:grid;grid-template-columns:auto 1fr 76px;align-items:center;gap:8px;font-size:12.5px;cursor:pointer;
+  border-radius:6px;transition:opacity .2s}
+.energy .arrow{height:24px;color:#fff;font-weight:700;display:flex;align-items:center;padding-inline-start:8px;
+  clip-path:polygon(0 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,0 100%);transition:width .5s ease}
+[dir="rtl"] .energy .arrow{clip-path:polygon(10px 0,100% 0,100% 100%,10px 100%,0 50%)}
+.energy .row.off{opacity:.3}
+.energy .row:focus{outline:2px solid var(--series-1);outline-offset:2px}
+.fund-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin-top:6px;max-height:430px;overflow:auto;padding:2px}
+.fund{border:1px solid var(--rule);border-radius:10px;padding:8px 10px;background:var(--surface-1);display:flex;gap:9px;
+  align-items:flex-start;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.fund:hover,.fund:focus{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.10);outline:none;border-color:var(--series-1)}
+.fund .nm{font-size:12.5px;line-height:1.35;direction:ltr;text-align:right}
+.fund .mt{font-size:11.5px;color:var(--text-muted)}
+.fund.prov{border-style:dashed}
+.detail{margin-top:10px;font-size:13px;background:var(--surface-1);border:1px solid var(--rule);border-radius:10px;padding:10px 12px;display:none}
+.opt-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:6px 0}
+.opt{border:1px solid var(--rule);border-radius:10px;padding:8px 10px;background:var(--surface-1);cursor:pointer;text-align:right;font:inherit;color:inherit}
+.opt[aria-pressed="true"]{outline:2px solid var(--navy);border-color:var(--navy)}
+.opt .r{font-size:24px;font-weight:700;line-height:1.2}
+.opt .n{font-size:12.5px;color:var(--text-secondary)}
+.big3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
+.big3>div{background:var(--surface-1);border-radius:10px;padding:8px 10px}
+.big3 .v{font-size:19px;font-weight:700;color:var(--navy);line-height:1.25;font-variant-numeric:tabular-nums}
+.big3 .l{font-size:12px;color:var(--text-secondary)}
+.smooth{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+.meter{height:12px;border-radius:6px;background:var(--rule);overflow:hidden}
+.meter i{display:block;height:100%;transition:width .6s ease}
+@media (max-width:860px){.opt-cards,.big3,.smooth{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -76,8 +123,11 @@ details summary{cursor:pointer;color:var(--text-secondary);font-size:13px}
   <p>اختر قيمة الوقف ومعدل الصرف لترى احتمال حفظ القيمة الحقيقية للأصل بعد 10 سنوات، وكيف يتوزع المبلغ على المصارف.
      الأرقام محسوبة مسبقاً من <span class="ltr">scripts/run_analysis.py</span> (10,000 مسار محاكاة لكل حالة).</p>
 </header>
+<nav class="jump" aria-label="أقسام اللوحة">
+  <a href="#sim">المحاكي</a><a href="#label">① بطاقة استدامة الوقف</a><a href="#rule">② قاعدة ميزان للصرف</a><a href="#compass">③ بوصلة المصارف</a>
+</nav>
 
-<section class="controls" aria-label="مدخلات القرار">
+<section class="controls" id="sim" aria-label="مدخلات القرار">
   <div><label for="endow">قيمة الوقف (ريال)</label><input id="endow" type="number" min="100000" step="100000" value="10000000"></div>
   <div class="rate-box"><label for="rate">معدل الصرف السنوي: <span class="rate-val" id="rateVal"></span></label>
     <input id="rate" type="range" min="0" max="16" step="1" value="3"></div>
@@ -121,10 +171,67 @@ details summary{cursor:pointer;color:var(--text-secondary);font-size:13px}
   </div>
 </section>
 
+<div class="sol-head" id="label"><span class="num">الحل ①</span><h2>بطاقة استدامة الوقف</h2>
+  <p>درجة من A إلى E لكل صندوق وقفي، من سعر الوحدة المنشور فقط: هل حافظت الوحدة على قوتها الشرائية؟ اضغط درجة لتصفية الصناديق، أو صندوقاً لترى تفاصيله.</p></div>
+<section class="grid2">
+  <div class="card"><h2>توزيع الأصول على الدرجات</h2><div class="sub" id="labSub"></div>
+    <div class="chips" role="group" aria-label="افتراض التضخم">
+      <button class="chip" data-inf="grade_if_inflation_low" aria-pressed="false">تضخم منخفض</button>
+      <button class="chip" data-inf="grade" aria-pressed="true">تضخم 2% (الأساس)</button>
+      <button class="chip" data-inf="grade_if_inflation_high" aria-pressed="false">تضخم مرتفع</button>
+      <button class="chip" id="estOnly" aria-pressed="false">المستقرة فقط (36 شهراً+)</button>
+    </div>
+    <div class="energy" id="energy"></div>
+    <div class="adds"><b>ماذا يضيف؟</b> معيار مقارنة شفاف للواقف قبل أن يختار صندوقه، وإنذار مبكر لأي صندوق يبدأ أصله بالتآكل. <b>من ينفّذه؟</b> الهيئة العامة للأوقاف أو هيئة السوق المالية، سنوياً، من أسعار منشورة أصلاً.</div>
+  </div>
+  <div class="card"><h2>الصناديق المصنّفة</h2><div class="sub" id="fundSub"></div>
+    <div class="fund-grid" id="fundGrid"></div>
+    <div class="detail" id="fundDetail" aria-live="polite"></div>
+  </div>
+</section>
+
+<div class="sol-head" id="rule"><span class="num">الحل ②</span><h2>قاعدة ميزان للصرف</h2>
+  <p>الصرف من متوسط قيمة الوقف لآخر 12 ربعاً، بمعدل يختاره الناظر من نطاق معلن. اختر الخيار والأفق لترى ماذا يأخذ هذا الجيل وماذا يبقى للأجيال القادمة (الأرقام بقيمة الوقف التي أدخلتها في المحاكي).</p></div>
+<section class="grid2">
+  <div class="card"><h2>اختر معدل الصرف</h2>
+    <div class="opt-cards" id="opts"></div>
+    <div class="chips" role="group" aria-label="الأفق">
+      <button class="chip" data-h="10" aria-pressed="true">10 سنوات</button>
+      <button class="chip" data-h="20" aria-pressed="false">20 سنة</button>
+      <button class="chip" data-h="30" aria-pressed="false">30 سنة</button>
+    </div>
+    <div class="big3" id="big3"></div>
+    <h2 style="margin-top:12px">لماذا التمهيد على 12 ربعاً؟</h2>
+    <div class="sub">احتمال أن ينخفض مبلغ الصرف أكثر من 5% في سنة ما، عند المعدل نفسه (2%)</div>
+    <div class="smooth" id="smooth"></div>
+    <div class="adds"><b>ماذا يضيف؟</b> صرف ثابت يمكن للمستفيد أن يبني عليه، وحماية الأصل من قرار صرف تحت ضغط سنة جيدة. <b>من ينفّذه؟</b> مجلس نظارة الوقف أو مدير الصندوق، بإعلان النطاق في شروط الصندوق.</div>
+  </div>
+  <div class="card"><h2>الصرف السنوي الحقيقي على مدى 40 سنة</h2><div class="sub">لكل 100 ريال من قيمة الوقف اليوم، بأسعار اليوم (الوسيط). المنطقة المظللة = الأفق المختار</div>
+    <svg id="tradeoff" viewBox="0 0 560 300" role="img" aria-label="الصرف السنوي لكل خيار خلال 40 سنة"></svg>
+    <div class="legend" id="tradeLeg"></div>
+    <div class="tip" id="tipT"></div>
+    <div class="adds" id="tradeNote"></div>
+  </div>
+</section>
+
+<div class="sol-head" id="compass"><span class="num">الحل ③</span><h2>بوصلة المصارف</h2>
+  <p>حصة «أوجه البر» في الوقف مرنة. البوصلة توجّهها بأوزان أولوية معلنة نحو الرعاية الاجتماعية (الفقراء، الأيتام، الأرامل، الإطعام، السكن). مرّر المؤشر على أي منطقة.</p></div>
+<section class="grid2">
+  <div class="card"><h2>حصة الرعاية الاجتماعية: اليوم مقابل بعد البوصلة</h2><div class="sub">لكل منطقة، من المصارف الوقفية المسجّلة</div>
+    <svg id="regions" viewBox="0 0 560 330" role="img" aria-label="حصة الرعاية الاجتماعية حسب المنطقة"></svg>
+    <div class="legend"><span><i style="background:var(--text-muted)"></i>اليوم</span><span><i style="background:var(--series-3)"></i>بعد توجيه الحصة المرنة</span></div>
+    <div class="tip" id="tipR"></div>
+  </div>
+  <div class="card"><h2>أين تذهب ريالات الوقف؟</h2><div class="sub" id="caseSub"></div>
+    <div id="caseBars"></div>
+    <div class="adds"><b>ماذا يضيف؟</b> يصل الريال الوقفي المرن إلى المصارف الأقل تغطية بدل أن يتكرر في المصارف المكتظة، دون المساس بشرط الواقف. <b>من ينفّذه؟</b> الناظر عند توزيع حصة «أوجه البر»، والهيئة بنشر أوزان الأولوية.</div>
+  </div>
+</section>
+
 <footer id="foot"></footer>
 </div>
 
-<script src="data.js"></script>
+<script src="data.js?v=3"></script>
 <script>
 (function(){
 const D = window.WAQF_DATA;
@@ -269,6 +376,120 @@ function render(){
 
 ['endow','rate','scen','infl','conf','prof','resv'].forEach(id => $(id).addEventListener('input', render));
 drawIndex(); render();
+
+// ================= solutions (tables from src/waqf/solutions.py) =================
+const S = D.solutions, GR = ['A','B','C','D','E'];
+const GRADE_TXT = {A:'الأصل محفوظ فعلياً: قيمة الوحدة نمت بمعدل التضخم أو أكثر', B:'محفوظ اسمياً فقط: قيمة الوحدة نمت أقل من التضخم',
+  C:'تآكل طفيف: قيمة الوحدة نقصت حتى 2% سنوياً', D:'تآكل واضح: قيمة الوحدة نقصت بين 2% و5% سنوياً', E:'تآكل شديد: قيمة الوحدة نقصت أكثر من 5% سنوياً'};  // = solutions.GRADE_MEANING_AR
+const nFunds = n => n === 0 ? 'لا صناديق' : n === 1 ? 'صندوق واحد' : n === 2 ? 'صندوقان' : n <= 10 ? n + ' صناديق' : n + ' صندوقاً';
+const keyAct = f => e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); f(); } };
+const LS = {inf:'grade', est:false, sel:null};
+function drawLabel(){
+  const rows = S.sustainability_label.filter(f => !LS.est || !f.provisional);
+  const g = f => f[LS.inf] || f.grade;
+  const aum = GR.map(x => rows.filter(f => g(f) === x).reduce((a,f) => a + (f.aum_sar || 0), 0));
+  const cnt = GR.map(x => rows.filter(f => g(f) === x).length);
+  const tot = aum.reduce((a,b) => a + b, 0) || 1;
+  $('labSub').textContent = `${nFunds(rows.length)} · ${(tot/1e9).toFixed(2)} مليار ريال من الأصول المصنّفة`;
+  $('energy').innerHTML = GR.map((x,i) => `<div class="row${LS.sel && LS.sel !== x ? ' off' : ''}" data-g="${x}" role="button" tabindex="0" aria-pressed="${LS.sel === x}" aria-label="الدرجة ${x}">
+     <span class="g g${x}">${x}</span>
+     <div><div class="arrow g${x}" style="width:${Math.max(8, aum[i]/tot*100).toFixed(1)}%">${pct(aum[i]/tot, 0)}</div></div>
+     <span style="color:var(--text-secondary)">${nFunds(cnt[i])}</span></div>`).join('');
+  $('energy').querySelectorAll('.row').forEach(r => {
+    const f = () => { LS.sel = LS.sel === r.dataset.g ? null : r.dataset.g; drawLabel(); };
+    r.onclick = f; r.onkeydown = keyAct(f); });
+  const shown = rows.filter(f => !LS.sel || g(f) === LS.sel)
+    .sort((a,b) => GR.indexOf(g(a)) - GR.indexOf(g(b)) || (b.aum_sar || 0) - (a.aum_sar || 0));
+  $('fundSub').textContent = LS.sel ? `الدرجة ${LS.sel}: ${GRADE_TXT[LS.sel]} (${nFunds(shown.length)})`
+                                    : 'اضغط أي صندوق لتفاصيله · الإطار المتقطع = سجل أقل من 36 شهراً (درجة مبدئية)';
+  $('fundGrid').innerHTML = shown.map(f => `<div class="fund${f.provisional ? ' prov' : ''}" role="button" tabindex="0" data-s="${f.symbol}">
+     <span class="g g${g(f)}">${g(f)}</span><div><div class="nm">${f.fund_name}</div>
+     <div class="mt">${f.months} شهراً · ${f.aum_sar ? (f.aum_sar/1e6).toFixed(0) + ' مليون ريال' : 'الأصول غير منشورة'}</div></div></div>`).join('')
+     || '<div class="sub">لا توجد صناديق بهذه الدرجة.</div>';
+  $('fundGrid').querySelectorAll('.fund').forEach(c => { const f = () => showFund(c.dataset.s); c.onclick = f; c.onkeydown = keyAct(f); });
+}
+function showFund(sym){
+  const f = S.sustainability_label.find(x => x.symbol === sym), g = f[LS.inf] || f.grade, d = $('fundDetail');
+  d.style.display = 'block';
+  d.innerHTML = `<div style="display:flex;gap:8px;align-items:center"><span class="g g${g}">${g}</span><b class="ltr">${f.fund_name}</b></div>
+   <div style="margin-top:6px">${GRADE_TXT[g]}${f.provisional ? ' <span class="pill">مبدئي: سجل قصير</span>' : ''}</div>
+   <table class="t" style="margin-top:6px">
+   <tr><td>نمو قيمة الوحدة سنوياً</td><td class="n">${pct(f.unit_growth)}</td></tr>
+   <tr><td>بعد خصم تضخم 2%</td><td class="n">${pct(f.real_unit_growth)}</td></tr>
+   <tr><td>التوزيع المقدَّر سنوياً</td><td class="n">${f.est_payout_rate == null ? '—' : pct(f.est_payout_rate)}</td></tr>
+   <tr><td>أكبر تراجع من القمة</td><td class="n">${pct(f.max_drawdown)}</td></tr>
+   <tr><td>مدير الصندوق</td><td class="n">${f.manager}</td></tr></table>`;
+}
+document.querySelectorAll('[data-inf]').forEach(b => b.onclick = () => {
+  document.querySelectorAll('[data-inf]').forEach(x => x.setAttribute('aria-pressed', x === b));
+  LS.inf = b.dataset.inf; drawLabel(); $('fundDetail').style.display = 'none'; });
+$('estOnly').onclick = () => { LS.est = !LS.est; $('estOnly').setAttribute('aria-pressed', LS.est); drawLabel(); };
+
+const OPT = {cautious:{n:'متحفظ', c:'--series-1'}, balanced:{n:'متوازن', c:'--series-3'}, recent_level:{n:'مستوى التوزيع الأخير', c:'--series-2'}};
+const RS = {opt:'balanced', h:10};
+function drawRule(){
+  const menu = S.spending_menu, V = Math.max(0, +$('endow').value || 0);
+  $('opts').innerHTML = Object.keys(OPT).map(o => { const r = menu.find(m => m.option === o);
+    return `<button class="opt" data-o="${o}" aria-pressed="${o === RS.opt}"><div class="r" style="color:var(${OPT[o].c})">${pct(r.rate)}</div><div class="n">${OPT[o].n}</div></button>`; }).join('');
+  $('opts').querySelectorAll('.opt').forEach(b => b.onclick = () => { RS.opt = b.dataset.o; drawRule(); });
+  const m = menu.find(x => x.option === RS.opt && x.years === RS.h);
+  $('big3').innerHTML = `<div><div class="v">${sar(V * m.cumulative_real_payout / 100)}</div><div class="l">ريال يصل للمستفيدين خلال ${RS.h === 10 ? '10 سنوات' : RS.h + ' سنة'} (بأسعار اليوم)</div></div>
+    <div><div class="v" style="color:${m.median_real_value >= 100 ? css('--navy') : css('--series-2')}">${sar(V * m.median_real_value / 100)}</div><div class="l">قيمة الوقف الباقية للأجيال القادمة (الوسيط)</div></div>
+    <div><div class="v">${pct(m.p_preserve_real, 0)}</div><div class="l">احتمال أن يبقى الأصل فوق قيمته الحقيقية اليوم</div></div>`;
+  const sm = D.key.rule.smoothing;
+  const bar = (v, c, l) => `<div><div style="font-size:12.5px;margin-bottom:3px">${l}: <b>${pct(v, 0)}</b></div><div class="meter"><i style="width:${(v*100).toFixed(1)}%;background:var(${c})"></i></div></div>`;
+  $('smooth').innerHTML = bar(sm.unsmoothed_p_cut_over_5pct, '--series-2', 'الصرف من قيمة آخر سنة') + bar(sm.smoothed_p_cut_over_5pct, '--series-3', 'الصرف من متوسط 12 ربعاً (ميزان)');
+  drawTradeoff();
+}
+document.querySelectorAll('[data-h]').forEach(b => b.onclick = () => {
+  document.querySelectorAll('[data-h]').forEach(x => x.setAttribute('aria-pressed', x === b)); RS.h = +b.dataset.h; drawRule(); });
+function drawTradeoff(){
+  const svg = $('tradeoff'); svg.innerHTML = '';
+  const Y = S.spending_menu_yearly, opts = Object.keys(OPT), years = [...new Set(Y.map(r => r.year))].sort((a,b) => a - b);
+  const ser = o => Y.filter(r => r.option === o).sort((a,b) => a.year - b.year).map(r => r.median_real_payout);
+  const S3 = opts.map(ser), hi = Math.ceil(Math.max(...S3.flat()));
+  const pad = {l:36, r:14, t:12, b:30}, yt = []; for (let v = 0; v <= hi; v += 1) yt.push(v);
+  const last = years[years.length - 1];
+  const a = axes(svg, years[0], last, 0, hi, [1,10,20,30,40].filter(x => x <= last), yt, v => v + ' سنة', v => v.toFixed(0), pad);
+  el('rect', {x:a.sx(years[0]), y:pad.t, width:a.sx(RS.h) - a.sx(years[0]), height:300 - pad.t - pad.b, fill:css('--band-1')}, svg);
+  opts.forEach((o,j) => el('path', {d:path(S3[j].map((v,i) => [a.sx(years[i]), a.sy(v)])), fill:'none', stroke:css(OPT[o].c),
+     'stroke-width':o === RS.opt ? 3.2 : 1.6, opacity:o === RS.opt ? 1 : .45}, svg));
+  const be = D.key.rule.breakeven_year_balanced;
+  if (be){ el('line', {x1:a.sx(be), x2:a.sx(be), y1:pad.t, y2:300 - pad.b, stroke:css('--text-muted'), 'stroke-dasharray':'4 3'}, svg);
+    el('text', {x:a.sx(be) - 4, y:pad.t + 12, 'text-anchor':'start'}, svg).textContent = 'السنة ' + be + ': المتوازن يتجاوز'; }
+  $('tradeLeg').innerHTML = opts.map(o => `<span><i style="background:var(${OPT[o].c})"></i>${OPT[o].n} ${pct(S.spending_menu.find(m => m.option === o).rate)}</span>`).join('');
+  hover(svg, $('tipT'), years, a.sx, i => `السنة ${years[i]}<br>` + opts.map((o,j) => `${OPT[o].n}: <b>${S3[j][i].toFixed(2)}</b>`).join('<br>'));
+  const r = o => S.spending_menu.find(m => m.option === o && m.years === 30);
+  $('tradeNote').innerHTML = `<b>المقايضة بصراحة:</b> الصرف الأعلى يعطي أكثر في العقود الأولى (مجموع 30 سنة: ${r('recent_level').cumulative_real_payout.toFixed(0)} مقابل ${r('balanced').cumulative_real_payout.toFixed(0)} للمتوازن) لكنه يترك أصلاً قيمته ${r('recent_level').median_real_value.toFixed(0)} بدل ${r('balanced').median_real_value.toFixed(0)}، ويتناقص صرفه السنوي عاماً بعد عام.`;
+}
+
+function drawCompass(){
+  const R = S.compass_regions.slice().sort((a,b) => b.social_share_after - a.social_share_after), svg = $('regions'); svg.innerHTML = '';
+  const W = 560, rowH = 300 / R.length, x0 = 130, sx = v => x0 + v * (W - x0 - 50);
+  [0, .25, .5, .75].forEach(v => { el('line', {x1:sx(v), x2:sx(v), y1:6, y2:310, stroke:css('--rule')}, svg);
+    el('text', {x:sx(v), y:324, 'text-anchor':'middle'}, svg).textContent = pct(v, 0); });
+  R.forEach((r,i) => { const y = 8 + i * rowH;
+    el('text', {x:x0 - 8, y:y + rowH * .62, 'text-anchor':'start'}, svg).textContent = r.region_ar;
+    el('rect', {x:x0, y:y + 2, width:Math.max(1, sx(r.social_share_after) - x0), height:rowH - 5, rx:3, fill:css('--series-3')}, svg);
+    el('rect', {x:x0, y:y + 2, width:Math.max(1, sx(r.social_share) - x0), height:rowH - 5, rx:3, fill:css('--text-muted')}, svg);
+    el('text', {x:sx(r.social_share_after) + 4, y:y + rowH * .62, 'text-anchor':'end'}, svg).textContent = pct(r.social_share_after, 0); });
+  const ov = el('rect', {x:0, y:0, width:560, height:310, fill:'transparent'}, svg);
+  ov.addEventListener('mousemove', ev => { const b = svg.getBoundingClientRect(), y = (ev.clientY - b.top) / b.height * 330;
+    const r = R[Math.max(0, Math.min(R.length - 1, Math.floor((y - 8) / rowH)))], tip = $('tipR');
+    tip.innerHTML = `<b>${r.region_ar}</b> · ${r.waqf_designations.toLocaleString('en-US')} مصرف وقفي<br>الرعاية الاجتماعية اليوم: <b>${pct(r.social_share)}</b><br>بعد البوصلة: <b>${pct(r.social_share_after)}</b> (+${(r.gain_points*100).toFixed(0)} نقطة)`;
+    tip.style.display = 'block'; const card = svg.parentElement.getBoundingClientRect();
+    tip.style.left = Math.min(ev.clientX - card.left + 12, card.width - tip.offsetWidth - 8) + 'px'; tip.style.top = (ev.clientY - card.top - 10) + 'px'; });
+  ov.addEventListener('mouseleave', () => $('tipR').style.display = 'none');
+
+  const V = Math.max(0, +$('endow').value || 0), scale = V / D.key.allocation.endowment;
+  const C = S.compass_case.filter(r => r.total > 0).sort((a,b) => b.total - a.total).slice(0, 10), mx = Math.max(...C.map(r => r.total));
+  $('caseSub').textContent = `صرف سنة لوقف قيمته ${sar(V)} ريال (بمعدل ${pct(D.key.allocation.budget / D.key.allocation.endowment)}) بالمزيج الوطني: الرمادي من شروط الواقفين، والأخضر ما تضيفه البوصلة من الحصة المرنة`;
+  $('caseBars').innerHTML = C.map(r => `<div class="alloc-row"><span>${r.label_ar}${r.multiple > 1.5 ? ` <span class="pill">×${r.multiple.toFixed(0)}</span>` : ''}</span>
+    <div style="display:flex;height:14px"><div style="width:${(r.from_waqif_conditions/mx*100).toFixed(1)}%;background:var(--text-muted)"></div><div style="width:${(r.from_flexible_share/mx*100).toFixed(1)}%;background:var(--series-3)"></div></div>
+    <span class="amt">${sar(r.total * scale)}</span></div>`).join('');
+}
+$('endow').addEventListener('input', () => { drawRule(); drawCompass(); });
+drawLabel(); drawRule(); drawCompass();
 const k = D.key;
 $('foot').innerHTML = `<b>ميزان الريع</b> — منصة التنبؤ الذكي بالتدفقات المالية للوقف · المصادر: الهيئة العامة للأوقاف (منصة البيانات المفتوحة الوطنية، ${k.sector.waqf_designations.toLocaleString('en-US')} مصرفاً وقفياً) · السوق المالية السعودية — تداول (${k.index.funds_total} صندوقاً وقفياً). ` +
   `العائد الكلي المقدَّر ${pct(k.index.total_ann_return)} سنوياً · توقع 12 شهراً ${pct(k.forecast.point_pct)} · ${k.spending.paths.toLocaleString('en-US')} مسار لكل حالة. ` +
