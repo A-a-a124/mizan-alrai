@@ -1,0 +1,31 @@
+﻿region,region_ar,masraf,masraf_ar,region_waqf_designations
+aseer,عسير,housing,السكن,5384
+aseer,عسير,orphans,الأيتام,5384
+jazan,جازان,orphans,الأيتام,3602
+jazan,جازان,widows,الأرامل,3602
+makkah,مكة المكرمة,widows,الأرامل,2249
+albaha,الباحة,housing,السكن,1251
+albaha,الباحة,orphans,الأيتام,1251
+albaha,الباحة,widows,الأرامل,1251
+eastern,الشرقية,housing,السكن,529
+eastern,الشرقية,orphans,الأيتام,529
+eastern,الشرقية,widows,الأرامل,529
+najran,نجران,poor,الفقراء والمساكين,37
+najran,نجران,widows,الأرامل,37
+northern_borders,الحدود الشمالية,food,إطعام الطعام,24
+northern_borders,الحدود الشمالية,housing,السكن,24
+northern_borders,الحدود الشمالية,orphans,الأيتام,24
+northern_borders,الحدود الشمالية,poor,الفقراء والمساكين,24
+northern_borders,الحدود الشمالية,widows,الأرامل,24
+hail,حائل,food,إطعام الطعام,16
+hail,حائل,housing,السكن,16
+hail,حائل,orphans,الأيتام,16
+hail,حائل,poor,الفقراء والمساكين,16
+hail,حائل,widows,الأرامل,16
+aljawf,الجوف,food,إطعام الطعام,15
+aljawf,الجوف,housing,السكن,15
+aljawf,الجوف,orphans,الأيتام,15
+aljawf,الجوف,widows,الأرامل,15
+tabuk,تبوك,food,إطعام الطعام,14
+tabuk,تبوك,housing,السكن,14
+tabuk,تبوك,widows,الأرامل,14

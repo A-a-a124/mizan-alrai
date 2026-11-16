@@ -195,6 +195,24 @@ print("أثر التمهيد على 12 ربعاً عند المعدل نفسه:"
 display(so["case"].round(0).head(10)); display(so["regions"].round(3))
 """),
     md("""
+### تفاصيل أعمق: أين يغيب الوقف؟ ومن يدير الصناديق؟ وماذا لو ساءت الأحوال؟
+الجداول التالية من `src/waqf/insights.py`، وهي نفسها التي تقرؤها صفحة «استكشف البيانات» واختبار الصدمة في الموقع.
+"""),
+    code("""
+ins = pipeline.step_insights(c, ix, so, res)
+print("فجوات الرعاية الاجتماعية:", res.key["gaps"])
+display(ins["gaps"].head(12))
+display(ins["managers"].round(3))
+"""),
+    code("""
+k = res.key["shock"]
+print(f"أسوأ هبوط في تاريخ المؤشر: {k['worst_fall']:.1%} خلال {k['worst_fall_months']} شهر ({k['worst_fall_from']} إلى {k['worst_fall_to']})")
+shock = ins["shocks"]
+display(shock[shock["scenario"] == "worst_fall_again"].pivot(index="year", columns="strategy", values="real_payout").round(3))
+print("أكبر انخفاض سنوي في الصرف: ميزان", f"{k['worst_fall_again__mizan__worst_cut']:.1%}",
+      "| دون تمهيد", f"{k['worst_fall_again__same_rate_unsmoothed__worst_cut']:.1%}")
+"""),
+    md("""
 ## 9. التحقق من قابلية إعادة التشغيل
 نكتب المخرجات ونرسم الأشكال ثم نتأكد أن الأرقام المحفوظة تطابق ما حسبه الدفتر الآن.
 """),

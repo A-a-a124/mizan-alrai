@@ -1,0 +1,313 @@
+﻿region,region_ar,region_en,masraf,masraf_ar,masraf_en,group,waqf_count,share_in_region,national_share,absent
+albaha,الباحة,Al-Baha,aghawat,الأغوات,Aghawat (Haram servants),worship,0,0.0,0.0030708919,True
+albaha,الباحة,Al-Baha,cemeteries,المقابر,Cemeteries,worship,1,0.0007993605,0.0030055537,False
+albaha,الباحة,Al-Baha,dawah,الدعوة,Dawah,education,0,0.0,0.0012414244,True
+albaha,الباحة,Al-Baha,education,العلم وتعليمه,Knowledge & teaching,education,0,0.0,0.00522705,True
+albaha,الباحة,Al-Baha,family,الوقف الذري,Family (dhurri),family,7,0.0055955236,0.0265272787,False
+albaha,الباحة,Al-Baha,food,إطعام الطعام,Food,social,12,0.0095923261,0.0459980399,False
+albaha,الباحة,Al-Baha,general_charity,أوجه البر,General charity (flexible),flexible,149,0.1191047162,0.2544919961,False
+albaha,الباحة,Al-Baha,guarding,الحراسة,Guarding,worship,0,0.0,0.0012414244,True
+albaha,الباحة,Al-Baha,hajj,الحج,Hajj,worship,0,0.0,0.0023521725,True
+albaha,الباحة,Al-Baha,haram_madinah,الحرم النبوي,Prophet's Mosque,worship,0,0.0,0.0075792225,True
+albaha,الباحة,Al-Baha,haram_makkah,الحرم المكي,Makkah Haram,worship,2,0.001598721,0.0052923881,False
+albaha,الباحة,Al-Baha,housing,السكن,Housing,social,0,0.0,0.0113688337,True
+albaha,الباحة,Al-Baha,iftar,إفطار الصائم,Iftar,social,3,0.0023980815,0.0830447566,False
+albaha,الباحة,Al-Baha,kaffarah,الكفارات,Kaffarah,worship,0,0.0,0.0003920287,True
+albaha,الباحة,Al-Baha,miqat,المواقيت,Miqat stations,worship,0,0.0,0.0006533812,True
+albaha,الباحة,Al-Baha,mosques,المساجد,Mosques,worship,959,0.7665867306,0.4333224436,False
+albaha,الباحة,Al-Baha,named_group,طائفة معيّنة,Named group,family,0,0.0,0.0049003594,True
+albaha,الباحة,Al-Baha,orphans,الأيتام,Orphans,social,0,0.0,0.00104541,True
+albaha,الباحة,Al-Baha,poor,الفقراء والمساكين,Poor & needy,social,114,0.0911270983,0.0315583143,False
+albaha,الباحة,Al-Baha,quran,القرآن الكريم,Quran,education,0,0.0,0.0048350212,True
+albaha,الباحة,Al-Baha,udhiya,الأضاحي,Udhiya,worship,0,0.0,0.0039202875,True
+albaha,الباحة,Al-Baha,water,السقيا,Water provision,social,2,0.001598721,0.0659261679,False
+albaha,الباحة,Al-Baha,wayfarer,ابن السبيل,Wayfarers,social,2,0.001598721,0.002613525,False
+albaha,الباحة,Al-Baha,widows,الأرامل,Widows,social,0,0.0,0.0003920287,True
+aljawf,الجوف,Al-Jawf,aghawat,الأغوات,Aghawat (Haram servants),worship,0,0.0,0.0030708919,True
+aljawf,الجوف,Al-Jawf,cemeteries,المقابر,Cemeteries,worship,0,0.0,0.0030055537,True
+aljawf,الجوف,Al-Jawf,dawah,الدعوة,Dawah,education,0,0.0,0.0012414244,True
+aljawf,الجوف,Al-Jawf,education,العلم وتعليمه,Knowledge & teaching,education,0,0.0,0.00522705,True
+aljawf,الجوف,Al-Jawf,family,الوقف الذري,Family (dhurri),family,1,0.0666666667,0.0265272787,False
+aljawf,الجوف,Al-Jawf,food,إطعام الطعام,Food,social,0,0.0,0.0459980399,True
+aljawf,الجوف,Al-Jawf,general_charity,أوجه البر,General charity (flexible),flexible,4,0.2666666667,0.2544919961,False
+aljawf,الجوف,Al-Jawf,guarding,الحراسة,Guarding,worship,0,0.0,0.0012414244,True
+aljawf,الجوف,Al-Jawf,hajj,الحج,Hajj,worship,1,0.0666666667,0.0023521725,False
+aljawf,الجوف,Al-Jawf,haram_madinah,الحرم النبوي,Prophet's Mosque,worship,0,0.0,0.0075792225,True
+aljawf,الجوف,Al-Jawf,haram_makkah,الحرم المكي,Makkah Haram,worship,0,0.0,0.0052923881,True
+aljawf,الجوف,Al-Jawf,housing,السكن,Housing,social,0,0.0,0.0113688337,True
+aljawf,الجوف,Al-Jawf,iftar,إفطار الصائم,Iftar,social,0,0.0,0.0830447566,True
+aljawf,الجوف,Al-Jawf,kaffarah,الكفارات,Kaffarah,worship,0,0.0,0.0003920287,True
+aljawf,الجوف,Al-Jawf,miqat,المواقيت,Miqat stations,worship,0,0.0,0.0006533812,True
+aljawf,الجوف,Al-Jawf,mosques,المساجد,Mosques,worship,6,0.4,0.4333224436,False
+aljawf,الجوف,Al-Jawf,named_group,طائفة معيّنة,Named group,family,0,0.0,0.0049003594,True
+aljawf,الجوف,Al-Jawf,orphans,الأيتام,Orphans,social,0,0.0,0.00104541,True
+aljawf,الجوف,Al-Jawf,poor,الفقراء والمساكين,Poor & needy,social,2,0.1333333333,0.0315583143,False
+aljawf,الجوف,Al-Jawf,quran,القرآن الكريم,Quran,education,0,0.0,0.0048350212,True
+aljawf,الجوف,Al-Jawf,udhiya,الأضاحي,Udhiya,worship,1,0.0666666667,0.0039202875,False
+aljawf,الجوف,Al-Jawf,water,السقيا,Water provision,social,0,0.0,0.0659261679,True
+aljawf,الجوف,Al-Jawf,wayfarer,ابن السبيل,Wayfarers,social,0,0.0,0.002613525,True
+aljawf,الجوف,Al-Jawf,widows,الأرامل,Widows,social,0,0.0,0.0003920287,True
+aseer,عسير,Aseer,aghawat,الأغوات,Aghawat (Haram servants),worship,0,0.0,0.0030708919,True
+aseer,عسير,Aseer,cemeteries,المقابر,Cemeteries,worship,2,0.000371471,0.0030055537,False
+aseer,عسير,Aseer,dawah,الدعوة,Dawah,education,0,0.0,0.0012414244,True
+aseer,عسير,Aseer,education,العلم وتعليمه,Knowledge & teaching,education,0,0.0,0.00522705,True
+aseer,عسير,Aseer,family,الوقف الذري,Family (dhurri),family,0,0.0,0.0265272787,True
+aseer,عسير,Aseer,food,إطعام الطعام,Food,social,455,0.0845096582,0.0459980399,False
+aseer,عسير,Aseer,general_charity,أوجه البر,General charity (flexible),flexible,889,0.1651188707,0.2544919961,False
+aseer,عسير,Aseer,guarding,الحراسة,Guarding,worship,2,0.000371471,0.0012414244,False
+aseer,عسير,Aseer,hajj,الحج,Hajj,worship,2,0.000371471,0.0023521725,False
+aseer,عسير,Aseer,haram_madinah,الحرم النبوي,Prophet's Mosque,worship,0,0.0,0.0075792225,True
+aseer,عسير,Aseer,haram_makkah,الحرم المكي,Makkah Haram,worship,1,0.0001857355,0.0052923881,False
+aseer,عسير,Aseer,housing,السكن,Housing,social,0,0.0,0.0113688337,True
+aseer,عسير,Aseer,iftar,إفطار الصائم,Iftar,social,1114,0.2069093611,0.0830447566,False
+aseer,عسير,Aseer,kaffarah,الكفارات,Kaffarah,worship,0,0.0,0.0003920287,True
+aseer,عسير,Aseer,miqat,المواقيت,Miqat stations,worship,0,0.0,0.0006533812,True
+aseer,عسير,Aseer,mosques,المساجد,Mosques,worship,2687,0.4990713224,0.4333224436,False
+aseer,عسير,Aseer,named_group,طائفة معيّنة,Named group,family,4,0.0007429421,0.0049003594,False
+aseer,عسير,Aseer,orphans,الأيتام,Orphans,social,0,0.0,0.00104541,True
+aseer,عسير,Aseer,poor,الفقراء والمساكين,Poor & needy,social,83,0.0154160475,0.0315583143,False
+aseer,عسير,Aseer,quran,القرآن الكريم,Quran,education,0,0.0,0.0048350212,True
+aseer,عسير,Aseer,udhiya,الأضاحي,Udhiya,worship,1,0.0001857355,0.0039202875,False
+aseer,عسير,Aseer,water,السقيا,Water provision,social,113,0.0209881129,0.0659261679,False
+aseer,عسير,Aseer,wayfarer,ابن السبيل,Wayfarers,social,30,0.0055720654,0.002613525,False
+aseer,عسير,Aseer,widows,الأرامل,Widows,social,1,0.0001857355,0.0003920287,False
+eastern,الشرقية,Eastern,aghawat,الأغوات,Aghawat (Haram servants),worship,0,0.0,0.0030708919,True
+eastern,الشرقية,Eastern,cemeteries,المقابر,Cemeteries,worship,3,0.0056710775,0.0030055537,False
+eastern,الشرقية,Eastern,dawah,الدعوة,Dawah,education,0,0.0,0.0012414244,True
+eastern,الشرقية,Eastern,education,العلم وتعليمه,Knowledge & teaching,education,8,0.0151228733,0.00522705,False
+eastern,الشرقية,Eastern,family,الوقف الذري,Family (dhurri),family,0,0.0,0.0265272787,True
+eastern,الشرقية,Eastern,food,إطعام الطعام,Food,social,1,0.0018903592,0.0459980399,False
+eastern,الشرقية,Eastern,general_charity,أوجه البر,General charity (flexible),flexible,56,0.1058601134,0.2544919961,False
+eastern,الشرقية,Eastern,guarding,الحراسة,Guarding,worship,0,0.0,0.0012414244,True
+eastern,الشرقية,Eastern,hajj,الحج,Hajj,worship,0,0.0,0.0023521725,True
+eastern,الشرقية,Eastern,haram_madinah,الحرم النبوي,Prophet's Mosque,worship,0,0.0,0.0075792225,True
+eastern,الشرقية,Eastern,haram_makkah,الحرم المكي,Makkah Haram,worship,2,0.0037807183,0.0052923881,False
+eastern,الشرقية,Eastern,housing,السكن,Housing,social,0,0.0,0.0113688337,True
+eastern,الشرقية,Eastern,iftar,إفطار الصائم,Iftar,social,3,0.0056710775,0.0830447566,False
+eastern,الشرقية,Eastern,kaffarah,الكفارات,Kaffarah,worship,0,0.0,0.0003920287,True
+eastern,الشرقية,Eastern,miqat,المواقيت,Miqat stations,worship,0,0.0,0.0006533812,True
+eastern,الشرقية,Eastern,mosques,المساجد,Mosques,worship,450,0.8506616257,0.4333224436,False
+eastern,الشرقية,Eastern,named_group,طائفة معيّنة,Named group,family,0,0.0,0.0049003594,True
+eastern,الشرقية,Eastern,orphans,الأيتام,Orphans,social,0,0.0,0.00104541,True
+eastern,الشرقية,Eastern,poor,الفقراء والمساكين,Poor & needy,social,1,0.0018903592,0.0315583143,False
+eastern,الشرقية,Eastern,quran,القرآن الكريم,Quran,education,2,0.0037807183,0.0048350212,False
+eastern,الشرقية,Eastern,udhiya,الأضاحي,Udhiya,worship,2,0.0037807183,0.0039202875,False
+eastern,الشرقية,Eastern,water,السقيا,Water provision,social,1,0.0018903592,0.0659261679,False
+eastern,الشرقية,Eastern,wayfarer,ابن السبيل,Wayfarers,social,0,0.0,0.002613525,True
+eastern,الشرقية,Eastern,widows,الأرامل,Widows,social,0,0.0,0.0003920287,True
+hail,حائل,Hail,aghawat,الأغوات,Aghawat (Haram servants),worship,0,0.0,0.0030708919,True
+hail,حائل,Hail,cemeteries,المقابر,Cemeteries,worship,0,0.0,0.0030055537,True
+hail,حائل,Hail,dawah,الدعوة,Dawah,education,0,0.0,0.0012414244,True
+hail,حائل,Hail,education,العلم وتعليمه,Knowledge & teaching,education,0,0.0,0.00522705,True
+hail,حائل,Hail,family,الوقف الذري,Family (dhurri),family,0,0.0,0.0265272787,True
+hail,حائل,Hail,food,إطعام الطعام,Food,social,0,0.0,0.0459980399,True
+hail,حائل,Hail,general_charity,أوجه البر,General charity (flexible),flexible,3,0.1875,0.2544919961,False
+hail,حائل,Hail,guarding,الحراسة,Guarding,worship,0,0.0,0.0012414244,True
+hail,حائل,Hail,hajj,الحج,Hajj,worship,1,0.0625,0.0023521725,False
+hail,حائل,Hail,haram_madinah,الحرم النبوي,Prophet's Mosque,worship,0,0.0,0.0075792225,True
+hail,حائل,Hail,haram_makkah,الحرم المكي,Makkah Haram,worship,0,0.0,0.0052923881,True
+hail,حائل,Hail,housing,السكن,Housing,social,0,0.0,0.0113688337,True
+hail,حائل,Hail,iftar,إفطار الصائم,Iftar,social,1,0.0625,0.0830447566,False
+hail,حائل,Hail,kaffarah,الكفارات,Kaffarah,worship,0,0.0,0.0003920287,True
+hail,حائل,Hail,miqat,المواقيت,Miqat stations,worship,0,0.0,0.0006533812,True
+hail,حائل,Hail,mosques,المساجد,Mosques,worship,8,0.5,0.4333224436,False
+hail,حائل,Hail,named_group,طائفة معيّنة,Named group,family,0,0.0,0.0049003594,True
+hail,حائل,Hail,orphans,الأيتام,Orphans,social,0,0.0,0.00104541,True
+hail,حائل,Hail,poor,الفقراء والمساكين,Poor & needy,social,0,0.0,0.0315583143,True
+hail,حائل,Hail,quran,القرآن الكريم,Quran,education,0,0.0,0.0048350212,True
+hail,حائل,Hail,udhiya,الأضاحي,Udhiya,worship,1,0.0625,0.0039202875,False
+hail,حائل,Hail,water,السقيا,Water provision,social,2,0.125,0.0659261679,False
+hail,حائل,Hail,wayfarer,ابن السبيل,Wayfarers,social,0,0.0,0.002613525,True
+hail,حائل,Hail,widows,الأرامل,Widows,social,0,0.0,0.0003920287,True
+jazan,جازان,Jazan,aghawat,الأغوات,Aghawat (Haram servants),worship,0,0.0,0.0030708919,True
+jazan,جازان,Jazan,cemeteries,المقابر,Cemeteries,worship,32,0.0088839534,0.0030055537,False
+jazan,جازان,Jazan,dawah,الدعوة,Dawah,education,6,0.0016657413,0.0012414244,False
+jazan,جازان,Jazan,education,العلم وتعليمه,Knowledge & teaching,education,3,0.0008328706,0.00522705,False
+jazan,جازان,Jazan,family,الوقف الذري,Family (dhurri),family,124,0.0344253193,0.0265272787,False
+jazan,جازان,Jazan,food,إطعام الطعام,Food,social,174,0.0483064964,0.0459980399,False
+jazan,جازان,Jazan,general_charity,أوجه البر,General charity (flexible),flexible,1179,0.3273181566,0.2544919961,False
+jazan,جازان,Jazan,guarding,الحراسة,Guarding,worship,0,0.0,0.0012414244,True
+jazan,جازان,Jazan,hajj,الحج,Hajj,worship,1,0.0002776235,0.0023521725,False
+jazan,جازان,Jazan,haram_madinah,الحرم النبوي,Prophet's Mosque,worship,0,0.0,0.0075792225,True
+jazan,جازان,Jazan,haram_makkah,الحرم المكي,Makkah Haram,worship,0,0.0,0.0052923881,True
+jazan,جازان,Jazan,housing,السكن,Housing,social,43,0.0119378123,0.0113688337,False
+jazan,جازان,Jazan,iftar,إفطار الصائم,Iftar,social,15,0.0041643531,0.0830447566,False
+jazan,جازان,Jazan,kaffarah,الكفارات,Kaffarah,worship,6,0.0016657413,0.0003920287,False
+jazan,جازان,Jazan,miqat,المواقيت,Miqat stations,worship,0,0.0,0.0006533812,True
+jazan,جازان,Jazan,mosques,المساجد,Mosques,worship,1115,0.3095502499,0.4333224436,False
+jazan,جازان,Jazan,named_group,طائفة معيّنة,Named group,family,13,0.0036091061,0.0049003594,False
+jazan,جازان,Jazan,orphans,الأيتام,Orphans,social,0,0.0,0.00104541,True
+jazan,جازان,Jazan,poor,الفقراء والمساكين,Poor & needy,social,122,0.0338700722,0.0315583143,False
+jazan,جازان,Jazan,quran,القرآن الكريم,Quran,education,4,0.0011104942,0.0048350212,False
+jazan,جازان,Jazan,udhiya,الأضاحي,Udhiya,worship,0,0.0,0.0039202875,True
+jazan,جازان,Jazan,water,السقيا,Water provision,social,759,0.2107162687,0.0659261679,False
+jazan,جازان,Jazan,wayfarer,ابن السبيل,Wayfarers,social,6,0.0016657413,0.002613525,False
+jazan,جازان,Jazan,widows,الأرامل,Widows,social,0,0.0,0.0003920287,True
+madinah,المدينة المنورة,Madinah,aghawat,الأغوات,Aghawat (Haram servants),worship,31,0.041388518,0.0030708919,False
+madinah,المدينة المنورة,Madinah,cemeteries,المقابر,Cemeteries,worship,0,0.0,0.0030055537,True
+madinah,المدينة المنورة,Madinah,dawah,الدعوة,Dawah,education,0,0.0,0.0012414244,True
+madinah,المدينة المنورة,Madinah,education,العلم وتعليمه,Knowledge & teaching,education,41,0.0547396529,0.00522705,False
+madinah,المدينة المنورة,Madinah,family,الوقف الذري,Family (dhurri),family,92,0.1228304406,0.0265272787,False
+madinah,المدينة المنورة,Madinah,food,إطعام الطعام,Food,social,15,0.0200267023,0.0459980399,False
+madinah,المدينة المنورة,Madinah,general_charity,أوجه البر,General charity (flexible),flexible,48,0.0640854473,0.2544919961,False
+madinah,المدينة المنورة,Madinah,guarding,الحراسة,Guarding,worship,17,0.0226969292,0.0012414244,False
+madinah,المدينة المنورة,Madinah,hajj,الحج,Hajj,worship,4,0.0053404539,0.0023521725,False
+madinah,المدينة المنورة,Madinah,haram_madinah,الحرم النبوي,Prophet's Mosque,worship,106,0.1415220294,0.0075792225,False
+madinah,المدينة المنورة,Madinah,haram_makkah,الحرم المكي,Makkah Haram,worship,3,0.0040053405,0.0052923881,False
+madinah,المدينة المنورة,Madinah,housing,السكن,Housing,social,71,0.0947930574,0.0113688337,False
+madinah,المدينة المنورة,Madinah,iftar,إفطار الصائم,Iftar,social,0,0.0,0.0830447566,True
+madinah,المدينة المنورة,Madinah,kaffarah,الكفارات,Kaffarah,worship,0,0.0,0.0003920287,True
+madinah,المدينة المنورة,Madinah,miqat,المواقيت,Miqat stations,worship,0,0.0,0.0006533812,True
+madinah,المدينة المنورة,Madinah,mosques,المساجد,Mosques,worship,172,0.2296395194,0.4333224436,False
+madinah,المدينة المنورة,Madinah,named_group,طائفة معيّنة,Named group,family,42,0.0560747664,0.0049003594,False
+madinah,المدينة المنورة,Madinah,orphans,الأيتام,Orphans,social,2,0.002670227,0.00104541,False
+madinah,المدينة المنورة,Madinah,poor,الفقراء والمساكين,Poor & needy,social,27,0.0360480641,0.0315583143,False
+madinah,المدينة المنورة,Madinah,quran,القرآن الكريم,Quran,education,34,0.0453938585,0.0048350212,False
+madinah,المدينة المنورة,Madinah,udhiya,الأضاحي,Udhiya,worship,0,0.0,0.0039202875,True
+madinah,المدينة المنورة,Madinah,water,السقيا,Water provision,social,41,0.0547396529,0.0659261679,False
+madinah,المدينة المنورة,Madinah,wayfarer,ابن السبيل,Wayfarers,social,0,0.0,0.002613525,True
+madinah,المدينة المنورة,Madinah,widows,الأرامل,Widows,social,3,0.0040053405,0.0003920287,False
+makkah,مكة المكرمة,Makkah,aghawat,الأغوات,Aghawat (Haram servants),worship,16,0.007114273,0.0030708919,False
+makkah,مكة المكرمة,Makkah,cemeteries,المقابر,Cemeteries,worship,1,0.0004446421,0.0030055537,False
+makkah,مكة المكرمة,Makkah,dawah,الدعوة,Dawah,education,0,0.0,0.0012414244,True
+makkah,مكة المكرمة,Makkah,education,العلم وتعليمه,Knowledge & teaching,education,7,0.0031124944,0.00522705,False
+makkah,مكة المكرمة,Makkah,family,الوقف الذري,Family (dhurri),family,159,0.070698088,0.0265272787,False
+makkah,مكة المكرمة,Makkah,food,إطعام الطعام,Food,social,28,0.0124499778,0.0459980399,False
+makkah,مكة المكرمة,Makkah,general_charity,أوجه البر,General charity (flexible),flexible,1213,0.5393508226,0.2544919961,False
+makkah,مكة المكرمة,Makkah,guarding,الحراسة,Guarding,worship,0,0.0,0.0012414244,True
+makkah,مكة المكرمة,Makkah,hajj,الحج,Hajj,worship,11,0.0048910627,0.0023521725,False
+makkah,مكة المكرمة,Makkah,haram_madinah,الحرم النبوي,Prophet's Mosque,worship,10,0.0044464206,0.0075792225,False
+makkah,مكة المكرمة,Makkah,haram_makkah,الحرم المكي,Makkah Haram,worship,72,0.0320142285,0.0052923881,False
+makkah,مكة المكرمة,Makkah,housing,السكن,Housing,social,56,0.0248999555,0.0113688337,False
+makkah,مكة المكرمة,Makkah,iftar,إفطار الصائم,Iftar,social,8,0.0035571365,0.0830447566,False
+makkah,مكة المكرمة,Makkah,kaffarah,الكفارات,Kaffarah,worship,0,0.0,0.0003920287,True
+makkah,مكة المكرمة,Makkah,miqat,المواقيت,Miqat stations,worship,10,0.0044464206,0.0006533812,False
+makkah,مكة المكرمة,Makkah,mosques,المساجد,Mosques,worship,467,0.2076478435,0.4333224436,False
+makkah,مكة المكرمة,Makkah,named_group,طائفة معيّنة,Named group,family,14,0.0062249889,0.0049003594,False
+makkah,مكة المكرمة,Makkah,orphans,الأيتام,Orphans,social,3,0.0013339262,0.00104541,False
+makkah,مكة المكرمة,Makkah,poor,الفقراء والمساكين,Poor & needy,social,113,0.0502445531,0.0315583143,False
+makkah,مكة المكرمة,Makkah,quran,القرآن الكريم,Quran,education,14,0.0062249889,0.0048350212,False
+makkah,مكة المكرمة,Makkah,udhiya,الأضاحي,Udhiya,worship,2,0.0008892841,0.0039202875,False
+makkah,مكة المكرمة,Makkah,water,السقيا,Water provision,social,45,0.0200088928,0.0659261679,False
+makkah,مكة المكرمة,Makkah,wayfarer,ابن السبيل,Wayfarers,social,0,0.0,0.002613525,True
+makkah,مكة المكرمة,Makkah,widows,الأرامل,Widows,social,0,0.0,0.0003920287,True
+najran,نجران,Najran,aghawat,الأغوات,Aghawat (Haram servants),worship,0,0.0,0.0030708919,True
+najran,نجران,Najran,cemeteries,المقابر,Cemeteries,worship,0,0.0,0.0030055537,True
+najran,نجران,Najran,dawah,الدعوة,Dawah,education,0,0.0,0.0012414244,True
+najran,نجران,Najran,education,العلم وتعليمه,Knowledge & teaching,education,1,0.027027027,0.00522705,False
+najran,نجران,Najran,family,الوقف الذري,Family (dhurri),family,1,0.027027027,0.0265272787,False
+najran,نجران,Najran,food,إطعام الطعام,Food,social,2,0.0540540541,0.0459980399,False
+najran,نجران,Najran,general_charity,أوجه البر,General charity (flexible),flexible,4,0.1081081081,0.2544919961,False
+najran,نجران,Najran,guarding,الحراسة,Guarding,worship,0,0.0,0.0012414244,True
+najran,نجران,Najran,hajj,الحج,Hajj,worship,2,0.0540540541,0.0023521725,False
+najran,نجران,Najran,haram_madinah,الحرم النبوي,Prophet's Mosque,worship,0,0.0,0.0075792225,True
+najran,نجران,Najran,haram_makkah,الحرم المكي,Makkah Haram,worship,0,0.0,0.0052923881,True
+najran,نجران,Najran,housing,السكن,Housing,social,1,0.027027027,0.0113688337,False
+najran,نجران,Najran,iftar,إفطار الصائم,Iftar,social,2,0.0540540541,0.0830447566,False
+najran,نجران,Najran,kaffarah,الكفارات,Kaffarah,worship,0,0.0,0.0003920287,True
+najran,نجران,Najran,miqat,المواقيت,Miqat stations,worship,0,0.0,0.0006533812,True
+najran,نجران,Najran,mosques,المساجد,Mosques,worship,14,0.3783783784,0.4333224436,False
+najran,نجران,Najran,named_group,طائفة معيّنة,Named group,family,0,0.0,0.0049003594,True
+najran,نجران,Najran,orphans,الأيتام,Orphans,social,2,0.0540540541,0.00104541,False
+najran,نجران,Najran,poor,الفقراء والمساكين,Poor & needy,social,0,0.0,0.0315583143,True
+najran,نجران,Najran,quran,القرآن الكريم,Quran,education,5,0.1351351351,0.0048350212,False
+najran,نجران,Najran,udhiya,الأضاحي,Udhiya,worship,1,0.027027027,0.0039202875,False
+najran,نجران,Najran,water,السقيا,Water provision,social,2,0.0540540541,0.0659261679,False
+najran,نجران,Najran,wayfarer,ابن السبيل,Wayfarers,social,0,0.0,0.002613525,True
+najran,نجران,Najran,widows,الأرامل,Widows,social,0,0.0,0.0003920287,True
+northern_borders,الحدود الشمالية,Northern Borders,aghawat,الأغوات,Aghawat (Haram servants),worship,0,0.0,0.0030708919,True
+northern_borders,الحدود الشمالية,Northern Borders,cemeteries,المقابر,Cemeteries,worship,0,0.0,0.0030055537,True
+northern_borders,الحدود الشمالية,Northern Borders,dawah,الدعوة,Dawah,education,0,0.0,0.0012414244,True
+northern_borders,الحدود الشمالية,Northern Borders,education,العلم وتعليمه,Knowledge & teaching,education,0,0.0,0.00522705,True
+northern_borders,الحدود الشمالية,Northern Borders,family,الوقف الذري,Family (dhurri),family,1,0.0416666667,0.0265272787,False
+northern_borders,الحدود الشمالية,Northern Borders,food,إطعام الطعام,Food,social,0,0.0,0.0459980399,True
+northern_borders,الحدود الشمالية,Northern Borders,general_charity,أوجه البر,General charity (flexible),flexible,22,0.9166666667,0.2544919961,False
+northern_borders,الحدود الشمالية,Northern Borders,guarding,الحراسة,Guarding,worship,0,0.0,0.0012414244,True
+northern_borders,الحدود الشمالية,Northern Borders,hajj,الحج,Hajj,worship,0,0.0,0.0023521725,True
+northern_borders,الحدود الشمالية,Northern Borders,haram_madinah,الحرم النبوي,Prophet's Mosque,worship,0,0.0,0.0075792225,True
+northern_borders,الحدود الشمالية,Northern Borders,haram_makkah,الحرم المكي,Makkah Haram,worship,0,0.0,0.0052923881,True
+northern_borders,الحدود الشمالية,Northern Borders,housing,السكن,Housing,social,0,0.0,0.0113688337,True
+northern_borders,الحدود الشمالية,Northern Borders,iftar,إفطار الصائم,Iftar,social,0,0.0,0.0830447566,True
+northern_borders,الحدود الشمالية,Northern Borders,kaffarah,الكفارات,Kaffarah,worship,0,0.0,0.0003920287,True
+northern_borders,الحدود الشمالية,Northern Borders,miqat,المواقيت,Miqat stations,worship,0,0.0,0.0006533812,True
+northern_borders,الحدود الشمالية,Northern Borders,mosques,المساجد,Mosques,worship,1,0.0416666667,0.4333224436,False
+northern_borders,الحدود الشمالية,Northern Borders,named_group,طائفة معيّنة,Named group,family,0,0.0,0.0049003594,True
+northern_borders,الحدود الشمالية,Northern Borders,orphans,الأيتام,Orphans,social,0,0.0,0.00104541,True
+northern_borders,الحدود الشمالية,Northern Borders,poor,الفقراء والمساكين,Poor & needy,social,0,0.0,0.0315583143,True
+northern_borders,الحدود الشمالية,Northern Borders,quran,القرآن الكريم,Quran,education,0,0.0,0.0048350212,True
+northern_borders,الحدود الشمالية,Northern Borders,udhiya,الأضاحي,Udhiya,worship,0,0.0,0.0039202875,True
+northern_borders,الحدود الشمالية,Northern Borders,water,السقيا,Water provision,social,0,0.0,0.0659261679,True
+northern_borders,الحدود الشمالية,Northern Borders,wayfarer,ابن السبيل,Wayfarers,social,0,0.0,0.002613525,True
+northern_borders,الحدود الشمالية,Northern Borders,widows,الأرامل,Widows,social,0,0.0,0.0003920287,True
+qassim,القصيم,Qassim,aghawat,الأغوات,Aghawat (Haram servants),worship,0,0.0,0.0030708919,True
+qassim,القصيم,Qassim,cemeteries,المقابر,Cemeteries,worship,6,0.0075757576,0.0030055537,False
+qassim,القصيم,Qassim,dawah,الدعوة,Dawah,education,6,0.0075757576,0.0012414244,False
+qassim,القصيم,Qassim,education,العلم وتعليمه,Knowledge & teaching,education,14,0.0176767677,0.00522705,False
+qassim,القصيم,Qassim,family,الوقف الذري,Family (dhurri),family,12,0.0151515152,0.0265272787,False
+qassim,القصيم,Qassim,food,إطعام الطعام,Food,social,16,0.0202020202,0.0459980399,False
+qassim,القصيم,Qassim,general_charity,أوجه البر,General charity (flexible),flexible,131,0.1654040404,0.2544919961,False
+qassim,القصيم,Qassim,guarding,الحراسة,Guarding,worship,0,0.0,0.0012414244,True
+qassim,القصيم,Qassim,hajj,الحج,Hajj,worship,9,0.0113636364,0.0023521725,False
+qassim,القصيم,Qassim,haram_madinah,الحرم النبوي,Prophet's Mosque,worship,0,0.0,0.0075792225,True
+qassim,القصيم,Qassim,haram_makkah,الحرم المكي,Makkah Haram,worship,1,0.0012626263,0.0052923881,False
+qassim,القصيم,Qassim,housing,السكن,Housing,social,1,0.0012626263,0.0113688337,False
+qassim,القصيم,Qassim,iftar,إفطار الصائم,Iftar,social,36,0.0454545455,0.0830447566,False
+qassim,القصيم,Qassim,kaffarah,الكفارات,Kaffarah,worship,0,0.0,0.0003920287,True
+qassim,القصيم,Qassim,miqat,المواقيت,Miqat stations,worship,0,0.0,0.0006533812,True
+qassim,القصيم,Qassim,mosques,المساجد,Mosques,worship,486,0.6136363636,0.4333224436,False
+qassim,القصيم,Qassim,named_group,طائفة معيّنة,Named group,family,2,0.0025252525,0.0049003594,False
+qassim,القصيم,Qassim,orphans,الأيتام,Orphans,social,1,0.0012626263,0.00104541,False
+qassim,القصيم,Qassim,poor,الفقراء والمساكين,Poor & needy,social,8,0.0101010101,0.0315583143,False
+qassim,القصيم,Qassim,quran,القرآن الكريم,Quran,education,9,0.0113636364,0.0048350212,False
+qassim,القصيم,Qassim,udhiya,الأضاحي,Udhiya,worship,22,0.0277777778,0.0039202875,False
+qassim,القصيم,Qassim,water,السقيا,Water provision,social,31,0.0391414141,0.0659261679,False
+qassim,القصيم,Qassim,wayfarer,ابن السبيل,Wayfarers,social,0,0.0,0.002613525,True
+qassim,القصيم,Qassim,widows,الأرامل,Widows,social,1,0.0012626263,0.0003920287,False
+riyadh,الرياض,Riyadh,aghawat,الأغوات,Aghawat (Haram servants),worship,0,0.0,0.0030708919,True
+riyadh,الرياض,Riyadh,cemeteries,المقابر,Cemeteries,worship,1,0.00155521,0.0030055537,False
+riyadh,الرياض,Riyadh,dawah,الدعوة,Dawah,education,6,0.0093312597,0.0012414244,False
+riyadh,الرياض,Riyadh,education,العلم وتعليمه,Knowledge & teaching,education,5,0.0077760498,0.00522705,False
+riyadh,الرياض,Riyadh,family,الوقف الذري,Family (dhurri),family,9,0.0139968896,0.0265272787,False
+riyadh,الرياض,Riyadh,food,إطعام الطعام,Food,social,1,0.00155521,0.0459980399,False
+riyadh,الرياض,Riyadh,general_charity,أوجه البر,General charity (flexible),flexible,191,0.2970451011,0.2544919961,False
+riyadh,الرياض,Riyadh,guarding,الحراسة,Guarding,worship,0,0.0,0.0012414244,True
+riyadh,الرياض,Riyadh,hajj,الحج,Hajj,worship,5,0.0077760498,0.0023521725,False
+riyadh,الرياض,Riyadh,haram_madinah,الحرم النبوي,Prophet's Mosque,worship,0,0.0,0.0075792225,True
+riyadh,الرياض,Riyadh,haram_makkah,الحرم المكي,Makkah Haram,worship,0,0.0,0.0052923881,True
+riyadh,الرياض,Riyadh,housing,السكن,Housing,social,2,0.0031104199,0.0113688337,False
+riyadh,الرياض,Riyadh,iftar,إفطار الصائم,Iftar,social,89,0.1384136858,0.0830447566,False
+riyadh,الرياض,Riyadh,kaffarah,الكفارات,Kaffarah,worship,0,0.0,0.0003920287,True
+riyadh,الرياض,Riyadh,miqat,المواقيت,Miqat stations,worship,0,0.0,0.0006533812,True
+riyadh,الرياض,Riyadh,mosques,المساجد,Mosques,worship,265,0.4121306376,0.4333224436,False
+riyadh,الرياض,Riyadh,named_group,طائفة معيّنة,Named group,family,0,0.0,0.0049003594,True
+riyadh,الرياض,Riyadh,orphans,الأيتام,Orphans,social,7,0.0108864697,0.00104541,False
+riyadh,الرياض,Riyadh,poor,الفقراء والمساكين,Poor & needy,social,12,0.0186625194,0.0315583143,False
+riyadh,الرياض,Riyadh,quran,القرآن الكريم,Quran,education,5,0.0077760498,0.0048350212,False
+riyadh,الرياض,Riyadh,udhiya,الأضاحي,Udhiya,worship,30,0.0466562986,0.0039202875,False
+riyadh,الرياض,Riyadh,water,السقيا,Water provision,social,12,0.0186625194,0.0659261679,False
+riyadh,الرياض,Riyadh,wayfarer,ابن السبيل,Wayfarers,social,2,0.0031104199,0.002613525,False
+riyadh,الرياض,Riyadh,widows,الأرامل,Widows,social,1,0.00155521,0.0003920287,False
+tabuk,تبوك,Tabuk,aghawat,الأغوات,Aghawat (Haram servants),worship,0,0.0,0.0030708919,True
+tabuk,تبوك,Tabuk,cemeteries,المقابر,Cemeteries,worship,0,0.0,0.0030055537,True
+tabuk,تبوك,Tabuk,dawah,الدعوة,Dawah,education,1,0.0714285714,0.0012414244,False
+tabuk,تبوك,Tabuk,education,العلم وتعليمه,Knowledge & teaching,education,1,0.0714285714,0.00522705,False
+tabuk,تبوك,Tabuk,family,الوقف الذري,Family (dhurri),family,0,0.0,0.0265272787,True
+tabuk,تبوك,Tabuk,food,إطعام الطعام,Food,social,0,0.0,0.0459980399,True
+tabuk,تبوك,Tabuk,general_charity,أوجه البر,General charity (flexible),flexible,6,0.4285714286,0.2544919961,False
+tabuk,تبوك,Tabuk,guarding,الحراسة,Guarding,worship,0,0.0,0.0012414244,True
+tabuk,تبوك,Tabuk,hajj,الحج,Hajj,worship,0,0.0,0.0023521725,True
+tabuk,تبوك,Tabuk,haram_madinah,الحرم النبوي,Prophet's Mosque,worship,0,0.0,0.0075792225,True
+tabuk,تبوك,Tabuk,haram_makkah,الحرم المكي,Makkah Haram,worship,0,0.0,0.0052923881,True
+tabuk,تبوك,Tabuk,housing,السكن,Housing,social,0,0.0,0.0113688337,True
+tabuk,تبوك,Tabuk,iftar,إفطار الصائم,Iftar,social,0,0.0,0.0830447566,True
+tabuk,تبوك,Tabuk,kaffarah,الكفارات,Kaffarah,worship,0,0.0,0.0003920287,True
+tabuk,تبوك,Tabuk,miqat,المواقيت,Miqat stations,worship,0,0.0,0.0006533812,True
+tabuk,تبوك,Tabuk,mosques,المساجد,Mosques,worship,2,0.1428571429,0.4333224436,False
+tabuk,تبوك,Tabuk,named_group,طائفة معيّنة,Named group,family,0,0.0,0.0049003594,True
+tabuk,تبوك,Tabuk,orphans,الأيتام,Orphans,social,1,0.0714285714,0.00104541,False
+tabuk,تبوك,Tabuk,poor,الفقراء والمساكين,Poor & needy,social,1,0.0714285714,0.0315583143,False
+tabuk,تبوك,Tabuk,quran,القرآن الكريم,Quran,education,1,0.0714285714,0.0048350212,False
+tabuk,تبوك,Tabuk,udhiya,الأضاحي,Udhiya,worship,0,0.0,0.0039202875,True
+tabuk,تبوك,Tabuk,water,السقيا,Water provision,social,1,0.0714285714,0.0659261679,False
+tabuk,تبوك,Tabuk,wayfarer,ابن السبيل,Wayfarers,social,0,0.0,0.002613525,True
+tabuk,تبوك,Tabuk,widows,الأرامل,Widows,social,0,0.0,0.0003920287,True

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ميزان الريع · وقفك في دقيقة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=6">
+</head>
+<body>
+<div class="wrap">
+<header class="noprint">
+  <h1><span class="hl">وقفك في دقيقة</span></h1>
+  <p>أجب عن ثلاثة أسئلة، وخذ خطة صرف من صفحة واحدة جاهزة للطباعة: كم تصرف، وكم تحتجز، وأين توجّه الحصة المرنة.</p>
+</header>
+
+<section class="steps" aria-label="الأسئلة الثلاثة">
+  <div class="card"><b class="q">١ · كم قيمة الوقف؟</b><label for="pvalue">بالريال</label><input id="pvalue" type="number" min="100000" step="100000" value="10000000"></div>
+  <div class="card"><b class="q">٢ · ما نوعه؟</b><label for="ptype">حسب شرط الواقف</label><select id="ptype"></select></div>
+  <div class="card"><b class="q">٣ · في أي منطقة؟</b><label for="pregion">تحدد مزيج المصارف والفجوات</label><select id="pregion"></select></div>
+</section>
+
+<section class="sheet" aria-live="polite">
+  <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start">
+    <div><h2>خطة صرف الوقف</h2><div class="sub" id="planHead" style="font-size:14px;color:var(--text-secondary)"></div></div>
+    <div class="noprint"><button class="btn" id="printBtn" type="button">اطبع الخطة أو احفظها PDF</button></div>
+  </div>
+  <div class="chips noprint" id="planChips" role="group" aria-label="معدل الصرف"></div>
+  <div class="big" id="planBig"></div>
+
+  <h3>١. القاعدة: قاعدة ميزان للصرف</h3><div id="planRule"></div>
+  <h3>٢. أين يذهب صرف السنة الأولى؟</h3>
+  <div class="sub" style="font-size:12.5px;color:var(--text-secondary)">الرمادي: عمارة الوقف والاحتياطي · الأزرق: شرط الواقف · الأخضر: الحصة المرنة موجَّهة ببوصلة المصارف</div>
+  <div id="planAlloc"></div>
+  <h3>٣. الاحتياطي وعمارة الوقف</h3><div id="planReserve"></div>
+  <h3>٤. فجوات منطقتك</h3><div id="planGaps"></div>
+  <h3>٥. ماذا تتوقع بعد عشر سنوات؟</h3><div id="planOutlook"></div>
+  <div class="note" id="planFoot" style="margin-top:16px;border-top:1px solid var(--rule);padding-top:8px"></div>
+</section>
+</div>
+
+<script src="data.js?v=6"></script>
+<script src="common.js?v=6"></script>
+<script src="plan.js?v=6"></script>
+</body>
+</html>

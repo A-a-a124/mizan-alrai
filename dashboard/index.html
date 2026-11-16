@@ -3,129 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ميزان الريع — محاكي قرار الصرف الوقفي</title>
-<style>
-:root{
-  --surface-0:#f6f6f3; --surface-1:#fcfcfb; --card:#ffffff; --rule:#e6e5e0;
-  --text-primary:#0b0b0b; --text-secondary:#52514e; --text-muted:#8a8983;
-  --series-1:#2a78d6; --series-2:#eb6834; --series-3:#1baf7a; --navy:#0d366b;
-  --band-1:rgba(42,120,214,.14); --band-2:rgba(235,104,52,.14); --good:#0ca30c; --critical:#d03b3b;
-}
-@media (prefers-color-scheme: dark){
-  :root:where(:not([data-theme="light"])){
-    --surface-0:#121211; --surface-1:#1a1a19; --card:#20201f; --rule:#383835;
-    --text-primary:#f0efec; --text-secondary:#c3c2b7; --text-muted:#8f8e86;
-    --series-1:#3987e5; --series-2:#d95926; --series-3:#199e70; --navy:#9ec5f4;
-    --band-1:rgba(57,135,229,.22); --band-2:rgba(217,89,38,.22);
-  }
-}
-:root[data-theme="dark"]{
-  --surface-0:#121211; --surface-1:#1a1a19; --card:#20201f; --rule:#383835;
-  --text-primary:#f0efec; --text-secondary:#c3c2b7; --text-muted:#8f8e86;
-  --series-1:#3987e5; --series-2:#d95926; --series-3:#199e70; --navy:#9ec5f4;
-  --band-1:rgba(57,135,229,.22); --band-2:rgba(217,89,38,.22);
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--surface-0);color:var(--text-primary);
-  font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;font-size:15px;line-height:1.6}
-.wrap{max-width:1180px;margin:0 auto;padding:20px 16px 40px}
-header h1{margin:0;font-size:26px;color:var(--navy);line-height:1.3}
-header p{margin:4px 0 0;color:var(--text-secondary)}
-.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:18px 0 14px;
-  background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:12px}
-.controls label{display:block;font-size:12.5px;color:var(--text-secondary);margin-bottom:3px}
-.controls select,.controls input[type=number]{width:100%;padding:7px 8px;border:1px solid var(--rule);border-radius:8px;
-  background:var(--surface-1);color:var(--text-primary);font:inherit}
-.rate-box{grid-column:span 2}
-.rate-box input{width:100%;accent-color:var(--series-1)}
-.rate-val{font-weight:700;color:var(--navy);font-size:18px}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:14px}
-.kpi{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:12px 14px}
-.kpi .v{font-size:28px;font-weight:700;line-height:1.2;color:var(--navy)}
-.kpi .l{font-size:13px;color:var(--text-secondary)}
-.kpi .status{font-size:12.5px;margin-top:4px;color:var(--text-secondary)}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media (max-width:860px){.grid2{grid-template-columns:1fr}.rate-box{grid-column:span 1}}
-.card{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:12px 14px 10px;position:relative}
-.card h2{font-size:16px;margin:0;color:var(--text-primary)}
-.card .sub{font-size:12.5px;color:var(--text-secondary);margin:2px 0 6px}
-svg{width:100%;height:auto;display:block;overflow:visible}
-svg text{fill:var(--text-secondary);font-size:11px;font-family:inherit}
-.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--text-secondary);margin-top:4px}
-.legend i{display:inline-block;width:14px;height:3px;border-radius:2px;vertical-align:middle;margin-left:6px}
-.tip{position:absolute;pointer-events:none;background:var(--surface-1);border:1px solid var(--rule);border-radius:8px;
-  padding:6px 9px;font-size:12.5px;box-shadow:0 4px 14px rgba(0,0,0,.12);display:none;white-space:nowrap;z-index:5}
-.alloc-row{display:grid;grid-template-columns:150px 1fr 96px;gap:8px;align-items:center;font-size:13px;margin:4px 0}
-.alloc-row .bar{height:14px;border-radius:0 4px 4px 0;background:var(--series-1)}
-.alloc-row .amt{direction:ltr;text-align:left;color:var(--text-secondary);font-variant-numeric:tabular-nums}
-.alloc-row .track{background:transparent}
-.pill{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:10px;border:1px solid var(--rule);color:var(--text-secondary)}
-footer{margin-top:16px;font-size:12.5px;color:var(--text-muted)}
-table.t{width:100%;border-collapse:collapse;font-size:13px}
-table.t td,table.t th{border-bottom:1px solid var(--rule);padding:4px 6px;text-align:right}
-table.t td.n{direction:ltr;text-align:left;font-variant-numeric:tabular-nums}
-details summary{cursor:pointer;color:var(--text-secondary);font-size:13px}
-.ltr{direction:ltr;unicode-bidi:embed}
-html{scroll-behavior:smooth}
-nav.jump{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;position:sticky;top:0;z-index:10;padding:8px 0;background:var(--surface-0)}
-nav.jump a{font-size:13px;padding:5px 12px;border-radius:16px;border:1px solid var(--rule);background:var(--card);
-  color:var(--text-primary);text-decoration:none}
-nav.jump a:hover,nav.jump a:focus{border-color:var(--series-1);color:var(--series-1)}
-.sol-head{margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;scroll-margin-top:56px}
-.sol-head .num{background:var(--navy);color:var(--card);border-radius:8px;padding:2px 10px;font-weight:700;font-size:14px}
-.sol-head h2{margin:0;font-size:21px;color:var(--navy)}
-.sol-head p{margin:0;color:var(--text-secondary);font-size:13.5px;flex-basis:100%}
-.adds{font-size:13px;background:var(--surface-1);border-inline-start:3px solid var(--series-3);padding:7px 10px;
-  border-radius:6px;margin-top:10px;color:var(--text-secondary)}
-.adds b{color:var(--text-primary)}
-.chips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
-.chip{font:inherit;font-size:12.5px;padding:4px 11px;border-radius:14px;border:1px solid var(--rule);background:var(--surface-1);
-  color:var(--text-secondary);cursor:pointer}
-.chip[aria-pressed="true"]{background:var(--navy);color:var(--card);border-color:var(--navy)}
-.g{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:6px;color:#fff;font-weight:700;font-size:14px;flex:none}
-.gA{background:#0a8a3a}.gB{background:#5cab2e}.gC{background:#c99a00}.gD{background:#e46c1f}.gE{background:#c62828}
-.energy{display:grid;gap:6px;margin:6px 0 2px}
-.energy .row{display:grid;grid-template-columns:auto 1fr 76px;align-items:center;gap:8px;font-size:12.5px;cursor:pointer;
-  border-radius:6px;transition:opacity .2s}
-.energy .arrow{height:24px;color:#fff;font-weight:700;display:flex;align-items:center;padding-inline-start:8px;
-  clip-path:polygon(0 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,0 100%);transition:width .5s ease}
-[dir="rtl"] .energy .arrow{clip-path:polygon(10px 0,100% 0,100% 100%,10px 100%,0 50%)}
-.energy .row.off{opacity:.3}
-.energy .row:focus{outline:2px solid var(--series-1);outline-offset:2px}
-.fund-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin-top:6px;max-height:430px;overflow:auto;padding:2px}
-.fund{border:1px solid var(--rule);border-radius:10px;padding:8px 10px;background:var(--surface-1);display:flex;gap:9px;
-  align-items:flex-start;cursor:pointer;transition:transform .15s,box-shadow .15s}
-.fund:hover,.fund:focus{transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,0,0,.10);outline:none;border-color:var(--series-1)}
-.fund .nm{font-size:12.5px;line-height:1.35;direction:ltr;text-align:right}
-.fund .mt{font-size:11.5px;color:var(--text-muted)}
-.fund.prov{border-style:dashed}
-.detail{margin-top:10px;font-size:13px;background:var(--surface-1);border:1px solid var(--rule);border-radius:10px;padding:10px 12px;display:none}
-.opt-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:6px 0}
-.opt{border:1px solid var(--rule);border-radius:10px;padding:8px 10px;background:var(--surface-1);cursor:pointer;text-align:right;font:inherit;color:inherit}
-.opt[aria-pressed="true"]{outline:2px solid var(--navy);border-color:var(--navy)}
-.opt .r{font-size:24px;font-weight:700;line-height:1.2}
-.opt .n{font-size:12.5px;color:var(--text-secondary)}
-.big3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
-.big3>div{background:var(--surface-1);border-radius:10px;padding:8px 10px}
-.big3 .v{font-size:19px;font-weight:700;color:var(--navy);line-height:1.25;font-variant-numeric:tabular-nums}
-.big3 .l{font-size:12px;color:var(--text-secondary)}
-.smooth{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
-.meter{height:12px;border-radius:6px;background:var(--rule);overflow:hidden}
-.meter i{display:block;height:100%;transition:width .6s ease}
-@media (max-width:860px){.opt-cards,.big3,.smooth{grid-template-columns:1fr}}
-</style>
+<title>ميزان الريع · محاكي قرار الصرف الوقفي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 <div class="wrap">
 <header>
-  <div style="color:var(--series-1);font-weight:600;font-size:13px">ميزان الريع · <span class="ltr">Mizan Al-Rai</span></div>
-  <h1>محاكي قرار الصرف الوقفي</h1>
-  <p>اختر قيمة الوقف ومعدل الصرف لترى احتمال حفظ القيمة الحقيقية للأصل بعد 10 سنوات، وكيف يتوزع المبلغ على المصارف.
+  <h1><span class="hl">محاكي قرار الصرف الوقفي</span></h1>
+  <p>اختر قيمة الوقف ومعدل الصرف لترى أين يميل الميزان بين هذا الجيل والأجيال القادمة، واحتمال حفظ القيمة الحقيقية للأصل بعد 10 سنوات.
      الأرقام محسوبة مسبقاً من <span class="ltr">scripts/run_analysis.py</span> (10,000 مسار محاكاة لكل حالة).</p>
 </header>
-<nav class="jump" aria-label="أقسام اللوحة">
-  <a href="#sim">المحاكي</a><a href="#label">① بطاقة استدامة الوقف</a><a href="#rule">② قاعدة ميزان للصرف</a><a href="#compass">③ بوصلة المصارف</a>
+<nav class="jump" aria-label="أقسام الصفحة">
+  <a href="#sim">المحاكي</a><a href="#shock">اختبار الصدمة</a><a href="#label">① بطاقة استدامة الوقف</a><a href="#rule">② قاعدة ميزان للصرف</a><a href="#compass">③ بوصلة المصارف</a>
 </nav>
+
 
 <section class="controls" id="sim" aria-label="مدخلات القرار">
   <div><label for="endow">قيمة الوقف (ريال)</label><input id="endow" type="number" min="100000" step="100000" value="10000000"></div>
@@ -137,6 +30,11 @@ nav.jump a:hover,nav.jump a:focus{border-color:var(--series-1);color:var(--serie
     <option value="0.5">50%</option><option value="0.6" selected>60%</option><option value="0.75">75%</option><option value="0.9">90%</option></select></div>
   <div><label for="prof">شروط الواقف (مزيج المصارف)</label><select id="prof"></select></div>
   <div><label for="resv">رصيد الاحتياطي الحالي (ريال)</label><input id="resv" type="number" min="0" step="10000" value="0"></div>
+</section>
+
+<section class="card scale-card" aria-label="الميزان">
+  <svg id="scale" viewBox="0 0 420 232" role="img" aria-label="ميزان بين هذا الجيل والأجيال القادمة"></svg>
+  <div class="scale-say" id="scaleSay" aria-live="polite"></div>
 </section>
 
 <section class="kpis" aria-live="polite">
@@ -154,7 +52,9 @@ nav.jump a:hover,nav.jump a:focus{border-color:var(--series-1);color:var(--serie
   <div class="card"><h2>مسار القيمة الحقيقية للوقف</h2><div class="sub">الوسيط ونطاق 10–90% — بالمعدل المختار مقابل السقف المستدام</div>
     <svg id="fan" viewBox="0 0 560 300" role="img" aria-label="مسار القيمة الحقيقية خلال 10 سنوات"></svg>
     <div class="legend"><span><i style="background:var(--series-2)"></i>المعدل المختار</span><span><i style="background:var(--series-1)"></i>السقف المستدام</span></div>
-    <div class="tip" id="tipV"></div></div>
+    <div class="tip" id="tipV"></div>
+    <div class="noprint" style="margin-top:6px"><button class="btn ghost" id="playPaths" type="button">▶ ارسم 20 مساراً من المحاكاة</button></div>
+    <div class="note" id="pathsNote" aria-live="polite"></div></div>
 </section>
 
 <section class="grid2" style="margin-top:12px">
@@ -169,6 +69,18 @@ nav.jump a:hover,nav.jump a:focus{border-color:var(--series-1);color:var(--serie
     <div class="tip" id="tipI"></div>
     <details style="margin-top:6px"><summary>جدول الصناديق</summary><table class="t" id="funds"></table></details>
   </div>
+</section>
+
+<div class="sol-head" id="shock"><span class="num">اختبار الصدمة</span><h2>ماذا لو ساءت الأحوال؟</h2>
+  <p>اختر صدمة، وشاهد ما يحدث لمبلغ الصرف السنوي لوقفك في ثلاث حالات: بقاعدة ميزان، وبالمعدل نفسه دون تمهيد، وبمستوى التوزيع الأخير. المبالغ بأسعار اليوم.</p></div>
+<section class="card">
+  <div class="chips" id="shockChips" role="group" aria-label="نوع الصدمة"></div>
+  <div class="grid2">
+    <div style="position:relative"><div class="sub">مبلغ الصرف السنوي الحقيقي، حيث صرف السنة الأولى = 100. مرّر المؤشر لترى المبالغ بالريال</div><svg id="shockChart" viewBox="0 0 560 300" role="img" aria-label="الصرف السنوي تحت الصدمة"></svg>
+      <div class="legend" id="shockLeg"></div><div class="tip" id="tipS"></div></div>
+    <div><div class="three" id="shockCards" style="grid-template-columns:1fr"></div></div>
+  </div>
+  <div class="note" id="shockNote"></div>
 </section>
 
 <div class="sol-head" id="label"><span class="num">الحل ①</span><h2>بطاقة استدامة الوقف</h2>
@@ -204,6 +116,8 @@ nav.jump a:hover,nav.jump a:focus{border-color:var(--series-1);color:var(--serie
     <h2 style="margin-top:12px">لماذا التمهيد على 12 ربعاً؟</h2>
     <div class="sub">احتمال أن ينخفض مبلغ الصرف أكثر من 5% في سنة ما، عند المعدل نفسه (2%)</div>
     <div class="smooth" id="smooth"></div>
+    <div class="impact"><div class="l">ما يرثه الجيل القادم</div><div class="v" id="impactV"></div><div class="l" id="impactL"></div>
+      <div class="row" id="impactRow"></div></div>
     <div class="adds"><b>ماذا يضيف؟</b> صرف ثابت يمكن للمستفيد أن يبني عليه، وحماية الأصل من قرار صرف تحت ضغط سنة جيدة. <b>من ينفّذه؟</b> مجلس نظارة الوقف أو مدير الصندوق، بإعلان النطاق في شروط الصندوق.</div>
   </div>
   <div class="card"><h2>الصرف السنوي الحقيقي على مدى 40 سنة</h2><div class="sub">لكل 100 ريال من قيمة الوقف اليوم، بأسعار اليوم (الوسيط). المنطقة المظللة = الأفق المختار</div>
@@ -231,270 +145,9 @@ nav.jump a:hover,nav.jump a:focus{border-color:var(--series-1);color:var(--serie
 <footer id="foot"></footer>
 </div>
 
-<script src="data.js?v=3"></script>
-<script>
-(function(){
-const D = window.WAQF_DATA;
-const $ = id => document.getElementById(id);
-const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
-const pct = (x,d=1) => (x*100).toFixed(d) + '%';
-const sar = x => Math.round(x).toLocaleString('en-US');
-const NS = 'http://www.w3.org/2000/svg';
-const el = (tag, attrs={}, parent) => { const e=document.createElementNS(NS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); if(parent) parent.appendChild(e); return e; };
-const rk = r => r.toFixed(3), ik = i => i.toFixed(3);
-
-// ---- controls
-for (const [k,v] of Object.entries(D.scenarios)) $('scen').add(new Option(v.label, k));
-D.inflation.forEach(i => $('infl').add(new Option(pct(i,1), i, false, Math.abs(i-D.defaults.inflation)<1e-9)));
-for (const [k,v] of Object.entries(D.profile_names)) $('prof').add(new Option(v, k));
-$('rate').max = D.rates.length - 1;
-$('rate').value = D.rates.findIndex(r => Math.abs(r - D.key.spending.rate_base) < 1e-9);
-
-function state(){
-  return { V: Math.max(0, +$('endow').value || 0), rate: D.rates[+$('rate').value], scen: $('scen').value,
-           infl: +$('infl').value, conf: +$('conf').value, prof: $('prof').value, resv: Math.max(0, +$('resv').value || 0) };
-}
-const cell = (s, rate) => D.scenarios[s.scen].grid[rk(rate)][ik(s.infl)];
-function sustainable(s){ let best = 0; for (const r of D.rates) if (cell(s,r).p >= s.conf) best = Math.max(best, r); return best; }
-
-// ---- allocation: mirrors src/waqf/allocate.py (upkeep -> reserve -> waqif conditions -> flexible)
-function allocate(V, rate, profile, reserveBalance){
-  const d = D.defaults, budget = V * rate, upkeep = budget * d.upkeep_share;
-  const reserve = Math.min(budget * d.reserve_share, Math.max(0, budget - reserveBalance));
-  const masarif = budget - upkeep - reserve;
-  const tot = Object.values(profile).reduce((a,b)=>a+b,0);
-  const lines = [{line:'upkeep',kind:'waterfall',amount:upkeep},{line:'reserve',kind:'waterfall',amount:reserve}];
-  for (const [m,s] of Object.entries(profile)) if (m !== 'general_charity' && s > 0) lines.push({line:m,kind:'waqif',amount:s/tot*masarif});
-  const flex = (profile.general_charity || 0) / tot * masarif;
-  const w = Object.entries(D.priorities).filter(([,v])=>v>0);
-  if (flex > 0 && w.length){
-    const base = Math.min(d.floor * masarif, flex / w.length), rest = flex - base * w.length, ws = w.reduce((a,[,v])=>a+v,0);
-    for (const [m,v] of w) lines.push({line:m,kind:'flex',amount: base + rest * v / ws});
-  }
-  return {budget, lines};
-}
-
-// ---- generic chart helpers
-function axes(svg, x0,x1,y0,y1, xt, yt, fx, fy, pad){
-  const W=560,H=300; const sx = v => pad.l + (v-x0)/(x1-x0)*(W-pad.l-pad.r), sy = v => H-pad.b - (v-y0)/(y1-y0)*(H-pad.t-pad.b);
-  yt.forEach(v => { el('line',{x1:pad.l,x2:W-pad.r,y1:sy(v),y2:sy(v),stroke:css('--rule'),'stroke-width':1},svg);
-                    el('text',{x:pad.l-6,y:sy(v)+4,'text-anchor':'end'},svg).textContent = fy(v); });
-  xt.forEach(v => { el('text',{x:sx(v),y:H-pad.b+16,'text-anchor':'middle'},svg).textContent = fx(v); });
-  return {sx, sy, W, H};
-}
-function hover(svg, tip, xs, sx, render){
-  const ov = el('rect',{x:0,y:0,width:560,height:300,fill:'transparent'},svg);
-  const guide = el('line',{y1:10,y2:270,stroke:css('--text-muted'),'stroke-dasharray':'3 3',visibility:'hidden'},svg);
-  ov.addEventListener('mousemove', ev => {
-    const b = svg.getBoundingClientRect(), x = (ev.clientX - b.left) / b.width * 560;
-    let i = 0, best = 1e9; xs.forEach((v,j) => { const d = Math.abs(sx(v) - x); if (d < best){best=d;i=j;} });
-    guide.setAttribute('x1', sx(xs[i])); guide.setAttribute('x2', sx(xs[i])); guide.setAttribute('visibility','visible');
-    tip.innerHTML = render(i); tip.style.display = 'block';
-    const card = svg.parentElement.getBoundingClientRect();
-    tip.style.left = Math.min(ev.clientX - card.left + 12, card.width - tip.offsetWidth - 8) + 'px';
-    tip.style.top = (ev.clientY - card.top - 10) + 'px';
-  });
-  ov.addEventListener('mouseleave', () => { tip.style.display='none'; guide.setAttribute('visibility','hidden'); });
-}
-const path = pts => pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
-
-function drawFrontier(s, sus){
-  const svg = $('front'); svg.innerHTML = '';
-  const pad = {l:44,r:12,t:12,b:30};
-  const a = axes(svg, 0, D.rates[D.rates.length-1], 0, 1, [0,.02,.04,.06,.08], [0,.25,.5,.75,1], v=>pct(v,0), v=>pct(v,0), pad);
-  const ps = D.rates.map(r => cell(s,r).p);
-  el('line',{x1:pad.l,x2:560-pad.r,y1:a.sy(s.conf),y2:a.sy(s.conf),stroke:css('--text-muted'),'stroke-dasharray':'5 4'},svg);
-  el('path',{d:path(D.rates.map((r,i)=>[a.sx(r),a.sy(ps[i])])),fill:'none',stroke:css('--series-1'),'stroke-width':2},svg);
-  D.rates.forEach((r,i)=>el('circle',{cx:a.sx(r),cy:a.sy(ps[i]),r:3,fill:css('--series-1')},svg));
-  el('circle',{cx:a.sx(sus),cy:a.sy(cell(s,sus).p),r:7,fill:css('--series-3'),stroke:css('--card'),'stroke-width':2},svg);
-  el('circle',{cx:a.sx(s.rate),cy:a.sy(cell(s,s.rate).p),r:8,fill:css('--series-2'),stroke:css('--card'),'stroke-width':2},svg);
-  hover(svg, $('tipF'), D.rates, a.sx, i => `صرف <b>${pct(D.rates[i])}</b> ← حفظ الأصل <b>${pct(ps[i],0)}</b>`);
-}
-
-function drawFan(s, sus){
-  const svg = $('fan'); svg.innerHTML = '';
-  const A = cell(s, s.rate).bands, B = cell(s, sus).bands, yrs = A[0].map((_,i)=>i);
-  const lo = Math.min(...A[0], ...B[0]), hi = Math.max(...A[2], ...B[2]);
-  const y0 = Math.floor(lo/10)*10, y1 = Math.ceil(hi/10)*10, step = (y1-y0) > 60 ? 20 : 10, yt=[];
-  for (let v=y0; v<=y1; v+=step) yt.push(v);
-  const pad = {l:40,r:30,t:12,b:30};
-  const a = axes(svg, 0, 10, y0, y1, [0,2,4,6,8,10], yt, v=>v+' سنة', v=>v, pad);
-  el('line',{x1:pad.l,x2:560-pad.r,y1:a.sy(100),y2:a.sy(100),stroke:css('--text-muted'),'stroke-dasharray':'5 4'},svg);
-  const band = (Q,fill) => el('path',{d:path(yrs.map(i=>[a.sx(i),a.sy(Q[2][i])]).concat(yrs.slice().reverse().map(i=>[a.sx(i),a.sy(Q[0][i])])))+'Z',fill},svg);
-  band(B, css('--band-1')); band(A, css('--band-2'));
-  el('path',{d:path(yrs.map(i=>[a.sx(i),a.sy(B[1][i])])),fill:'none',stroke:css('--series-1'),'stroke-width':2},svg);
-  el('path',{d:path(yrs.map(i=>[a.sx(i),a.sy(A[1][i])])),fill:'none',stroke:css('--series-2'),'stroke-width':2},svg);
-  el('text',{x:a.sx(10)+4,y:a.sy(A[1][10])+4,'text-anchor':'start'},svg).textContent = A[1][10].toFixed(0);
-  el('text',{x:a.sx(10)+4,y:a.sy(B[1][10])+4,'text-anchor':'start'},svg).textContent = B[1][10].toFixed(0);
-  hover(svg, $('tipV'), yrs, a.sx, i => `السنة ${i}<br>المختار ${pct(s.rate)}: <b>${A[1][i].toFixed(0)}</b> (${A[0][i].toFixed(0)}–${A[2][i].toFixed(0)})<br>المستدام ${pct(sus)}: <b>${B[1][i].toFixed(0)}</b>`);
-}
-
-function drawAlloc(s){
-  const {budget, lines} = allocate(s.V, s.rate, D.profiles[s.prof], s.resv);
-  const merged = {}; lines.forEach(l => { const k=l.line; merged[k] = merged[k] || {line:k, amount:0, kinds:new Set()}; merged[k].amount += l.amount; merged[k].kinds.add(l.kind); });
-  const rows = Object.values(merged).filter(r=>r.amount>0).sort((a,b)=>b.amount-a.amount);
-  const max = Math.max(...rows.map(r=>r.amount), 1);
-  const label = k => k==='upkeep' ? 'عمارة الوقف وصيانته' : k==='reserve' ? 'احتياطي استقرار الصرف' : (D.masraf_labels[k]||k);
-  const color = r => r.kinds.has('waterfall') ? css('--text-muted') : (r.kinds.has('flex') && !r.kinds.has('waqif') ? css('--series-3') : css('--series-1'));
-  $('alloc').innerHTML = rows.slice(0,14).map(r => `<div class="alloc-row"><span>${label(r.line)}${r.kinds.has('flex') && r.kinds.has('waqif') ? ' <span class="pill">+مرن</span>' : ''}</span>
-     <div class="track"><div class="bar" style="width:${(r.amount/max*100).toFixed(1)}%;background:${color(r)}"></div></div>
-     <span class="amt">${sar(r.amount)}</span></div>`).join('')
-    + (rows.length > 14 ? `<div class="alloc-row"><span>مصارف أخرى (${rows.length-14})</span><div></div><span class="amt">${sar(rows.slice(14).reduce((a,r)=>a+r.amount,0))}</span></div>` : '')
-    + `<div class="alloc-row" style="border-top:1px solid var(--rule);padding-top:4px"><b>الإجمالي</b><div></div><b class="amt">${sar(budget)}</b></div>`;
-}
-
-function drawIndex(){
-  const svg = $('idx'); svg.innerHTML = '';
-  const I = D.index, n = I.month.length, xs = I.month.map((_,i)=>i);
-  const lo = Math.floor(Math.min(...I.price)/10)*10, hi = Math.ceil(Math.max(...I.total)/10)*10, yt=[];
-  for (let v=lo; v<=hi; v+=10) yt.push(v);
-  const ticks = xs.filter(i => I.month[i].endsWith('-01'));
-  const pad = {l:40,r:12,t:12,b:30};
-  const a = axes(svg, 0, n-1, lo, hi, ticks, yt, i => I.month[i].slice(0,4), v=>v, pad);
-  el('path',{d:path(xs.map(i=>[a.sx(i),a.sy(I.price[i])])),fill:'none',stroke:css('--series-2'),'stroke-width':2},svg);
-  el('path',{d:path(xs.map(i=>[a.sx(i),a.sy(I.total[i])])),fill:'none',stroke:css('--series-1'),'stroke-width':2},svg);
-  hover(svg, $('tipI'), xs, a.sx, i => `<span class="ltr">${I.month[i]}</span> · ${I.n_funds[i]} صندوق<br>العائد الكلي: <b>${I.total[i].toFixed(1)}</b><br>السعر فقط: <b>${I.price[i].toFixed(1)}</b>`);
-  $('funds').innerHTML = '<tr><th>الصندوق</th><th>أشهر</th><th>عائد السعر/سنة</th><th>الأصول (مليون)</th></tr>' +
-    D.funds.map(f => `<tr><td>${f.fund_name}${f.in_index ? ' <span class="pill">في المؤشر</span>' : ''}</td><td class="n">${f.months}</td><td class="n">${pct(f.price_ann_return)}</td><td class="n">${f.aum_sar ? (f.aum_sar/1e6).toFixed(1) : '—'}</td></tr>`).join('');
-}
-
-function render(){
-  const s = state(), sus = sustainable(s), c = cell(s, s.rate);
-  $('rateVal').textContent = pct(s.rate);
-  $('kP').textContent = pct(c.p, 0);
-  $('kP').style.color = c.p >= s.conf ? css('--navy') : css('--series-2');
-  $('kPs').textContent = c.p >= s.conf ? '✔ يحقق الثقة المطلوبة (' + pct(s.conf,0) + ')' : '✖ أقل من الثقة المطلوبة (' + pct(s.conf,0) + ')';
-  $('kR').textContent = pct(sus);
-  $('kRs').textContent = sus === 0 ? 'لا يوجد معدل صرف يحقق هذه الثقة — خفّض الثقة أو راجع السيناريو' : 'أي ' + sar(s.V * sus) + ' ريال سنوياً';
-  $('kB').textContent = sar(s.V * s.rate);
-  $('kBs').textContent = 'ريال — ' + pct(s.rate) + ' من متوسط قيمة الوقف';
-  const med = c.bands[1][10];
-  $('kV').textContent = (s.V * med / 100 / 1e6).toFixed(2) + ' م';
-  $('kVs').textContent = 'مليون ريال بأسعار اليوم (' + (med >= 100 ? '+' : '') + (med - 100).toFixed(0) + '% من القيمة الحالية)';
-  drawFrontier(s, sus); drawFan(s, sus); drawAlloc(s);
-}
-
-['endow','rate','scen','infl','conf','prof','resv'].forEach(id => $(id).addEventListener('input', render));
-drawIndex(); render();
-
-// ================= solutions (tables from src/waqf/solutions.py) =================
-const S = D.solutions, GR = ['A','B','C','D','E'];
-const GRADE_TXT = {A:'الأصل محفوظ فعلياً: قيمة الوحدة نمت بمعدل التضخم أو أكثر', B:'محفوظ اسمياً فقط: قيمة الوحدة نمت أقل من التضخم',
-  C:'تآكل طفيف: قيمة الوحدة نقصت حتى 2% سنوياً', D:'تآكل واضح: قيمة الوحدة نقصت بين 2% و5% سنوياً', E:'تآكل شديد: قيمة الوحدة نقصت أكثر من 5% سنوياً'};  // = solutions.GRADE_MEANING_AR
-const nFunds = n => n === 0 ? 'لا صناديق' : n === 1 ? 'صندوق واحد' : n === 2 ? 'صندوقان' : n <= 10 ? n + ' صناديق' : n + ' صندوقاً';
-const keyAct = f => e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); f(); } };
-const LS = {inf:'grade', est:false, sel:null};
-function drawLabel(){
-  const rows = S.sustainability_label.filter(f => !LS.est || !f.provisional);
-  const g = f => f[LS.inf] || f.grade;
-  const aum = GR.map(x => rows.filter(f => g(f) === x).reduce((a,f) => a + (f.aum_sar || 0), 0));
-  const cnt = GR.map(x => rows.filter(f => g(f) === x).length);
-  const tot = aum.reduce((a,b) => a + b, 0) || 1;
-  $('labSub').textContent = `${nFunds(rows.length)} · ${(tot/1e9).toFixed(2)} مليار ريال من الأصول المصنّفة`;
-  $('energy').innerHTML = GR.map((x,i) => `<div class="row${LS.sel && LS.sel !== x ? ' off' : ''}" data-g="${x}" role="button" tabindex="0" aria-pressed="${LS.sel === x}" aria-label="الدرجة ${x}">
-     <span class="g g${x}">${x}</span>
-     <div><div class="arrow g${x}" style="width:${Math.max(8, aum[i]/tot*100).toFixed(1)}%">${pct(aum[i]/tot, 0)}</div></div>
-     <span style="color:var(--text-secondary)">${nFunds(cnt[i])}</span></div>`).join('');
-  $('energy').querySelectorAll('.row').forEach(r => {
-    const f = () => { LS.sel = LS.sel === r.dataset.g ? null : r.dataset.g; drawLabel(); };
-    r.onclick = f; r.onkeydown = keyAct(f); });
-  const shown = rows.filter(f => !LS.sel || g(f) === LS.sel)
-    .sort((a,b) => GR.indexOf(g(a)) - GR.indexOf(g(b)) || (b.aum_sar || 0) - (a.aum_sar || 0));
-  $('fundSub').textContent = LS.sel ? `الدرجة ${LS.sel}: ${GRADE_TXT[LS.sel]} (${nFunds(shown.length)})`
-                                    : 'اضغط أي صندوق لتفاصيله · الإطار المتقطع = سجل أقل من 36 شهراً (درجة مبدئية)';
-  $('fundGrid').innerHTML = shown.map(f => `<div class="fund${f.provisional ? ' prov' : ''}" role="button" tabindex="0" data-s="${f.symbol}">
-     <span class="g g${g(f)}">${g(f)}</span><div><div class="nm">${f.fund_name}</div>
-     <div class="mt">${f.months} شهراً · ${f.aum_sar ? (f.aum_sar/1e6).toFixed(0) + ' مليون ريال' : 'الأصول غير منشورة'}</div></div></div>`).join('')
-     || '<div class="sub">لا توجد صناديق بهذه الدرجة.</div>';
-  $('fundGrid').querySelectorAll('.fund').forEach(c => { const f = () => showFund(c.dataset.s); c.onclick = f; c.onkeydown = keyAct(f); });
-}
-function showFund(sym){
-  const f = S.sustainability_label.find(x => x.symbol === sym), g = f[LS.inf] || f.grade, d = $('fundDetail');
-  d.style.display = 'block';
-  d.innerHTML = `<div style="display:flex;gap:8px;align-items:center"><span class="g g${g}">${g}</span><b class="ltr">${f.fund_name}</b></div>
-   <div style="margin-top:6px">${GRADE_TXT[g]}${f.provisional ? ' <span class="pill">مبدئي: سجل قصير</span>' : ''}</div>
-   <table class="t" style="margin-top:6px">
-   <tr><td>نمو قيمة الوحدة سنوياً</td><td class="n">${pct(f.unit_growth)}</td></tr>
-   <tr><td>بعد خصم تضخم 2%</td><td class="n">${pct(f.real_unit_growth)}</td></tr>
-   <tr><td>التوزيع المقدَّر سنوياً</td><td class="n">${f.est_payout_rate == null ? '—' : pct(f.est_payout_rate)}</td></tr>
-   <tr><td>أكبر تراجع من القمة</td><td class="n">${pct(f.max_drawdown)}</td></tr>
-   <tr><td>مدير الصندوق</td><td class="n">${f.manager}</td></tr></table>`;
-}
-document.querySelectorAll('[data-inf]').forEach(b => b.onclick = () => {
-  document.querySelectorAll('[data-inf]').forEach(x => x.setAttribute('aria-pressed', x === b));
-  LS.inf = b.dataset.inf; drawLabel(); $('fundDetail').style.display = 'none'; });
-$('estOnly').onclick = () => { LS.est = !LS.est; $('estOnly').setAttribute('aria-pressed', LS.est); drawLabel(); };
-
-const OPT = {cautious:{n:'متحفظ', c:'--series-1'}, balanced:{n:'متوازن', c:'--series-3'}, recent_level:{n:'مستوى التوزيع الأخير', c:'--series-2'}};
-const RS = {opt:'balanced', h:10};
-function drawRule(){
-  const menu = S.spending_menu, V = Math.max(0, +$('endow').value || 0);
-  $('opts').innerHTML = Object.keys(OPT).map(o => { const r = menu.find(m => m.option === o);
-    return `<button class="opt" data-o="${o}" aria-pressed="${o === RS.opt}"><div class="r" style="color:var(${OPT[o].c})">${pct(r.rate)}</div><div class="n">${OPT[o].n}</div></button>`; }).join('');
-  $('opts').querySelectorAll('.opt').forEach(b => b.onclick = () => { RS.opt = b.dataset.o; drawRule(); });
-  const m = menu.find(x => x.option === RS.opt && x.years === RS.h);
-  $('big3').innerHTML = `<div><div class="v">${sar(V * m.cumulative_real_payout / 100)}</div><div class="l">ريال يصل للمستفيدين خلال ${RS.h === 10 ? '10 سنوات' : RS.h + ' سنة'} (بأسعار اليوم)</div></div>
-    <div><div class="v" style="color:${m.median_real_value >= 100 ? css('--navy') : css('--series-2')}">${sar(V * m.median_real_value / 100)}</div><div class="l">قيمة الوقف الباقية للأجيال القادمة (الوسيط)</div></div>
-    <div><div class="v">${pct(m.p_preserve_real, 0)}</div><div class="l">احتمال أن يبقى الأصل فوق قيمته الحقيقية اليوم</div></div>`;
-  const sm = D.key.rule.smoothing;
-  const bar = (v, c, l) => `<div><div style="font-size:12.5px;margin-bottom:3px">${l}: <b>${pct(v, 0)}</b></div><div class="meter"><i style="width:${(v*100).toFixed(1)}%;background:var(${c})"></i></div></div>`;
-  $('smooth').innerHTML = bar(sm.unsmoothed_p_cut_over_5pct, '--series-2', 'الصرف من قيمة آخر سنة') + bar(sm.smoothed_p_cut_over_5pct, '--series-3', 'الصرف من متوسط 12 ربعاً (ميزان)');
-  drawTradeoff();
-}
-document.querySelectorAll('[data-h]').forEach(b => b.onclick = () => {
-  document.querySelectorAll('[data-h]').forEach(x => x.setAttribute('aria-pressed', x === b)); RS.h = +b.dataset.h; drawRule(); });
-function drawTradeoff(){
-  const svg = $('tradeoff'); svg.innerHTML = '';
-  const Y = S.spending_menu_yearly, opts = Object.keys(OPT), years = [...new Set(Y.map(r => r.year))].sort((a,b) => a - b);
-  const ser = o => Y.filter(r => r.option === o).sort((a,b) => a.year - b.year).map(r => r.median_real_payout);
-  const S3 = opts.map(ser), hi = Math.ceil(Math.max(...S3.flat()));
-  const pad = {l:36, r:14, t:12, b:30}, yt = []; for (let v = 0; v <= hi; v += 1) yt.push(v);
-  const last = years[years.length - 1];
-  const a = axes(svg, years[0], last, 0, hi, [1,10,20,30,40].filter(x => x <= last), yt, v => v + ' سنة', v => v.toFixed(0), pad);
-  el('rect', {x:a.sx(years[0]), y:pad.t, width:a.sx(RS.h) - a.sx(years[0]), height:300 - pad.t - pad.b, fill:css('--band-1')}, svg);
-  opts.forEach((o,j) => el('path', {d:path(S3[j].map((v,i) => [a.sx(years[i]), a.sy(v)])), fill:'none', stroke:css(OPT[o].c),
-     'stroke-width':o === RS.opt ? 3.2 : 1.6, opacity:o === RS.opt ? 1 : .45}, svg));
-  const be = D.key.rule.breakeven_year_balanced;
-  if (be){ el('line', {x1:a.sx(be), x2:a.sx(be), y1:pad.t, y2:300 - pad.b, stroke:css('--text-muted'), 'stroke-dasharray':'4 3'}, svg);
-    el('text', {x:a.sx(be) - 4, y:pad.t + 12, 'text-anchor':'start'}, svg).textContent = 'السنة ' + be + ': المتوازن يتجاوز'; }
-  $('tradeLeg').innerHTML = opts.map(o => `<span><i style="background:var(${OPT[o].c})"></i>${OPT[o].n} ${pct(S.spending_menu.find(m => m.option === o).rate)}</span>`).join('');
-  hover(svg, $('tipT'), years, a.sx, i => `السنة ${years[i]}<br>` + opts.map((o,j) => `${OPT[o].n}: <b>${S3[j][i].toFixed(2)}</b>`).join('<br>'));
-  const r = o => S.spending_menu.find(m => m.option === o && m.years === 30);
-  $('tradeNote').innerHTML = `<b>المقايضة بصراحة:</b> الصرف الأعلى يعطي أكثر في العقود الأولى (مجموع 30 سنة: ${r('recent_level').cumulative_real_payout.toFixed(0)} مقابل ${r('balanced').cumulative_real_payout.toFixed(0)} للمتوازن) لكنه يترك أصلاً قيمته ${r('recent_level').median_real_value.toFixed(0)} بدل ${r('balanced').median_real_value.toFixed(0)}، ويتناقص صرفه السنوي عاماً بعد عام.`;
-}
-
-function drawCompass(){
-  const R = S.compass_regions.slice().sort((a,b) => b.social_share_after - a.social_share_after), svg = $('regions'); svg.innerHTML = '';
-  const W = 560, rowH = 300 / R.length, x0 = 130, sx = v => x0 + v * (W - x0 - 50);
-  [0, .25, .5, .75].forEach(v => { el('line', {x1:sx(v), x2:sx(v), y1:6, y2:310, stroke:css('--rule')}, svg);
-    el('text', {x:sx(v), y:324, 'text-anchor':'middle'}, svg).textContent = pct(v, 0); });
-  R.forEach((r,i) => { const y = 8 + i * rowH;
-    el('text', {x:x0 - 8, y:y + rowH * .62, 'text-anchor':'start'}, svg).textContent = r.region_ar;
-    el('rect', {x:x0, y:y + 2, width:Math.max(1, sx(r.social_share_after) - x0), height:rowH - 5, rx:3, fill:css('--series-3')}, svg);
-    el('rect', {x:x0, y:y + 2, width:Math.max(1, sx(r.social_share) - x0), height:rowH - 5, rx:3, fill:css('--text-muted')}, svg);
-    el('text', {x:sx(r.social_share_after) + 4, y:y + rowH * .62, 'text-anchor':'end'}, svg).textContent = pct(r.social_share_after, 0); });
-  const ov = el('rect', {x:0, y:0, width:560, height:310, fill:'transparent'}, svg);
-  ov.addEventListener('mousemove', ev => { const b = svg.getBoundingClientRect(), y = (ev.clientY - b.top) / b.height * 330;
-    const r = R[Math.max(0, Math.min(R.length - 1, Math.floor((y - 8) / rowH)))], tip = $('tipR');
-    tip.innerHTML = `<b>${r.region_ar}</b> · ${r.waqf_designations.toLocaleString('en-US')} مصرف وقفي<br>الرعاية الاجتماعية اليوم: <b>${pct(r.social_share)}</b><br>بعد البوصلة: <b>${pct(r.social_share_after)}</b> (+${(r.gain_points*100).toFixed(0)} نقطة)`;
-    tip.style.display = 'block'; const card = svg.parentElement.getBoundingClientRect();
-    tip.style.left = Math.min(ev.clientX - card.left + 12, card.width - tip.offsetWidth - 8) + 'px'; tip.style.top = (ev.clientY - card.top - 10) + 'px'; });
-  ov.addEventListener('mouseleave', () => $('tipR').style.display = 'none');
-
-  const V = Math.max(0, +$('endow').value || 0), scale = V / D.key.allocation.endowment;
-  const C = S.compass_case.filter(r => r.total > 0).sort((a,b) => b.total - a.total).slice(0, 10), mx = Math.max(...C.map(r => r.total));
-  $('caseSub').textContent = `صرف سنة لوقف قيمته ${sar(V)} ريال (بمعدل ${pct(D.key.allocation.budget / D.key.allocation.endowment)}) بالمزيج الوطني: الرمادي من شروط الواقفين، والأخضر ما تضيفه البوصلة من الحصة المرنة`;
-  $('caseBars').innerHTML = C.map(r => `<div class="alloc-row"><span>${r.label_ar}${r.multiple > 1.5 ? ` <span class="pill">×${r.multiple.toFixed(0)}</span>` : ''}</span>
-    <div style="display:flex;height:14px"><div style="width:${(r.from_waqif_conditions/mx*100).toFixed(1)}%;background:var(--text-muted)"></div><div style="width:${(r.from_flexible_share/mx*100).toFixed(1)}%;background:var(--series-3)"></div></div>
-    <span class="amt">${sar(r.total * scale)}</span></div>`).join('');
-}
-$('endow').addEventListener('input', () => { drawRule(); drawCompass(); });
-drawLabel(); drawRule(); drawCompass();
-const k = D.key;
-$('foot').innerHTML = `<b>ميزان الريع</b> — منصة التنبؤ الذكي بالتدفقات المالية للوقف · المصادر: الهيئة العامة للأوقاف (منصة البيانات المفتوحة الوطنية، ${k.sector.waqf_designations.toLocaleString('en-US')} مصرفاً وقفياً) · السوق المالية السعودية — تداول (${k.index.funds_total} صندوقاً وقفياً). ` +
-  `العائد الكلي المقدَّر ${pct(k.index.total_ann_return)} سنوياً · توقع 12 شهراً ${pct(k.forecast.point_pct)} · ${k.spending.paths.toLocaleString('en-US')} مسار لكل حالة. ` +
-  `الحدود: الصناديق المدرجة وكيل لأداء الاستثمار الوقفي، ومبالغ التوزيع مقدَّرة.`;
-})();
-</script>
+<script src="data.js?v=6"></script>
+<script src="common.js?v=6"></script>
+<script src="sim.js?v=6"></script>
+<script src="solutions.js?v=6"></script>
 </body>
 </html>

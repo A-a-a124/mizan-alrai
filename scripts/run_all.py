@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 STEPS = [
     ("analysis", [sys.executable, "scripts/run_analysis.py"], True),
+    ("map", [sys.executable, "scripts/build_map.py"], True),
     ("tests", [sys.executable, "-m", "pytest", "-q"], True),
     ("notebook", [sys.executable, "scripts/build_notebook.py"], False),
     ("report", [sys.executable, "scripts/build_report.py"], False),

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ميزان الريع · استكشف البيانات</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=6">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1><span class="hl">استكشف البيانات</span></h1>
+  <p>أين يتركّز الوقف في المملكة وأين يغيب؟ ومن يدير الصناديق الوقفية وكيف حافظت على قيمة وحداتها؟ كل ما هنا من البيانات المفتوحة نفسها.</p>
+</header>
+<nav class="jump" aria-label="أقسام الصفحة">
+  <a href="#mapSec">خريطة المناطق</a><a href="#gapSec">فجوات المصارف</a><a href="#mgrSec">مديرو الصناديق</a><a href="#fundSec">صفحة كل صندوق</a>
+</nav>
+
+<div class="sol-head" id="mapSec"><span class="num">الخريطة</span><h2>الوقف في مناطق المملكة</h2>
+  <p>اختر المؤشر الذي تتلوّن به الخريطة، ثم اضغط أي منطقة لتفتح بطاقتها.</p></div>
+<section class="grid2">
+  <div class="card">
+    <div class="chips" id="mapChips" role="group" aria-label="مؤشر الخريطة"></div>
+    <svg id="map" class="map" role="group" aria-label="خريطة مناطق المملكة"></svg>
+    <div class="ramp" id="ramp"></div>
+    <div class="tip" id="tipM"></div>
+  </div>
+  <div class="card" id="regionCard" aria-live="polite"></div>
+</section>
+
+<div class="sol-head" id="gapSec"><span class="num">الفجوات</span><h2>أين يغيب الوقف عن الرعاية الاجتماعية؟</h2>
+  <p id="gapLead"></p></div>
+<section class="card">
+  <div class="chips"><button class="chip" id="heatToggle" aria-pressed="false">أظهر كل المصارف (24)</button></div>
+  <div class="sub">كل خانة = عدد المصارف الوقفية المسجّلة لهذا المصرف في هذه المنطقة، واللون أغمق كلما كبرت حصته من المنطقة. <b style="color:var(--critical)">✕</b> = مصرف اجتماعي غائب تماماً.</div>
+  <div class="heat-wrap"><table class="heat" id="heat"></table></div>
+  <div class="gap-list" id="gapList"></div>
+  <div class="adds"><b>ماذا يضيف؟</b> يحوّل «بوصلة المصارف» من نسبة عامة إلى قائمة فجوات بالاسم، يمكن للهيئة والواقفين الجدد أن يبدؤوا منها.</div>
+</section>
+
+<div class="sol-head" id="mgrSec"><span class="num">المديرون</span><h2>مديرو الصناديق الوقفية</h2>
+  <p>مرتّبون حسب درجات صناديقهم في بطاقة الاستدامة. اضغط مديراً لترى صناديقه.</p></div>
+<section class="card">
+  <div class="heat-wrap"><table class="t" id="managers"></table></div>
+  <div class="note">«انتظام التوزيع» = نسبة سنوات الصناديق التي رُصد فيها توزيع. المربعات الباهتة صناديق سجلها أقل من 36 شهراً.</div>
+</section>
+
+<div class="sol-head" id="fundSec"><span class="num">الصناديق</span><h2>صفحة كل صندوق</h2>
+  <p id="fundsSub"></p></div>
+<section class="card">
+  <div class="fund-grid" id="fundGrid" style="max-height:230px"></div>
+  <div class="panel" id="fundPanel">
+    <h2 class="ltr" id="fundName" style="font-size:21px;color:var(--navy);text-align:right"></h2>
+    <div class="sub" id="fundMeta" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:6px"></div>
+    <div class="grid2" style="margin-top:8px">
+      <div style="position:relative">
+        <div class="sub">قيمة الوحدة (100 = أول شهر في السجل). الدوائر = توزيعات مرصودة ونسبتها المقدَّرة من قيمة الوحدة</div>
+        <svg id="fundChart" viewBox="0 0 560 300" role="img" aria-label="منحنى قيمة وحدة الصندوق"></svg>
+        <div class="legend"><span><i style="background:var(--series-1)"></i>الصندوق</span><span><i style="background:var(--text-muted)"></i>متوسط الصناديق الوقفية</span><span><i style="background:var(--series-2)"></i>توزيع مرصود</span></div>
+        <div class="tip" id="tipFund"></div>
+        <table class="t" id="fundStats" style="margin-top:10px"></table>
+      </div>
+      <div style="text-align:center">
+        <img class="cert" id="certImg" alt="بطاقة استدامة الوقف لهذا الصندوق">
+        <div style="margin-top:8px"><button class="btn" id="certBtn" type="button">حمّل البطاقة صورة</button></div>
+        <div class="note">بطاقة من صفحة واحدة يمكن للجهة المنظِّمة اعتمادها ونشرها كما هي.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="foot"></footer>
+</div>
+
+<script src="data.js?v=6"></script>
+<script src="map.js?v=6"></script>
+<script src="common.js?v=6"></script>
+<script src="explore.js?v=6"></script>
+</body>
+</html>

@@ -8,7 +8,7 @@ from dataclasses import dataclass, field
 import numpy as np
 import pandas as pd
 
-from . import allocate, clean, config, forecast, index, ingest, risk, solutions, viz
+from . import allocate, clean, config, forecast, index, ingest, insights, risk, solutions, viz
 
 SCENARIOS = {
     "base": ("العائد الكلي المقدَّر (الأساس)", "log_ret_total", 0.0),
@@ -256,6 +256,26 @@ def step_solutions(c: dict, sec: dict, ix: dict, sp: dict, al: dict, res: Result
             "options": options}
 
 
+def step_insights(c: dict, ix: dict, so: dict, res: Results) -> dict:
+    """Region x masraf gaps, fund managers, per-fund series and shock tests of the spending rule."""
+    rets = c["fund_returns"]
+    matrix = insights.region_matrix(c["disbursements"])
+    gaps = insights.social_gaps(matrix)
+    managers = insights.manager_ranking(so["label"], rets)
+    series = insights.fund_series(rets)
+    rates = {f"rate_{k}": v for k, v in so["options"].items()}
+    idx = res.tables["composite_index"]
+    shocks, shock_key = insights.shock_table(ix["total"]["ret"].values, rates, idx["month"].astype(str))
+    res.tables.update(region_masraf_matrix=matrix, social_gaps=gaps, manager_ranking=managers,
+                      fund_series=series, shock_tests=shocks)
+    res.key["gaps"] = insights.gaps_summary(matrix, gaps)
+    res.key["managers"] = {"managers": int(len(managers)), "top_manager": managers.iloc[0]["manager"],
+                           "managers_all_A": int((managers["avg_grade_score"] == 0).sum())}
+    res.key["shock"] = shock_key
+    res.key["legacy"] = insights.legacy(so["menu"], so["options"]["balanced"])
+    return {"matrix": matrix, "gaps": gaps, "managers": managers, "series": series, "shocks": shocks}
+
+
 def step_figures(c: dict, sec: dict, ix: dict, fc: dict, sp: dict, al: dict) -> list:
     F = config.FIGURES
     labels = {k: v[0] for k, v in SCENARIOS.items()}
@@ -299,7 +319,8 @@ def run(figures: bool = True, gasa=None, prices=None, universe=None, out_dir=Non
     fc = step_forecast(ix, res)
     sp = step_spending(ix, res)
     al = step_allocate(c, sp, res)
-    step_solutions(c, sec, ix, sp, al, res)
+    so = step_solutions(c, sec, ix, sp, al, res)
+    step_insights(c, ix, so, res)
     write_outputs(res)
     if figures:
         step_figures(c, sec, ix, fc, sp, al)

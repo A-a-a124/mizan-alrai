@@ -5,7 +5,10 @@
 
 from __future__ import annotations
 
+import csv
 import json
+import re
+import subprocess
 import sys
 from pathlib import Path
 from string import Template
@@ -20,59 +23,108 @@ PAGE = Template("""<!doctype html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>$name · $name_en</title>
-<meta name="description" content="$tagline — سقف صرف مستدام وتوزيع شرعي للمصارف من بيانات مفتوحة حقيقية">
+<meta name="description" content="$tagline: ثلاثة حلول من بيانات مفتوحة حقيقية تُبقي الوقف مستداماً">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#f6f6f3;--card:#fff;--rule:#e6e5e0;--ink:#0b0b0b;--ink2:#52514e;--navy:#0d366b;--blue:#2a78d6;--orange:#eb6834}
-@media (prefers-color-scheme: dark){:root:where(:not([data-theme="light"])){--bg:#121211;--card:#20201f;--rule:#383835;--ink:#f0efec;--ink2:#c3c2b7;--navy:#9ec5f4;--blue:#3987e5;--orange:#d95926}}
-:root[data-theme="dark"]{--bg:#121211;--card:#20201f;--rule:#383835;--ink:#f0efec;--ink2:#c3c2b7;--navy:#9ec5f4;--blue:#3987e5;--orange:#d95926}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;line-height:1.7}
-.wrap{max-width:980px;margin:0 auto;padding:36px 16px 48px}
-.brand{color:var(--blue);font-weight:600;letter-spacing:.3px}
-h1{font-size:clamp(30px,6vw,46px);line-height:1.2;margin:6px 0 4px;color:var(--navy)}
-.tag{font-size:18px;color:var(--ink2);margin:0 0 6px}.team{color:var(--ink2);font-size:14px}
-.lede{background:var(--card);border:1px solid var(--rule);border-right:4px solid var(--blue);border-radius:10px;padding:14px 16px;margin:20px 0;font-size:16px}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:0 0 22px}
-.kpi{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:14px}
-.kpi .v{font-size:30px;font-weight:700;color:var(--navy);line-height:1.2}.kpi .v.w{color:var(--orange)}.kpi .l{font-size:13.5px;color:var(--ink2)}
-.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
-a.card{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:16px;transition:border-color .15s}
-a.card:hover,a.card:focus-visible{border-color:var(--blue);outline:none}
-a.card b{display:block;color:var(--navy);font-size:17px;margin-bottom:2px}a.card span{color:var(--ink2);font-size:14px}
-img.hero{width:100%;border:1px solid var(--rule);border-radius:12px;margin:22px 0 6px;background:#fff}
-.cap{font-size:13px;color:var(--ink2)}footer{margin-top:28px;font-size:13px;color:var(--ink2)}
-.ltr{direction:ltr;unicode-bidi:embed}
-</style></head><body><div class="wrap">
-<div class="brand">$name · <span class="ltr">$name_en</span></div>
-<h1>كم يصرف الوقف دون أن يأكل أصله؟</h1>
-<p class="tag">$tagline: تنبؤ بالعوائد، وسقف صرف مستدام، وتوزيع شرعي للمصارف</p>
-<div class="team">إعداد: $team</div>
+<link rel="stylesheet" href="dashboard/style.css?v=6">
+</head><body>
 
-<div class="lede">الأصول الوقفية المدرجة في السوق السعودية ولّدت عائداً كلياً مقدَّراً <b>$tot سنوياً</b>،
+<section class="hero" data-scene="hero">
+  <svg id="heroScale" viewBox="0 0 420 232" role="img" aria-label="ميزان بين هذا الجيل والأجيال القادمة"></svg>
+  <div style="color:#9fb3d6;font-weight:600">$name · <span class="ltr">$name_en</span></div>
+  <h1>كم يصرف الوقف دون أن يأكل أصله؟</h1>
+  <p class="tag">الوقف وعدٌ لجيلين: من يحتاج اليوم، ومن يأتي بعدنا. حلّلنا البيانات المفتوحة للأوقاف السعودية لنعرف أين يستقيم الميزان.</p>
+  <div class="team">إعداد: $team</div>
+  <div class="down">انزل لتقرأ القصة ↓</div>
+</section>
+
+<div class="wrap">
+
+<section class="scene" id="s-data" data-scene="data">
+  <h2 class="reveal"><span class="hl">بدأنا من بيانات حقيقية مفتوحة</span></h2>
+  <div class="pair reveal">
+    <div><div class="bignum" data-to="$n_raw">$n</div><div class="l">مصرفاً وقفياً مسجّلاً في $regions منطقة<br>الهيئة العامة للأوقاف، منصة البيانات المفتوحة الوطنية</div></div>
+    <div><div class="bignum" data-to="$funds">$funds</div><div class="l">صندوقاً وقفياً مرخّصاً بأسعار وحداتها الشهرية<br>السوق المالية السعودية (تداول)</div></div>
+  </div>
+  <p class="lead reveal">لا رقم مكتوب باليد ولا بيانات مصطنعة: كل ما في هذه الصفحة يُعاد حسابه من الملفات الخام بأمر واحد.</p>
+</section>
+
+<section class="scene" data-scene="index">
+  <h2 class="reveal"><span class="hl">الوقف ينمو، وبعض نموّه يُوزَّع</span></h2>
+  <p class="lead reveal">مؤشر الصناديق الوقفية ولّد عائداً كلياً مقدَّراً <b>$tot سنوياً</b>، بينما ارتفع سعر الوحدة <b>$price سنوياً</b> فقط. الفرق بين الخطين هو ما وصل للمستفيدين: نحو <b>$avg_pay سنوياً</b>.</p>
+  <div class="fig reveal"><svg id="stIndex" viewBox="0 0 560 300" role="img" aria-label="مؤشر صناديق الوقف: العائد الكلي مقابل السعر"></svg></div>
+</section>
+
+<section class="scene" data-scene="payouts">
+  <h2 class="reveal"><span class="hl">لكن التوزيعات تتسارع</span></h2>
+  <p class="lead reveal"><b>$ev_recent من $ev_total</b> توزيعاً رصدناه وقعت في آخر ثلاث سنوات. القطاع حافظ على أصله حتى الآن، والسؤال: ماذا لو صار مستوى التوزيع الأخير عادة سنوية؟</p>
+  <div class="fig reveal"><svg id="stPayouts" viewBox="0 0 560 300" role="img" aria-label="عدد التوزيعات المرصودة في كل سنة"></svg>
+    <div class="note">عدد التوزيعات المرصودة في كل سنة (مكتشَفة من هبوط سعر الوحدة مقارنة بالصناديق المماثلة).</div></div>
+</section>
+
+<section class="scene" data-scene="frontier">
+  <h2 class="reveal"><span class="hl">كل نقطة صرف إضافية لها ثمن</span></h2>
+  <p class="lead reveal">حاكينا 10,000 مسار للسنوات العشر القادمة من تاريخ الصناديق نفسه. لو صُرف <b>$obs</b> كل سنة لحُفظت القيمة الحقيقية للأصل باحتمال <b>$p_obs</b> فقط. عند <b>$rate_bal</b> يرتفع الاحتمال إلى <b>$p_bal</b>.</p>
+  <div class="duo reveal">
+    <div class="fig"><svg id="stFrontier" viewBox="0 0 560 300" role="img" aria-label="احتمال حفظ الأصل لكل معدل صرف"></svg></div>
+    <div><div class="l">معدل الصرف السنوي</div><div class="bignum" id="stRate" style="font-size:clamp(34px,6vw,60px)">$rate_bal</div>
+         <div class="l" style="margin-top:10px">احتمال حفظ الأصل بعد 10 سنوات</div><div class="bignum" id="stProb" style="font-size:clamp(34px,6vw,60px)">$p_bal</div></div>
+  </div>
+</section>
+
+<section class="scene" data-scene="solutions">
+  <h2 class="reveal"><span class="hl">ثلاثة حلول تُبقي الميزان مستقيماً</span></h2>
+  <p class="lead reveal">كل حل مبني على رقم من البيانات، وله جهة تستطيع تنفيذه ببيانات منشورة أصلاً.</p>
+  <div class="cards3 reveal">
+    <a class="card" href="dashboard/#label"><span class="n">1</span><h3>بطاقة استدامة الوقف</h3><p>درجة من A إلى E لكل صندوق: هل حافظت الوحدة على قوتها الشرائية؟ <b>$aum_a</b> من الأصول المصنّفة بدرجة A، و$below_b صندوقاً دون B.</p></a>
+    <a class="card" href="dashboard/#rule"><span class="n">2</span><h3>قاعدة ميزان للصرف</h3><p>الصرف من متوسط 12 ربعاً بمعدل بين <span class="ltr">$rate_n–$rate_bal</span>. احتمال انخفاض الصرف أكثر من 5% في سنة ما ينزل من <b>$cut_raw</b> إلى <b>$cut_smooth</b>.</p></a>
+    <a class="card" href="dashboard/#compass"><span class="n">3</span><h3>بوصلة المصارف</h3><p>توجيه حصة «أوجه البر» المرنة نحو الرعاية الاجتماعية يرفع حصتها من <b>$soc_before</b> إلى <b>$soc_after</b> دون المساس بشرط الواقف.</p></a>
+  </div>
+</section>
+
+<section class="scene" data-scene="gaps">
+  <h2 class="reveal"><span class="hl">وأين يغيب الوقف؟</span></h2>
+  <p class="lead reveal"><b>$no_orphans من $regions</b> منطقة ليس فيها مصرف وقفي واحد مسجّل للأيتام. في <b>$gap_region</b> وحدها <b>$gap_count</b> مصرفاً وقفياً، ولا واحد منها للأيتام.</p>
+  <div class="duo reveal">
+    <div class="fig"><svg id="stMap" class="map" role="img" aria-label="المناطق التي ليس فيها مصرف وقفي للأيتام"></svg>
+      <div class="note"><span style="color:var(--critical)">■</span> منطقة بلا مصرف وقفي مسجّل للأيتام</div></div>
+    <div><a class="btn" href="dashboard/explore.html">افتح الخريطة التفاعلية وفجوات كل منطقة</a></div>
+  </div>
+</section>
+
+<section class="scene" id="s-shock" data-scene="shock">
+  <h2 class="reveal"><span class="hl">وماذا لو ساءت الأحوال؟</span></h2>
+  <p class="lead reveal">أعدنا أسوأ هبوط في تاريخ المؤشر على وقف يصرف $rate_bal سنوياً. هذا أكبر انخفاض في مبلغ الصرف من سنة إلى التي تليها:</p>
+  <div class="pair reveal">
+    <div><div class="bignum ltr" data-to="$shock_mizan" style="color:var(--series-3)">-$shock_mizan%</div><div class="l">بقاعدة ميزان (الصرف من متوسط 12 ربعاً)</div></div>
+    <div><div class="bignum ltr" data-to="$shock_raw" style="color:var(--series-2)">-$shock_raw%</div><div class="l">بالمعدل نفسه دون تمهيد</div></div>
+  </div>
+  <div class="reveal"><a class="btn" href="dashboard/#shock">جرّب اختبار الصدمة على وقفك</a></div>
+</section>
+
+<section class="scene" data-scene="end" style="border-bottom:0">
+  <h2 class="reveal"><span class="hl">جرّب بنفسك</span></h2>
+  <div class="lede reveal">الأصول الوقفية المدرجة في السوق السعودية ولّدت عائداً كلياً مقدَّراً <b>$tot سنوياً</b>،
 ووُزِّع منه نحو <b>$avg_pay سنوياً</b> في المتوسط، فحافظ القطاع على أصله حتى الآن. لكن التوزيعات ترتفع:
 $ev_recent من $ev_total توزيعاً مرصوداً وقعت في آخر ثلاث سنوات. لذلك نقدّم ثلاثة حلول تُبقي الوقف مستداماً:
 <b>بطاقة استدامة الوقف</b>، و<b>قاعدة ميزان للصرف</b> (نطاق <span class="ltr">$rate_n–$rate_bal</span> سنوياً)، و<b>بوصلة المصارف</b>.</div>
+  <div class="links reveal">
+    <a class="card" href="dashboard/"><b>المحاكي والحلول الثلاثة ←</b><span>حرّك معدل الصرف وشاهد الميزان يميل، وارسم مسارات المحاكاة، واختبر الصدمات</span></a>
+    <a class="card" href="dashboard/explore.html"><b>استكشف البيانات ←</b><span>خريطة المناطق، فجوات المصارف، مديرو الصناديق، وصفحة وبطاقة لكل صندوق</span></a>
+    <a class="card" href="dashboard/plan.html"><b>وقفك في دقيقة ←</b><span>ثلاثة أسئلة ثم خطة صرف من صفحة واحدة جاهزة للطباعة</span></a>
+    <a class="card" href="report/executive_summary.pdf"><b>الملخص التنفيذي (PDF) ←</b><span>4 صفحات: القرار، قصة الأثر، التوصيات</span></a>
+    <a class="card" href="https://colab.research.google.com/github/A-a-a124/mizan-alrai/blob/main/analysis.ipynb"><b>دفتر التحليل على Colab ←</b><span>Python كامل بالسرد العربي، يعمل بضغطة Run all</span></a>
+    <a class="card" href="$repo"><b>الكود والبيانات ←</b><span>المصدر الكامل، $tests اختباراً آلياً، سجل استخدام الذكاء الاصطناعي</span></a>
+  </div>
+  <footer class="reveal">البيانات: الهيئة العامة للأوقاف (منصة البيانات المفتوحة الوطنية) · السوق المالية السعودية (تداول) · حدود المناطق: geoBoundaries، © مساهمو OpenStreetMap. تحليل مستقل لأغراض مسابقة تحليل البيانات للقطاع غير الربحي. الصناديق المدرجة وكيل لأداء الاستثمار الوقفي، ومبالغ التوزيع مقدَّرة.</footer>
+</section>
 
-<div class="kpis">
-  <div class="kpi"><div class="v"><span class="ltr">$rate_n–$rate_bal</span></div><div class="l">نطاق الصرف السنوي الذي يحفظ الأصل</div></div>
-  <div class="kpi"><div class="v">$aum_a</div><div class="l">من الأصول المصنّفة تحمل الدرجة A في بطاقة الاستدامة</div></div>
-  <div class="kpi"><div class="v">$fc</div><div class="l">العائد المتوقع للأشهر الـ12 القادمة</div></div>
-  <div class="kpi"><div class="v w">$orph</div><div class="l">حصة الأيتام من $n مصرفاً وقفياً</div></div>
 </div>
-
-<div class="links">
-  <a class="card" href="dashboard/"><b>محاكي القرار التفاعلي ←</b><span>حرّك معدل الصرف وشاهد الأثر فوراً، وجرّب الحلول الثلاثة: بطاقة الاستدامة لكل صندوق، وقاعدة ميزان، وبوصلة المصارف</span></a>
-  <a class="card" href="report/executive_summary.pdf"><b>الملخص التنفيذي (PDF) ←</b><span>4 صفحات: القرار، قصة الأثر، التوصيات</span></a>
-  <a class="card" href="https://colab.research.google.com/github/A-a-a124/mizan-alrai/blob/main/analysis.ipynb"><b>دفتر التحليل على Colab ←</b><span>Python كامل بالسرد العربي، يعمل بضغطة Run all</span></a>
-  <a class="card" href="$repo"><b>الكود والبيانات ←</b><span>المصدر الكامل، 38 اختباراً، سجل استخدام الذكاء الاصطناعي</span></a>
-</div>
-
-<img class="hero" src="outputs/figures/fig08_spending_frontier.png" alt="منحنى حدود الصرف المستدام: احتمال حفظ القيمة الحقيقية لكل معدل صرف">
-<div class="cap">حدود الصرف المستدام — 10,000 مسار محاكاة من التاريخ الفعلي لـ$funds صندوقاً وقفياً مرخصاً.</div>
-
-<footer>البيانات: الهيئة العامة للأوقاف (منصة البيانات المفتوحة الوطنية) · السوق المالية السعودية (تداول). تحليل مستقل لأغراض مسابقة تحليل البيانات للقطاع غير الربحي.</footer>
-</div></body></html>
+<script src="dashboard/data.js?v=6"></script>
+<script src="dashboard/map.js?v=6"></script>
+<script src="dashboard/common.js?v=6"></script>
+<script src="dashboard/story.js?v=6"></script>
+</body></html>
 """)
 
 
@@ -80,17 +132,34 @@ def pct(x: float, d: int = 1) -> str:
     return f"{x * 100:.{d}f}%"
 
 
+def count_tests() -> int:
+    out = subprocess.run([sys.executable, "-m", "pytest", "--collect-only", "-q"], cwd=ROOT, capture_output=True, text=True).stdout
+    found = re.search(r"(\d+) tests? collected", out)
+    return int(found.group(1)) if found else 0
+
+
 def main() -> None:
     k = json.loads((ROOT / "outputs" / "tables" / "key_numbers.json").read_text(encoding="utf-8"))
     s, ix, fc, sec = k["spending"], k["index"], k["forecast"], k["sector"]
+    rule, lab, shock, alloc = k["rule"], k["label"], k["shock"], k["allocation"]
+    with open(ROOT / "outputs" / "tables" / "social_gaps.csv", encoding="utf-8-sig", newline="") as fh:
+        gap = next(r for r in csv.DictReader(fh) if r["masraf"] == "orphans")      # largest region with no orphans masraf
     html = PAGE.substitute(
-        name=PROJECT_AR, name_en=PROJECT_EN, tagline=TAGLINE_AR, repo=REPO,
-        team=" · ".join(TEAM_MEMBERS), tot=pct(ix["total_ann_return"]), conf=pct(s["confidence"], 0),
-        rate=pct(s["rate_base"]), pay_lo=pct(ix["payout_min_recent"], 0), pay_hi=pct(ix["payout_max_recent"], 0),
-        fc=pct(fc["point_pct"]), avg_pay=pct(ix["avg_payout_rate"]), ev_recent=k["payout_trend"]["events_last_3_years"],
-        ev_total=k["payout_trend"]["events_total"], rate_n=f"{k['rule']['rate_cautious'] * 100:.1f}",
-        rate_bal=pct(k["rule"]["rate_balanced"]), aum_a=pct(k["label"]["aum_share_A"], 0),
-        orph=pct(sec["orphans_share"]), n=f"{sec['waqf_designations']:,}", funds=ix["funds_total"])
+        name=PROJECT_AR, name_en=PROJECT_EN, tagline=TAGLINE_AR, repo=REPO, team=" · ".join(TEAM_MEMBERS),
+        tot=pct(ix["total_ann_return"]), price=pct(ix["price_ann_return"]), avg_pay=pct(ix["avg_payout_rate"]),
+        ev_recent=k["payout_trend"]["events_last_3_years"], ev_total=k["payout_trend"]["events_total"],
+        obs=pct(s["observed_payout_rate"]), p_obs=pct(s["p_preserve_at_observed"], 0),
+        rate_n=f"{rule['rate_cautious'] * 100:.1f}", rate_bal=pct(rule["rate_balanced"]),
+        p_bal=pct(rule["balanced_10y_p_preserve_real"], 0), aum_a=pct(lab["aum_share_A"], 0),
+        below_b=lab["count_C"] + lab["count_D"] + lab["count_E"],
+        cut_raw=pct(rule["smoothing"]["unsmoothed_p_cut_over_5pct"], 0),
+        cut_smooth=pct(rule["smoothing"]["smoothed_p_cut_over_5pct"], 0),
+        soc_before=pct(alloc["social_share_before"], 0), soc_after=pct(alloc["social_share_after"], 0),
+        no_orphans=k["gaps"]["regions_without_orphans"], regions=sec["regions"],
+        gap_region=gap["region_ar"], gap_count=f"{int(gap['region_waqf_designations']):,}",
+        shock_mizan=f"{-shock['worst_fall_again__mizan__worst_cut'] * 100:.1f}",
+        shock_raw=f"{-shock['worst_fall_again__same_rate_unsmoothed__worst_cut'] * 100:.1f}",
+        n=f"{sec['waqf_designations']:,}", n_raw=sec["waqf_designations"], funds=ix["funds_total"], tests=count_tests())
     (ROOT / "index.html").write_text(html, encoding="utf-8")
     (ROOT / ".nojekyll").write_text("", encoding="utf-8")
     print("index.html written")
