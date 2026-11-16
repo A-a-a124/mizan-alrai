@@ -26,7 +26,7 @@ PAGE = Template("""<!doctype html>
 <meta name="description" content="$tagline: ثلاثة حلول من بيانات مفتوحة حقيقية تُبقي الوقف مستداماً">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="dashboard/style.css?v=6">
+<link rel="stylesheet" href="dashboard/style.css?v=7">
 </head><body>
 
 <section class="hero" data-scene="hero">
@@ -50,7 +50,7 @@ PAGE = Template("""<!doctype html>
 
 <section class="scene" data-scene="index">
   <h2 class="reveal"><span class="hl">الوقف ينمو، وبعض نموّه يُوزَّع</span></h2>
-  <p class="lead reveal">مؤشر الصناديق الوقفية ولّد عائداً كلياً مقدَّراً <b>$tot سنوياً</b>، بينما ارتفع سعر الوحدة <b>$price سنوياً</b> فقط. الفرق بين الخطين هو ما وصل للمستفيدين: نحو <b>$avg_pay سنوياً</b>.</p>
+  <p class="lead reveal">مؤشر الصناديق الوقفية ولّد عائداً كلياً مقدَّراً <b>$tot سنوياً</b>، بينما ارتفع سعر الوحدة <b>$price سنوياً</b> فقط. الفرق بين الخطين هو ما وصل للمستفيدين: نحو <b>$avg_pay سنوياً</b>. التوزيعات غير منشورة فقدّرناها من هبوط السعر؛ لو أخطأ التقدير بالنصف كان الرقم بين $pay_lo_r و$pay_hi_r.</p>
   <div class="fig reveal"><svg id="stIndex" viewBox="0 0 560 300" role="img" aria-label="مؤشر صناديق الوقف: العائد الكلي مقابل السعر"></svg></div>
 </section>
 
@@ -75,7 +75,7 @@ PAGE = Template("""<!doctype html>
   <h2 class="reveal"><span class="hl">ثلاثة حلول تُبقي الميزان مستقيماً</span></h2>
   <p class="lead reveal">كل حل مبني على رقم من البيانات، وله جهة تستطيع تنفيذه ببيانات منشورة أصلاً.</p>
   <div class="cards3 reveal">
-    <a class="card" href="dashboard/#label"><span class="n">1</span><h3>بطاقة استدامة الوقف</h3><p>درجة من A إلى E لكل صندوق: هل حافظت الوحدة على قوتها الشرائية؟ <b>$aum_a</b> من الأصول المصنّفة بدرجة A، و$below_b صندوقاً دون B.</p></a>
+    <a class="card" href="dashboard/#label"><span class="n">1</span><h3>بطاقة استدامة الوقف</h3><p>درجة من A إلى E لكل صندوق: هل حافظت الوحدة على قوتها الشرائية؟ <b>$aum_a</b> من الأصول المصنّفة بدرجة A ($aum_a_est بين الصناديق المستقرة)، و$below_b صندوقاً دون B.</p></a>
     <a class="card" href="dashboard/#rule"><span class="n">2</span><h3>قاعدة ميزان للصرف</h3><p>الصرف من متوسط 12 ربعاً بمعدل بين <span class="ltr">$rate_n–$rate_bal</span>. احتمال انخفاض الصرف أكثر من 5% في سنة ما ينزل من <b>$cut_raw</b> إلى <b>$cut_smooth</b>.</p></a>
     <a class="card" href="dashboard/#compass"><span class="n">3</span><h3>بوصلة المصارف</h3><p>توجيه حصة «أوجه البر» المرنة نحو الرعاية الاجتماعية يرفع حصتها من <b>$soc_before</b> إلى <b>$soc_after</b> دون المساس بشرط الواقف.</p></a>
   </div>
@@ -86,7 +86,7 @@ PAGE = Template("""<!doctype html>
   <p class="lead reveal"><b>$no_orphans من $regions</b> منطقة ليس فيها مصرف وقفي واحد مسجّل للأيتام. في <b>$gap_region</b> وحدها <b>$gap_count</b> مصرفاً وقفياً، ولا واحد منها للأيتام.</p>
   <div class="duo reveal">
     <div class="fig"><svg id="stMap" class="map" role="img" aria-label="المناطق التي ليس فيها مصرف وقفي للأيتام"></svg>
-      <div class="note"><span style="color:var(--critical)">■</span> منطقة بلا مصرف وقفي مسجّل للأيتام</div></div>
+      <div class="note"><span style="color:var(--critical)">■</span> منطقة بلا مصرف وقفي مسجّل للأيتام. البيانات تقيس التسجيل لا الحاجة: قد يُخدم الأيتام من حصة «أوجه البر» أو من جهات غير وقفية.</div></div>
     <div><a class="btn" href="dashboard/explore.html">افتح الخريطة التفاعلية وفجوات كل منطقة</a></div>
   </div>
 </section>
@@ -102,16 +102,26 @@ PAGE = Template("""<!doctype html>
 </section>
 
 <section class="scene" data-scene="end" style="border-bottom:0">
-  <h2 class="reveal"><span class="hl">جرّب بنفسك</span></h2>
+  <h2 class="reveal"><span class="hl">الخلاصة في جملة</span></h2>
+  <p class="lead reveal" style="font-size:clamp(18px,2.4vw,23px);color:var(--text-primary)">اصرف بين <span class="ltr">$rate_n–$rate_bal</span> سنوياً من متوسط 12 ربعاً، وانشر درجة استدامة لكل صندوق، ووجّه الحصة المرنة إلى المصارف الغائبة.</p>
   <div class="lede reveal">الأصول الوقفية المدرجة في السوق السعودية ولّدت عائداً كلياً مقدَّراً <b>$tot سنوياً</b>،
 ووُزِّع منه نحو <b>$avg_pay سنوياً</b> في المتوسط، فحافظ القطاع على أصله حتى الآن. لكن التوزيعات ترتفع:
 $ev_recent من $ev_total توزيعاً مرصوداً وقعت في آخر ثلاث سنوات. لذلك نقدّم ثلاثة حلول تُبقي الوقف مستداماً:
 <b>بطاقة استدامة الوقف</b>، و<b>قاعدة ميزان للصرف</b> (نطاق <span class="ltr">$rate_n–$rate_bal</span> سنوياً)، و<b>بوصلة المصارف</b>.</div>
+  <div class="reveal" style="max-width:860px">
+    <h3 style="font-family:var(--font-head);color:var(--navy);margin:8px 0">أسئلة يسألها المحكّم</h3>
+    <details class="faq"><summary>كيف تحاكون 30 سنة من 7 سنوات فقط؟</summary><p>لا نتنبأ بثلاثين سنة. نعيد تركيب أشهر التاريخ الفعلي في 10,000 مسار لنقارن قواعد الصرف تحت الظروف نفسها. القرار مبني على أفق 10 سنوات، وأرقام 30 و40 سنة توضّح اتجاه المقايضة فقط. وأعدنا الحساب بأسواق أضعف: الترتيب لم يتغير في أي حالة (المعدل الأقل يحفظ أصلاً أكبر)، لكن المستوى تغيّر: لو نقص العائد 1% سنوياً نزل احتمال حفظ الأصل عند $rate_bal من $p_bal إلى $p_lower. لذلك نوصي بالبدء من الطرف المتحفظ ومراجعة المعدل كل سنة.</p></details>
+    <details class="faq"><summary>التوزيعات غير منشورة، فكيف عرفتموها؟</summary><p>من هبوط سعر الوحدة في شهر تصعد فيه صناديق المديرين الآخرين ($ev_total حدثاً). الحجم تقدير: لو أخطأ بالنصف زيادة أو نقصاً كان متوسط التوزيع بين $pay_lo_r و$pay_hi_r بدل $avg_pay. بطاقة الاستدامة لا تعتمد على هذا التقدير لأنها من سعر الوحدة المرصود، ومن توصياتنا نشر مبالغ التوزيع.</p></details>
+    <details class="faq"><summary>الصناديق المدرجة ليست الأوقاف العائلية والأهلية، أليس كذلك؟</summary><p>صحيح. لا توجد بيانات مالية مفتوحة لتلك الأوقاف (في سجل الهيئة $family_n مصرفاً ذرياً فقط من $n). الصناديق الوقفية المدرجة هي الأصول الوقفية الوحيدة ذات سعر شهري منشور، فاستعملناها وكيلاً لعائد الاستثمار الوقفي. القاعدة نفسها تُطبَّق على أي وقف بإدخال قيمته ونوعه في «وقفك في دقيقة»، وأي جهة تملك بياناتها تعيد الحساب عليها بأمر واحد.</p></details>
+    <details class="faq"><summary>هل $aum_a من الأصول بدرجة A رقم متين؟</summary><p>ليس وحده. أكبر صندوق يمثّل $big_share من الأصول المصنّفة ودرجته مبدئية لأن سجله أقل من 36 شهراً. بين الصناديق المستقرة وحدها $aum_a_est من الأصول بدرجة A، ونعرض الرقمين معاً.</p></details>
+    <details class="faq"><summary>من أين حدود الدرجات وأوزان بوصلة المصارف؟</summary><p>الدرجة A معيار موضوعي: هل واكبت قيمة الوحدة التضخم؟ حدود بقية الدرجات وأوزان الأولوية مقترحات منا، معلنة وقابلة للتعديل، وهي مدخلات في الكود لا ثوابت. وتغيير افتراض التضخم يغيّر درجة صندوق واحد فقط.</p></details>
+    <details class="faq"><summary>هل غياب مصرف للأيتام يعني أن الأيتام بلا دعم؟</summary><p>لا. البيانات تقيس ما سُجّل وقفاً باسم المصرف، لا الحاجة ولا الدعم الفعلي. قد يُخدم الأيتام من حصة «أوجه البر» أو من جمعيات غير وقفية. الفجوة تقول أين لم يُخصَّص وقف، وهي نقطة بداية للواقف الجديد والهيئة. والمناطق التي فيها أقل من 50 مصرفاً مسجّلاً وسمناها لأن الغياب فيها قد يعكس قلة التسجيل.</p></details>
+  </div>
   <div class="links reveal">
     <a class="card" href="dashboard/"><b>المحاكي والحلول الثلاثة ←</b><span>حرّك معدل الصرف وشاهد الميزان يميل، وارسم مسارات المحاكاة، واختبر الصدمات</span></a>
     <a class="card" href="dashboard/explore.html"><b>استكشف البيانات ←</b><span>خريطة المناطق، فجوات المصارف، مديرو الصناديق، وصفحة وبطاقة لكل صندوق</span></a>
     <a class="card" href="dashboard/plan.html"><b>وقفك في دقيقة ←</b><span>ثلاثة أسئلة ثم خطة صرف من صفحة واحدة جاهزة للطباعة</span></a>
-    <a class="card" href="report/executive_summary.pdf"><b>الملخص التنفيذي (PDF) ←</b><span>4 صفحات: القرار، قصة الأثر، التوصيات</span></a>
+    <a class="card" href="report/executive_summary.pdf"><b>الملخص التنفيذي (PDF) ←</b><span>5 صفحات: القرار، الحلول الثلاثة، الفجوات، متانة النتائج</span></a>
     <a class="card" href="https://colab.research.google.com/github/A-a-a124/mizan-alrai/blob/main/analysis.ipynb"><b>دفتر التحليل على Colab ←</b><span>Python كامل بالسرد العربي، يعمل بضغطة Run all</span></a>
     <a class="card" href="$repo"><b>الكود والبيانات ←</b><span>المصدر الكامل، $tests اختباراً آلياً، سجل استخدام الذكاء الاصطناعي</span></a>
   </div>
@@ -119,10 +129,10 @@ $ev_recent من $ev_total توزيعاً مرصوداً وقعت في آخر ث�
 </section>
 
 </div>
-<script src="dashboard/data.js?v=6"></script>
-<script src="dashboard/map.js?v=6"></script>
-<script src="dashboard/common.js?v=6"></script>
-<script src="dashboard/story.js?v=6"></script>
+<script src="dashboard/data.js?v=7"></script>
+<script src="dashboard/map.js?v=7"></script>
+<script src="dashboard/common.js?v=7"></script>
+<script src="dashboard/story.js?v=7"></script>
 </body></html>
 """)
 
@@ -158,6 +168,10 @@ def main() -> None:
         gap_region=gap["region_ar"], gap_count=f"{int(gap['region_waqf_designations']):,}",
         shock_mizan=f"{-shock['worst_fall_again__mizan__worst_cut'] * 100:.1f}",
         shock_raw=f"{-shock['worst_fall_again__same_rate_unsmoothed__worst_cut'] * 100:.1f}",
+        pay_lo_r=pct(k["robustness"]["avg_payout_low"]), pay_hi_r=pct(k["robustness"]["avg_payout_high"]),
+        p_lower=pct(k["robustness"]["lower_return_balanced_10y_p_preserve"], 0),
+        aum_a_est=pct(lab["established_aum_share_A"], 0), big_share=pct(lab["largest_fund_share_of_graded_aum"], 0),
+        family_n=f"{sec['family_designations']:,}",
         n=f"{sec['waqf_designations']:,}", n_raw=sec["waqf_designations"], funds=ix["funds_total"], tests=count_tests())
     (ROOT / "index.html").write_text(html, encoding="utf-8")
     (ROOT / ".nojekyll").write_text("", encoding="utf-8")

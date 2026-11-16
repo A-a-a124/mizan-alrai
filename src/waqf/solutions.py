@@ -81,6 +81,12 @@ def label_summary(label: pd.DataFrame) -> dict:
         "aum_graded_sar": float(label["aum_sar"].sum()),
         "aum_share_A": float(aum["A"] / aum.sum()) if aum.sum() else 0.0,
         "aum_share_below_B": float(aum[["C", "D", "E"]].sum() / aum.sum()) if aum.sum() else 0.0,
+        # the same share among funds with a full record only: one large young fund can carry the headline
+        "established_aum_sar": float(est["aum_sar"].sum()),
+        "established_aum_share_A": float(est.loc[est["grade"] == "A", "aum_sar"].sum() / est["aum_sar"].sum())
+        if est["aum_sar"].sum() else 0.0,
+        "largest_fund_share_of_graded_aum": float(label["aum_sar"].max() / label["aum_sar"].sum()) if label["aum_sar"].sum() else 0.0,
+        "largest_fund_is_provisional": bool(label.loc[label["aum_sar"].idxmax(), "provisional"]) if label["aum_sar"].notna().any() else False,
         "grades_changed_by_inflation": int(((label["grade"] != label["grade_if_inflation_low"])
                                             | (label["grade"] != label["grade_if_inflation_high"])).sum()),
         "established_months": ESTABLISHED_MONTHS,

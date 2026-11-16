@@ -14,7 +14,9 @@
     "beneficiaries_2023": 3160,
     "beneficiaries_2025": 3744,
     "most_concentrated_region": "الحدود الشمالية",
-    "most_concentrated_top_share": 0.9166666667
+    "most_concentrated_top_share": 0.9166666667,
+    "family_designations": 406,
+    "family_share": 0.0265272787
   },
   "index": {
     "price_months": 83,
@@ -96,6 +98,10 @@
     "aum_graded_sar": 3122108887.19,
     "aum_share_A": 0.8496778717,
     "aum_share_below_B": 0.1223204019,
+    "established_aum_sar": 1002876658.1099997,
+    "established_aum_share_A": 0.7441173006,
+    "largest_fund_share_of_graded_aum": 0.5449696694,
+    "largest_fund_is_provisional": true,
     "grades_changed_by_inflation": 1,
     "established_months": 36
   },
@@ -247,5 +253,21 @@
     "recent_level_value_left": 61.1210157482,
     "recent_level_sustainable_payout_after": 1.222420315,
     "balanced_vs_recent_extra_payout_after": 1.0481315507
+  },
+  "robustness": {
+    "avg_payout_low": 0.0079805724,
+    "avg_payout_high": 0.0241332939,
+    "total_return_low": 0.0360744428,
+    "total_return_high": 0.052677364,
+    "base_cautious_10y_p_preserve": 0.6803,
+    "base_balanced_10y_p_preserve": 0.5907,
+    "base_recent_level_10y_p_preserve": 0.2179,
+    "harsh_cautious_10y_p_preserve": 0.3642,
+    "harsh_balanced_10y_p_preserve": 0.3023,
+    "harsh_recent_level_10y_p_preserve": 0.1159,
+    "lower_return_cautious_10y_p_preserve": 0.4882,
+    "lower_return_balanced_10y_p_preserve": 0.392,
+    "lower_return_recent_level_10y_p_preserve": 0.0978,
+    "lower_rate_always_keeps_more": true
   }
 }

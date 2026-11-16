@@ -105,7 +105,7 @@ def export(c: dict, ix: dict, fc: dict, sp: dict, al: dict, res) -> None:
                   "price": np.round(idx["price_index"], 2).tolist(), "n_funds": idx["n_funds"].tolist()},
         "solutions": {name: _records(res.tables[name], SAVE_DECIMALS) for name in
                       ("sustainability_label", "payout_trend", "spending_menu", "spending_menu_yearly",
-                       "compass_case", "compass_regions")},
+                       "compass_case", "compass_regions", "menu_robustness", "payout_sensitivity")},
         "explore": {"matrix": _matrix(res.tables["region_masraf_matrix"]),
                     "gaps": _records(res.tables["social_gaps"], SAVE_DECIMALS),
                     "managers": _records(res.tables["manager_ranking"], SAVE_DECIMALS),

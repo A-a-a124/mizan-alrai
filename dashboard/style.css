@@ -1,5 +1,10 @@
 /* Mizan Al-Rai — one visual identity for the story page, the simulator and the data explorer.
    Thmanyah is used when installed on the device; IBM Plex Sans Arabic is the web fallback. */
+@font-face{font-family:"thmanyah sans";src:url("fonts/thmanyahsans-Regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"thmanyah sans";src:url("fonts/thmanyahsans-Medium.woff2") format("woff2");font-weight:500 600;font-style:normal;font-display:swap}
+@font-face{font-family:"thmanyah sans";src:url("fonts/thmanyahsans-Bold.woff2") format("woff2");font-weight:700 900;font-style:normal;font-display:swap}
+@font-face{font-family:"thmanyah serif display";src:url("fonts/thmanyahserifdisplay-Bold.woff2") format("woff2");font-weight:400 700;font-style:normal;font-display:swap}
+@font-face{font-family:"thmanyah serif display";src:url("fonts/thmanyahserifdisplay-Black.woff2") format("woff2");font-weight:800 900;font-style:normal;font-display:swap}
 :root{
   --surface-0:#f3f5f9; --surface-1:#f8f9fc; --card:#ffffff; --rule:#e1e5ee;
   --text-primary:#101828; --text-secondary:#475467; --text-muted:#8a94a6;
@@ -230,6 +235,16 @@ a.card{display:block;text-decoration:none;color:inherit;transition:border-color 
 a.card:hover,a.card:focus-visible{border-color:var(--series-1);transform:translateY(-2px);outline:none}
 a.card b{display:block;color:var(--navy);font-size:17px;margin-bottom:2px;font-family:var(--font-head)}
 a.card span{color:var(--text-secondary);font-size:14px}
+details.faq{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:10px 14px;margin:6px 0}
+details.faq summary{cursor:pointer;font-weight:600;color:var(--text-primary);font-size:15px}
+details.faq p{margin:8px 0 2px;color:var(--text-secondary);font-size:14.5px}
 .lede{background:var(--card);border:1px solid var(--rule);border-inline-start:4px solid var(--series-1);border-radius:10px;padding:14px 16px;font-size:16px;max-width:860px}
 @media (max-width:860px){.cards3{grid-template-columns:1fr}.scene{min-height:auto;padding:36px 0}}
 @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}.hero .down{animation:none}html{scroll-behavior:auto}}
+@media print{
+  :root,:root[data-theme="dark"]{--surface-0:#fff;--surface-1:#f1f3f8;--card:#fff;--rule:#d5dae4;--text-primary:#000;--text-secondary:#333;
+    --text-muted:#666;--navy:#17263f;--series-1:#2563a8;--series-2:#c8552b;--series-3:#16876a}
+  @page{margin:12mm}
+  body{font-size:11.5px}.sheet h2{font-size:20px}.sheet .big{grid-template-columns:repeat(3,1fr)}.sheet .big div{padding:6px 10px}
+  .sheet .big .v{font-size:19px}.sheet h3{margin:9px 0 3px;font-size:15px}.alloc-row{margin:1px 0;font-size:11.5px}
+}

@@ -130,3 +130,32 @@ def test_every_page_loads_files_that_exist(page, scripts):
         assert (path.parent / src).exists(), src
     for name in scripts:
         assert name in html
+
+
+# ---- robustness
+
+
+def test_payout_range_brackets_the_central_estimate(cleaned):
+    rng = insights.payout_range(cleaned["rets"]).set_index("payout_size_factor")
+    assert rng.loc[0.5, "avg_payout_rate"] < rng.loc[1.0, "avg_payout_rate"] < rng.loc[1.5, "avg_payout_rate"]
+    assert rng.loc[0.5, "avg_payout_rate"] > 0
+
+
+def test_robustness_summary_reports_whether_the_ranking_survives():
+    import pandas as pd
+    payouts = pd.DataFrame({"payout_size_factor": [0.5, 1.0, 1.5], "total_ann_return": [.03, .04, .05], "avg_payout_rate": [.01, .02, .03]})
+    rows = [{"assumption": a, "option": o, "rate": r, "years": 10, "p_preserve_real": p, "median_real_value": v}
+            for a, shift in (("base", 0), ("lower_return", -.1)) for o, r, p, v in
+            (("cautious", .015, .7 + shift, 110), ("balanced", .02, .6 + shift, 105), ("recent_level", .04, .2 + shift, 85))]
+    out = insights.robustness_summary(payouts, pd.DataFrame(rows))
+    assert out["lower_rate_always_keeps_more"] is True
+    assert out["avg_payout_low"] == .01 and out["avg_payout_high"] == .03
+    rows[0]["median_real_value"] = 50                                   # the cautious option now leaves less: ranking broken
+    assert insights.robustness_summary(payouts, pd.DataFrame(rows))["lower_rate_always_keeps_more"] is False
+
+
+def test_label_summary_separates_established_funds(label):
+    s = solutions.label_summary(label)
+    est = label[~label["provisional"]]
+    assert np.isclose(s["established_aum_sar"], est["aum_sar"].sum())
+    assert 0 <= s["established_aum_share_A"] <= 1 and 0 < s["largest_fund_share_of_graded_aum"] <= 1

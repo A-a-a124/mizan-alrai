@@ -6,7 +6,7 @@
 <title>ميزان الريع · محاكي قرار الصرف الوقفي</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
 <div class="wrap">
@@ -94,6 +94,7 @@
       <button class="chip" id="estOnly" aria-pressed="false">المستقرة فقط (36 شهراً+)</button>
     </div>
     <div class="energy" id="energy"></div>
+    <div class="note" id="labNote"></div>
     <div class="adds"><b>ماذا يضيف؟</b> معيار مقارنة شفاف للواقف قبل أن يختار صندوقه، وإنذار مبكر لأي صندوق يبدأ أصله بالتآكل. <b>من ينفّذه؟</b> الهيئة العامة للأوقاف أو هيئة السوق المالية، سنوياً، من أسعار منشورة أصلاً.</div>
   </div>
   <div class="card"><h2>الصناديق المصنّفة</h2><div class="sub" id="fundSub"></div>
@@ -125,6 +126,10 @@
     <div class="legend" id="tradeLeg"></div>
     <div class="tip" id="tipT"></div>
     <div class="adds" id="tradeNote"></div>
+    <h2 style="margin-top:12px">ماذا لو كانت الأسواق أضعف مما رصدناه؟</h2>
+    <div class="sub">احتمال حفظ القيمة الحقيقية للأصل بعد 10 سنوات، لكل خيار وتحت كل افتراض</div>
+    <table class="t" id="robust"></table>
+    <div class="note" id="robustNote"></div>
   </div>
 </section>
 
@@ -145,9 +150,9 @@
 <footer id="foot"></footer>
 </div>
 
-<script src="data.js?v=6"></script>
-<script src="common.js?v=6"></script>
-<script src="sim.js?v=6"></script>
-<script src="solutions.js?v=6"></script>
+<script src="data.js?v=7"></script>
+<script src="common.js?v=7"></script>
+<script src="sim.js?v=7"></script>
+<script src="solutions.js?v=7"></script>
 </body>
 </html>

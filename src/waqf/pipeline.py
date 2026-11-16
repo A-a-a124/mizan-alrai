@@ -273,6 +273,13 @@ def step_insights(c: dict, ix: dict, so: dict, res: Results) -> dict:
                            "managers_all_A": int((managers["avg_grade_score"] == 0).sum())}
     res.key["shock"] = shock_key
     res.key["legacy"] = insights.legacy(so["menu"], so["options"]["balanced"])
+    payout_rng = insights.payout_range(rets)
+    robust = insights.menu_robustness(ix["total"]["ret"].values, so["options"])
+    res.tables.update(payout_sensitivity=payout_rng, menu_robustness=robust)
+    res.key["robustness"] = insights.robustness_summary(payout_rng, robust)
+    family = c["disbursements"].loc[c["disbursements"]["masraf"] == "family", "waqf_count"].sum()
+    res.key["sector"]["family_designations"] = int(family)
+    res.key["sector"]["family_share"] = float(family / c["disbursements"]["waqf_count"].sum())
     return {"matrix": matrix, "gaps": gaps, "managers": managers, "series": series, "shocks": shocks}
 
 

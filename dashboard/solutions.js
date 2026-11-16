@@ -14,6 +14,9 @@ function drawLabel(){
      <span class="g g${x}">${x}</span>
      <div><div class="arrow g${x}" style="width:${Math.max(8, aum[i]/tot*100).toFixed(1)}%">${pct(aum[i]/tot, 0)}</div></div>
      <span style="color:var(--text-secondary)">${nFunds(cnt[i])}</span></div>`).join('');
+  const LB = D.key.label;
+  $('labNote').innerHTML = `أكبر صندوق (${pct(LB.largest_fund_share_of_graded_aum, 0)} من الأصول المصنّفة) ${LB.largest_fund_is_provisional ? 'درجته مبدئية لقصر سجله' : 'سجله مكتمل'}. ` +
+    `بين الصناديق المستقرة وحدها <b>${pct(LB.established_aum_share_A, 0)}</b> من الأصول بدرجة A. الدرجة A معيار موضوعي (مواكبة التضخم)، وحدود بقية الدرجات مقترحة منا وقابلة للتعديل.`;
   $('energy').querySelectorAll('.row').forEach(r => {
     const f = () => { LS.sel = LS.sel === r.dataset.g ? null : r.dataset.g; drawLabel(); };
     r.onclick = f; r.onkeydown = keyAct(f); });
@@ -63,6 +66,12 @@ function drawRule(){
   $('impactL').innerHTML = `ريال إضافية كل سنة يستطيع الوقف صرفها بعد ${L.years} سنة إذا اتبع المعدل المتوازن بدل مستوى التوزيع الأخير، لأن الأصل الباقي أكبر.`;
   $('impactRow').innerHTML = `<div>الأصل الباقي بالمعدل المتوازن<b>${sar(per(L.balanced_value_left))} ريال</b>يكفي لصرف ${sar(per(L.balanced_sustainable_payout_after))} ريال سنوياً بمعدل ${pct(L.sustainable_rate)}</div>
     <div>الأصل الباقي بمستوى التوزيع الأخير<b>${sar(per(L.recent_level_value_left))} ريال</b>يكفي لصرف ${sar(per(L.recent_level_sustainable_payout_after))} ريال سنوياً بالمعدل نفسه</div>`;
+  const RB = S.menu_robustness.filter(x => x.years === 10), AS = { base: 'كما رُصد في التاريخ', lower_return: 'عائد أقل 1% سنوياً', harsh: 'عائد أقل 2% وتذبذب أعلى 50%' };
+  $('robust').innerHTML = '<tr><th>الافتراض</th>' + Object.keys(OPT).map(o => `<th>${OPT[o].n} ${pct(menu.find(x => x.option === o).rate)}</th>`).join('') + '</tr>' +
+    Object.entries(AS).map(([a, n]) => `<tr><td>${n}</td>` + Object.keys(OPT).map(o => { const v = RB.find(x => x.assumption === a && x.option === o).p_preserve_real;
+      return `<td class="n" style="${o === RS.opt ? 'font-weight:700;color:var(--navy)' : ''}">${pct(v, 0)}</td>`; }).join('') + '</tr>').join('');
+  $('robustNote').innerHTML = `<b>ما يثبت:</b> في كل افتراض، المعدل الأقل يحفظ أصلاً أكبر. <b>ما يتغير:</b> المستوى، فابدأ من الطرف المتحفظ وراجع المعدل كل سنة. ` +
+    `السجل ${D.key.rule.history_months} شهراً فقط: القرار مبني على أفق 10 سنوات، وأرقام 20 إلى 40 سنة توضّح اتجاه المقايضة ولا تتنبأ.`;
   drawTradeoff();
 }
 document.querySelectorAll('[data-h]').forEach(b => b.onclick = () => {

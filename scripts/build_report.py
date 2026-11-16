@@ -196,6 +196,42 @@ HTML = Template("""<!doctype html><html lang="ar" dir="rtl"><head><meta charset=
     <li><b>الذكاء الاصطناعي:</b> استُخدم مساعداً في البرمجة والتصميم. كل رقم مُشتق برمجياً من البيانات، وكل خطوة لها تحقق موثق في <span class="ltr">ai_usage_log.md</span>، ومنها تصحيح قراءة سابقة خاطئة لمعدل التوزيع.</li>
   </ul>
 </section>
+
+<section class="page">
+  <h2>أين يغيب الوقف؟ فجوات المصارف بالاسم</h2>
+  <p>قاطعنا المناطق الـ$regions مع المصارف الوقفية المسجّلة. <b>$no_orph من $regions</b> منطقة ليس فيها مصرف وقفي واحد مسجّل للأيتام،
+  و<b>$no_wid</b> بلا مصرف للأرامل، و<b>$no_house</b> بلا مصرف للسكن. هذه فجوات المناطق الكبرى (500 مصرف مسجّل فأكثر):</p>
+  <table class="compact"><thead><tr><th>المنطقة</th><th>المصارف الوقفية المسجّلة</th><th>مصارف الرعاية الاجتماعية الغائبة تماماً</th></tr></thead><tbody>
+  $gap_rows
+  </tbody></table>
+  <p class="small"><b>ماذا تضيف؟</b> تحوّل بوصلة المصارف من نسبة عامة إلى قائمة يبدأ منها الواقف الجديد والهيئة.
+  <b>حدودها:</b> البيانات تقيس ما سُجّل وقفاً باسم المصرف، لا الحاجة ولا الدعم الفعلي: قد يُخدم الأيتام من حصة «أوجه البر» أو من جهات غير وقفية.
+  والمناطق القليلة التسجيل استُبعدت من الجدول.</p>
+
+  <h2>اختبار الصدمة: ماذا يحدث لدخل المستفيد لو ساءت الأحوال؟</h2>
+  <p class="small">أعدنا أسوأ هبوط في تاريخ المؤشر (<span class="ltr">$fall</span> خلال شهرين، <span class="ltr">$fall_from</span>) وصدمات أخرى على وقف يصرف $rate_bal. الخانة = أكبر انخفاض في صرف سنة عن التي قبلها (بأسعار اليوم).</p>
+  <table class="compact"><thead><tr><th>الصدمة</th><th>قاعدة ميزان (متوسط 12 ربعاً)</th><th>المعدل نفسه دون تمهيد</th><th>مستوى التوزيع الأخير دون تمهيد</th></tr></thead><tbody>
+  $shock_rows
+  </tbody></table>
+
+  <h2>متانة النتائج: ما الذي يثبت وما الذي يتغير؟</h2>
+  <p class="small">التاريخ المتاح $hist شهراً فقط، فأعدنا المحاكاة بأسواق أضعف مما رصدناه. الخانة = احتمال حفظ القيمة الحقيقية للأصل بعد 10 سنوات.</p>
+  <table class="compact"><thead><tr><th>الافتراض</th><th>متحفظ $rate_n%</th><th>متوازن $rate_bal</th><th>مستوى التوزيع الأخير $rate_recent</th></tr></thead><tbody>
+  $robust_rows
+  </tbody></table>
+  <ul class="tight small">
+    <li><b>ما يثبت:</b> في كل افتراض وكل أفق، المعدل الأقل يترك أصلاً أكبر واحتمال حفظ أعلى. ترتيب الخيارات لا يتغير.</li>
+    <li><b>ما يتغير:</b> المستوى. لو نقص العائد 1% سنوياً نزل احتمال حفظ الأصل عند $rate_bal من $p_base إلى $p_lower. لذلك نوصي بالبدء من الطرف المتحفظ ومراجعة المعدل سنوياً.</li>
+    <li><b>التوزيعات مقدَّرة:</b> لو أخطأ تقدير حجمها بالنصف زيادة أو نقصاً كان متوسط التوزيع بين $pay_rng_lo و$pay_rng_hi سنوياً بدل $avg_pay. بطاقة الاستدامة لا تتأثر لأنها من سعر الوحدة المرصود.</li>
+    <li><b>بطاقة الاستدامة:</b> أكبر صندوق ($big_share من الأصول المصنّفة) درجته مبدئية. بين الصناديق المستقرة وحدها $aum_a_est من الأصول بدرجة A.</li>
+  </ul>
+
+  <h2>سؤالان متوقعان</h2>
+  <ul class="tight small">
+    <li><b>كيف تحاكون 30 سنة من 7 سنوات؟</b> لا نتنبأ بثلاثين سنة. نعيد تركيب أشهر التاريخ الفعلي في $paths مسار لنقارن قواعد الصرف تحت الظروف نفسها. القرار مبني على أفق 10 سنوات، وأرقام 30 و40 سنة توضّح اتجاه المقايضة فقط، وجدول المتانة أعلاه يبيّن حدودها.</li>
+    <li><b>الصناديق المدرجة ليست الأوقاف العائلية والأهلية؟</b> صحيح. لا بيانات مالية مفتوحة لتلك الأوقاف (في سجل الهيئة $family_n مصرفاً ذرياً فقط من $n_masarif). الصناديق الوقفية المدرجة هي الأصول الوقفية الوحيدة ذات سعر شهري منشور، فهي وكيل لعائد الاستثمار الوقفي. وأي وقف يملك بياناته يعيد الحساب عليها بأمر واحد.</li>
+  </ul>
+</section>
 </body></html>""")
 
 
@@ -242,7 +278,32 @@ def build_html() -> str:
     be = rule["breakeven_year_balanced"]
     breakeven_txt = f"في السنة {be} تقريباً" if be else f"بعد أكثر من {rule['sim_horizon_years']} سنة"
     infl = s["inflation"]
+    rb, gp, sh = k["robustness"], k["gaps"], k["shock"]
+    gaps = pd.read_csv(TABLES / "social_gaps.csv")
+    big = gaps[gaps["region_waqf_designations"] >= 500]
+    gap_rows = "\n  ".join(
+        f"<tr><td><b>{region}</b></td><td class='n'>{int(g['region_waqf_designations'].iloc[0]):,}</td><td>{'، '.join(g['masraf_ar'])}</td></tr>"
+        for region, g in big.groupby("region_ar", sort=False))
+    shock_names = {"worst_fall_again": "يتكرر أسوأ هبوط تاريخي", "worst_fall_twice": "يتكرر الهبوط مرتين في عشر سنوات",
+                   "inflation_4pct_5y": "تضخم 4% لخمس سنوات", "flat_3y": "ثلاث سنوات بلا عائد"}
+    shock_rows = "\n  ".join(
+        f"<tr><td>{label}</td>" + "".join(
+            f"<td class='n'>{'<b>' if st == 'mizan' else ''}{p(sh[f'{sc}__{st}__worst_cut'])}{'</b>' if st == 'mizan' else ''}</td>"
+            for st in ("mizan", "same_rate_unsmoothed", "recent_level_unsmoothed")) + "</tr>"
+        for sc, label in shock_names.items())
+    assume = {"base": "كما رُصد في التاريخ", "lower_return": "عائد أقل 1% سنوياً", "harsh": "عائد أقل 2% وتذبذب أعلى 50%"}
+    robust_rows = "\n  ".join(
+        f"<tr><td>{label}</td>" + "".join(f"<td class='n'>{p(rb[f'{a}_{o}_10y_p_preserve'], 0)}</td>"
+                                         for o in ("cautious", "balanced", "recent_level")) + "</tr>"
+        for a, label in assume.items())
     vals = dict(
+        gap_rows=gap_rows, shock_rows=shock_rows, robust_rows=robust_rows,
+        no_orph=gp["regions_without_orphans"], no_wid=gp["regions_without_widows"], no_house=gp["regions_without_housing"],
+        fall=p(sh["worst_fall"]), fall_from=sh["worst_fall_from"],
+        p_base=p(rb["base_balanced_10y_p_preserve"], 0), p_lower=p(rb["lower_return_balanced_10y_p_preserve"], 0),
+        pay_rng_lo=p(rb["avg_payout_low"]), pay_rng_hi=p(rb["avg_payout_high"]),
+        aum_a_est=p(lab["established_aum_share_A"], 0), big_share=p(lab["largest_fund_share_of_graded_aum"], 0),
+        family_n=f"{sec['family_designations']:,}",
         team=" · ".join(f"<b>{m}</b>" for m in TEAM_MEMBERS),
         avg_pay=p(ix["avg_payout_rate"]), ev_recent=trend["events_last_3_years"], ev_total=trend["events_total"],
         rate_bal=p(rule["rate_balanced"]), rate_n=f"{rule['rate_cautious'] * 100:.1f}", rate_recent=p(rule["rate_recent_level"], 0),

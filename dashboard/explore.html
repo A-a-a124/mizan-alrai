@@ -6,7 +6,7 @@
 <title>ميزان الريع · استكشف البيانات</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=6">
+<link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
 <div class="wrap">
@@ -37,14 +37,16 @@
   <div class="sub">كل خانة = عدد المصارف الوقفية المسجّلة لهذا المصرف في هذه المنطقة، واللون أغمق كلما كبرت حصته من المنطقة. <b style="color:var(--critical)">✕</b> = مصرف اجتماعي غائب تماماً.</div>
   <div class="heat-wrap"><table class="heat" id="heat"></table></div>
   <div class="gap-list" id="gapList"></div>
-  <div class="adds"><b>ماذا يضيف؟</b> يحوّل «بوصلة المصارف» من نسبة عامة إلى قائمة فجوات بالاسم، يمكن للهيئة والواقفين الجدد أن يبدؤوا منها.</div>
+  <div class="adds"><b>ماذا يضيف؟</b> يحوّل «بوصلة المصارف» من نسبة عامة إلى قائمة فجوات بالاسم، يمكن للهيئة والواقفين الجدد أن يبدؤوا منها.
+    <b>حدوده:</b> الجدول يقيس ما سُجّل وقفاً باسم المصرف، لا الحاجة ولا الدعم الفعلي: قد يُخدم الأيتام في منطقة من حصة «أوجه البر» أو من جهات غير وقفية.</div>
 </section>
 
 <div class="sol-head" id="mgrSec"><span class="num">المديرون</span><h2>مديرو الصناديق الوقفية</h2>
   <p>مرتّبون حسب درجات صناديقهم في بطاقة الاستدامة. اضغط مديراً لترى صناديقه.</p></div>
 <section class="card">
   <div class="heat-wrap"><table class="t" id="managers"></table></div>
-  <div class="note">«انتظام التوزيع» = نسبة سنوات الصناديق التي رُصد فيها توزيع. المربعات الباهتة صناديق سجلها أقل من 36 شهراً.</div>
+  <div class="note">«انتظام التوزيع» = نسبة سنوات الصناديق التي رُصد فيها توزيع. المربعات الباهتة صناديق سجلها أقل من 36 شهراً.
+    الترتيب وصفي من أسعار الوحدات، وليس تقييماً لجودة الإدارة: خمسة مديرين عيّنة صغيرة، وصناديقهم تختلف في أهدافها وأعمارها وتوقيت انطلاقها.</div>
 </section>
 
 <div class="sol-head" id="fundSec"><span class="num">الصناديق</span><h2>صفحة كل صندوق</h2>
@@ -74,9 +76,9 @@
 <footer id="foot"></footer>
 </div>
 
-<script src="data.js?v=6"></script>
-<script src="map.js?v=6"></script>
-<script src="common.js?v=6"></script>
-<script src="explore.js?v=6"></script>
+<script src="data.js?v=7"></script>
+<script src="map.js?v=7"></script>
+<script src="common.js?v=7"></script>
+<script src="explore.js?v=7"></script>
 </body>
 </html>

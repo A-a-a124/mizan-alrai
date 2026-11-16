@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from . import config, solutions
+from . import config, index, solutions
 
 # ---------------------------------------------------------------- 1. masarif gaps (region x masraf)
 
@@ -163,4 +163,53 @@ def legacy(menu: pd.DataFrame, sustainable_rate: float, years: int = 30) -> dict
         out[f"{option}_sustainable_payout_after"] = left * sustainable_rate
     out["balanced_vs_recent_extra_payout_after"] = (out["balanced_sustainable_payout_after"]
                                                     - out["recent_level_sustainable_payout_after"])
+    return out
+
+
+# ---------------------------------------------------------------- 5. how much do the conclusions lean on our assumptions?
+
+PAYOUT_ERROR = (0.5, 1.0, 1.5)        # what if the estimated payout sizes are off by half, either way?
+
+
+def payout_range(rets: pd.DataFrame) -> pd.DataFrame:
+    """Average yearly payout and total return if every estimated payout were 50% smaller or larger."""
+    price = index.summary_stats(index.composite_index(rets, "log_ret")["ret"])["ann_return"]
+    rows = []
+    for factor in PAYOUT_ERROR:
+        scaled = rets.assign(log_ret_scaled=rets["log_ret"] + rets["payout_est"] * factor)
+        total = index.summary_stats(index.composite_index(scaled, "log_ret_scaled")["ret"])["ann_return"]
+        rows.append({"payout_size_factor": factor, "total_ann_return": float(total),
+                     "avg_payout_rate": float((1 + total) / (1 + price) - 1)})
+    return pd.DataFrame(rows)
+
+
+ASSUMPTIONS = {"base": (0.0, 1.0), "lower_return": (-0.01, 1.0), "harsh": (-0.02, 1.5)}   # (annual shift, volatility x)
+
+
+def menu_robustness(returns: np.ndarray, rates: dict[str, float]) -> pd.DataFrame:
+    """The spending menu again under weaker markets than the 7 observed years: does the ranking survive?"""
+    r = np.asarray(returns, dtype=float)
+    rows = []
+    for name, (shift, vol) in ASSUMPTIONS.items():
+        series = r.mean() + (r - r.mean()) * vol + shift / 12
+        menu, _, _ = solutions.spending_menu(series, rates)
+        for row in menu.itertuples(index=False):
+            rows.append({"assumption": name, "annual_return_shift": shift, "volatility_multiple": vol,
+                         "option": row.option, "rate": row.rate, "years": row.years,
+                         "p_preserve_real": row.p_preserve_real, "median_real_value": row.median_real_value})
+    return pd.DataFrame(rows)
+
+
+def robustness_summary(payouts: pd.DataFrame, robust: pd.DataFrame) -> dict:
+    p = payouts.set_index("payout_size_factor")
+    out = {"avg_payout_low": float(p.loc[0.5, "avg_payout_rate"]), "avg_payout_high": float(p.loc[1.5, "avg_payout_rate"]),
+           "total_return_low": float(p.loc[0.5, "total_ann_return"]), "total_return_high": float(p.loc[1.5, "total_ann_return"])}
+    ranking_holds = True
+    for (assumption, years), g in robust.groupby(["assumption", "years"]):
+        g = g.sort_values("rate")
+        ranking_holds &= bool(g["median_real_value"].is_monotonic_decreasing and g["p_preserve_real"].is_monotonic_decreasing)
+        if years == 10:
+            for row in g.itertuples(index=False):
+                out[f"{assumption}_{row.option}_10y_p_preserve"] = float(row.p_preserve_real)
+    out["lower_rate_always_keeps_more"] = ranking_holds
     return out
