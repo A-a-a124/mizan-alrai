@@ -322,34 +322,27 @@ s = slide("CONTENT", "المنتج: موقع تفاعلي من أربع صفحا
  ["simulator", "المحاكي والحلول", "ميزان يميل مع معدل الصرف، ومسارات المحاكاة، واختبار الصدمة"],
  ["fund", "استكشف البيانات", "خريطة المناطق، فجوات المصارف، وصفحة وبطاقة لكل صندوق"],
  ["plan_top", "وقفك في دقيقة", "ثلاثة أسئلة ثم خطة صرف من صفحة واحدة جاهزة للطباعة"]].forEach(([img, h, b], i) => {
-  const cwid = (CW - 0.3) / 2, chei = 2.2, x = rx(i % 2, cwid, 0.3), y = 1.5 + Math.floor(i / 2) * (chei + 0.18);
+  const cwid = (CW - 0.3) / 2, chei = 2.55, x = rx(i % 2, cwid, 0.3), y = 1.5 + Math.floor(i / 2) * (chei + 0.22);
   card(s, x, y, cwid, chei);
-  const p = picture(s, img, x + 0.12, y + 0.12, 3.5, chei - 0.24, { align: "left" });
+  const p = picture(s, img, x + 0.12, y + 0.12, 4.0, chei - 0.24, { align: "left" });
   const txw = cwid - (p.w + 0.12) - 0.45;
   badge(s, i + 1, x + cwid - 0.62, y + 0.25, 0.42);
   txt(s, h, x + p.w + 0.3, y + 0.22, txw - 0.55, 0.5, { fontSize: 17, bold: true, color: C.text2 });
   txt(s, b, x + p.w + 0.3, y + 0.85, txw, 1.3, { fontSize: 13 });
 });
-card(s, MX, 6.3, CW, 0.5, C.text2);
-s.addText("a-a-a124.github.io/mizan-alrai", { x: MX + 0.3, y: 6.3, w: 5, h: 0.5, isTextBox: true, margin: 0, align: "left", valign: "middle", fontSize: 15, color: C.background1, fontFace: THEME.bodyFontFace });
-txt(s, "يعمل على الجوال، بوضع فاتح وداكن، ودون أي مكتبة خارجية", MX + 5.4, 6.3, CW - 5.7, 0.5, { valign: "middle", fontSize: 13, color: C.accent5 });
 
 // ================= 11. Trust
 s = slide("CONTENT", "الموثوقية: كل رقم يُعاد حسابه بأمر واحد",
   "أي محكم يستطيع تشغيل أمر واحد فيحصل على الأرقام نفسها. واستخدمنا الذكاء الاصطناعي مساعداً مع توثيق كل خطوة والأخطاء التي صححناها.");
-card(s, MX, 1.6, CW, 0.85, C.text2);
-s.addText("python scripts/run_all.py", { x: MX + 0.4, y: 1.6, w: 5.5, h: 0.85, isTextBox: true, margin: 0, align: "left", valign: "middle",
-  fontSize: 20, bold: true, color: C.accent2, fontFace: "Consolas" });
-txt(s, "تحليل، ثم اختبارات، ثم دفتر وتقرير وموقع", MX + 6.1, 1.6, CW - 6.5, 0.85, { valign: "middle", fontSize: 16, color: C.background1 });
 statCards(s, [
   { v: String(N_TESTS), l: "اختباراً آلياً ناجحاً، منها اختبار عدم تسرب المستقبل إلى التنبؤ" },
   { v: "37/37", l: "ملف نتائج يُعاد إنتاجه مطابقاً على النظامين", size: 44 },
   { v: "2", l: "نظاما تشغيل يُفحص عليهما تلقائياً عند كل تحديث" },
   { v: pct(FC.skill_vs_zero, 0), l: `أدق من المرجع الساذج في توقع عائد 12 شهراً (${pct(FC.point_pct)})` },
-], 2.65, 2.25);
-note(s, [HL("يعمل على ملفات أخرى:"), N(" الكود نفسه حلّل ملفاً بديلاً وأعطى نتائج مختلفة، فالأرقام تُحسب من الملف المُدخل لا من قيم ثابتة.")], 5.1, 0.75);
+], 1.65, 2.6);
+note(s, [HL("يعمل على ملفات أخرى:"), N(" الكود نفسه حلّل ملفاً بديلاً وأعطى نتائج مختلفة، فالأرقام تُحسب من الملف المُدخل لا من قيم ثابتة.")], 4.55, 0.85);
 note(s, [HL("ذكاء اصطناعي مسؤول:"), N(" لا رقم مكتوب يدوياً ولا بيانات مصطنعة، وسجل يوثق كل خطوة وكيف تحققنا منها، "),
-  HL("ومنها خطأ في رقم رئيسي اكتشفناه وصحّحناه.")], 6.0, 0.75);
+  HL("ومنها خطأ في رقم رئيسي اكتشفناه وصحّحناه.")], 5.6, 0.85);
 
 // ================= 12. Limits and close
 s = slide("CONTENT", "حدود التحليل، والخلاصة",
