@@ -26,7 +26,7 @@ PAGE = Template("""<!doctype html>
 <meta name="description" content="$tagline: ثلاثة حلول من بيانات مفتوحة حقيقية تُبقي الوقف مستداماً">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="dashboard/style.css?v=7">
+<link rel="stylesheet" href="dashboard/style.css?v=8">
 </head><body>
 
 <section class="hero" data-scene="hero">
@@ -129,10 +129,10 @@ $ev_recent من $ev_total توزيعاً مرصوداً وقعت في آخر ث�
 </section>
 
 </div>
-<script src="dashboard/data.js?v=7"></script>
-<script src="dashboard/map.js?v=7"></script>
-<script src="dashboard/common.js?v=7"></script>
-<script src="dashboard/story.js?v=7"></script>
+<script src="dashboard/data.js?v=8"></script>
+<script src="dashboard/map.js?v=8"></script>
+<script src="dashboard/common.js?v=8"></script>
+<script src="dashboard/story.js?v=8"></script>
 </body></html>
 """)
 

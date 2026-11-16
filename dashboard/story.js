@@ -70,6 +70,15 @@ const SCENES = {
 const seen = new Set();
 function play(id) { if (seen.has(id)) return; seen.add(id); const node = document.querySelector(`[data-scene="${id}"]`); if (node) node.classList.add('seen'); if (SCENES[id]) SCENES[id](); }
 const nodes = [...document.querySelectorAll('[data-scene]')];
-if (!('IntersectionObserver' in window) || still()) nodes.forEach(n => play(n.dataset.scene));
-else { const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) play(e.target.dataset.scene); }), { threshold: .3 }); nodes.forEach(n => io.observe(n)); }
+// A scene plays once it is inside the window. Checked directly on scroll, resize and a slow timer,
+// so nothing stays hidden if one browser event never arrives.
+function check() {
+  const h = window.innerHeight || document.documentElement.clientHeight;
+  nodes.forEach(n => { const b = n.getBoundingClientRect(); if (b.top < h * 0.82 && b.bottom > h * 0.12) play(n.dataset.scene); });
+  if (seen.size >= nodes.length) { clearInterval(timer); removeEventListener('scroll', check); removeEventListener('resize', check); }
+}
+let timer = 0;
+if (still()) nodes.forEach(n => play(n.dataset.scene));
+else { document.documentElement.classList.add('anim'); addEventListener('scroll', check, { passive: true }); addEventListener('resize', check);
+  addEventListener('load', check); timer = setInterval(check, 500); check(); }
 document.addEventListener('mz-redraw', () => seen.forEach(id => { if (SCENES[id] && id !== 'hero' && id !== 'data' && id !== 'shock') SCENES[id](); }));

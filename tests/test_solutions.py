@@ -1,10 +1,9 @@
 """Sustainability label, spending menu and masarif compass."""
 
 import numpy as np
-import pandas as pd
 import pytest
 
-from waqf import allocate, clean, config, solutions
+from waqf import allocate, clean, solutions
 
 
 @pytest.mark.parametrize("growth,expected", [(0.05, "A"), (0.02, "A"), (0.0199, "B"), (0.0, "B"), (-0.0001, "C"),
