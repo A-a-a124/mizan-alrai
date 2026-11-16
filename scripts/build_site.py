@@ -46,7 +46,6 @@ PAGE = Template("""<!doctype html>
     <div><div class="bignum" data-to="$n_raw">$n</div><div class="l">مصرفاً وقفياً مسجّلاً في $regions منطقة<br>الهيئة العامة للأوقاف، منصة البيانات المفتوحة الوطنية</div></div>
     <div><div class="bignum" data-to="$funds">$funds</div><div class="l">صندوقاً وقفياً مرخّصاً بأسعار وحداتها الشهرية<br>السوق المالية السعودية (تداول)</div></div>
   </div>
-  <p class="lead reveal">لا رقم مكتوب باليد ولا بيانات مصطنعة: كل ما في هذه الصفحة يُعاد حسابه من الملفات الخام بأمر واحد.</p>
 </section>
 
 <section class="scene" data-scene="index">
